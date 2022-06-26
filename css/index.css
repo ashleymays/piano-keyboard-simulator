@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: #313131;
+    height: 100vh;
+}
+
+:root {
+    --accent-color: #F93943;
+    --black-keys-color: #1C1C1C;
+    --white-keys-color: #bbbbbb;
+    --white-key-width: calc(100vw / 88);
+    /* --primary-text-color: ;
+    --screen-display-color: ; */
+}
+
+input {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    cursor: none;
+    background: none;
+}
+
+header {
+    display: none;
+}
+
+#piano {
+    position: absolute;
+    bottom: 0;
+    height: 30rem;
+    width: 100vw;
+}
+
+.piano-controls {
+    display: none;
+}
+
+/* .transpose-container {
+
+}
+
+#transpose-up-btn, #transpose-down-btn {
+
+}
+
+#transpose-up-btn {
+
+}
+
+#transpose-down-btn {
+
+}
+
+#transpose-display {
+
+}
+
+.chord-id-container {
+
+}
+
+#chord-id-display {
+
+}
+
+#chord-id-btn {
+
+}
+
+.btn-group {
+
+}
+
+.control-btn {
+
+}
+
+.control-btn > span {
+
+} */
+
+#piano-form {
+    height: 65%;
+    width: 100vw;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.all-piano-keys {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.white-key, .black-key {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    cursor: pointer;
+}
+
+.white-key {
+    background-color: var(--white-keys-color);
+    width: 100%;
+    height: 100%;
+    /* box-shadow: 0 0 0.2rem #c6c6c6 inset; */
+    box-shadow: 0 0 0.2rem #757575 inset;
+    border-radius: 0.5rem;
+    /* box-shadow: 0 0 0.2rem #505050 inset; */
+    font-size: 2.25rem;
+}
+
+.all-black-keys {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-flow: row;
+    width: calc(100vw - var(--white-key-width) * 2.75);
+    justify-content: space-between;
+    left: 0;
+    height: 100%;
+}
+
+/* key A0 */
+.black-key-2-group:first-child {
+    width: max-content !important;
+    margin-left: 2rem;
+}
+
+.black-key-2-group, .black-key-3-group {
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.black-key-2-group {
+    justify-content: space-between;
+    width: 3.5%;
+}
+
+.black-key-3-group {
+    justify-content: space-between;
+    width: 5.575%;
+}
+
+.black-key {
+    background-color: var(--black-keys-color);
+    display: inline-block;
+    width: 2rem;
+    height: 61.5%;
+    font-size: 1.9rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.white-key input + span, .black-key input + span {
+    /* font-size: ; */
+    display: none;
+}
+
+/* .white-key input + span {
+    color: ;
+}
+
+.black-key input + span {
+    color: ;
+} */
