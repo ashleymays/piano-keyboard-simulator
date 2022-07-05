@@ -7,11 +7,10 @@
     --accent-color: #F93943;
     --black-keys-color: #1C1C1C;
     --white-keys-color: #ececf1;
-    --piano-width: 100vw; /* change in media screen for responsiveness*/
-    --piano-height: 15.75rem;
-    --white-key-width: calc(var(--piano-width) * 2 / 88);
+    --piano-width: 55vw;
+    --piano-height: 30rem;
+    --white-key-width: calc(var(--piano-width) * 2 / 14);
     --primary-text-color: #707070;
-    /* --screen-display-color: ; */
 }
 
 html, body {
@@ -63,7 +62,7 @@ header a {
     text-decoration: none;
 }
 
-header > a:hover, .controls span:hover, .controls input:checked + span {
+header > a:hover, .controls span:hover {
     color: #e6e6e6;
 }
 
@@ -85,7 +84,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     position: absolute;
     right: -30rem;
     bottom: 0;
-    top: 2%;
+    top: 0;
     display: flex;
     flex-flow: column;
     height: 100vh;
@@ -99,31 +98,21 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 }
 
 #menu-content a:hover {
-    color: #e6e6e6;
-}
-
-.controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 35rem;
-    margin: 0 3rem;
-    color: var(--primary-text-color);
-}
-
-.controls span {
-    cursor: pointer;
+    background-color: hsl(0, 0%, 12%);
 }
 
 .piano-container {
     position: absolute;
-    bottom: 4%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--piano-width);
 }
 
 #piano {
     position: relative;
-    width: var(--piano-width);
     display: block;
+    width: 100%;
     height: max-content;
 }
 
@@ -157,7 +146,6 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     background-color: var(--white-keys-color);
     width: var(--white-key-width);
     height: 100%;
-    /* box-shadow: 0 0 0.2rem #c6c6c6 inset; */
     box-shadow: 0 0 0.12rem #1C1C1C inset;
     border-radius: 0 0 0.4rem 0.4rem;
     font-size: 2.25rem;
@@ -166,18 +154,12 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 .all-black-keys {
     position: absolute;
     top: 0;
+    left: 3.75rem;
     display: flex;
     flex-flow: row;
-    width: calc(var(--piano-width) - var(--white-key-width) * 1.375);
+    width: calc(var(--piano-width) - var(--white-key-width) / 1.5);
     justify-content: space-between;
-    left: 0;
     height: 100%;
-}
-
-/* key A0 */
-.black-key-2-group:first-child {
-    width: max-content !important;
-    margin-left: 2.25rem;
 }
 
 .black-key-2-group, .black-key-3-group {
@@ -189,63 +171,50 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 
 .black-key-2-group {
     justify-content: space-between;
-    width: 3.4%;
+    width: 13%;
 }
 
 .black-key-3-group {
     justify-content: space-between;
-    width: 5.575%;
+    width: 21%;
 }
 
 .black-key {
     background-color: var(--black-keys-color);
     display: inline-block;
-    width: 1.8rem;
+    width: 3.75rem;
     height: 58%;
     font-size: 1.9rem;
     border-radius: 0 0 0.4rem 0.4rem;
-    box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
+    box-shadow: 0 0.2rem 0.35rem rgb(0,0,0,0.4);
 }
 
 .white-key input + span, .black-key input + span {
+    content: "";
     display: flex;
     flex-flow: column;
     justify-content: flex-end;
     align-items: center;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
     height: 100%;
     width: 100%;
-    z-index: 1;
     border-radius: 0 0 0.4rem 0.4rem;
+    z-index: 1;
 }
 
 .white-key input[type="checkbox"]:checked + span {
-    background: rgb(0,0,0,0.325);
+    background: var(--accent-color);
 }
 
 .black-key input[type="checkbox"]:checked + span {
-    background: rgb(255,255,255,0.375);
+    background: var(--accent-color);
 }
 
 .white-key input + span {
     color: #121212;
-    font-size: 0;
+    font-size: 2.2rem;
 }
 
 .black-key input + span {
     font-size: 0;
-}
-
-.middle-c::after {
-    content: "";
-    position: absolute;
-    display: block;
-    bottom: -2.25rem;
-    width: 0;
-    height: 0;
-    /* border-bottom: 0.9rem solid var(--accent-color);
-    border-left: 0.65rem solid transparent;
-    border-right: 0.65rem solid transparent;
-    border-radius: 2rem; */
-    cursor: default;
 }

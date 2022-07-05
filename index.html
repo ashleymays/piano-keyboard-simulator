@@ -1,160 +1,157 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <meta charset="utf-08" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Piano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://drive.google.com/uc?id=1RHuBBOZI6Y-KvYU1X3MPZ8A1nn9UECqn" />
     <link rel="stylesheet" href="css/index.css" />
+    <script defer type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
     <header>
-        <a href="#"><img title="" src="" /></a>
-        <a href="">Info</a>
-    </header>
-    <div id="piano">
-        <div class="piano-controls">
-            <div class="transpose-container">
-                <label form="piano-keys" id="transpose-up-btn"><input type="checkbox" value="chord-id" /></label>
-                <h4 id="transpose-display"></h4>
-                <label form="piano-keys" id="transpose-down-btn"><input type="checkbox" value="chord-id" /></label>
-            </div>
-            <div class="chord-id-container" form="piano">
-                <h3 id="chord-id-display"></h3>
-                <label form="piano-keys" id="chord-id-btn"><input type="checkbox" value="chord-id" /></label>
-            </div>
-            <div class="btn-group">
-                <label form="piano-keys" id="soften-notes" class="control-btn"><input type="checkbox" /><span>Soft</span></label>
-                <label form="piano-keys" id="sustain" class="control-btn"><input type="checkbox" /><span>Sustain</span></label>
-                <label form="piano-keys" id="label-notes" class="control-btn"><input type="checkbox" /><span>Label Notes</span></label>
-                <label form="piano-keys" id="grand-piano" class="control-btn"><input type="checkbox" /><span>Grand Piano</span></label>
-                <label form="piano-keys" id="rhodes" class="control-btn"><input type="checkbox" /><span>Rhodes</span></label>
-                <label form="piano-keys" id="synth" class="control-btn"><input type="checkbox" /><span>Synth</span></label>
-            </div>
+        <a href="index.html">Online Piano</a>
+        <div class="controls">
+            <label form="piano-keys"><input type="checkbox" id="soften-notes"/><span>Soften</span></label>
+            <label form="piano-keys"><input type="checkbox" id="sustain"/><span>Sustain</span></label>
+            <label form="piano-keys"><input id="label-notes" type="checkbox"/><span>Label Notes</span></label>
         </div>
+        <div id="menu"><img src="https://drive.google.com/uc?id=1RHuBBOZI6Y-KvYU1X3MPZ8A1nn9UECqn" /></div>
+        <nav id="menu-content">
+            <a href="index.html">Online Piano</a>
+            <a href="info.html">Details</a>
+            <a href="chord-identifier.html">Chord Identifier</a>
+            <a href="">Privacy Policy</a>
+        </nav>
+    </header>
+    <section class="piano-container">
         <form id="piano-form">
-            <section class="all-piano-keys">
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <label class="white-key"><input type="checkbox" value="D" /><span>D</span></label>
-            <label class="white-key"><input type="checkbox" value="E" /><span>E</span></label>
-            <label class="white-key"><input type="checkbox" value="F" /><span>F</span></label>
-            <label class="white-key"><input type="checkbox" value="G" /><span>G</span></label>
-            <label class="white-key"><input type="checkbox" value="A" /><span>A</span></label>
-            <label class="white-key"><input type="checkbox" value="B" /><span>B</span></label>
-            <label class="white-key"><input type="checkbox" value="C" /><span>C</span></label>
-            <div class="all-black-keys">
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+            <section class="all-keys">
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key middle-c"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <label class="white-key"><input type="checkbox" value="D" /><span class="note-name">D</span></label>
+                <label class="white-key"><input type="checkbox" value="E" /><span class="note-name">E</span></label>
+                <label class="white-key"><input type="checkbox" value="F" /><span class="note-name">F</span></label>
+                <label class="white-key"><input type="checkbox" value="G" /><span class="note-name">G</span></label>
+                <label class="white-key"><input type="checkbox" value="A" /><span class="note-name">A</span></label>
+                <label class="white-key"><input type="checkbox" value="B" /><span class="note-name">B</span></label>
+                <label class="white-key"><input type="checkbox" value="C" /><span class="note-name">C</span></label>
+                <div class="all-black-keys">
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
+                    <div class="black-key-2-group">
+                        <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
+                    </div>
+                    <div class="black-key-3-group">
+                        <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
+                        <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
+                    </div>
                 </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-                <div class="black-key-2-group">
-                    <label class="black-key"><input type="checkbox" value="C#" /><span>C# <br/>D&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="D#" /><span>D# <br/>E&#9837</span></label>
-                </div>
-                <div class="black-key-3-group">
-                    <label class="black-key"><input type="checkbox" value="F#" /><span>F# <br/>G&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="G#" /><span>G# <br/>A&#9837</span></label>
-                    <label class="black-key"><input type="checkbox" value="A#" /><span>A# <br/>B&#9837</span></label>
-                </div>
-            </div>
             </section>
         </form>
-    </div>
+    </section>
 </body>
 </html>
