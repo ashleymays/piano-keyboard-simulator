@@ -15,24 +15,31 @@ menuBtn.addEventListener("click", function() {
 })
 
 
+
+
+
 let noteNames = document.getElementsByClassName("note-name");
 
 // Label Notes
 document.getElementById("key-assist").addEventListener("click", function() {
     if (this.checked) {
-        for (let i in noteNames) {
+        for (let i = 0; i < noteNames.length; ++i) {
             noteNames[i].style.fontSize = "1.7rem";
         }
     }
     else {
-        for (let i in noteNames) {
+        for (let i = 0; i < noteNames.length; ++i) {
             noteNames[i].style.fontSize = "0";
         }
     }
 })
 
+
+
+
+
 // press keys
-let keyObject = {
+let keysObject = {
     'z': {pitch: "C3"},
     'x': {pitch: "D3"},
     'c': {pitch: "E3"},
@@ -57,23 +64,34 @@ let keyObject = {
     ']': {pitch: "C6"}
 }
 
-let pitch, el;
+let el;
 function findKey(e) {
-    pitch = keyObject[e.key].pitch;
+    if (keysObject[e.key] == undefined) { 
+        return false; 
+    }
+    let pitch = keysObject[e.key].pitch;
     el = document.querySelector('[value="' + pitch + '"]');
+    return true;
 }
 
 let keysDown = [];
-
 document.addEventListener("keydown", function(e) {
-    findKey(e);
-    keysDown.push(el.value);
-    el.style.background = "var(--pressed-key-color)";
+    if (findKey(e) == true) {
+        keysDown.push(el.value);
+        el.style.background = "var(--pressed-key-color)";
+    }
 })
 
 document.addEventListener("keyup", function(e) {
-    findKey(e);
-    let index = keysDown.indexOf(el.value);
-    keysDown.splice(index, 1);
-    el.style.background = "revert";
+    if (findKey(e) == true) {
+        let index = keysDown.indexOf(el.value);
+        keysDown.splice(index, 1);
+        el.style.background = "revert";
+    }
 })
+
+/*
+    DONE == ignore actions done in 'findKey' function if the key is not an id in the object 'keysObject'
+    TO DO == while a key is pressed, only register one input of it and hold out the note until keyup happens
+    TO DO == register multiple inputs at a time
+*/
