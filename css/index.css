@@ -7,6 +7,7 @@
     --accent-color: #F93943;
     --black-keys-color: #1C1C1C;
     --white-keys-color: #ececf1;
+    --pressed-key-color: #909090;
     --piano-width: 100vw; /* change in media screen for responsiveness*/
     --piano-height: 15.75rem;
     --white-key-width: calc(var(--piano-width) * 2 / 88);
@@ -117,23 +118,13 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 
 .piano-container {
     position: absolute;
+    display: block;
+    width: var(--piano-width);
+    height: var(--piano-height);
     bottom: 4%;
 }
 
-#piano {
-    position: relative;
-    width: var(--piano-width);
-    display: block;
-    height: max-content;
-}
-
-#piano-form {
-    height: var(--piano-height);
-    width: var(--piano-width);
-    position: relative;
-}
-
-.all-keys {
+#all-keys {
     position: relative;
     height: 100%;
     width: 100%;
@@ -148,19 +139,23 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     flex-flow: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 0;
     cursor: pointer;
     z-index: 1;
+    padding-bottom: 1rem;
+    font-size: 0;
+    outline: none;
+    border: transparent;
+    font-family: inherit;
 }
 
 .white-key {
     background-color: var(--white-keys-color);
     width: var(--white-key-width);
     height: 100%;
-    /* box-shadow: 0 0 0.2rem #c6c6c6 inset; */
+    width: 100%;
     box-shadow: 0 0 0.12rem #1C1C1C inset;
     border-radius: 0 0 0.4rem 0.4rem;
-    font-size: 2.25rem;
+    
 }
 
 .all-black-keys {
@@ -202,38 +197,12 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     display: inline-block;
     width: 1.8rem;
     height: 58%;
-    font-size: 1.9rem;
     border-radius: 0 0 0.4rem 0.4rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
 }
 
-.white-key input + span, .black-key input + span {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 1rem;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-    border-radius: 0 0 0.4rem 0.4rem;
-}
-
-.white-key input[type="checkbox"]:checked + span {
-    background: rgb(0,0,0,0.325);
-}
-
-.black-key input[type="checkbox"]:checked + span {
-    background: rgb(255,255,255,0.375);
-}
-
-.white-key input + span {
-    color: #121212;
-    font-size: 0;
-}
-
-.black-key input + span {
-    font-size: 0;
+.white-key:active, .black-key:active {
+    background: var(--pressed-key-color);
 }
 
 .middle-c::after {
