@@ -7,7 +7,6 @@
     --accent-color: #F93943;
     --black-keys-color: #1C1C1C;
     --white-keys-color: #ececf1;
-    --pressed-key-color: #909090;
     --piano-width: 100vw; /* change in media screen for responsiveness*/
     --piano-height: 15.75rem;
     --white-key-width: calc(var(--piano-width) * 2 / 88);
@@ -146,6 +145,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     outline: none;
     border: transparent;
     font-family: inherit;
+    filter: invert(0);
 }
 
 .white-key {
@@ -202,7 +202,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 }
 
 .white-key:active, .black-key:active {
-    background: var(--pressed-key-color);
+    filter: invert(0.5);
 }
 
 .middle-c::after {
