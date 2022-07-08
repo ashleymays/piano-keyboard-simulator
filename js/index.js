@@ -84,14 +84,15 @@ function play(key) {
     osc.type = "sine";
     osc.frequency.value = keysObject[key].freq;
     osc.start(0);
-    gainNode.gain.value = 0.15;
+    gainNode.gain.setValueAtTime(0.5, context.currentTime); // attack
+    gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 2); // decay
     gainNodes[key] = gainNode;
     osc.connect(gainNodes[key]);
     gainNodes[key].connect(context.destination);
 }
 
 function mute(key) {
-    gainNodes[key].gain.value = 0;
+    gainNodes[key].gain.setValueAtTime(0, context.currentTime); // mute
 }
 
 document.addEventListener("keydown", function(e) {
