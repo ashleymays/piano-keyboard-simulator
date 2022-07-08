@@ -136,9 +136,17 @@ document.addEventListener("keyup", function(e) {
 
 // press key with mouse -> play note until they let go
 document.activeElement.addEventListener("mousedown", function(e) {
-    play(e.target.value);
+    // user presses a piano key -> play the note and change the background color of the key
+    if (e.target.tagName == "BUTTON") {
+        play(e.target.value);
+        e.target.style.filter = "invert(0.4)"
+    }    
 })
 
 document.activeElement.addEventListener("mouseup", function(e) {
-    mute(e.target.value);
+    // user lets go of a piano key -> mute the note and change the background color of the key
+    if (e.target.tagName == "BUTTON") {
+        mute(e.target.value);
+        e.target.style.filter = "invert(0)"
+    }    
 })
