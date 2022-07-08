@@ -38,88 +38,107 @@ document.getElementById("key-assist").addEventListener("click", function() {
 
 
 
-// press keys
+// map keys with keyboard
 let keysObject = {
-    'z': {pitch: "C3", freq: 130.81},
-    's': {pitch: "C#3", freq: 138.59},
-    'x': {pitch: "D3", freq: 146.83},
-    'd': {pitch: "D#3", freq: 155.56},
-    'c': {pitch: "E3", freq: 164.81},
-    'v': {pitch: "F3", freq: 174.61},
-    'g': {pitch: "F#3", freq: 185.00},
-    'b': {pitch: "G3", freq: 196.00},
-    'h': {pitch: "G#3", freq: 207.65},
-    'n': {pitch: "A3", freq: 220.00},
-    'j': {pitch: "A#3", freq: 233.08},
-    'm': {pitch: "B3", freq: 246.94},
-    ',': {pitch: "C4", freq: 261.63},
-    'l': {pitch: "C#4", freq: 277.18},
-    '.': {pitch: "D4", freq: 293.66},
-    ';': {pitch: "D#4", freq: 311.13},
-    '/': {pitch: "E4", freq: 329.63},
-    'q': {pitch: "F4", freq: 349.23},
-    '2': {pitch: "F#4", freq: 369.99},
-    'w': {pitch: "G4", freq: 392.00},
-    '3': {pitch: "G#4", freq: 415.30},
-    'e': {pitch: "A4", freq: 440.00},
-    '4': {pitch: "A#4", freq: 466.16},
-    'r': {pitch: "B4", freq: 493.88},
-    't': {pitch: "C5", freq: 523.25},
-    '6': {pitch: "C#5", freq: 554.37},
-    'y': {pitch: "D5", freq: 587.33},
-    '7': {pitch: "D#5", freq: 622.25},
-    'u': {pitch: "E5", freq: 659.25},
-    'i': {pitch: "F5", freq: 698.46},
-    '9': {pitch: "F#5", freq: 739.99},
-    'o': {pitch: "G5", freq: 783.99},
-    '0': {pitch: "G#5", freq: 830.61},
-    'p': {pitch: "A5", freq: 880.00},
-    '-': {pitch: "A#5", freq: 932.33},
-    '[': {pitch: "B5", freq: 987.77},
-    ']': {pitch: "C6", freq: 1046.5},
+    'C3': {input: 'z', freq: 130.81},
+    'C#3': {input: 's', freq: 138.59},
+    'D3': {input: 'x', freq: 146.83},
+    'D#3': {input: 'd', freq: 155.56},
+    'E3': {input: 'c', freq: 164.81},
+    'F3': {input: 'v', freq: 174.61},
+    'F#3': {input: "g", freq: 185.00},
+    'G3': {input: 'b', freq: 196.00},
+    'G#3': {input: 'h', freq: 207.65},
+    'A3': {input: 'n', freq: 220.00},
+    'A#3': {input: 'j', freq: 233.08},
+    'B3': {input: 'm', freq: 246.94},
+    'C4': {input: ',', freq: 261.63},
+    'C#4': {input: 'l', freq: 277.18},
+    'D4': {input: '.', freq: 293.66},
+    'D#4': {input: ';', freq: 311.13},
+    'E4': {input: '/', freq: 329.63},
+    'F4': {input: 'q', freq: 349.23},
+    'F#4': {input: '2', freq: 369.99},
+    'G4': {input: 'w', freq: 392.00},
+    'G#4': {input: '3', freq: 415.30},
+    'A4': {input: 'e', freq: 440.00},
+    'A#4': {input: '4', freq: 466.16},
+    'B4': {input: 'r', freq: 493.88},
+    'C5': {input: 't', freq: 523.25},
+    'C#5': {input: '6', freq: 554.37},
+    'D5': {input: 'y', freq: 587.33},
+    'D#5': {input: '7', freq: 622.25},
+    'E5': {input: 'u', freq: 659.25},
+    'F5': {input: 'i', freq: 698.46},
+    'F#5': {input: '9', freq: 739.99},
+    'G5': {input: 'o', freq: 783.99},
+    'G#5': {input: '0', freq: 830.61},
+    'A5': {input: 'p', freq: 880.00},
+    'A#5': {input: '-', freq: 932.33},
+    'B5': {input: '[', freq: 987.77},
+    'C6': {input: ']', freq: 1046.5},
 }
 
 // audio stuff
 let context = new (window.AudioContext || window.webkitAudioContext)();
 let el;
-function findKey(e) {
-    if (keysObject[e.key] == undefined) { 
-        return false; 
+
+// find the right pitch by the keyboard input
+function findPitch(e) {
+    // if the input property in the object exists and is equal to the keyboard input, 
+    // then the id is the note we want to play
+    for (let id in keysObject) {
+        if (keysObject[id].input != undefined && keysObject[id].input == e.key) {
+            el = document.querySelector('[value="' + id + '"]'); // get piano key in HTML doc
+            return id;
+        }
     }
-    let pitch = keysObject[e.key].pitch;
-    el = document.querySelector('[value="' + pitch + '"]');
-    return true;
+    // return false if the key that was pressed isn't a valid input for the piano
+    return false;
 }
 
 let gainNodes = [];
 
-function play(key) {
+function play(pitch) {
     let osc = context.createOscillator();
     let gainNode = context.createGain();
     osc.type = "sine";
-    osc.frequency.value = keysObject[key].freq;
+    osc.frequency.value = keysObject[pitch].freq;
     osc.start(0);
-    gainNode.gain.setValueAtTime(0.25, context.currentTime); // attack
+    gainNode.gain.setValueAtTime(0.5, context.currentTime); // attack
     gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 2); // decay
-    gainNodes[key] = gainNode;
-    osc.connect(gainNodes[key]);
-    gainNodes[key].connect(context.destination);
+    gainNodes[pitch] = gainNode; // store gain node to manipulate volume of key later (see mute function)
+    osc.connect(gainNodes[pitch]);
+    gainNodes[pitch].connect(context.destination);
 }
 
-function mute(key) {
-    gainNodes[key].gain.setValueAtTime(0, context.currentTime); // mute
+function mute(pitch) {
+    gainNodes[pitch].gain.setValueAtTime(0, context.currentTime); // mute
 }
 
+// press key on keybaord -> play note
 document.addEventListener("keydown", function(e) {
-    if (!e.repeat && findKey(e) == true) {
-        play(e.key);
-        el.style.filter = "invert(0.5)";
+    let note = findPitch(e);
+    if (!e.repeat && note != false) {
+        play(note);
+        el.style.filter = "invert(0.5)"; // change color of key in piano
     }
 })
 
+// let go of key on keybaord -> stop playing note
 document.addEventListener("keyup", function(e) {
-    if (findKey(e) == true) {
-        mute(e.key);
-        el.style.filter = "invert(0)";
+    let note = findPitch(e);
+    if (note != false) {
+        mute(note);
+        el.style.filter = "invert(0)"; // change background color of piano key
     }
+})
+
+// press key with mouse -> play note until they let go
+document.activeElement.addEventListener("mousedown", function(e) {
+    play(e.target.value);
+})
+
+document.activeElement.addEventListener("mouseup", function(e) {
+    mute(e.target.value);
 })

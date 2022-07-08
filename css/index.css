@@ -72,15 +72,6 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     cursor: pointer;
 }
 
-#menu img {
-    width: 100%;
-    filter: invert(1);
-}
-
-#menu:hover, #menu img:hover {
-    filter: invert(0) brightness(140%) !important;
-}
-
 #menu-content {
     position: absolute;
     right: -30rem;
@@ -203,18 +194,4 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 
 .white-key:active, .black-key:active {
     filter: invert(0.5);
-}
-
-.middle-c::after {
-    content: "";
-    position: absolute;
-    display: block;
-    bottom: -2.25rem;
-    width: 0;
-    height: 0;
-    /* border-bottom: 0.9rem solid var(--accent-color);
-    border-left: 0.65rem solid transparent;
-    border-right: 0.65rem solid transparent;
-    border-radius: 2rem; */
-    cursor: default;
 }
