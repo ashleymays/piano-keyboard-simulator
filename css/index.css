@@ -191,7 +191,3 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     border-radius: 0 0 0.4rem 0.4rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
 }
-
-.white-key:active, .black-key:active {
-    filter: invert(0.5);
-}
