@@ -94,12 +94,10 @@ function play(pitch) {
     let gainNode = context.createGain();
     osc.type = "sine"
     osc.frequency.value = Tonal.Note.freq(pitch);
-    osc.start(0);
+    osc.start();
 
-    // This defines the initial value.
-    gainNode.gain.value = 0.25;
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 5);
-
+    gainNode.gain.setValueAtTime(0.25, context.currentTime); // attack volume
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 5); // decay
     gainNodes[pitch] = gainNode; // store gain node to manipulate volume of key later (see mute function)
     
     osc.connect(gainNodes[pitch]);
@@ -108,7 +106,7 @@ function play(pitch) {
 
 function mute(pitch) {
     gainNodes[pitch].gain.setValueAtTime(gainNodes[pitch].gain.value, context.currentTime);
-    gainNodes[pitch].gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.03);
+    gainNodes[pitch].gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.0275);
 }
 
 // press key on keybaord -> play note
@@ -127,19 +125,37 @@ document.addEventListener("keyup", function(e) {
     }
 })
 
+
+
 // press key with mouse -> play note until they let go
+let isDown;
 document.activeElement.addEventListener("mousedown", function(e) {
     // user presses a piano key -> play the note and change the background color of the key
     if (e.target.tagName == "BUTTON") {
         play(e.target.id);
         e.target.style.filter = "invert(0.5)";
+        isDown = true;
     }    
 })
 
-document.activeElement.addEventListener("click", function(e) {
+document.activeElement.addEventListener("mouseup", function(e) {
     // user lets go of a piano key -> mute the note and change the background color of the key
     if (e.target.tagName == "BUTTON") {
         mute(e.target.id);
+        e.target.style.filter = "invert(0)";
+        isDown = false;
+    }
+})
+
+document.getElementById("all-keys").addEventListener("mouseover", function(e) {
+    if (e.target.tagName == "BUTTON" && isDown === true) {
+        play(e.target.id);
+        e.target.style.filter = "invert(0.5)";
+    }
+})
+
+document.getElementById("all-keys").addEventListener("mouseout", function(e) {
+    if (e.target.tagName == "BUTTON") {
         e.target.style.filter = "invert(0)";
     }
 })
