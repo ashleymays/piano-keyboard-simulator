@@ -3,7 +3,7 @@
 }
 
 :root {
-    --background-color: #121212;
+    --background-color: #141414;
     --accent-color: #F93943;
     --black-keys-color: #1C1C1C;
     --white-keys-color: #ececf1;
@@ -124,7 +124,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     justify-content: stretch;
 }
 
-.white-key, .black-key {
+.note {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -146,7 +146,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     width: 100%;
     box-shadow: 0 0 0.12rem #1C1C1C inset;
     border-radius: 0 0 0.4rem 0.4rem;
-    
+    color: var(--black-keys-color);
 }
 
 .all-black-keys {
@@ -190,4 +190,5 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     height: 58%;
     border-radius: 0 0 0.4rem 0.4rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
+    color: var(--white-keys-color);
 }

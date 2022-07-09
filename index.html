@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css" />
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script>
     <script defer src="js/index.js"></script>
 </head>
 <body>
@@ -29,124 +29,124 @@
     </header>
     <section class="piano-container">
           <div id="all-keys">
-               <button class="white-key note-name" type="button" value="A0">A</button>
-               <button class="white-key note-name" type="button" value="B0">B</button> 
-               <button class="white-key note-name" type="button" value="C1">C</button> 
-               <button class="white-key note-name" type="button" value="D1">D</button> 
-               <button class="white-key note-name" type="button" value="E1">E</button> 
-               <button class="white-key note-name" type="button" value="F1">F</button> 
-               <button class="white-key note-name" type="button" value="G1">G</button> 
-               <button class="white-key note-name" type="button" value="A1">A</button> 
-               <button class="white-key note-name" type="button" value="B1">B</button> 
-               <button class="white-key note-name" type="button" value="C2">C</button> 
-               <button class="white-key note-name" type="button" value="D2">D</button> 
-               <button class="white-key note-name" type="button" value="E2">E</button> 
-               <button class="white-key note-name" type="button" value="F2">F</button> 
-               <button class="white-key note-name" type="button" value="G2">G</button> 
-               <button class="white-key note-name" type="button" value="A2">A</button> 
-               <button class="white-key note-name" type="button" value="B2">B</button> 
-               <button class="white-key note-name" type="button" value="C3">C</button> 
-               <button class="white-key note-name" type="button" value="D3">D</button> 
-               <button class="white-key note-name" type="button" value="E3">E</button> 
-               <button class="white-key note-name" type="button" value="F3">F</button> 
-               <button class="white-key note-name" type="button" value="G3">G</button> 
-               <button class="white-key note-name" type="button" value="A3">A</button> 
-               <button class="white-key note-name" type="button" value="B3">B</button> 
-               <button class="white-key note-name" type="button" value="C4">C</button> 
-               <button class="white-key note-name" type="button" value="D4">D</button> 
-               <button class="white-key note-name" type="button" value="E4">E</button> 
-               <button class="white-key note-name" type="button" value="F4">F</button> 
-               <button class="white-key note-name" type="button" value="G4">G</button> 
-               <button class="white-key note-name" type="button" value="A4">A</button> 
-               <button class="white-key note-name" type="button" value="B4">B</button> 
-               <button class="white-key note-name" type="button" value="C5">C</button> 
-               <button class="white-key note-name" type="button" value="D5">D</button> 
-               <button class="white-key note-name" type="button" value="E5">E</button> 
-               <button class="white-key note-name" type="button" value="F5">F</button> 
-               <button class="white-key note-name" type="button" value="G5">G</button> 
-               <button class="white-key note-name" type="button" value="A5">A</button> 
-               <button class="white-key note-name" type="button" value="B5">B</button> 
-               <button class="white-key note-name" type="button" value="C6">C</button> 
-               <button class="white-key note-name" type="button" value="D6">D</button> 
-               <button class="white-key note-name" type="button" value="E6">E</button> 
-               <button class="white-key note-name" type="button" value="F6">F</button> 
-               <button class="white-key note-name" type="button" value="G6">G</button> 
-               <button class="white-key note-name" type="button" value="A6">A</button> 
-               <button class="white-key note-name" type="button" value="B6">B</button> 
-               <button class="white-key note-name" type="button" value="C7">C</button> 
-               <button class="white-key note-name" type="button" value="D7">D</button> 
-               <button class="white-key note-name" type="button" value="E7">E</button> 
-               <button class="white-key note-name" type="button" value="F7">F</button> 
-               <button class="white-key note-name" type="button" value="G7">G</button> 
-               <button class="white-key note-name" type="button" value="A7">A</button> 
-               <button class="white-key note-name" type="button" value="B7">B</button> 
-               <button class="white-key note-name" type="button" value="C8">C</button> 
+               <button class="white-key note" type="button" id="A0"></button>
+               <button class="white-key note" type="button" id="B0"></button> 
+               <button class="white-key note" type="button" id="C1"></button> 
+               <button class="white-key note" type="button" id="D1"></button> 
+               <button class="white-key note" type="button" id="E1"></button> 
+               <button class="white-key note" type="button" id="F1"></button> 
+               <button class="white-key note" type="button" id="G1"></button> 
+               <button class="white-key note" type="button" id="A1"></button> 
+               <button class="white-key note" type="button" id="B1"></button> 
+               <button class="white-key note" type="button" id="C2"></button> 
+               <button class="white-key note" type="button" id="D2"></button> 
+               <button class="white-key note" type="button" id="E2"></button> 
+               <button class="white-key note" type="button" id="F2"></button> 
+               <button class="white-key note" type="button" id="G2"></button> 
+               <button class="white-key note" type="button" id="A2"></button> 
+               <button class="white-key note" type="button" id="B2"></button> 
+               <button class="white-key note" type="button" id="C3">z</button> 
+               <button class="white-key note" type="button" id="D3">x</button> 
+               <button class="white-key note" type="button" id="E3">c</button> 
+               <button class="white-key note" type="button" id="F3">v</button> 
+               <button class="white-key note" type="button" id="G3">b</button> 
+               <button class="white-key note" type="button" id="A3">n</button> 
+               <button class="white-key note" type="button" id="B3">m</button> 
+               <button class="white-key note" type="button" id="C4">,</button> 
+               <button class="white-key note" type="button" id="D4">.</button> 
+               <button class="white-key note" type="button" id="E4">/</button> 
+               <button class="white-key note" type="button" id="F4">q</button> 
+               <button class="white-key note" type="button" id="G4">w</button> 
+               <button class="white-key note" type="button" id="A4">e</button> 
+               <button class="white-key note" type="button" id="B4">r</button> 
+               <button class="white-key note" type="button" id="C5">t</button> 
+               <button class="white-key note" type="button" id="D5">y</button> 
+               <button class="white-key note" type="button" id="E5">u</button> 
+               <button class="white-key note" type="button" id="F5">i</button> 
+               <button class="white-key note" type="button" id="G5">o</button> 
+               <button class="white-key note" type="button" id="A5">p</button> 
+               <button class="white-key note" type="button" id="B5">[</button> 
+               <button class="white-key note" type="button" id="C6">]</button> 
+               <button class="white-key note" type="button" id="D6"></button> 
+               <button class="white-key note" type="button" id="E6"></button> 
+               <button class="white-key note" type="button" id="F6"></button> 
+               <button class="white-key note" type="button" id="G6"></button> 
+               <button class="white-key note" type="button" id="A6"></button> 
+               <button class="white-key note" type="button" id="B6"></button> 
+               <button class="white-key note" type="button" id="C7"></button> 
+               <button class="white-key note" type="button" id="D7"></button> 
+               <button class="white-key note" type="button" id="E7"></button> 
+               <button class="white-key note" type="button" id="F7"></button> 
+               <button class="white-key note" type="button" id="G7"></button> 
+               <button class="white-key note" type="button" id="A7"></button> 
+               <button class="white-key note" type="button" id="B7"></button> 
+               <button class="white-key note" type="button" id="C8"></button> 
                <div class="all-black-keys">
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="A#0"> </button> 
+                         <button class="black-key note" type="button" id="A#0"> </button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#1"> </button>  
-                         <button class="black-key note-name" type="button" value="D#1"> </button> 
+                         <button class="black-key note" type="button" id="C#1"> </button>  
+                         <button class="black-key note" type="button" id="D#1"> </button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#1"> </button> 
-                         <button class="black-key note-name" type="button" value="G#1"> </button> 
-                         <button class="black-key note-name" type="button" value="A#1"> </button> 
+                         <button class="black-key note" type="button" id="F#1"> </button> 
+                         <button class="black-key note" type="button" id="G#1"> </button> 
+                         <button class="black-key note" type="button" id="A#1"> </button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#2"> </button>  
-                         <button class="black-key note-name" type="button" value="D#2"> </button> 
+                         <button class="black-key note" type="button" id="C#2"> </button>  
+                         <button class="black-key note" type="button" id="D#2"> </button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#2"> </button> 
-                         <button class="black-key note-name" type="button" value="G#2"> </button> 
-                         <button class="black-key note-name" type="button" value="A#2"> </button> 
+                         <button class="black-key note" type="button" id="F#2"> </button> 
+                         <button class="black-key note" type="button" id="G#2"> </button> 
+                         <button class="black-key note" type="button" id="A#2"> </button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#3"> </button>  
-                         <button class="black-key note-name" type="button" value="D#3"> </button> 
+                         <button class="black-key note" type="button" id="C#3">s</button>  
+                         <button class="black-key note" type="button" id="D#3">d</button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#3"> </button> 
-                         <button class="black-key note-name" type="button" value="G#3"> </button> 
-                         <button class="black-key note-name" type="button" value="A#3"> </button> 
+                         <button class="black-key note" type="button" id="F#3">g</button> 
+                         <button class="black-key note" type="button" id="G#3">h</button> 
+                         <button class="black-key note" type="button" id="A#3">j</button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#4"> </button>  
-                         <button class="black-key note-name" type="button" value="D#4"> </button> 
+                         <button class="black-key note" type="button" id="C#4">l</button>  
+                         <button class="black-key note" type="button" id="D#4">;</button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#4"> </button> 
-                         <button class="black-key note-name" type="button" value="G#4"> </button> 
-                         <button class="black-key note-name" type="button" value="A#4"> </button> 
+                         <button class="black-key note" type="button" id="F#4">2</button> 
+                         <button class="black-key note" type="button" id="G#4">3</button> 
+                         <button class="black-key note" type="button" id="A#4">4</button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#5"> </button>  
-                         <button class="black-key note-name" type="button" value="D#5"> </button> 
+                         <button class="black-key note" type="button" id="C#5">6</button>  
+                         <button class="black-key note" type="button" id="D#5">7</button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#5"> </button> 
-                         <button class="black-key note-name" type="button" value="G#5"> </button> 
-                         <button class="black-key note-name" type="button" value="A#5"> </button> 
+                         <button class="black-key note" type="button" id="F#5">9</button> 
+                         <button class="black-key note" type="button" id="G#5">0</button> 
+                         <button class="black-key note" type="button" id="A#5">-</button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#6"> </button>  
-                         <button class="black-key note-name" type="button" value="D#6"> </button> 
+                         <button class="black-key note" type="button" id="C#6"> </button>  
+                         <button class="black-key note" type="button" id="D#6"> </button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#6"> </button> 
-                         <button class="black-key note-name" type="button" value="G#6"> </button> 
-                         <button class="black-key note-name" type="button" value="A#6"> </button> 
+                         <button class="black-key note" type="button" id="F#6"> </button> 
+                         <button class="black-key note" type="button" id="G#6"> </button> 
+                         <button class="black-key note" type="button" id="A#6"> </button> 
                     </div>
                     <div class="black-key-2-group">
-                         <button class="black-key note-name" type="button" value="C#7"> </button>  
-                         <button class="black-key note-name" type="button" value="D#7"> </button> 
+                         <button class="black-key note" type="button" id="C#7"> </button>  
+                         <button class="black-key note" type="button" id="D#7"> </button> 
                     </div>
                     <div class="black-key-3-group">
-                         <button class="black-key note-name" type="button" value="F#7"> </button> 
-                         <button class="black-key note-name" type="button" value="G#7"> </button> 
-                         <button class="black-key note-name" type="button" value="A#7"> </button> 
+                         <button class="black-key note" type="button" id="F#7"> </button> 
+                         <button class="black-key note" type="button" id="G#7"> </button> 
+                         <button class="black-key note" type="button" id="A#7"> </button> 
                     </div>
                </div>
           </div>
