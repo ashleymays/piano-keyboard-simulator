@@ -133,7 +133,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     justify-content: flex-end;
     cursor: pointer;
     z-index: 1;
-    padding-bottom: 1rem;
+    padding-bottom: 1.1rem;
     font-size: 0;
     outline: none;
     border: transparent;
