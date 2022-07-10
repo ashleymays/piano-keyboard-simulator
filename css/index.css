@@ -3,14 +3,14 @@
 }
 
 :root {
-    --background-color: #141414;
+    --background-color: #1a1a1a;
     --accent-color: #F93943;
     --black-keys-color: #1C1C1C;
     --white-keys-color: #ececf1;
     --piano-width: 100vw; /* change in media screen for responsiveness*/
     --piano-height: 15.75rem;
     --white-key-width: calc(var(--piano-width) * 2 / 88);
-    --primary-text-color: #707070;
+    --primary-text-color: #757575;
     /* --screen-display-color: ; */
 }
 
@@ -83,6 +83,8 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     width: 30rem;
     z-index: 3;
     background-color: var(--background-color);
+
+    display: none !important;
 }
 
 #menu-content a {
@@ -185,7 +187,6 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 
 .black-key {
     background-color: var(--black-keys-color);
-    display: inline-block;
     width: 1.8rem;
     height: 58%;
     border-radius: 0 0 0.4rem 0.4rem;

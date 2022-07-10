@@ -42,45 +42,44 @@ document.getElementById("key-assist").addEventListener("click", function() {
 // map keys with keyboard
 let keysMap = new Map([
     ['z', "C3"],
-    ['s', "C#3"],
+    ['s', "Db3"],
     ['x', "D3"],
-    ['d', "D#3"],
+    ['d', "Eb3"],
     ['c', "E3"],
     ['v', "F3"],
-    ['g', "F#3"],
+    ['g', "Gb3"],
     ['b', "G3"],
-    ['h', "G#3"],
+    ['h', "Ab3"],
     ['n', "A3"],
-    ['j', "A#3"],
+    ['j', "Bb3"],
     ['m', "B3"],
     [',', "C4"],
-    ['l', "C#4"],
+    ['l', "Db4"],
     ['.', "D4"],
-    [';', "D#4"],
+    [';', "Eb4"],
     ['/', "E4"],
     ['q', "F4"],
-    ['2', "F#4"],
+    ['2', "Gb4"],
     ['w', "G4"],
-    ['3', "G#4"],
+    ['3', "Ab4"],
     ['e', "A4"],
-    ['4', "A#4"],
+    ['4', "Bb4"],
     ['r', "B4"],
     ['t', "C5"],
-    ['6', "C#5"],
+    ['6', "Db5"],
     ['y', "D5"],
-    ['7', "D#5"],
+    ['7', "Eb5"],
     ['u', "E5"],
     ['i', "F5"],
-    ['9', "F#5"],
+    ['9', "Gb5"],
     ['o', "G5"],
-    ['0', "G#5"],
+    ['0', "Ab5"],
     ['p', "A5"],
-    ['-', "A#5"],
+    ['-', "Bb5"],
     ['[', "B5"],
     [']', "C6"],
 ]);
 
-// audio stuff
 let context = new (window.AudioContext || window.webkitAudioContext)();
 
 // find the right pitch by the keyboard input
@@ -88,29 +87,37 @@ function isValidInput(input) {
     return keysMap.has(input) === true;
 }
 
-let gainNodes = [];
-function play(pitch) {
-    let osc = context.createOscillator();
-    let gainNode = context.createGain();
-    osc.type = "sine"
-    osc.frequency.value = Tonal.Note.freq(pitch);
-    osc.start();
 
-    gainNode.gain.setValueAtTime(0.25, context.currentTime); // attack volume
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 5); // decay
-    gainNodes[pitch] = gainNode; // store gain node to manipulate volume of key later (see mute function)
-    
-    osc.connect(gainNodes[pitch]);
-    gainNodes[pitch].connect(context.destination);
+// load all audio files when page loads so that when the user presses keys the sounds start on time
+// store buffers in array to access piano sounds when user presses a key
+let buffers = [];
+window.onload = function() {
+    for (let i = 0; i < notes.length; ++i) {
+    let request = new XMLHttpRequest();
+    request.open("GET", "./audio/piano-mp3/" + notes[i].id + ".mp3");
+    request.responseType = "arraybuffer";
+    request.onload = function() {
+        let undecodedAudio = request.response;
+        context.decodeAudioData(undecodedAudio, (data) => buffers[notes[i].id] = data)
+    }
+    request.send();
+}}
+
+function play(pitch) {
+    let playSound = context.createBufferSource();
+    playSound.buffer = buffers[pitch];    
+    playSound.connect(context.destination);
+    playSound.start(context.currentTime);
 }
 
 function mute(pitch) {
-    gainNodes[pitch].gain.setValueAtTime(gainNodes[pitch].gain.value, context.currentTime);
-    gainNodes[pitch].gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.0275);
+    
 }
 
 // press key on keybaord -> play note
 document.addEventListener("keydown", function(e) {
+    // the pressed key is used for input in the piano -> play note
+    // !e.repeat makes sure that only the first keydown event when holding down on a certain key is taken into account
     if (!e.repeat && isValidInput(e.key)) {
         play(keysMap.get(e.key));
         document.getElementById(keysMap.get(e.key)).style.filter = "invert(0.5)";
@@ -148,6 +155,7 @@ document.activeElement.addEventListener("mouseup", function(e) {
 })
 
 document.getElementById("all-keys").addEventListener("mouseover", function(e) {
+    // the user is pressing down on the mouse and moving over the keys -> play the notes they're hovering over
     if (e.target.tagName == "BUTTON" && isDown === true) {
         play(e.target.id);
         e.target.style.filter = "invert(0.5)";
@@ -155,10 +163,12 @@ document.getElementById("all-keys").addEventListener("mouseover", function(e) {
 })
 
 document.getElementById("all-keys").addEventListener("mouseout", function(e) {
+    // user moves mouse out of the piano -> change background of key to original color
     if (e.target.tagName == "BUTTON") {
         e.target.style.filter = "invert(0)";
     }
 })
 
-
-//  TODO: FIX BUG WHERE THE FILTER STAYS ON AFTER PRESSING THE KEY AND MOVING THE MOUSE
+//  TODO: FIX BUG WHERE IT KEEPS PLAYING NOTES AFTER PRESSING THE KEY AND MOVING THE MOUSE
+//  TODO: MAKE MUTE FUNCTION TO PLAY UNSUSTAINED NOTES
+//  (?) TODO: RE-MAP KEYBOARD INPUTS
