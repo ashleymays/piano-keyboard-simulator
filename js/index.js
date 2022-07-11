@@ -147,7 +147,7 @@ piano.addEventListener("mouseout", function(e) {
 keyAssist.addEventListener("click", function() {
     if (this.checked) {
         for (let i = 0; i < notes.length; ++i) {
-            notes[i].style.fontSize = "1.65rem";
+            notes[i].style.fontSize = "1.8rem";
         }
     }
     else {
