@@ -66,20 +66,18 @@ function isValidInput(input) {
     return keysMap.has(input) === true;
 }
 
-let gainNodes = [];
 function playNote(pitch) {
     let playSound = context.createBufferSource();
     let gainNode = context.createGain();
     playSound.buffer = buffers[pitch];   
-    gainNode.gain.value = 1;
+    gainNode.gain.value = 1.5;
     playSound.connect(gainNode);
     gainNode.connect(context.destination);
     playSound.start(context.currentTime);
-    gainNodes[pitch] = gainNode;
-}
 
-function endNote(pitch) {
-    gainNodes[pitch].gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+    if (sustain.checked === false) {
+        gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 0.6);
+    }
 }
 
 // Keyboard Input
@@ -88,23 +86,18 @@ document.addEventListener("keydown", function(e) {
     // !e.repeat makes sure that only the first keydown event when holding down on a certain key is taken into account
     if (!e.repeat && isValidInput(e.key)) {
         playNote(keysMap.get(e.key));
-        document.getElementById(keysMap.get(e.key)).style.filter = "invert(0.5)";
+        document.getElementById(keysMap.get(e.key)).style.filter = "invert(0.5)"; // change color of key
     }
 })
 
 document.addEventListener("keyup", function(e) {
-    // user lets go of key on keybaord and sustain is not on -> end note
-    if (isValidInput(e.key) && !sustain.checked) {
-        endNote(keysMap.get(e.key));
-    }
-    document.getElementById(keysMap.get(e.key)).style.filter = "invert(0)";
+    document.getElementById(keysMap.get(e.key)).style.filter = "invert(0)"; // change color of key
 })
 
 // Mouse Input
 let isDown;
 document.activeElement.addEventListener("mousedown", function(e) {
-    // user presses a piano key with mouse -> play the note and change the background color of the key
-    if (e.target.tagName == "BUTTON") {
+    if (e.target.tagName === "BUTTON") {
         playNote(e.target.id);
         e.target.style.filter = "invert(0.5)";
         isDown = true;
@@ -112,16 +105,11 @@ document.activeElement.addEventListener("mousedown", function(e) {
 })
 
 document.activeElement.addEventListener("mouseup", function(e) {
-    // user lets go of a piano key with mouse -> mute the note and change the background color of the key
-    if (e.target.tagName == "BUTTON") {
-        endNote(e.target.id);
-        e.target.style.filter = "invert(0)";
-        isDown = false;
-    }
+    e.target.style.filter = "invert(0)";
+    isDown = false;
 })
 
 piano.addEventListener("mouseover", function(e) {
-    // the user is pressing down on the mouse and moving over the keys -> play the notes they're hovering over
     if (e.target.tagName == "BUTTON" && isDown === true) {
         playNote(e.target.id);
         e.target.style.filter = "invert(0.5)";
@@ -129,15 +117,10 @@ piano.addEventListener("mouseover", function(e) {
 })
 
 piano.addEventListener("mouseout", function(e) {
-    // user moves mouse out of the piano -> change background of key to original color
-    if (e.target.tagName == "BUTTON") {
-        e.target.style.filter = "invert(0)";
-    }
+    e.target.style.filter = "invert(0)";
 })
 
-//  TODO: FIX BUG WHERE IT KEEPS PLAYING NOTES AFTER PRESSING THE KEY AND MOVING THE MOUSE
-//  TODO: MAKE MUTE FUNCTION TO PLAY UNSUSTAINED NOTES
-//  (?) TODO: RE-MAP KEYBOARD INPUTS
+
 
 
 

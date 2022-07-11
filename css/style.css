@@ -61,9 +61,14 @@ header a {
     padding: 0;
     color: var(--primary-text-color);
     text-decoration: none;
+    visibility: hidden;
 }
 
-header > a:hover, .controls span:hover, .controls input:checked + span {
+header > a:hover, .controls span:hover {
+    color: #a5a5a5;
+}
+
+.controls input:checked + span {
     color: #e6e6e6;
 }
 
@@ -113,7 +118,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     display: block;
     width: var(--piano-width);
     height: var(--piano-height);
-    bottom: 4%;
+    bottom: 1%;
 }
 
 #piano {
@@ -187,7 +192,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
 
 .black-key {
     background-color: var(--black-keys-color);
-    width: 1.8rem;
+    width: 1.82rem;
     height: 58%;
     border-radius: 0 0 0.4rem 0.4rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
