@@ -116,7 +116,7 @@ header > a:hover, .controls span:hover, .controls input:checked + span {
     bottom: 4%;
 }
 
-#all-keys {
+#piano {
     position: relative;
     height: 100%;
     width: 100%;
