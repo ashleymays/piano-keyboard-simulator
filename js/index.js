@@ -94,7 +94,7 @@ let buffers = [];
 window.onload = function() {
     for (let i = 0; i < notes.length; ++i) {
     let request = new XMLHttpRequest();
-    request.open("GET", "./audio/piano-mp3/" + notes[i].id + ".mp3");
+    request.open("GET", "./audio/" + notes[i].id + ".mp3");
     request.responseType = "arraybuffer";
     request.onload = function() {
         let undecodedAudio = request.response;
@@ -103,11 +103,13 @@ window.onload = function() {
     request.send();
 }}
 
+let sounds = [];
 function play(pitch) {
     let playSound = context.createBufferSource();
     playSound.buffer = buffers[pitch];    
     playSound.connect(context.destination);
     playSound.start(context.currentTime);
+    sounds[pitch] = playSound;
 }
 
 function mute(pitch) {
