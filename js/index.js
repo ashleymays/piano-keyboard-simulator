@@ -103,17 +103,20 @@ window.onload = function() {
     request.send();
 }}
 
-let sounds = [];
+let gainNodes = [];
 function play(pitch) {
     let playSound = context.createBufferSource();
-    playSound.buffer = buffers[pitch];    
-    playSound.connect(context.destination);
+    let gainNode = context.createGain();
+    playSound.buffer = buffers[pitch];   
+    gainNode.gain.value = 1;
+    playSound.connect(gainNode);
+    gainNode.connect(context.destination);
     playSound.start(context.currentTime);
-    sounds[pitch] = playSound;
+    gainNodes[pitch] = gainNode;
 }
 
 function mute(pitch) {
-    
+    gainNodes[pitch].gain.linearRampToValueAtTime(0, context.currentTime + 0.8);
 }
 
 // press key on keybaord -> play note
