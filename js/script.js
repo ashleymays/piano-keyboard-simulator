@@ -3,6 +3,9 @@ let soften = document.getElementById("soften");
 let sustain = document.getElementById("sustain");
 let keyAssist = document.getElementById("key-assist");
 let piano = document.getElementById("piano");
+let metronome = document.getElementById("metronome");
+let body = document.querySelector("body");
+let menuBtn = document.getElementById("menu");
 let context = new (window.AudioContext || window.webkitAudioContext)();
 let keysMap = new Map([
     ['q', "C3"],
@@ -71,8 +74,8 @@ function playNote(pitch) {
     playSound.buffer = buffers[pitch];  
 
     if (soften.checked === true) {
-        gainNode.gain.setValueAtTime(0.4, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.85, context.currentTime + 0.35);
+        gainNode.gain.setValueAtTime(0.6, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(1.05, context.currentTime + 0.35);
     }
     else {
         gainNode.gain.setValueAtTime(1.5, context.currentTime);
@@ -150,8 +153,6 @@ keyAssist.addEventListener("click", function() {
 
 
 // Menu Open Animation
-let body = document.querySelector("body");
-let menuBtn = document.getElementById("menu");
 let isOpen = false;
 menuBtn.addEventListener("click", function() {
     if (!isOpen) {
@@ -163,3 +164,9 @@ menuBtn.addEventListener("click", function() {
         isOpen = false;
     }
 })
+
+
+
+
+
+// Metronome

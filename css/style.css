@@ -3,15 +3,15 @@
 }
 
 :root {
-    --background-color: #1a1a1a;
+    --background-color: #121212;
     --accent-color: #F93943;
-    --black-keys-color: #1C1C1C;
+    --black-keys-color: #1a1a1a;
     --white-keys-color: #ececf1;
-    --piano-width: 100vw; /* change in media screen for responsiveness*/
-    --piano-height: 15.75rem;
+    --piano-height: 23.5vh;
+    --piano-width: 100vw;
     --white-key-width: calc(var(--piano-width) * 2 / 88);
+    --black-key-width: calc(var(--white-key-width) / 1.95);
     --primary-text-color: #757575;
-    /* --screen-display-color: ; */
 }
 
 html, body {
@@ -45,11 +45,12 @@ header {
     display: flex;
     flex-flow: row;
     width: 100%;
-    height: 10rem;
+    height: 11rem;
     padding: 0 5rem;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
 }
 
 header a, .controls span, #menu img {
@@ -61,7 +62,6 @@ header a {
     padding: 0;
     color: var(--primary-text-color);
     text-decoration: none;
-    visibility: hidden;
 }
 
 .controls input:checked + span {
@@ -84,7 +84,6 @@ header a {
     width: 30rem;
     z-index: 3;
     background-color: var(--background-color);
-
     display: none !important;
 }
 
@@ -100,7 +99,7 @@ header a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 40rem;
+    width: 52rem;
     margin: 0 3rem;
     color: var(--primary-text-color);
 }
@@ -114,7 +113,7 @@ header a {
     display: block;
     width: var(--piano-width);
     height: var(--piano-height);
-    bottom: 1%;
+    bottom: 3%;
 }
 
 #piano {
@@ -135,7 +134,7 @@ header a {
     cursor: pointer;
     z-index: 1;
     padding-bottom: 1.1rem;
-    font-size: 1.8rem;
+    font-size: 0;
     outline: none;
     border: transparent;
     font-family: inherit;
@@ -147,7 +146,7 @@ header a {
     height: 100%;
     width: 100%;
     box-shadow: 0 0 0.12rem #1C1C1C inset;
-    border-radius: 0 0 0.4rem 0.4rem;
+    border-radius: 0 0 0.425rem 0.425rem;
     color: var(--black-keys-color);
 }
 
@@ -165,7 +164,7 @@ header a {
 /* key A0 */
 .black-key-2-group:first-child {
     width: max-content !important;
-    margin-left: 2.25rem;
+    margin-left: 1.35vw;
 }
 
 .black-key-2-group, .black-key-3-group {
@@ -177,7 +176,7 @@ header a {
 
 .black-key-2-group {
     justify-content: space-between;
-    width: 3.4%;
+    width: 3.25%;
 }
 
 .black-key-3-group {
@@ -187,13 +186,189 @@ header a {
 
 .black-key {
     background-color: var(--black-keys-color);
-    width: 1.82rem;
-    height: 58%;
-    border-radius: 0 0 0.4rem 0.4rem;
+    width: var(--black-key-width);
+    height: 59%;
+    border-radius: 0 0 0.425rem 0.425rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
     color: var(--white-keys-color);
 }
 
 .key-bkg-color {
     background-color: var(--accent-color) !important;
+}
+
+@media screen and (orientation: landscape) and (max-device-height: 400px) {
+    :root {
+        --piano-height: 32vw;
+        --piano-width: 2900px;
+        --black-key-width: calc(var(--white-key-width) / 1.75);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 3.65rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-device-height: 401px) and (max-device-height: 600px) {
+    :root {
+        --piano-height: 32vw;
+        --piano-width: 2880px;
+        --black-key-width: calc(var(--white-key-width) / 1.7);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 3.5rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-device-height: 601px) and (max-device-height: 745px) {
+    :root {
+        --piano-height: 35vw;
+        --piano-width: 3600px;
+        --black-key-width: calc(var(--white-key-width) / 1.7);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 4.5rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-device-width: 1024px) and (min-device-height: 746px) and (max-device-height: 1024px) {
+    :root {
+        --piano-height: 35vw;
+        --piano-width: 4800px;
+        --black-key-width: calc(var(--white-key-width) / 1.7);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 6.1rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-device-width: 400px) {
+    :root {
+        --piano-height: 34vh;
+        --piano-width: 2400px;
+        --black-key-width: calc(var(--white-key-width) / 1.7);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+    }
+    .controls {
+        width: 35rem;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 3rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-device-width: 401px) and (max-device-width: 600px) {
+    :root {
+        --piano-height: 31vh;
+        --piano-width: 2880px;
+        --black-key-width: calc(var(--white-key-width) / 1.75);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 6%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 3.5rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-width: 601px) and (max-width: 745px) {
+    :root {
+        --piano-height: 35vh;
+        --piano-width: 3600px;
+        --black-key-width: calc(var(--white-key-width) / 1.7);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 4%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 4.25rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-width: 746px) and (max-width: 1280px) {
+    :root {
+        --piano-height: 35vh;
+        --piano-width: 4000px;
+        --black-key-width: calc(var(--white-key-width) / 1.65);
+    }
+    header {
+        top: 5%;
+        height: 5rem;
+        font-size: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+    .piano-container {
+        bottom: 4%;
+    }
+    .black-key-2-group:first-child {
+        margin-left: 5rem;
+    }
+}
+
+@media screen and (max-device-width: 1366px) {
+    body {
+        overflow-x: scroll;
+    }
 }
