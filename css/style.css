@@ -45,7 +45,7 @@ header {
     display: flex;
     flex-flow: row;
     width: 100%;
-    height: 8rem;
+    height: 10rem;
     padding: 0 5rem;
     font-size: 1.7rem;
     align-items: center;
@@ -62,10 +62,6 @@ header a {
     color: var(--primary-text-color);
     text-decoration: none;
     visibility: hidden;
-}
-
-header > a:hover, .controls span:hover {
-    color: #a5a5a5;
 }
 
 .controls input:checked + span {
@@ -104,7 +100,7 @@ header > a:hover, .controls span:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 35rem;
+    width: 40rem;
     margin: 0 3rem;
     color: var(--primary-text-color);
 }
@@ -147,7 +143,6 @@ header > a:hover, .controls span:hover {
 }
 
 .white-key {
-    background-color: var(--white-keys-color);
     width: var(--white-key-width);
     height: 100%;
     width: 100%;
@@ -197,4 +192,8 @@ header > a:hover, .controls span:hover {
     border-radius: 0 0 0.4rem 0.4rem;
     box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
     color: var(--white-keys-color);
+}
+
+.key-bkg-color {
+    background-color: var(--accent-color) !important;
 }
