@@ -3,151 +3,96 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Piano</title>
+    <title>Piano</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/script.js"></script>
 </head>
 <body>
-    <header>
-        <a href="index.html">Online Piano</a>
-        <div class="controls">
-            <label><input type="checkbox" id="soften"/><span>Soften</span></label>
-            <label><input type="checkbox" id="sustain"/><span>Sustain</span></label>
-            <label><input type="checkbox" id="key-assist" /><span>Key Assist</span></label>
-        </div>
-        <div id="menu"><img src="" /></div>
-        <nav id="menu-content">
-            <a href="index.html">Online Piano</a>
-            <a href="">Details</a>
-            <a href="">Privacy Policy</a>
-        </nav>
-    </header>
-    <section class="piano-container">
-          <div id="piano">
-               <button class="white-key note" type="button" id="A0"></button>
-               <button class="white-key note" type="button" id="B0"></button> 
-               <button class="white-key note" type="button" id="C1"></button> 
-               <button class="white-key note" type="button" id="D1"></button> 
-               <button class="white-key note" type="button" id="E1"></button> 
-               <button class="white-key note" type="button" id="F1"></button> 
-               <button class="white-key note" type="button" id="G1"></button> 
-               <button class="white-key note" type="button" id="A1"></button> 
-               <button class="white-key note" type="button" id="B1"></button> 
-               <button class="white-key note" type="button" id="C2"></button> 
-               <button class="white-key note" type="button" id="D2"></button> 
-               <button class="white-key note" type="button" id="E2"></button> 
-               <button class="white-key note" type="button" id="F2"></button> 
-               <button class="white-key note" type="button" id="G2"></button> 
-               <button class="white-key note" type="button" id="A2"></button> 
-               <button class="white-key note" type="button" id="B2"></button> 
-               <button class="white-key note" type="button" id="C3">q</button> 
-               <button class="white-key note" type="button" id="D3">w</button> 
-               <button class="white-key note" type="button" id="E3">e</button> 
-               <button class="white-key note" type="button" id="F3">r</button> 
-               <button class="white-key note" type="button" id="G3">t</button> 
-               <button class="white-key note" type="button" id="A3">y</button> 
-               <button class="white-key note" type="button" id="B3">u</button> 
-               <button class="white-key note" type="button" id="C4">i</button> 
-               <button class="white-key note" type="button" id="D4">o</button> 
-               <button class="white-key note" type="button" id="E4">p</button> 
-               <button class="white-key note" type="button" id="F4">[</button> 
-               <button class="white-key note" type="button" id="G4">]</button> 
-               <button class="white-key note" type="button" id="A4">z</button> 
-               <button class="white-key note" type="button" id="B4">x</button> 
-               <button class="white-key note" type="button" id="C5">c</button> 
-               <button class="white-key note" type="button" id="D5">v</button> 
-               <button class="white-key note" type="button" id="E5">b</button> 
-               <button class="white-key note" type="button" id="F5">n</button> 
-               <button class="white-key note" type="button" id="G5">m</button> 
-               <button class="white-key note" type="button" id="A5">,</button> 
-               <button class="white-key note" type="button" id="B5">.</button> 
-               <button class="white-key note" type="button" id="C6">/</button> 
-               <button class="white-key note" type="button" id="D6"></button> 
-               <button class="white-key note" type="button" id="E6"></button> 
-               <button class="white-key note" type="button" id="F6"></button> 
-               <button class="white-key note" type="button" id="G6"></button> 
-               <button class="white-key note" type="button" id="A6"></button> 
-               <button class="white-key note" type="button" id="B6"></button> 
-               <button class="white-key note" type="button" id="C7"></button> 
-               <button class="white-key note" type="button" id="D7"></button> 
-               <button class="white-key note" type="button" id="E7"></button> 
-               <button class="white-key note" type="button" id="F7"></button> 
-               <button class="white-key note" type="button" id="G7"></button> 
-               <button class="white-key note" type="button" id="A7"></button> 
-               <button class="white-key note" type="button" id="B7"></button> 
-               <button class="white-key note" type="button" id="C8"></button> 
-               <div class="all-black-keys">
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Bb0"></button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db1"></button>  
-                         <button class="black-key note" type="button" id="Eb1"></button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb1"></button> 
-                         <button class="black-key note" type="button" id="Ab1"></button> 
-                         <button class="black-key note" type="button" id="Bb1"></button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db2"></button>  
-                         <button class="black-key note" type="button" id="Eb2"></button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb2"></button> 
-                         <button class="black-key note" type="button" id="Ab2"></button> 
-                         <button class="black-key note" type="button" id="Bb2"></button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db3">2</button>  
-                         <button class="black-key note" type="button" id="Eb3">3</button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb3">5</button> 
-                         <button class="black-key note" type="button" id="Ab3">6</button> 
-                         <button class="black-key note" type="button" id="Bb3">7</button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db4">9</button>  
-                         <button class="black-key note" type="button" id="Eb4">0</button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb4">=</button> 
-                         <button class="black-key note" type="button" id="Ab4">a</button> 
-                         <button class="black-key note" type="button" id="Bb4">s</button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db5">f</button>  
-                         <button class="black-key note" type="button" id="Eb5">g</button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb5">j</button> 
-                         <button class="black-key note" type="button" id="Ab5">k</button> 
-                         <button class="black-key note" type="button" id="Bb5">l</button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db6"></button>  
-                         <button class="black-key note" type="button" id="Eb6"></button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb6"></button> 
-                         <button class="black-key note" type="button" id="Ab6"></button> 
-                         <button class="black-key note" type="button" id="Bb6"></button> 
-                    </div>
-                    <div class="black-key-2-group">
-                         <button class="black-key note" type="button" id="Db7"> </button>  
-                         <button class="black-key note" type="button" id="Eb7"> </button> 
-                    </div>
-                    <div class="black-key-3-group">
-                         <button class="black-key note" type="button" id="Gb7"> </button> 
-                         <button class="black-key note" type="button" id="Ab7"> </button> 
-                         <button class="black-key note" type="button" id="Bb7"> </button> 
+     <form id="recording-window" class="disabled">
+          <input type="text" name="recording-title" id="recording-title" placeholder="Enter recording title" required />
+          <button type="submit" id="download-btn">Download</button>
+     </form>
+     <section id="home">
+          <section class="controls">
+               <div class="instruments-select">
+                    <div id="selected" class="down-arrow">Acoustic Grand</div>
+                    <div id="instrument-options">
+                         <div>Acoustic Grand</div>
+                         <div>Electric Piano</div>
+                         <div>Music Box</div>
+                         <div>Harp</div>
                     </div>
                </div>
-          </div>
-    </section>
+               <div class="effects">
+                    <label><input type="checkbox" id="soften"/><span>Soften</span></label>
+                    <label><input type="checkbox" id="sustain" checked/><span>Sustain</span></label>
+                    <label><input id="key-assist" type="checkbox" /><span>Qwerty</span></label>
+               </div>
+               <label><input type="checkbox" id="record-btn"/><span class="record-off">Record</span></label>
+          </section>
+          <section class="piano-container">
+               <div id="piano">
+                    <button name="piano-key" class="white-key q" type="button">q</button> 
+                    <button name="piano-key" class="white-key w" type="button">w</button> 
+                    <button name="piano-key" class="white-key e" type="button">e</button> 
+                    <button name="piano-key" class="white-key r" type="button">r</button> 
+                    <button name="piano-key" class="white-key t" type="button">t</button> 
+                    <button name="piano-key" class="white-key y" type="button">y</button> 
+                    <button name="piano-key" class="white-key u" type="button">u</button> 
+                    <button name="piano-key" class="white-key i" type="button">i</button> 
+                    <button name="piano-key" class="white-key o" type="button">o</button> 
+                    <button name="piano-key" class="white-key p" type="button">p</button> 
+                    <button name="piano-key" class="white-key [" type="button">[</button> 
+                    <button name="piano-key" class="white-key ]" type="button">]</button> 
+                    <button name="piano-key" class="white-key z" type="button">z</button> 
+                    <button name="piano-key" class="white-key x" type="button">x</button> 
+                    <button name="piano-key" class="white-key c" type="button">c</button> 
+                    <button name="piano-key" class="white-key v" type="button">v</button> 
+                    <button name="piano-key" class="white-key b" type="button">b</button> 
+                    <button name="piano-key" class="white-key n" type="button">n</button> 
+                    <button name="piano-key" class="white-key m" type="button">m</button> 
+                    <button name="piano-key" class="white-key ," type="button">,</button> 
+                    <button name="piano-key" class="white-key ." type="button">.</button> 
+                    <button name="piano-key" class="white-key /" type="button">/</button>
+                    <div class="all-black-keys">
+                         <div class="black-key-2-group">
+                              <button name="piano-key" class="black-key 2" type="button">2</button>  
+                              <button name="piano-key" class="black-key 3" type="button">3</button> 
+                         </div>
+                         <div class="black-key-3-group">
+                              <button name="piano-key" class="black-key 5" type="button">5</button> 
+                              <button name="piano-key" class="black-key 6" type="button">6</button> 
+                              <button name="piano-key" class="black-key 7" type="button">7</button> 
+                         </div>
+                         <div class="black-key-2-group">
+                              <button name="piano-key" class="black-key 9" type="button">9</button>  
+                              <button name="piano-key" class="black-key 0" type="button">0</button> 
+                         </div>
+                         <div class="black-key-3-group">
+                              <button name="piano-key" class="black-key =" type="button">=</button> 
+                              <button name="piano-key" class="black-key a" type="button">a</button> 
+                              <button name="piano-key" class="black-key s" type="button">s</button> 
+                         </div>
+                         <div class="black-key-2-group">
+                              <button name="piano-key" class="black-key f" type="button">f</button>  
+                              <button name="piano-key" class="black-key g" type="button">g</button> 
+                         </div>
+                         <div class="black-key-3-group">
+                              <button name="piano-key" class="black-key j" type="button">j</button> 
+                              <button name="piano-key" class="black-key k" type="button">k</button> 
+                              <button name="piano-key" class="black-key l" type="button">l</button> 
+                         </div>
+                    </div>
+               </div>
+               <div class="octave-controls">
+                    <button id="octave-down-btn"></button>
+                    <div id="octave-range">C3 - C6</div>
+                    <button id="octave-up-btn"></button>
+               </div>
+          </section>
+     </section>
 </body>
 </html>

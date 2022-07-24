@@ -3,15 +3,17 @@
 }
 
 :root {
-    --background-color: #121212;
-    --accent-color: #F93943;
-    --black-keys-color: #1a1a1a;
-    --white-keys-color: #ececf1;
-    --piano-height: 23.5vh;
-    --piano-width: 100vw;
-    --white-key-width: calc(var(--piano-width) * 2 / 88);
-    --black-key-width: calc(var(--white-key-width) / 1.95);
-    --primary-text-color: #757575;
+    --primary-bkg-color: #1c1c1c;
+    --secondary-bkg-color: #252525;
+    --text-color: #b3b3b3;
+    --accent-color: hsl(155, 73%, 42%);
+
+    --pressed-key-bkg-color: #a0a0a0;
+    --pressed-key-color: #909090;
+
+    --piano-width: 83vw;
+    --piano-height: 49vh;
+    --black-key-width: calc(var(--piano-width) / 35.75);
 }
 
 html, body {
@@ -24,16 +26,12 @@ html {
 }
 
 body {
-    position: absolute;
-    left: 0;
     font-family: 'Gantari', sans-serif;
-    background-color: var(--background-color);
-    height: 100vh;
-    overflow: hidden;
+    background-color: var(--primary-bkg-color);
     transition-duration: 0.25s;
 }
 
-input {
+input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     display: none;
@@ -41,113 +39,289 @@ input {
     background: none;
 }
 
-header {
-    display: flex;
-    flex-flow: row;
-    width: 100%;
-    height: 11rem;
-    padding: 0 5rem;
-    font-size: 1.8rem;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-}
-
-header a, .controls span, #menu img {
-    transition-duration: 0.4s;
-}
-
-header a {
-    background: transparent;
-    padding: 0;
-    color: var(--primary-text-color);
-    text-decoration: none;
-}
-
-.controls input:checked + span {
-    color: #e6e6e6;
-}
-
-#menu {
-    width: 2.35rem;
-    cursor: pointer;
-}
-
-#menu-content {
-    position: absolute;
-    right: -30rem;
-    bottom: 0;
-    top: 2%;
-    display: flex;
-    flex-flow: column;
-    height: 100vh;
-    width: 30rem;
-    z-index: 3;
-    background-color: var(--background-color);
+.disabled {
     display: none !important;
 }
 
-#menu-content a {
-    padding: 2.5rem 1.5rem;
+/* Recording */
+#recording-window {
+    display: flex;
+    flex-flow: column;
+    padding: 1.5vh 1vw;
+    width: 25vw;
+    background: var(--secondary-bkg-color);
+    color: var(--text-color);
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2vw;
+    z-index: 5;
 }
 
-#menu-content a:hover {
-    color: #e6e6e6;
+#recording-title {
+    outline: none;
+    border-color: transparent;
+    border-radius: 2vw;
+    color: var(--text-color);
+    background: var(--primary-bkg-color);
+    padding: 1vh 0.75vw;
+    font-size: 1.5rem;
+    font-family: inherit;
+}
+
+#download-btn {
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+    margin-top: 1vh;
+    padding: 1vh 0;
+}
+
+#download-btn:hover {
+    color: var(--accent-color);
+}
+
+#home {
+    height: 100vh;
+}
+
+/* Header */
+.controls, #download-btn {
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
 }
 
 .controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 52rem;
-    margin: 0 3rem;
-    color: var(--primary-text-color);
+    width: 100%;
+    padding: 7vh 8.5vw;
 }
 
-.controls span {
+/* Recording */
+#record-btn + span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9.5vw;
+    height: 2.5vw;
+    cursor: pointer;
+    border-radius: 5vw;
+    outline: none;
+}
+
+.record-on {
+    background: var(--accent-color);
+    color: var(--primary-bkg-color);
+    font-weight: 700;
+    border: none;
+}
+
+.record-off {
+    background: transparent;
+    color: var(--accent-color);
+    border: 0.175vw solid var(--accent-color);
+    font-weight: 600;
+}
+
+/* Instruments */
+.instruments-select {
+    width: 34vw;
+    border: transparent;
+    outline: none;
+    text-indent: 1em;
+    position: relative;
+}
+
+#selected, #instrument-options div {
+    color: var(--text-color);
+    background: var(--secondary-bkg-color);
+    padding: 2.25vh 0;
+    text-indent: 2.25em;
     cursor: pointer;
 }
 
-.piano-container {
-    position: absolute;
-    display: block;
-    width: var(--piano-width);
-    height: var(--piano-height);
-    bottom: 3%;
+#selected {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5vw;
 }
 
+.up-arrow::after, .down-arrow::after {
+    content: "";
+    display: block;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    margin-right: 1.25vw;
+}
+
+.down-arrow::after {
+    border-top: 0.75rem solid var(--text-color);
+    border-bottom: 0;
+}
+
+.up-arrow::after {
+    border-bottom: 0.75rem solid var(--text-color);
+    border-top: 0;
+}
+
+#instrument-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: none;
+    box-shadow: 0 0 0.5rem var(--secondary-bkg-color);
+    border-radius: 2vw;
+}
+
+#instrument-options div:first-child {
+    border-top: none;
+    border-radius: 1vw 1vw 0 0;
+}
+
+#instrument-options div:last-child {
+    border-radius: 0 0 1vw 1vw;
+}
+
+#instrument-options div:hover {
+    background: #2d2d2d;
+}
+
+/* Audio Effects */
+.effects {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-color);
+    width: 24vw;
+}
+
+.effects span {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.effects input:checked + span {
+    color: var(--accent-color);
+}
+
+/* Piano and Octave Range */
+.piano-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    width: var(--piano-width);
+    height: var(--piano-height);
+    bottom: 16.5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Octave Range */
+.octave-controls {
+    margin-top: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#octave-range {
+    color: var(--text-color);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#octave-down-btn, #octave-up-btn {
+    width: 0;
+    height: 0;
+    outline: none;
+    content: "";
+    padding: 0;
+    background: transparent;
+    border-top: 0.75rem solid transparent;
+    border-bottom: 0.75rem solid transparent;
+    cursor: pointer;
+}
+
+#octave-down-btn {
+    border-right: 1rem solid var(--text-color);
+    border-left: none;
+    margin-left: 33vw;
+}
+
+#octave-up-btn {
+    border-left: 1rem solid var(--text-color);
+    border-right: none;
+    margin-right: 33vw;
+}
+
+/* Piano */
 #piano {
     position: relative;
-    height: 100%;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: stretch;
+    justify-content: space-between;
 }
 
-.note {
+.black-key, .white-key {
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: flex-end;
     cursor: pointer;
     z-index: 1;
-    padding-bottom: 1.1rem;
+    padding: 2.25rem 0;
     font-size: 0;
     outline: none;
     border: transparent;
     font-family: inherit;
-    filter: invert(0);
+    text-transform: uppercase;
+    color: var(--pressed-key-color);
 }
 
 .white-key {
-    width: var(--white-key-width);
-    height: 100%;
+    background-color: var(--white-keys-color);
     width: 100%;
-    box-shadow: 0 0 0.12rem #1C1C1C inset;
-    border-radius: 0 0 0.425rem 0.425rem;
-    color: var(--black-keys-color);
+    height: 100%;
+    box-shadow: 0.06rem 0 #909090 inset, -0.06rem 0 #909090 inset;
+    background: linear-gradient(#ddd, #d5d5d5 80%, #cfcfcf 95%);
+    position: relative;
+}
+
+.white-key::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2.5vh;
+    position: absolute;
+    top: 100%;
+    box-shadow: 0.06rem 0 #909090 inset, -0.06rem 0 #909090 inset;
+    border-radius: 0 0 0.65rem 0.65rem;
+    background: linear-gradient(#ccc, #ddd);
 }
 
 .all-black-keys {
@@ -155,16 +329,11 @@ header a {
     top: 0;
     display: flex;
     flex-flow: row;
-    width: calc(var(--piano-width) - var(--white-key-width) * 1.375);
+    width: 100%;
+    padding: 0 7.75% 0 3%;
     justify-content: space-between;
     left: 0;
     height: 100%;
-}
-
-/* key A0 */
-.black-key-2-group:first-child {
-    width: max-content !important;
-    margin-left: 1.35vw;
 }
 
 .black-key-2-group, .black-key-3-group {
@@ -176,199 +345,36 @@ header a {
 
 .black-key-2-group {
     justify-content: space-between;
-    width: 3.25%;
+    width: 8.2%;
 }
 
 .black-key-3-group {
     justify-content: space-between;
-    width: 5.575%;
+    width: 13.5%;
 }
 
 .black-key {
-    background-color: var(--black-keys-color);
+    background: linear-gradient(#1c1c1c, #2c2c2c 80%, #303030 95%);
+    box-shadow: 0 0 0.4rem rgb(0,0,0,0.2);
     width: var(--black-key-width);
     height: 59%;
-    border-radius: 0 0 0.425rem 0.425rem;
-    box-shadow: 0 0.15rem 0.25rem rgb(0,0,0,0.4);
-    color: var(--white-keys-color);
+    position: relative;
 }
 
-.key-bkg-color {
-    background-color: var(--accent-color) !important;
+.black-key::after {
+    content: "";
+    display: block;
+    box-shadow: 0 0.1rem 0.1rem rgb(0,0,0,0.2);
+    width: var(--black-key-width);
+    height: 2.5vh;
+    position: absolute;
+    top: 99%;
+    background: linear-gradient(#2d2d2d, #1c1c1c);
+    border-radius: 0 0 1.25rem 1.25rem;
 }
 
-@media screen and (orientation: landscape) and (max-device-height: 400px) {
-    :root {
-        --piano-height: 32vw;
-        --piano-width: 2900px;
-        --black-key-width: calc(var(--white-key-width) / 1.75);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 3.65rem;
-    }
-}
-
-@media screen and (orientation: landscape) and (min-device-height: 401px) and (max-device-height: 600px) {
-    :root {
-        --piano-height: 32vw;
-        --piano-width: 2880px;
-        --black-key-width: calc(var(--white-key-width) / 1.7);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 3.5rem;
-    }
-}
-
-@media screen and (orientation: landscape) and (min-device-height: 601px) and (max-device-height: 745px) {
-    :root {
-        --piano-height: 35vw;
-        --piano-width: 3600px;
-        --black-key-width: calc(var(--white-key-width) / 1.7);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 4.5rem;
-    }
-}
-
-@media screen and (orientation: landscape) and (max-device-width: 1024px) and (min-device-height: 746px) and (max-device-height: 1024px) {
-    :root {
-        --piano-height: 35vw;
-        --piano-width: 4800px;
-        --black-key-width: calc(var(--white-key-width) / 1.7);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 6.1rem;
-    }
-}
-
-@media screen and (orientation: portrait) and (max-device-width: 400px) {
-    :root {
-        --piano-height: 34vh;
-        --piano-width: 2400px;
-        --black-key-width: calc(var(--white-key-width) / 1.7);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-    }
-    .controls {
-        width: 35rem;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 3rem;
-    }
-}
-
-@media screen and (orientation: portrait) and (min-device-width: 401px) and (max-device-width: 600px) {
-    :root {
-        --piano-height: 31vh;
-        --piano-width: 2880px;
-        --black-key-width: calc(var(--white-key-width) / 1.75);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 6%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 3.5rem;
-    }
-}
-
-@media screen and (orientation: portrait) and (min-width: 601px) and (max-width: 745px) {
-    :root {
-        --piano-height: 35vh;
-        --piano-width: 3600px;
-        --black-key-width: calc(var(--white-key-width) / 1.7);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 4%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 4.25rem;
-    }
-}
-
-@media screen and (orientation: portrait) and (min-width: 746px) and (max-width: 1280px) {
-    :root {
-        --piano-height: 35vh;
-        --piano-width: 4000px;
-        --black-key-width: calc(var(--white-key-width) / 1.65);
-    }
-    header {
-        top: 5%;
-        height: 5rem;
-        font-size: 1.5rem;
-        width: 100%;
-        padding: 0;
-    }
-    .piano-container {
-        bottom: 4%;
-    }
-    .black-key-2-group:first-child {
-        margin-left: 5rem;
-    }
-}
-
-@media screen and (max-device-width: 1366px) {
-    body {
-        overflow-x: scroll;
-    }
+/* When keys are pressed this class is added to the key */
+.key-bkg-color, .key-bkg-color::after {
+    background: var(--pressed-key-bkg-color) !important;
+    color: #e0e0e0;
 }
