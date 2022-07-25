@@ -142,15 +142,15 @@ function playNote(pitch) {
 
     // Soften
     if (soften.checked === true) {
-        gainNode.gain.setValueAtTime(0.65, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.9, context.currentTime + 0.25);
+        gainNode.gain.setValueAtTime(1.5, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(1.85, context.currentTime + 0.2);
     }
     else {
-        gainNode.gain.setValueAtTime(1.5, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 20);
+        gainNode.gain.setValueAtTime(3, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 40);
     }
     if (sustain.checked === false) {
-        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 3);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 2.5);
     }
 
     playSound.connect(gainNode);
@@ -227,7 +227,7 @@ let pianoKeysList = document.getElementsByName("piano-key");
 keyAssist.addEventListener("click", function() {
     if (this.checked) {
         for (let i = 0; i < pianoKeysList.length; ++i) {
-            pianoKeysList[i].style.fontSize = "2.4rem";
+            pianoKeysList[i].style.fontSize = "2.25rem";
         }
     }
     else {
