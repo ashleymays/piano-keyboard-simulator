@@ -16,6 +16,7 @@
           <button type="submit" id="download-btn">Download</button>
      </form>
      <section id="home">
+          <div id="overlay"></div>
           <section class="controls">
                <div class="instruments-select">
                     <div id="selected" class="down-arrow">Acoustic Grand</div>
@@ -29,7 +30,7 @@
                <div class="effects">
                     <label><input type="checkbox" id="soften"/><span>Soften</span></label>
                     <label><input type="checkbox" id="sustain" checked/><span>Sustain</span></label>
-                    <label><input id="key-assist" type="checkbox" /><span>Qwerty</span></label>
+                    <label><input id="key-assist" type="checkbox" /><span>Keyboard</span></label>
                </div>
                <label><input type="checkbox" id="record-btn"/><span class="record-off">Record</span></label>
           </section>
@@ -94,5 +95,39 @@
                </div>
           </section>
      </section>
+     <section id="info">
+          <h1>An online piano meant to be played</h1>
+          <div>
+               <h3>What is Online Piano?</h3>
+               <p>
+                    Online Piano is a virtual piano that works on desktop 
+                    and mobile browsers. The goal of this app is to let you 
+                    play a piano with intuitive controls and high quality 
+                    sounds. This app was inspired by 
+                    <a href="https://www.onlinepianist.com/virtual-piano">OnlinePianist.com</a>, 
+                    <a href="https://recursivearts.com/virtual-piano/">Recursive Arts’ virtual piano</a>, and 
+                    <a href="https://virtualpiano.net/">VirtualPiano.net</a> 
+                    among others.
+               </p>
+          </div>
+          <div>
+               <h3>How to Play</h3>
+               <p>
+                    You can use your desktop keyboard to play, or you can 
+                    use your mouse or fingers to press notes on the virtual 
+                    keyboard. There are several options you can choose from:
+                    <ul>
+                         <li><b>soften</b>: When selected the audio starts at a lower volume.</li>
+                         <li><b>sustain</b>: The audio plays for an extended amount of time even when the key is released.</li>
+                         <li><b>keyboard</b>: Displays the keyboard inputs that correspond to each key on the virtual keyboard.</li>
+                         <li><b>record</b>: Record and download your playing to your computer.</li>
+                         <li><b>octave controls</b>: The controls displayed below the keyboard. The left and right arrows shift the keys up one octave and down one octave, respectively.</li>
+                    </ul>
+               </p>
+          </div>
+     </section>
+     <footer>
+          Made with &#128156; by Ashley Mays
+     </footer>
 </body>
 </html>

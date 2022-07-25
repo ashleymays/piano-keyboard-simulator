@@ -3,17 +3,14 @@
 }
 
 :root {
-    --primary-bkg-color: #1c1c1c;
-    --secondary-bkg-color: #252525;
-    --text-color: #b3b3b3;
-    --accent-color: hsl(155, 73%, 42%);
+    --primary-bkg-color: #121212;
+    --secondary-bkg-color: #1a1a1b;
+    --primary-text-color: #dbdbdb;
+    --secondary-text-color: #989898;
+    --accent-color: #7678ED;
 
-    --pressed-key-bkg-color: #a0a0a0;
-    --pressed-key-color: #909090;
-
-    --piano-width: 83vw;
-    --piano-height: 49vh;
-    --black-key-width: calc(var(--piano-width) / 35.75);
+    --piano-width: 80vw;
+    --piano-height: 51vh;
 }
 
 html, body {
@@ -23,12 +20,45 @@ html, body {
 
 html {
     font-size: 10px;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Gantari', sans-serif;
-    background-color: var(--primary-bkg-color);
     transition-duration: 0.25s;
+    background: var(--primary-bkg-color);
+}
+
+h1, h3 {
+    color: var(--primary-text-color);
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h3 {
+    font-size: 3.5rem;
+}
+
+p, li {
+    color: var(--secondary-text-color);
+    font-size: 2rem;
+    line-height: 1.5em;
+}
+
+li {
+    margin: 2vh 0;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    position: relative;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 input[type="checkbox"] {
@@ -47,24 +77,23 @@ input[type="checkbox"] {
 #recording-window {
     display: flex;
     flex-flow: column;
-    padding: 1.5vh 1vw;
+    padding: 2vh 1vw;
     width: 25vw;
-    background: var(--secondary-bkg-color);
-    color: var(--text-color);
+    background: #e0e0e0;
     position: absolute;
-    top: 17%;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 2vw;
+    border-radius: 0.5rem;
     z-index: 5;
 }
 
 #recording-title {
     outline: none;
     border-color: transparent;
-    border-radius: 2vw;
-    color: var(--text-color);
-    background: var(--primary-bkg-color);
+    border-radius: 0.5rem;
+    color: var(--primary-bkg-color);
+    background: #dbdbdb;
     padding: 1vh 0.75vw;
     font-size: 1.5rem;
     font-family: inherit;
@@ -72,8 +101,7 @@ input[type="checkbox"] {
 
 #download-btn {
     text-align: center;
-    color: inherit;
-    text-decoration: none;
+    color: #252525;
     font-family: inherit;
     cursor: pointer;
     background: transparent;
@@ -81,6 +109,8 @@ input[type="checkbox"] {
     border: none;
     margin-top: 1vh;
     padding: 1vh 0;
+    font-weight: 500;
+    font-size: 1.7rem;
 }
 
 #download-btn:hover {
@@ -91,12 +121,24 @@ input[type="checkbox"] {
     height: 100vh;
 }
 
+.overlay {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0,0.6);
+    z-index: 3;
+}
+
 /* Header */
-.controls, #download-btn {
-    font-size: 1.45rem;
-    font-weight: 600;
-    letter-spacing: 0.125em;
-    text-transform: uppercase;
+.controls, .controls a {
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--primary-text-color);
 }
 
 .controls {
@@ -104,7 +146,7 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 7vh 8.5vw;
+    padding: 5vh 7vw;
 }
 
 /* Recording */
@@ -112,30 +154,30 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 9.5vw;
+    width: 9vw;
     height: 2.5vw;
     cursor: pointer;
-    border-radius: 5vw;
+    border-radius: 0.3rem;
     outline: none;
 }
 
-.record-on {
+.record-off {
     background: var(--accent-color);
-    color: var(--primary-bkg-color);
-    font-weight: 700;
+    color: var(--primary-text-color);
+    font-weight: 600;
     border: none;
 }
 
-.record-off {
+.record-on {
     background: transparent;
     color: var(--accent-color);
-    border: 0.175vw solid var(--accent-color);
-    font-weight: 600;
+    font-weight: 500;
+    border: 0.25rem solid var(--accent-color);
 }
 
 /* Instruments */
 .instruments-select {
-    width: 34vw;
+    width: 29vw;
     border: transparent;
     outline: none;
     text-indent: 1em;
@@ -143,10 +185,11 @@ input[type="checkbox"] {
 }
 
 #selected, #instrument-options div {
-    color: var(--text-color);
+    color: var(--primary-text-color);
     background: var(--secondary-bkg-color);
-    padding: 2.25vh 0;
-    text-indent: 2.25em;
+    padding: 2vh 0;
+    width: 100%;
+    text-indent: 1.6em;
     cursor: pointer;
 }
 
@@ -154,7 +197,7 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 5vw;
+    border-radius: 0.3rem;
 }
 
 .up-arrow::after, .down-arrow::after {
@@ -166,37 +209,37 @@ input[type="checkbox"] {
 }
 
 .down-arrow::after {
-    border-top: 0.75rem solid var(--text-color);
+    border-top: 0.75rem solid var(--primary-text-color);
     border-bottom: 0;
 }
 
 .up-arrow::after {
-    border-bottom: 0.75rem solid var(--text-color);
+    border-bottom: 0.75rem solid var(--primary-text-color);
     border-top: 0;
 }
 
 #instrument-options {
     position: absolute;
-    top: 100%;
+    top: 104%;
     left: 0;
     right: 0;
     z-index: 2;
     display: none;
-    box-shadow: 0 0 0.5rem var(--secondary-bkg-color);
-    border-radius: 2vw;
+    box-shadow: 0 0 1rem rgb(0,0,0,0.2);
+    border-radius: 0.3rem;
 }
 
 #instrument-options div:first-child {
     border-top: none;
-    border-radius: 1vw 1vw 0 0;
+    border-radius: 0.3rem 0.3rem 0 0;
 }
 
 #instrument-options div:last-child {
-    border-radius: 0 0 1vw 1vw;
+    border-radius: 0 0 0.3rem 0.3rem;
 }
 
 #instrument-options div:hover {
-    background: #2d2d2d;
+    background: #252525;
 }
 
 /* Audio Effects */
@@ -204,8 +247,8 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--text-color);
-    width: 24vw;
+    color: var(--primary-text-color);
+    width: 23vw;
 }
 
 .effects span {
@@ -230,9 +273,9 @@ input[type="checkbox"] {
     flex-flow: column;
     width: var(--piano-width);
     height: var(--piano-height);
-    bottom: 16.5%;
+    top: 67%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -67%);
 }
 
 /* Octave Range */
@@ -245,11 +288,11 @@ input[type="checkbox"] {
 }
 
 #octave-range {
-    color: var(--text-color);
+    color: var(--primary-text-color);
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 500;
 }
 
 #octave-down-btn, #octave-up-btn {
@@ -259,21 +302,21 @@ input[type="checkbox"] {
     content: "";
     padding: 0;
     background: transparent;
-    border-top: 0.75rem solid transparent;
-    border-bottom: 0.75rem solid transparent;
+    border-top: 0.65rem solid transparent;
+    border-bottom: 0.65rem solid transparent;
     cursor: pointer;
 }
 
 #octave-down-btn {
-    border-right: 1rem solid var(--text-color);
+    border-right: 1rem solid var(--primary-text-color);
     border-left: none;
-    margin-left: 33vw;
+    margin-left: 32vw;
 }
 
 #octave-up-btn {
-    border-left: 1rem solid var(--text-color);
+    border-left: 1rem solid var(--primary-text-color);
     border-right: none;
-    margin-right: 33vw;
+    margin-right: 32vw;
 }
 
 /* Piano */
@@ -294,43 +337,41 @@ input[type="checkbox"] {
     justify-content: flex-end;
     cursor: pointer;
     z-index: 1;
-    padding: 2.25rem 0;
+    padding-bottom: 2.25rem;
     font-size: 0;
     outline: none;
     border: transparent;
     font-family: inherit;
-    text-transform: uppercase;
-    color: var(--pressed-key-color);
 }
 
 .white-key {
-    background-color: var(--white-keys-color);
     width: 100%;
     height: 100%;
-    box-shadow: 0.06rem 0 #909090 inset, -0.06rem 0 #909090 inset;
-    background: linear-gradient(#ddd, #d5d5d5 80%, #cfcfcf 95%);
+    box-shadow: 0 0 0.15rem #959595 inset, 
+                0 0 0.15rem #959595 inset;
+    background: #f2f2f2;
+    border-radius: 0 0 0.6rem 0.6rem;
     position: relative;
+    color: #222;
 }
 
-.white-key::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2.5vh;
-    position: absolute;
-    top: 100%;
-    box-shadow: 0.06rem 0 #909090 inset, -0.06rem 0 #909090 inset;
-    border-radius: 0 0 0.65rem 0.65rem;
-    background: linear-gradient(#ccc, #ddd);
+.black-key {
+    background: #222;
+    box-shadow: 0 0 0.2rem rgb(0,0,0,0.3);
+    width: calc(var(--piano-width) / 35);
+    height: 62.5%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    position: relative;
+    color: #959595;
 }
 
 .all-black-keys {
     position: absolute;
-    top: 0;
+    top: -0.4%;
     display: flex;
     flex-flow: row;
     width: 100%;
-    padding: 0 7.75% 0 3%;
+    padding: 0 7.4% 0 3%;
     justify-content: space-between;
     left: 0;
     height: 100%;
@@ -345,36 +386,31 @@ input[type="checkbox"] {
 
 .black-key-2-group {
     justify-content: space-between;
-    width: 8.2%;
+    width: 8.7%;
 }
 
 .black-key-3-group {
     justify-content: space-between;
-    width: 13.5%;
-}
-
-.black-key {
-    background: linear-gradient(#1c1c1c, #2c2c2c 80%, #303030 95%);
-    box-shadow: 0 0 0.4rem rgb(0,0,0,0.2);
-    width: var(--black-key-width);
-    height: 59%;
-    position: relative;
-}
-
-.black-key::after {
-    content: "";
-    display: block;
-    box-shadow: 0 0.1rem 0.1rem rgb(0,0,0,0.2);
-    width: var(--black-key-width);
-    height: 2.5vh;
-    position: absolute;
-    top: 99%;
-    background: linear-gradient(#2d2d2d, #1c1c1c);
-    border-radius: 0 0 1.25rem 1.25rem;
+    width: 14%;
 }
 
 /* When keys are pressed this class is added to the key */
-.key-bkg-color, .key-bkg-color::after {
-    background: var(--pressed-key-bkg-color) !important;
-    color: #e0e0e0;
+.key-bkg-color {
+    background: #a5a5a5 !important;
+    color: #fff !important;
+}
+
+#info {
+    padding: 4vh 18vw;
+}
+
+#info div {
+    padding: 2.5vh 0;
+}
+
+footer {
+    padding: 4vh 0 8vh;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--secondary-text-color);
 }

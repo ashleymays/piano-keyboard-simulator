@@ -69,7 +69,7 @@ recordBtn.addEventListener("click", function() {
         // change button look
         recordBtn.classList.remove("record-off");
         recordBtn.classList.add("record-on")
-        recordBtn.innerHTML = "STOP";
+        recordBtn.innerHTML = "Stop";
 
         // start recording
         mediaRecorder.start();
@@ -78,7 +78,7 @@ recordBtn.addEventListener("click", function() {
         // change button look
         recordBtn.classList.remove("record-on");
         recordBtn.classList.add("record-off")
-        recordBtn.innerHTML = "RECORD";
+        recordBtn.innerHTML = "Record";
 
         // end recording
         mediaRecorder.stop();
@@ -86,16 +86,21 @@ recordBtn.addEventListener("click", function() {
 })
 
 let url;
-let chunks;
+let data;
 let blob;
+let overlay = document.getElementById("overlay");
 mediaRecorder.addEventListener('dataavailable', function(e) {
-    chunks = [e.data];
-    blob = new Blob(chunks, { type: 'audio/mp3' });
+    data = [e.data];
+    blob = new Blob(data, { type: 'audio/mp3' });
     url = URL.createObjectURL(blob);
+
+    // open recording window and fade out background
     recordingWindow.removeAttribute("class", "disabled");
+    overlay.setAttribute("class", "overlay");
 })
 
 recordingWindow.addEventListener("submit", function(e) {
+    overlay.removeAttribute("class", "overlay");
     download(url);
 })
 
@@ -222,7 +227,7 @@ let pianoKeysList = document.getElementsByName("piano-key");
 keyAssist.addEventListener("click", function() {
     if (this.checked) {
         for (let i = 0; i < pianoKeysList.length; ++i) {
-            pianoKeysList[i].style.fontSize = "2rem";
+            pianoKeysList[i].style.fontSize = "2.4rem";
         }
     }
     else {
