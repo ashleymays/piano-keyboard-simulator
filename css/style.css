@@ -35,21 +35,21 @@ h1, h3 {
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: clamp(4.5rem, 3.5vw, 7.5rem);
 }
 
 h3 {
-    font-size: 3.5rem;
+    font-size: clamp(3.15rem, 2.45vw, 5.25rem);
 }
 
 p, li {
     color: var(--secondary-text-color);
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 1.4vw, 3rem);
     line-height: 1.5em;
 }
 
 li {
-    margin: 2vh 0;
+    margin: clamp(1.2rem, 1.5vh, 1rem) 0;
 }
 
 a {
@@ -362,59 +362,63 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(18rem, 16.5vw, 40rem);
 }
 
 #octave-range {
     color: var(--primary-text-color);
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-size: 1.75rem;
+    font-size: clamp(1.55rem, 1.25vw, 10rem);
     font-weight: 500;
 }
 
 #octave-down-btn, #octave-up-btn {
+    display: block;
     width: 0;
     height: 0;
     outline: none;
     content: "";
     padding: 0;
     background: transparent;
-    border-top: 0.65rem solid transparent;
-    border-bottom: 0.65rem solid transparent;
+    border-top: clamp(0.4rem, 1.25vw, 0.575rem) solid transparent;
+    border-bottom: clamp(0.4rem, 1.25vw, 0.575rem) solid transparent;
     cursor: pointer;
 }
 
 #octave-down-btn {
-    border-right: 1rem solid var(--primary-text-color);
+    border-right: 0.8rem solid var(--primary-text-color);
     border-left: none;
-    margin-left: 41.5vw;
 }
 
 #octave-up-btn {
-    border-left: 1rem solid var(--primary-text-color);
+    border-left: 0.8rem solid var(--primary-text-color);
     border-right: none;
-    margin-right: 41.5vw;
 }
 
 #info {
-    padding: 4vh 18vw;
+    padding: clamp(1rem, 4vh, 10rem) clamp(2rem, 18vw, 35rem);
 }
 
 #info div {
-    padding: 2.5vh 0;
+    padding: clamp(1rem, 2vh, 4rem) 0;
 }
 
 footer {
-    padding: 4vh 0 8vh;
+    padding: clamp(1rem, 3.5vh, 3.5rem) 0 clamp(2.14rem, 7.5vh, 7rem) ;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: clamp(1.53rem, 1.19vw, 2.55rem);
     color: var(--secondary-text-color);
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    
+    #info {
+        padding: 0 8vw 0 8vw;
+    }
 }
 
 @media screen and (orientation: landscape) and (max-width: 812px) and (max-height: 599px) {
@@ -433,7 +437,6 @@ footer {
 
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 1024px) {
     .piano-container {
         align-items: flex-start;
@@ -441,6 +444,6 @@ footer {
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-
+@media only screen and (max-width: 1200px) {
+    
 }
