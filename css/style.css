@@ -9,8 +9,8 @@
     --secondary-text-color: #989898;
     --accent-color: #7678ED;
 
-    --piano-width: 80vw;
-    --piano-height: 51vh;
+    --piano-width: max(110rem, 80vw);
+    --piano-height: calc(var(--piano-width) * 0.255);
 }
 
 html, body {
@@ -27,6 +27,7 @@ body {
     font-family: 'Gantari', sans-serif;
     transition-duration: 0.25s;
     background: var(--primary-bkg-color);
+    overflow-x: hidden;
 }
 
 h1, h3 {
@@ -264,66 +265,21 @@ input[type="checkbox"] {
     color: var(--accent-color);
 }
 
-/* Piano and Octave Range */
-.piano-container {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    width: var(--piano-width);
-    height: var(--piano-height);
-    top: 67%;
-    left: 50%;
-    transform: translate(-50%, -67%);
-}
-
-/* Octave Range */
-.octave-controls {
-    margin-top: 8vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-#octave-range {
-    color: var(--primary-text-color);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    font-size: 1.75rem;
-    font-weight: 500;
-}
-
-#octave-down-btn, #octave-up-btn {
-    width: 0;
-    height: 0;
-    outline: none;
-    content: "";
-    padding: 0;
-    background: transparent;
-    border-top: 0.65rem solid transparent;
-    border-bottom: 0.65rem solid transparent;
-    cursor: pointer;
-}
-
-#octave-down-btn {
-    border-right: 1rem solid var(--primary-text-color);
-    border-left: none;
-    margin-left: 32vw;
-}
-
-#octave-up-btn {
-    border-left: 1rem solid var(--primary-text-color);
-    border-right: none;
-    margin-right: 32vw;
-}
-
 /* Piano */
+.piano-container {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+    height: max-content;
+    margin-top: 16vh;
+    overflow-x: auto;
+}
+
 #piano {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: var(--piano-width);
+    height: var(--piano-height);
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -400,6 +356,47 @@ input[type="checkbox"] {
     color: #fff !important;
 }
 
+/* Octave Range */
+.octave-controls {
+    margin-top: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#octave-range {
+    color: var(--primary-text-color);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+#octave-down-btn, #octave-up-btn {
+    width: 0;
+    height: 0;
+    outline: none;
+    content: "";
+    padding: 0;
+    background: transparent;
+    border-top: 0.65rem solid transparent;
+    border-bottom: 0.65rem solid transparent;
+    cursor: pointer;
+}
+
+#octave-down-btn {
+    border-right: 1rem solid var(--primary-text-color);
+    border-left: none;
+    margin-left: 41.5vw;
+}
+
+#octave-up-btn {
+    border-left: 1rem solid var(--primary-text-color);
+    border-right: none;
+    margin-right: 41.5vw;
+}
+
 #info {
     padding: 4vh 18vw;
 }
@@ -415,3 +412,35 @@ footer {
     color: var(--secondary-text-color);
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    
+}
+
+@media screen and (orientation: landscape) and (max-width: 812px) and (max-height: 599px) {
+    :root {
+        --piano-height: 62vh;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1024px) {
+    .piano-container {
+        align-items: flex-start;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
