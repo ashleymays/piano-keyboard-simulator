@@ -3,10 +3,10 @@
 }
 
 :root {
-    --primary-bkg-color: #121212;
-    --secondary-bkg-color: #1a1a1b;
+    --primary-bkg-color: #141414;
+    --secondary-bkg-color: #1d1d1e;
     --primary-text-color: #dbdbdb;
-    --secondary-text-color: #989898;
+    --secondary-text-color: #9a9a9a;
     --accent-color: #7678ED;
 
     --piano-width: max(110rem, 80vw);
@@ -405,22 +405,19 @@ input[type="checkbox"] {
 }
 
 #info {
-    padding: clamp(2rem, 17vh, 20rem) clamp(2rem, 18vw, 35rem);
+    padding: clamp(2rem, 17vh, 20rem) clamp(2rem, 18vw, 35rem) clamp(1.65rem, 14.5vh, 20rem);
 }
 
 #info div {
-    padding: clamp(1rem, 2vh, 4rem) 0;
+    padding-top: clamp(1rem, 2vh, 4rem);
 }
 
 footer {
-    padding: clamp(1rem, 3.5vh, 3.5rem) 0 clamp(2.14rem, 7.5vh, 7rem) ;
+    padding: 0 0 clamp(2.5rem, 8vh, 10rem);
     text-align: center;
     font-size: clamp(1.53rem, 1.19vw, 2.55rem);
     color: var(--secondary-text-color);
 }
-
-
-
 
 @media only screen and (max-width: 600px) {
     #info {
@@ -462,10 +459,6 @@ footer {
     #record-btn + span {
         width: 100%;
     }
-}
-
-@media screen and (orientation: portrait) and (min-width: 601px), (orientation: landscape) and (min-width: 813px) and (min-height: 601px) {
-    
 }
 
 @media only screen and (max-width: 1024px) {

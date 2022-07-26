@@ -157,12 +157,12 @@ function playNote(pitch) {
 
     // Soften
     if (soften.checked === true) {
-        gainNode.gain.setValueAtTime(1.5, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(1.85, context.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0.75, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(1.25, context.currentTime + 0.2);
     }
     else {
-        gainNode.gain.setValueAtTime(3, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 40);
+        gainNode.gain.setValueAtTime(1.5, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + sustainedDecay());
     }
     if (sustain.checked === false) {
         gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 2.5);
@@ -172,6 +172,15 @@ function playNote(pitch) {
     gainNode.connect(dest);
     gainNode.connect(context.destination);
     playSound.start(context.currentTime);
+}
+
+function sustainedDecay() {
+    switch(instrument) {
+        case "Acoustic Grand": return 7;
+        case "Electric Piano": return 6;
+        case "Music Box": return 7.5;
+        case "Harp": return 12;
+    }
 }
 
 
@@ -205,6 +214,23 @@ document.addEventListener("keyup", function(e) {
 })
 
 
+// Touch Input
+document.addEventListener("touchstart", function(e) {
+    if (recordingWindow.className === "disabled" && !e.repeat && e.target.name === "piano-key" && !currentlyPressedKeys.includes(key)) {
+        let keyboardKey = e.target.innerHTML;
+        let pitch = getPitch(keyboardKey);
+        playNote(pitch);
+        e.target.classList.add("key-bkg-color");
+        currentlyPressedKeys.push(key);
+        isDown = true;
+    }   
+})
+document.addEventListener("touchend", function(e) {
+    e.target.classList.remove("key-bkg-color");
+    currentlyPressedKeys = currentlyPressedKeys.filter((pressedKey) => pressedKey != key);
+})
+
+
 
 
 // Mouse Input
@@ -222,6 +248,8 @@ document.activeElement.addEventListener("mouseup", function(e) {
     e.target.classList.remove("key-bkg-color");
     isDown = false;
 })
+
+// Glissando
 piano.addEventListener("mouseover", function(e) {
     if (e.target.name == "piano-key" && isDown === true) {
         let keyboardKey = e.target.innerHTML;
