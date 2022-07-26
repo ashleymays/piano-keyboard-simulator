@@ -213,22 +213,40 @@ document.addEventListener("keyup", function(e) {
     currentlyPressedKeys = currentlyPressedKeys.filter((pressedKey) => pressedKey != key);
 })
 
-// Mouse and Touch Input
-let isDown;
-document.activeElement.addEventListener("mousedown", function(e) {
+
+
+// Touch Input
+document.addEventListener("touchstart", function(e) {
     let keyboardKey = e.target.innerHTML;
     if (recordingWindow.className === "disabled" && !e.repeat && e.target.name === "piano-key" && !currentlyPressedKeys.includes(keyboardKey)) {
         let pitch = getPitch(keyboardKey);
         playNote(pitch);
         e.target.classList.add("key-bkg-color");
         currentlyPressedKeys.push(keyboardKey);
-        isDown = true;
-    }  
+    }   
 })
-document.activeElement.addEventListener("mouseup", function(e) {
+document.addEventListener("touchend", function(e) {
     let keyboardKey = e.target.innerHTML;
     e.target.classList.remove("key-bkg-color");
     currentlyPressedKeys = currentlyPressedKeys.filter((pressedKey) => pressedKey != keyboardKey);
+})
+
+
+
+
+// Mouse Input
+let isDown;
+document.activeElement.addEventListener("mousedown", function(e) {
+    if (e.target.name === "piano-key") {
+        let keyboardKey = e.target.innerHTML;
+        let pitch = getPitch(keyboardKey);
+        playNote(pitch);
+        e.target.classList.add("key-bkg-color");
+        isDown = true;
+    }    
+})
+document.activeElement.addEventListener("mouseup", function(e) {
+    e.target.classList.remove("key-bkg-color");
     isDown = false;
 })
 
