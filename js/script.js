@@ -196,7 +196,7 @@ document.addEventListener("keydown", function(e) {
     let key = e.key.toLowerCase();
 
     // play note if the recording window isn't open and the input is valid
-    if (recordingWindow.className === "disabled" && !e.repeat && isValidInput(key) && !currentlyPressedKeys.includes(key)) {
+    if (recordingWindow.className === "disabled" && isValidInput(key) && !currentlyPressedKeys.includes(key)) {
         let pitch = getPitch(key);
         playNote(pitch);
         document.getElementsByClassName(key)[0].classList.add("key-bkg-color");
@@ -216,14 +216,16 @@ document.addEventListener("keyup", function(e) {
 
 
 // Touch Input
+let isTouched = false;
 document.addEventListener("touchstart", function(e) {
+    isTouched = true;
     let keyboardKey = e.target.innerHTML;
-    if (recordingWindow.className === "disabled" && !e.repeat && e.target.name === "piano-key" && !currentlyPressedKeys.includes(keyboardKey)) {
+    if (recordingWindow.className === "disabled" && e.target.name === "piano-key" && !currentlyPressedKeys.includes(keyboardKey)) {
         let pitch = getPitch(keyboardKey);
         playNote(pitch);
         e.target.classList.add("key-bkg-color");
         currentlyPressedKeys.push(keyboardKey);
-    }   
+    }
 })
 document.addEventListener("touchend", function(e) {
     let keyboardKey = e.target.innerHTML;
@@ -237,13 +239,13 @@ document.addEventListener("touchend", function(e) {
 // Mouse Input
 let isDown;
 document.activeElement.addEventListener("mousedown", function(e) {
-    if (e.target.name === "piano-key") {
+    if (!isTouched && e.target.name === "piano-key") {
         let keyboardKey = e.target.innerHTML;
         let pitch = getPitch(keyboardKey);
         playNote(pitch);
         e.target.classList.add("key-bkg-color");
         isDown = true;
-    }    
+    }
 })
 document.activeElement.addEventListener("mouseup", function(e) {
     e.target.classList.remove("key-bkg-color");
