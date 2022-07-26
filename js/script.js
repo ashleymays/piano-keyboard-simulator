@@ -215,7 +215,7 @@ document.addEventListener("keyup", function(e) {
 
 
 // Touch Input
-let isTouched;
+let isTouched = false;
 document.addEventListener("touchstart", function(e) {
     let keyboardKey = e.target.innerHTML;
     if (recordingWindow.className === "disabled" && !e.repeat && e.target.name === "piano-key" && !currentlyPressedKeys.includes(keyboardKey)) {
