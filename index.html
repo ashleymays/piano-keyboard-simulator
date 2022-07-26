@@ -18,7 +18,7 @@
      </form>
      <section id="home">
           <div id="overlay"></div>
-          <!-- <section class="controls">
+          <section class="controls">
                <div class="instruments-select">
                     <div id="selected" class="down-arrow">Acoustic Grand</div>
                     <div id="instrument-options">
@@ -33,8 +33,8 @@
                     <label><input type="checkbox" id="sustain" checked/><span>Sustain</span></label>
                     <label><input id="key-assist" type="checkbox" /><span>Keyboard</span></label>
                </div>
-               <label><input type="checkbox" id="record-btn"/><span class="record-off">Record</span></label>
-          </section> -->
+               <label class="record"><input type="checkbox" id="record-btn"/><span class="record-off">Record</span></label>
+          </section>
           <section class="piano-container">
                <div id="piano">
                     <button name="piano-key" class="white-key q" type="button">q</button> 
@@ -90,10 +90,12 @@
                     </div>
                </div>
           </section>
-          <div class="octave-controls">
-               <button id="octave-down-btn"></button>
-               <div id="octave-range">C3 - C6</div>
-               <button id="octave-up-btn"></button>
+          <div class="octave-container">
+               <div class="octave-controls">
+                    <button id="octave-down-btn"></button>
+                    <div id="octave-range">C3 - C6</div>
+                    <button id="octave-up-btn"></button>
+               </div>
           </div>
      </section>
      <section id="info">

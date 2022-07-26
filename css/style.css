@@ -10,7 +10,7 @@
     --accent-color: #7678ED;
 
     --piano-width: max(110rem, 80vw);
-    --piano-height: calc(var(--piano-width) * 0.255);
+    --piano-height: calc(var(--piano-width) * 0.248);
 }
 
 html, body {
@@ -78,9 +78,9 @@ input[type="checkbox"] {
 #recording-window {
     display: flex;
     flex-flow: column;
-    padding: 2vh 1vw;
-    width: 25vw;
-    background: #e0e0e0;
+    padding: clamp(1.75rem, 2.5vh, 10rem) clamp(1.25rem, 1vw, 4rem);
+    width: clamp(27rem, 30vw, 65rem);
+    background: #f2f2f2;
     position: absolute;
     top: 5%;
     left: 50%;
@@ -94,8 +94,8 @@ input[type="checkbox"] {
     border-color: transparent;
     border-radius: 0.5rem;
     color: var(--primary-bkg-color);
-    background: #dbdbdb;
-    padding: 1vh 0.75vw;
+    background: #e2e2e2;
+    padding: clamp(0.75rem, 1vh, 4rem) 0.75vw;
     font-size: 1.5rem;
     font-family: inherit;
 }
@@ -111,7 +111,7 @@ input[type="checkbox"] {
     margin-top: 1vh;
     padding: 1vh 0;
     font-weight: 500;
-    font-size: 1.7rem;
+    font-size: clamp(1.65rem, 1.2vw, 4rem);
 }
 
 #download-btn:hover {
@@ -119,7 +119,7 @@ input[type="checkbox"] {
 }
 
 #home {
-    height: 100vh;
+    height: max-content;
 }
 
 .overlay {
@@ -136,7 +136,7 @@ input[type="checkbox"] {
 
 /* Header */
 .controls, .controls a {
-    font-size: 1.7rem;
+    font-size: clamp(1.65rem, 1.15vw, 3rem);
     font-weight: 400;
     text-decoration: none;
     color: var(--primary-text-color);
@@ -147,7 +147,7 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 5vh 7vw;
+    padding: clamp(4rem, 5vh, 15rem) clamp(3rem, 7vw, 20rem);
 }
 
 /* Recording */
@@ -155,8 +155,8 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 9vw;
-    height: 2.5vw;
+    width: clamp(5rem, 9.5vw, 25rem);
+    height: clamp(4.6rem, 2vw, 20rem);
     cursor: pointer;
     border-radius: 0.3rem;
     outline: none;
@@ -188,7 +188,7 @@ input[type="checkbox"] {
 #selected, #instrument-options div {
     color: var(--primary-text-color);
     background: var(--secondary-bkg-color);
-    padding: 2vh 0;
+    height: clamp(5.5rem, 3.1vw, 20rem);
     width: 100%;
     text-indent: 1.6em;
     cursor: pointer;
@@ -206,7 +206,7 @@ input[type="checkbox"] {
     display: block;
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
-    margin-right: 1.25vw;
+    margin-right: 1.6em;
 }
 
 .down-arrow::after {
@@ -230,6 +230,11 @@ input[type="checkbox"] {
     border-radius: 0.3rem;
 }
 
+#instrument-options div {
+    display: flex;
+    align-items: center;
+}
+
 #instrument-options div:first-child {
     border-top: none;
     border-radius: 0.3rem 0.3rem 0 0;
@@ -249,14 +254,10 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: space-between;
     color: var(--primary-text-color);
-    width: 23vw;
+    width: clamp(25rem, 23vw, 65rem);
 }
 
 .effects span {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    text-align: center;
     cursor: pointer;
     transition-duration: 0.3s;
 }
@@ -357,22 +358,26 @@ input[type="checkbox"] {
 }
 
 /* Octave Range */
-.octave-controls {
+.octave-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    width: 100%;
     margin-top: 8vh;
+}
+
+.octave-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(18rem, 16.5vw, 40rem);
+    width: clamp(20rem, 18vw, 40rem);
 }
 
 #octave-range {
     color: var(--primary-text-color);
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-size: clamp(1.55rem, 1.25vw, 10rem);
+    font-size: clamp(1.6rem, 1.25vw, 10rem);
     font-weight: 500;
 }
 
@@ -384,23 +389,23 @@ input[type="checkbox"] {
     content: "";
     padding: 0;
     background: transparent;
-    border-top: clamp(0.4rem, 1.25vw, 0.575rem) solid transparent;
-    border-bottom: clamp(0.4rem, 1.25vw, 0.575rem) solid transparent;
+    border-top: clamp(0.45rem, 1.2vw, 0.75rem) solid transparent;
+    border-bottom: clamp(0.45rem, 1.2vw, 0.75rem) solid transparent;
     cursor: pointer;
 }
 
 #octave-down-btn {
-    border-right: 0.8rem solid var(--primary-text-color);
+    border-right: clamp(0.9rem, 1vw, 1.1rem) solid var(--primary-text-color);
     border-left: none;
 }
 
 #octave-up-btn {
-    border-left: 0.8rem solid var(--primary-text-color);
+    border-left: clamp(0.9rem, 1vw, 1.1rem) solid var(--primary-text-color);
     border-right: none;
 }
 
 #info {
-    padding: clamp(1rem, 4vh, 10rem) clamp(2rem, 18vw, 35rem);
+    padding: clamp(2rem, 17vh, 20rem) clamp(2rem, 18vw, 35rem);
 }
 
 #info div {
@@ -414,36 +419,57 @@ footer {
     color: var(--secondary-text-color);
 }
 
-/* Extra small devices (phones, 600px and down) */
+
+
+
 @media only screen and (max-width: 600px) {
     #info {
-        padding: 0 8vw 0 8vw;
+        padding-left: 8vw;
+        padding-right: 8vw;
     }
 }
 
-@media screen and (orientation: landscape) and (max-width: 812px) and (max-height: 599px) {
-    :root {
-        --piano-height: 62vh;
+@media screen and (orientation: portrait) and (max-width: 600px) {
+    .controls {
+        padding: 5vh 7vw 3vh;
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-
+@media screen and (orientation: portrait) and (max-width: 600px), (orientation: landscape) and (max-width: 812px) and (max-height: 600px) {
+    .controls {
+        flex-flow: column;
+        align-items: flex-start;
+    }
+    .controls > * {
+        margin: 1rem 0;
+    }
+    .instruments-select {
+        width: 100%;
+        text-indent: 1em;
+        order: 1;
+    }
+    .effects {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+        width: 100%;
+        order: 3;
+    }
+    .record {
+        width: 100%;
+        order: 2;
+    }
+    #record-btn + span {
+        width: 100%;
+    }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-
+@media screen and (orientation: portrait) and (min-width: 601px), (orientation: landscape) and (min-width: 813px) and (min-height: 601px) {
+    
 }
 
 @media only screen and (max-width: 1024px) {
     .piano-container {
         align-items: flex-start;
     }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
-    
 }

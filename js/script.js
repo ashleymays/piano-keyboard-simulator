@@ -100,9 +100,24 @@ mediaRecorder.addEventListener('dataavailable', function(e) {
 })
 
 recordingWindow.addEventListener("submit", function(e) {
-    overlay.removeAttribute("class", "overlay");
-    download(url);
+    // check if recording title is valid (no periods)
+    if (isValidTitle(e)) {
+        overlay.removeAttribute("class", "overlay");
+        download(url);
+    }
 })
+
+function isValidTitle(e) {
+    let title = recordingTitle.value;
+    for (let i = 0; i < title.length; ++i) {
+        if (title[i] === '.') {
+            alert("Invalid character: \".\" \nPlease enter a different title.");
+            e.preventDefault();
+            return false;
+        }
+    }
+    return true;
+}
 
 function download(url) {
     let link = document.createElement("a");
