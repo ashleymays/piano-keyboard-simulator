@@ -216,17 +216,13 @@ document.addEventListener("keyup", function(e) {
 
 // Touch Input
 document.addEventListener("touchstart", function(e) {
-    // let keyboardKey = e.target.innerHTML;
-    // if (recordingWindow.className === "disabled"
-    //     && !e.repeat 
-    //     && e.target.name === "piano-key" 
-    //     && !currentlyPressedKeys.includes(keyboardKey)) 
-    //     {
-    //     let pitch = getPitch(keyboardKey);
-    //     playNote(pitch);
-    //     e.target.classList.add("key-bkg-color");
-    //     currentlyPressedKeys.push(keyboardKey);
-    // }   
+    let keyboardKey = e.target.innerHTML;
+    if (recordingWindow.className === "disabled" && !e.repeat && e.target.name === "piano-key" && !currentlyPressedKeys.includes(keyboardKey)) {
+        let pitch = getPitch(keyboardKey);
+        playNote(pitch);
+        e.target.classList.add("key-bkg-color");
+        currentlyPressedKeys.push(keyboardKey);
+    }   
 })
 document.addEventListener("touchend", function(e) {
     let keyboardKey = e.target.innerHTML;
@@ -240,25 +236,18 @@ document.addEventListener("touchend", function(e) {
 // Mouse Input
 let isDown;
 document.activeElement.addEventListener("mousedown", function(e) {
-    // make sure user is pressing a piano key and that the touchstart event doesn't fire twice
-    let keyboardKey = e.target.innerHTML;
-    if (recordingWindow.className === "disabled"
-        && !e.repeat 
-        && e.target.name === "piano-key" 
-        && !currentlyPressedKeys.includes(keyboardKey)) 
-        {
+    if (e.target.name === "piano-key") {
+        let keyboardKey = e.target.innerHTML;
         let pitch = getPitch(keyboardKey);
         playNote(pitch);
         e.target.classList.add("key-bkg-color");
-        currentlyPressedKeys.push(keyboardKey);
         isDown = true;
-    } 
+    }    
 })
 document.activeElement.addEventListener("mouseup", function(e) {
     e.target.classList.remove("key-bkg-color");
     isDown = false;
 })
-
 // Glissando
 piano.addEventListener("mouseover", function(e) {
     if (e.target.name == "piano-key" && isDown === true) {
