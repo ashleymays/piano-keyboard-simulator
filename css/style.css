@@ -9,8 +9,8 @@
     --secondary-text-color: #9a9a9a;
     --accent-color: #7678ED;
 
-    --piano-width: max(110rem, 80vw);
-    --piano-height: calc(var(--piano-width) * 0.248);
+    --piano-width: max(120rem, 80vw);
+    --piano-height: calc(var(--piano-width) * 0.245);
 }
 
 html, body {
