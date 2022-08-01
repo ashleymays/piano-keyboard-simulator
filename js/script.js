@@ -101,20 +101,19 @@ mediaRecorder.addEventListener('dataavailable', function(e) {
 
 recordingWindow.addEventListener("submit", function(e) {
     // check if recording title is valid (no periods)
-    if (isValidTitle(e)) {
+    if (isValidTitle()) {
         overlay.removeAttribute("class", "overlay");
+        recordingWindow.setAttribute("class", "disabled");
         download(url);
     }
+    e.preventDefault();
 })
 
-function isValidTitle(e) {
-    let title = recordingTitle.value;
-    for (let i = 0; i < title.length; ++i) {
-        if (title[i] === '.') {
-            alert("Invalid character: \".\" \nPlease enter a different title.");
-            e.preventDefault();
-            return false;
-        }
+function isValidTitle() {
+    let res = recordingTitle.value.indexOf('.');
+    if (res !== -1) {
+        alert("Invalid character: \".\" \nPlease enter a different title.");
+        return false;
     }
     return true;
 }
