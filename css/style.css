@@ -275,6 +275,7 @@ input[type="checkbox"] {
     height: max-content;
     margin-top: 16vh;
     overflow-x: auto;
+    touch-action: manipulation;
 }
 
 #piano {
