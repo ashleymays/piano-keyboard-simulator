@@ -289,33 +289,25 @@ keyAssist.addEventListener("click", function() {
 // Select Drop Down
 let selected = document.getElementById("selected");
 let instrumentOptions = document.getElementById("instrument-options");
-let clicks = 0;
-selected.addEventListener("click", function() {
-    ++clicks;
-    instrumentOptions.style.display = "block";
-
-    // choose instrument
-    instrumentOptions.addEventListener("click", function(e) {
-        selected.innerHTML = e.target.innerHTML;
-        instrument = e.target.innerHTML;
-        loadAudioFiles();
-        closeInstrumentOptions();
-    })
-    // the selection box is clicked twice -> close the list of options
-    if (clicks === 2) {
-        closeInstrumentOptions();
-    }
-})
+let canDoubleClick = true;
 body.addEventListener("click", function(e) {
-    if (e.target !== selected && clicks > 0) {
-        closeInstrumentOptions();
+    // open the select box when clicked
+    if (e.target.id === 'selected' && canDoubleClick) {
+        instrumentOptions.style.display = "block";
+        canDoubleClick = false;
+    }
+    else {
+        // user chose an instrument -> get new instrument sounds
+        if (e.target.classList.value === 'instrument') {
+            selected.innerHTML = e.target.innerHTML;
+            instrument = selected.innerHTML;
+            loadAudioFiles();
+        }
+        // close select box
+        instrumentOptions.style.display = "none";
+        canDoubleClick = true;
     }
 })
-function closeInstrumentOptions() {
-    instrumentOptions.style.display = "none";
-    clicks = 0;
-}
-
 
 
 
@@ -345,5 +337,5 @@ octaveUpBtn.addEventListener("click", function() {
     }
 })
 function displayOctaveRange() {
-    octaveRange.innerHTML = "C" + firstKey.octave + " - C" + lastKey.octave;
+    octaveRange.innerHTML = `C${firstKey.octave} - C${lastKey.octave}`;
 }
