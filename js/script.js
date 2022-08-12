@@ -1,6 +1,6 @@
 let piano = document.getElementById("piano");
 let body = document.querySelector("body");
-let instrument = "Acoustic Grand";
+let instrument = 'Acoustic Grand';
 let context = new (window.AudioContext || window.webkitAudioContext)();
 let keysMap = new Map ([
     ['q', { noteName: "C", octave: 3 }],
@@ -175,10 +175,10 @@ function playNote(pitch) {
 
 function sustainedDecay() {
     switch(instrument) {
-        case "Acoustic Grand": return 8;
-        case "Electric Piano": return 6;
-        case "Music Box": return 7.5;
-        case "Harp": return 12;
+        case "Acoustic Grand": return 10;
+        case "Electric Piano": return 8;
+        case "Music Box": return 8.5;
+        case "Harp": return 13;
     }
 }
 
@@ -297,9 +297,9 @@ body.addEventListener("click", function(e) {
     }
     else {
         // user chose an instrument -> get new instrument sounds
-        if (e.target.classList.value === 'instrument') {
-            selected.innerHTML = e.target.innerHTML;
-            instrument = selected.innerHTML;
+        if (e.target.name == 'instrument') {
+            selected.innerHTML = e.target.value;
+            instrument = e.target.value;
             loadAudioFiles();
         }
         // close select box
@@ -326,6 +326,7 @@ octaveDownBtn.addEventListener("click", function() {
         displayOctaveRange();
     }
 })
+
 octaveUpBtn.addEventListener("click", function() {
     // shift octaves up 1; can't go past C8
     if (lastKey.octave < 8) {

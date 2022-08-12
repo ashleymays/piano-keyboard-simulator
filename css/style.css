@@ -3,13 +3,13 @@
 }
 
 :root {
-    --primary-bkg-color: #121212;
-    --secondary-bkg-color: #1d1d1e;
-    --primary-text-color: #dbdbdb;
-    --secondary-text-color: #9a9a9a;
-    --accent-color: #7678ED;
+    --primary-bkg-color: #181818;
+    --secondary-bkg-color: #222;
+    --primary-text-color: #e2e2e2;
+    --secondary-text-color: #d0d0d0;
+    --accent-color: #FF0035;
 
-    --piano-width: max(120rem, 80vw);
+    --piano-width: max(128rem, 84vw);
     --piano-height: calc(var(--piano-width) * 0.245);
 }
 
@@ -20,7 +20,6 @@ html, body {
 
 html {
     font-size: 10px;
-    scroll-behavior: smooth;
 }
 
 body {
@@ -48,10 +47,6 @@ p, li {
     line-height: 1.5em;
 }
 
-li {
-    margin: clamp(1.2rem, 1.5vh, 1rem) 0;
-}
-
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -62,12 +57,16 @@ a:hover {
     text-decoration: underline;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
     position: absolute;
     opacity: 0;
     display: none;
     cursor: none;
     background: none;
+}
+
+button {
+    outline: none;
 }
 
 .disabled {
@@ -80,7 +79,7 @@ input[type="checkbox"] {
     flex-flow: column;
     padding: clamp(1.75rem, 2.5vh, 10rem) clamp(1.25rem, 1vw, 4rem);
     width: clamp(27rem, 30vw, 65rem);
-    background: #f2f2f2;
+    background: #fff;
     position: absolute;
     top: 5%;
     left: 50%;
@@ -94,7 +93,7 @@ input[type="checkbox"] {
     border-color: transparent;
     border-radius: 0.5rem;
     color: var(--primary-bkg-color);
-    background: #e2e2e2;
+    background: #202020;
     padding: clamp(0.75rem, 1vh, 4rem) 0.75vw;
     font-size: 1.5rem;
     font-family: inherit;
@@ -102,7 +101,7 @@ input[type="checkbox"] {
 
 #download-btn {
     text-align: center;
-    color: #252525;
+    color: #e0e0e0;
     font-family: inherit;
     cursor: pointer;
     background: transparent;
@@ -116,10 +115,6 @@ input[type="checkbox"] {
 
 #download-btn:hover {
     color: var(--accent-color);
-}
-
-#home {
-    height: max-content;
 }
 
 .overlay {
@@ -185,10 +180,10 @@ input[type="checkbox"] {
     position: relative;
 }
 
-#selected, #instrument-options div {
+#selected, #instrument-options label {
     color: var(--primary-text-color);
     background: var(--secondary-bkg-color);
-    height: clamp(5.5rem, 3.1vw, 20rem);
+    height: clamp(5rem, 2.5vw, 17rem);
     width: 100%;
     text-indent: 1.6em;
     cursor: pointer;
@@ -199,24 +194,6 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: space-between;
     border-radius: 0.3rem;
-}
-
-.up-arrow::after, .down-arrow::after {
-    content: "";
-    display: block;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-    margin-right: 1.6em;
-}
-
-.down-arrow::after {
-    border-top: 0.75rem solid var(--primary-text-color);
-    border-bottom: 0;
-}
-
-.up-arrow::after {
-    border-bottom: 0.75rem solid var(--primary-text-color);
-    border-top: 0;
 }
 
 #instrument-options {
@@ -230,22 +207,22 @@ input[type="checkbox"] {
     border-radius: 0.3rem;
 }
 
-#instrument-options div {
+#instrument-options label {
     display: flex;
     align-items: center;
 }
 
-#instrument-options div:first-child {
+#instrument-options label:first-child {
     border-top: none;
     border-radius: 0.3rem 0.3rem 0 0;
 }
 
-#instrument-options div:last-child {
+#instrument-options label:last-child {
     border-radius: 0 0 0.3rem 0.3rem;
 }
 
-#instrument-options div:hover {
-    background: #252525;
+#instrument-options label:hover {
+    filter: brightness(150%);
 }
 
 /* Audio Effects */
@@ -273,7 +250,7 @@ input[type="checkbox"] {
     flex-flow: column;
     width: 100%;
     height: max-content;
-    margin-top: 16vh;
+    margin-top: 11vh;
     overflow-x: auto;
     touch-action: manipulation;
 }
@@ -307,7 +284,7 @@ input[type="checkbox"] {
     height: 100%;
     box-shadow: 0 0 0.15rem #959595 inset, 
                 0 0 0.15rem #959595 inset;
-    background: #f2f2f2;
+    background: #e2e2e2;
     border-radius: 0 0 0.6rem 0.6rem;
     position: relative;
     color: #222;
@@ -364,52 +341,41 @@ input[type="checkbox"] {
     flex-flow: row;
     justify-content: center;
     width: 100%;
-    margin-top: 8vh;
+    margin-top: 7vh;
 }
 
 .octave-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: clamp(20rem, 18vw, 40rem);
+    width: clamp(26rem, 22vw, 48rem);
 }
 
 #octave-range {
     color: var(--primary-text-color);
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-size: clamp(1.6rem, 1.25vw, 10rem);
+    font-size: clamp(1.65rem, 1.35vw, 11rem);
     font-weight: 500;
 }
 
 #octave-down-btn, #octave-up-btn {
-    display: block;
-    width: 0;
-    height: 0;
-    outline: none;
-    content: "";
-    padding: 0;
+    font-size: clamp(0.8rem, 1.4vw, 1.2rem);
+    color: #fff;
+    border: transparent;
     background: transparent;
-    border-top: clamp(0.45rem, 1.2vw, 0.75rem) solid transparent;
-    border-bottom: clamp(0.45rem, 1.2vw, 0.75rem) solid transparent;
     cursor: pointer;
 }
 
 #octave-down-btn {
-    border-right: clamp(0.9rem, 1vw, 1.1rem) solid var(--primary-text-color);
-    border-left: none;
+    transform: rotateZ(180deg);
 }
 
-#octave-up-btn {
-    border-left: clamp(0.9rem, 1vw, 1.1rem) solid var(--primary-text-color);
-    border-right: none;
+.info {
+    padding: clamp(1.5rem, 11vh, 12rem) clamp(2rem, 18vw, 35rem) clamp(1.65rem, 14.5vh, 20rem);
 }
 
-#info {
-    padding: clamp(2rem, 17vh, 20rem) clamp(2rem, 18vw, 35rem) clamp(1.65rem, 14.5vh, 20rem);
-}
-
-#info div {
+.info div {
     padding-top: clamp(1rem, 2vh, 4rem);
 }
 
@@ -421,7 +387,7 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-    #info {
+    .info {
         padding-left: 8vw;
         padding-right: 8vw;
     }

@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Piano | Play a Virtual Piano in Your Browser</title>
+    <meta name="description" content="Use your computer keyboard, mouse, or fingers to play a virtual keyboard with 4 different instrument sounds, audio recording functionality, and sound effects." />
+    <title>Online Piano</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/script.js"></script>
 </head>
@@ -16,25 +18,25 @@
           <input type="text" name="recording-title" id="recording-title" placeholder="Enter recording title" required />
           <button type="submit" id="download-btn">Download</button>
      </form>
-     <section id="home">
+     <header>
           <div id="overlay"></div>
           <section class="controls">
                <div class="instruments-select">
-                    <div id="selected" class="down-arrow">Acoustic Grand</div>
+                    <div id="selected">Acoustic Grand</div>
                     <div id="instrument-options">
-                         <div class="instrument">Acoustic Grand</div>
-                         <div class="instrument">Electric Piano</div>
-                         <div class="instrument">Music Box</div>
-                         <div class="instrument">Harp</div>
+                         <label><input type="radio" name="instrument" value="Acoustic Grand" checked /><span>Acoustic Grand</span></label>
+                         <label><input type="radio" name="instrument" value="Electric Piano" /><span>Electric Piano</span></label>
+                         <label><input type="radio" name="instrument" value="Music Box" /><span>Music Box</span></label>
+                         <label><input type="radio" name="instrument" value="Harp" /><span>Harp</span></label>
                     </div>
                </div>
                <div class="effects">
                     <label><input type="checkbox" id="soften"/><span>Soften</span></label>
                     <label><input type="checkbox" id="sustain" checked/><span>Sustain</span></label>
-                    <label><input id="key-assist" type="checkbox" /><span>Key Assist</span></label>
+                    <label><input type="checkbox" id="key-assist" /><span>Key Assist</span></label>
                </div>
                <label class="record"><input type="checkbox" id="record-btn"/><span class="record-off">Record</span></label>
-          </section>
+          </header>
           <section class="piano-container">
                <div id="piano">
                     <button name="piano-key" class="white-key q" type="button">q</button> 
@@ -92,13 +94,17 @@
           </section>
           <div class="octave-container">
                <div class="octave-controls">
-                    <button id="octave-down-btn"></button>
+                    <button id="octave-down-btn">
+                         <span class="material-symbols-outlined">play_arrow</span>
+                    </button>
                     <div id="octave-range">C3 - C6</div>
-                    <button id="octave-up-btn"></button>
+                    <button id="octave-up-btn">
+                         <span class="material-symbols-outlined">play_arrow</span>
+                    </button>
                </div>
           </div>
      </section>
-     <section id="info">
+     <section class="info">
           <h1>Play piano virtually on any modern browser.</h1>
           <div>
                <h3>What is Online Piano?</h3>
@@ -130,17 +136,11 @@
                <p>
                     You can also choose one of four instrument sounds: <b>Acoustic Grand Piano</b>, <b>Electric Piano</b>, 
                     <b>Music Box</b>, and <b>Harp</b>.
-                    <!-- <ul>
-                         <li>Acoustic Grand Piano</li>
-                         <li>Electric Piano</li>
-                         <li>Music Box</li>
-                         <li>Harp</li>
-                    </ul> -->
                </p>
           </div>
      </section>
      <footer>
-          Made with &#128156; by Ashley Mays
+          Made with &#10084;&#65039; by <a href="https://github.com/ashleymays">Ashley Mays</a>
      </footer>
 </body>
 </html>

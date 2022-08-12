@@ -1,6 +1,6 @@
-# Online Piano
+# Pinao
 
-This is an online piano that can be played with computer keyboard, mouse, or touch inputs. It can play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. Users can also record their playing and download their music as an .mp3 file.
+Pinao is an online piano that can be played with computer keyboard, mouse, or touch inputs. You can play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record their playing and download their music as an .mp3 file.
 
 ## How to Use
 Navigate to the website <a href="https://ashleymays.github.io/online-piano/">here</a>. There is no need to download any external libraries.
