@@ -132,7 +132,7 @@ let buffers = [];
 function loadAudioFiles() {
     for (let i in pitches) {
         let request = new XMLHttpRequest();
-        request.open("GET", "./audio/" + instrument + "/" + pitches[i] + ".mp3");
+        request.open("GET", `./audio/${instrument}/${pitches[i]}.mp3`);
         request.responseType = "arraybuffer";
         request.onload = function() {
             let undecodedAudio = request.response;
