@@ -4,10 +4,10 @@
 }
 
 :root {
-    --primary-bkg-color: #181818;
-    --secondary-bkg-color: #222;
-    --primary-text-color: #e2e2e2;
-    --secondary-text-color: #d0d0d0;
+    --primary-bkg-color: #141414;
+    --secondary-bkg-color: #262626;
+    --primary-text-color: #fff;
+    --secondary-text-color: #dadada;
     --accent-color: #FF0035;
 
     --piano-width: max(128rem, 84vw);
