@@ -8,7 +8,7 @@
     --secondary-bkg-color: #262626;
     --primary-text-color: #fff;
     --secondary-text-color: #dadada;
-    --accent-color: #FF0035;
+    --accent-color: #EB002F;
 
     --piano-width: max(128rem, 84vw);
     --piano-height: calc(var(--piano-width) * 0.245);
@@ -80,7 +80,7 @@ button {
     flex-flow: column;
     padding: clamp(1.75rem, 2.5vh, 10rem) clamp(1.25rem, 1vw, 4rem);
     width: clamp(27rem, 30vw, 65rem);
-    background: #fff;
+    background: var(--secondary-bkg-color);
     position: absolute;
     top: 5%;
     left: 50%;
@@ -93,8 +93,8 @@ button {
     outline: none;
     border-color: transparent;
     border-radius: 0.5rem;
-    color: var(--primary-bkg-color);
-    background: #202020;
+    color: var(--primary-text-color);
+    background: var(--primary-bkg-color);
     padding: clamp(0.75rem, 1vh, 4rem) 0.75vw;
     font-size: 1.5rem;
     font-family: inherit;
@@ -161,14 +161,14 @@ button {
 .record-off {
     background: var(--accent-color);
     color: var(--primary-text-color);
-    font-weight: 600;
+    font-weight: 700;
     border: none;
 }
 
 .record-on {
     background: transparent;
     color: var(--accent-color);
-    font-weight: 500;
+    font-weight: 600;
     border: 0.3rem solid var(--accent-color);
 }
 
