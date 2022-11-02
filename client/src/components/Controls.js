@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import FeatureControls from "./FeatureControls";
 import Screen from "./Screen";
 import RecordingControls from "./RecordingControls";

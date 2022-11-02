@@ -21,7 +21,7 @@ html {
 
 body {
     font-family: 'Mulish', sans-serif;
-    background: url('../docs/image-1.png'), #121212;
+    background: url('../docs/image-1.png'), #101010;
     background-blend-mode: overlay;
     display: flex;
     align-items: center;
@@ -81,7 +81,7 @@ button {
 
 .piano-container {
     touch-action: manipulation;
-    background-image: url('../docs/image.png'), linear-gradient(to bottom, #151416, #232027);
+    background-image: url('../docs/image.png'), linear-gradient(to bottom, #1a191b, #27242b);
     background-blend-mode: overlay;
     padding: 0 3.5vw;
     position: relative;
@@ -99,10 +99,10 @@ button {
     background: transparent;
     position: absolute;
     left: 0;
-    bottom: -2vh;
+    bottom: -2.25vh;
     height: 0;
     width: calc(100% - 5vw);
-    border-top: 2.25vh solid #0a0a0a;
+    border-top: 2.25vh solid #111;
     border-left: 2.5vw solid transparent;
     border-right: 2.5vw solid transparent;
 }
@@ -181,14 +181,18 @@ button {
     align-items: center;
 }
 
-.feature-controls__top, .feature-controls__bottom {
+.main-feature-controls, .octave-controls {
     display: flex;
     align-items: flex-end;
     height: 100%;
     width: 100%;
 }
 
-.feature-controls__bottom {
+.main-feature-controls {
+    justify-content: flex-end;
+}
+
+.octave-controls {
     justify-content: center;
 }
 
@@ -199,9 +203,7 @@ button {
 .btn-container {
     height: 100%;
     width: 33%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .btn-title, .octave-title {
@@ -209,10 +211,10 @@ button {
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
+    margin: 7.5% 0 0;
 }
 
 .octave-title {
-    height: 100%;
     display: flex;
     align-items: flex-end;
 }
@@ -220,9 +222,9 @@ button {
 
 
 
-/* Rectangular Buttons */
+/* Large Rectangular Buttons */
 
-.rect-btn {
+.rect-btn_lg {
     display: block;
     content: "";
     height: 50%;
@@ -231,18 +233,42 @@ button {
     cursor: pointer;
 }
 
-.rect-btn-gray {
+.rect-btn_gray {
     background: #322D38;
     box-shadow: 0.042rem 0.478rem 0.96rem #0A090B8E,
                 0.021rem 0.244rem 0.245rem #38333F inset,
                 -0.021rem -0.244rem 0.245rem #2A262F inset;
 }
 
-.rect-btn-red {
+.rect-btn_red {
     background: #FF4748;
     box-shadow: 0.034rem 0.488rem 0.978rem #340e0ecc,
                 0.023rem 0.325rem 0.326rem #FF5455 inset,
                 -0.023rem -0.326rem 0.326rem #C63738 inset;
+}
+
+
+/* Thin Rectangular Buttons */
+
+.rect-btn_sm {
+    cursor: pointer;
+    display: block;
+    padding: calc(var(--piano-width) * 0.009) calc(var(--piano-width) * 0.0235);
+    border-radius: 0.25rem;
+}
+
+
+
+/* Round Buttons */
+.round-btn {
+    cursor: pointer;
+    display: block;
+    content: "";
+    padding: calc(var(--piano-width) * 0.0225);
+    border-radius: 50%;
+    box-shadow: 0.2rem 0.4rem 1.4rem 0 #09080BCC,
+                0.15rem 3.12rem 3.46rem 0 #3a353f inset,
+                -1.5rem -3.12rem 3.5rem 0 #131115 inset;
 }
 
 

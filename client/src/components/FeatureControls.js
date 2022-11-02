@@ -3,15 +3,15 @@ import Button from "./Button";
 function FeatureControls() {
     return (
         <div className="flex-column feature-controls">
-            <div className="feature-controls__top">
-                <Button className="rect-btn rect-btn-gray">Sustain</Button>
-                <Button className="rect-btn rect-btn-gray">Soften</Button>
-                <Button className="rect-btn rect-btn-gray">Keyboard</Button>
+            <div className="main-feature-controls">
+                <Button className="round-btn">Sustain</Button>
+                <Button className="round-btn">Soften</Button>
+                <Button className="round-btn">Keyboard</Button>
             </div>
-            <div className="feature-controls__bottom">
-                <Button className="rect-btn rect-btn-gray">-</Button>
+            <div className="octave-controls">
+                <Button className="rect-btn_sm rect-btn_gray">-</Button>
                 <h4 className="octave-title">Octave</h4>
-                <Button className="rect-btn rect-btn-gray">+</Button>
+                <Button className="rect-btn_sm rect-btn_gray">+</Button>
             </div>
         </div>
     )
