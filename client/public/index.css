@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --primary-text-color: #fff;
+    --secondary-text-color: #dadada;
+    --piano-width: 78vw;
+    --piano-height: calc(var(--piano-width) * 0.21);
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: 'Gantari', sans-serif;
+    background: url('../docs/image-1.png'), #2F2A35;
+    background-blend-mode: overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1, h3 {
+    color: var(--primary-text-color);
+}
+
+h1 {
+    font-size: clamp(4.5rem, 3.5vw, 7.5rem);
+}
+
+h3 {
+    font-size: clamp(3.15rem, 2.45vw, 5.25rem);
+}
+
+p, li {
+    color: var(--secondary-text-color);
+    font-size: clamp(1.8rem, 1.4vw, 3rem);
+    line-height: 1.5em;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    position: relative;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    cursor: none;
+    background: none;
+}
+
+button {
+    outline: none;
+}
+
+
+
+/* ------------------- Piano ------------------- */
+
+.piano-container {
+    touch-action: manipulation;
+    background-image: url('../docs/image.png'), linear-gradient(to bottom, #151416, #232027);
+    background-blend-mode: overlay;
+    padding: 0 3.5vw;
+    position: relative;
+    box-shadow: 0 7rem 10rem rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+/* Trapezoid at bottom of keyboard */
+
+.piano-container::after {
+    content: "";
+    display: block;
+    background: transparent;
+    position: absolute;
+    left: 0;
+    bottom: -2vh;
+    height: 0;
+    width: calc(100% - 5vw);
+    border-top: 2.25vh solid #000;
+    border-left: 2.5vw solid transparent;
+    border-right: 2.5vw solid transparent;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 28vh;
+    width: 100%;
+    padding: 2% 0;
+}
+
+#piano {
+    position: relative;
+    width: var(--piano-width);
+    height: var(--piano-height);
+    display: flex;
+}
+
+.black-key, .white-key {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-bottom: 2.5rem;
+    font-size: 0;
+    float: left;
+    outline: none;
+    border: transparent;
+    font-family: inherit;
+    position: relative;
+}
+
+.white-key {
+    flex: 1 1 0;
+    width: 0;
+    height: 100%;
+    border-radius: 0 0 0.6rem 0.6rem;
+    color: #222;
+    background: linear-gradient(to bottom,#e0e0e0 0%,#f2f2f2 100%);
+    box-shadow: -0.1rem 0 0 rgba(255,255,255,0.8) inset,
+                0 0 0.1rem #121212 inset,
+                0 0 0.3rem rgba(0,0,0,0.2);
+}
+
+.black-key {
+    width: max(3.4rem, 2.25vw); /* same ratio as piano width */
+    height: 60%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    z-index: 1;
+    color: #959595;
+    margin: 0 0 0 -1.75rem;
+    background: linear-gradient(to bottom,#3a3a3a 0%,#1a1a1a 100%);
+    box-shadow: -0.1rem -0.1rem 0.2rem rgba(255,255,255,0.2) inset,
+                0 -0.1rem 0.2rem 0.3rem rgba(0,0,0,0.6) inset,
+                0 0.15rem 0.35rem rgba(0,0,0,0.5)
+}
+
+.black-key + .white-key {
+    margin: 0 0 0 -1.75rem;
+}
+
+
+/* When keys are pressed this class is added to the key */
+
+.key-bkg-color {
+    background: #a5a5a5 !important;
+    color: #fff !important;
+}
+
+
+
+
+
+.controls-left {
+    display: flex;
+    align-items: center;
+}
+
+.controls-right {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.controls-right > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+/* Rectangular Buttons */
+
+.rect {
+    display: block;
+    content: "";
+    height: 4rem;
+    width: 5rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.rect-gray {
+    background: #322D38;
+    box-shadow: 0.042rem 0.478rem 0.96rem #0A090B8E,
+                0.021rem 0.244rem 0.245rem #38333F inset,
+                -0.021rem -0.244rem 0.245rem #2A262F inset;
+}
+
+.rect-red {
+    background: #FF4748;
+    box-shadow: 0.034rem 0.488rem 0.978rem #340e0ecc,
+                0.023rem 0.325rem 0.326rem #FF5455 inset,
+                -0.023rem -0.326rem 0.326rem #C63738 inset;
+}
+
+
+
+
+
+/* Screen */
+
+.screen {
+    content: "";
+    display: block;
+    border-radius: 0.92rem;
+    background: linear-gradient(143deg, #070708 0%, #131316 100%);
+    box-shadow: -0.69rem -0.916rem 1.147rem #15151880 inset,
+                0.69rem 0.916rem 1.147rem #06060680 inset;
+}
