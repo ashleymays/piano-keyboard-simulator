@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
+import FeatureControls from "./FeatureControls";
+import Screen from "./Screen";
+import RecordingControls from "./RecordingControls";
 
 function Controls() {
     return (
         <div className="controls">
-            <div className="controls-left"></div>
-            <div className="screen"></div>
-            <div className="controls-right">
-                <div>
-                    <div className="rect rect-gray"></div>
-                    <div className="rect rect-gray"></div>
-                    <div className="rect rect-gray"></div>
-                </div>
-                <div>
-                    <div className="rect rect-gray"></div>
-                    <div className="rect rect-gray"></div>
-                </div>
-            </div>
+            <RecordingControls />
+            <Screen />
+            <FeatureControls />
         </div>
     )
 }

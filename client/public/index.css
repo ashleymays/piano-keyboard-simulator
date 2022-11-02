@@ -6,8 +6,8 @@
 :root {
     --primary-text-color: #fff;
     --secondary-text-color: #dadada;
-    --piano-width: 78vw;
-    --piano-height: calc(var(--piano-width) * 0.21);
+    --piano-width: 80vw;
+    --piano-height: calc(var(--piano-width) * 0.24);
 }
 
 html, body {
@@ -20,8 +20,8 @@ html {
 }
 
 body {
-    font-family: 'Gantari', sans-serif;
-    background: url('../docs/image-1.png'), #2F2A35;
+    font-family: 'Mulish', sans-serif;
+    background: url('../docs/image-1.png'), #121212;
     background-blend-mode: overlay;
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@ body {
     height: 100vh;
 }
 
-h1, h3 {
+h1, h2, h3, h4, h5, h6 {
     color: var(--primary-text-color);
 }
 
@@ -37,8 +37,8 @@ h1 {
     font-size: clamp(4.5rem, 3.5vw, 7.5rem);
 }
 
-h3 {
-    font-size: clamp(3.15rem, 2.45vw, 5.25rem);
+h4 {
+    font-size: clamp(0.85rem, 0.825vw, 2.75rem);
 }
 
 p, li {
@@ -69,6 +69,12 @@ button {
     outline: none;
 }
 
+.flex-column {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
 
 
 /* ------------------- Piano ------------------- */
@@ -96,17 +102,9 @@ button {
     bottom: -2vh;
     height: 0;
     width: calc(100% - 5vw);
-    border-top: 2.25vh solid #000;
+    border-top: 2.25vh solid #0a0a0a;
     border-left: 2.5vw solid transparent;
     border-right: 2.5vw solid transparent;
-}
-
-.controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 28vh;
-    width: 100%;
-    padding: 2% 0;
 }
 
 #piano {
@@ -114,12 +112,10 @@ button {
     width: var(--piano-width);
     height: var(--piano-height);
     display: flex;
+    justify-content: space-between;
 }
 
 .black-key, .white-key {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
     justify-content: flex-end;
     cursor: pointer;
     padding-bottom: 2.5rem;
@@ -128,12 +124,10 @@ button {
     outline: none;
     border: transparent;
     font-family: inherit;
-    position: relative;
 }
 
 .white-key {
     flex: 1 1 0;
-    width: 0;
     height: 100%;
     border-radius: 0 0 0.6rem 0.6rem;
     color: #222;
@@ -144,12 +138,12 @@ button {
 }
 
 .black-key {
-    width: max(3.4rem, 2.25vw); /* same ratio as piano width */
+    width: calc(var(--piano-width) * 0.028);
     height: 60%;
     border-radius: 0 0 0.5rem 0.5rem;
     z-index: 1;
     color: #959595;
-    margin: 0 0 0 -1.75rem;
+    margin-left: calc(var(--piano-width) * -0.028 / 2);
     background: linear-gradient(to bottom,#3a3a3a 0%,#1a1a1a 100%);
     box-shadow: -0.1rem -0.1rem 0.2rem rgba(255,255,255,0.2) inset,
                 0 -0.1rem 0.2rem 0.3rem rgba(0,0,0,0.6) inset,
@@ -157,7 +151,7 @@ button {
 }
 
 .black-key + .white-key {
-    margin: 0 0 0 -1.75rem;
+    margin-left: calc(var(--piano-width) * -0.028 / 2);
 }
 
 
@@ -172,50 +166,84 @@ button {
 
 
 
-.controls-left {
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: calc(var(--piano-width) * 0.175);
+    width: var(--piano-width);
+    padding: 2% 0;
+}
+
+
+.recording-controls {
+    content: "";
     display: flex;
     align-items: center;
 }
 
-.controls-right {
+.feature-controls__top, .feature-controls__bottom {
     display: flex;
-    flex-flow: column;
-    align-items: center;
-}
-
-.controls-right > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
     width: 100%;
 }
 
+.feature-controls__bottom {
+    justify-content: center;
+}
+
+
+
+/* All Buttons */
+
+.btn-container {
+    height: 100%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-title, .octave-title {
+    font-family: inherit;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.octave-title {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+
+
+
 /* Rectangular Buttons */
 
-.rect {
+.rect-btn {
     display: block;
     content: "";
-    height: 4rem;
-    width: 5rem;
+    height: 50%;
+    width: 37.5%;
     border-radius: 0.2rem;
     cursor: pointer;
 }
 
-.rect-gray {
+.rect-btn-gray {
     background: #322D38;
     box-shadow: 0.042rem 0.478rem 0.96rem #0A090B8E,
                 0.021rem 0.244rem 0.245rem #38333F inset,
                 -0.021rem -0.244rem 0.245rem #2A262F inset;
 }
 
-.rect-red {
+.rect-btn-red {
     background: #FF4748;
     box-shadow: 0.034rem 0.488rem 0.978rem #340e0ecc,
                 0.023rem 0.325rem 0.326rem #FF5455 inset,
                 -0.023rem -0.326rem 0.326rem #C63738 inset;
 }
-
-
 
 
 
