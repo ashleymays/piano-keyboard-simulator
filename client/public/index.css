@@ -81,7 +81,7 @@ button {
 
 .piano-container {
     touch-action: manipulation;
-    background-image: url('../docs/image.png'), linear-gradient(to bottom, #1a191b, #27242b);
+    background-image: url('../docs/image.png'), linear-gradient(to bottom, #1a191b, #201d23);
     background-blend-mode: overlay;
     padding: 0 3.5vw;
     position: relative;
@@ -169,30 +169,28 @@ button {
 .controls {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: calc(var(--piano-width) * 0.175);
+    height: calc(var(--piano-width) * 0.18);
     width: var(--piano-width);
-    padding: 2% 0;
+    padding: 2.25% 0;
 }
 
 
-.recording-controls {
-    content: "";
-    display: flex;
-    align-items: center;
-}
 
-.main-feature-controls, .octave-controls {
+
+
+.recording-controls, .main-feature-controls, .octave-controls, .menu-controls {
     display: flex;
-    align-items: flex-end;
-    height: 100%;
+    height: 90%;
     width: 100%;
+    align-self: center;
 }
 
 .main-feature-controls {
     justify-content: flex-end;
 }
 
-.octave-controls {
+.octave-controls, .menu-controls {
+    align-items: flex-end;
     justify-content: center;
 }
 
@@ -201,12 +199,12 @@ button {
 /* All Buttons */
 
 .btn-container {
-    height: 100%;
+    height: max-content;
     width: 33%;
     justify-content: flex-end;
 }
 
-.btn-title, .octave-title {
+.btn-title, .free-title {
     font-family: inherit;
     font-weight: 400;
     text-transform: uppercase;
@@ -214,29 +212,25 @@ button {
     margin: 7.5% 0 0;
 }
 
-.octave-title {
+.free-title {
     display: flex;
     align-items: flex-end;
 }
-
-
 
 
 /* Large Rectangular Buttons */
 
 .rect-btn_lg {
     display: block;
-    content: "";
-    height: 50%;
-    width: 37.5%;
+    padding: calc(var(--piano-width) * 0.0165) calc(var(--piano-width) * 0.0235);
     border-radius: 0.2rem;
     cursor: pointer;
 }
 
 .rect-btn_gray {
     background: #322D38;
-    box-shadow: 0.042rem 0.478rem 0.96rem #0A090B8E,
-                0.021rem 0.244rem 0.245rem #38333F inset,
+    box-shadow: 0.05rem 0.5rem 0.9rem #0A090B8E,
+                0.021rem 0.2rem 0.2rem #38333F inset,
                 -0.021rem -0.244rem 0.245rem #2A262F inset;
 }
 
@@ -260,12 +254,16 @@ button {
 
 
 /* Round Buttons */
+
 .round-btn {
     cursor: pointer;
     display: block;
     content: "";
-    padding: calc(var(--piano-width) * 0.0225);
+    padding: calc(var(--piano-width) * 0.021);
     border-radius: 50%;
+}
+
+.round-btn_gray {
     box-shadow: 0.2rem 0.4rem 1.4rem 0 #09080BCC,
                 0.15rem 3.12rem 3.46rem 0 #3a353f inset,
                 -1.5rem -3.12rem 3.5rem 0 #131115 inset;
@@ -279,7 +277,7 @@ button {
     content: "";
     display: block;
     border-radius: 0.92rem;
-    background: linear-gradient(143deg, #070708 0%, #131316 100%);
-    box-shadow: -0.69rem -0.916rem 1.147rem #15151880 inset,
+    background: linear-gradient(143deg, #0e0e11 0%, #101012 100%);
+    box-shadow: -0.69rem -0.916rem 1.147rem #19191c80 inset,
                 0.69rem 0.916rem 1.147rem #06060680 inset;
 }
