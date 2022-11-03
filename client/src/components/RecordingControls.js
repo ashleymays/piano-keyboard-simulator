@@ -1,17 +1,25 @@
 import Button from "./Button";
 
 function RecordingControls() {
+    const buttons = {
+        stop: <Button type="checkbox" className="round-btn">Stop</Button>,
+        record: <Button type="checkbox" className="round-btn">Record</Button>,
+        play: <Button type="checkbox" className="round-btn">Play</Button>,
+        about: <Button className="rect-btn">About</Button>,
+        fullscreen: <Button className="rect-btn">Fullscreen</Button>
+    }
+
     return (
         <div className="flex-column">
             <div className="recording-controls">
-                <Button className="round-btn round-btn_gray">Stop</Button>
-                <Button className="round-btn round-btn_gray">Record</Button>
-                <Button className="round-btn round-btn_gray">Play</Button>
+                {buttons.stop}
+                {buttons.record}
+                {buttons.play}
             </div>
             <div className="menu-controls">
-                <Button className="rect-btn_sm rect-btn_gray">About</Button>
+                {buttons.about}
                 <h4 className="free-title">Menu</h4>
-                <Button className="rect-btn_sm rect-btn_gray">Fullscreen</Button>
+                {buttons.fullscreen}
             </div>
         </div>
     )
