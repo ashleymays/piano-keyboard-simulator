@@ -1,5 +1,5 @@
-import Piano from "./Piano";
-import Controls from "./Controls";
+import Piano from "./components/Piano";
+import Controls from "./components/Controls";
 
 function App() {
     return (

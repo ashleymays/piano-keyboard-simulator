@@ -21,10 +21,8 @@ html {
 
 body {
     font-family: 'Mulish', sans-serif;
-    background: url('../docs/image-1.png'), #101010;
+    background: #101010;
     background-blend-mode: overlay;
-    display: flex;
-    align-items: center;
     justify-content: center;
     height: 100vh;
 }
@@ -41,22 +39,6 @@ h4 {
     font-size: clamp(0.85rem, 0.825vw, 2.75rem);
 }
 
-p, li {
-    color: var(--secondary-text-color);
-    font-size: clamp(1.8rem, 1.4vw, 3rem);
-    line-height: 1.5em;
-}
-
-a {
-    color: var(--accent-color);
-    text-decoration: none;
-    position: relative;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 input {
     position: absolute;
     opacity: 0;
@@ -69,8 +51,11 @@ button {
     outline: none;
 }
 
-.flex-column {
+.flex {
     display: flex;
+}
+
+.flex-column {
     flex-flow: column;
     align-items: center;
 }
@@ -81,7 +66,7 @@ button {
 
 .piano-container {
     touch-action: manipulation;
-    background-image: url('../docs/image.png'), linear-gradient(to bottom, #1a191b, #201d23);
+    background-image: url('../../docs/image.png'), linear-gradient(to bottom, #1a191b, #201d23);
     background-blend-mode: overlay;
     padding: 0 3.5vw;
     position: relative;
@@ -111,7 +96,6 @@ button {
     position: relative;
     width: var(--piano-width);
     height: var(--piano-height);
-    display: flex;
     justify-content: space-between;
 }
 
@@ -166,6 +150,10 @@ button {
 
 
 
+
+
+/* ------------------- Controls ------------------- */
+
 .controls {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -174,22 +162,13 @@ button {
     padding: 2.25% 0;
 }
 
-
-
-
-
-.recording-controls, .main-feature-controls, .octave-controls, .menu-controls {
-    display: flex;
-    height: 90%;
+.round-btn-container, .rect-btn-container {
+    height: 100%;
     width: 100%;
     align-self: center;
 }
 
-.main-feature-controls {
-    justify-content: flex-end;
-}
-
-.octave-controls, .menu-controls {
+.rect-btn-container {
     align-items: flex-end;
     justify-content: center;
     margin-bottom: 2.5%;
@@ -205,17 +184,13 @@ button {
     justify-content: flex-end;
 }
 
-.btn-title, .free-title {
+.label {
+    align-items: flex-end;
     font-family: inherit;
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
     margin: 0;
-}
-
-.free-title {
-    display: flex;
-    align-items: flex-end;
 }
 
 .rect-btn, .round-btn {

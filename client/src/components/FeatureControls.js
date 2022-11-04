@@ -10,15 +10,15 @@ const buttons = {
 
 function FeatureControls() {
     return (
-        <div className="flex-column">
-            <div className="main-feature-controls">
+        <div className="flex flex-column">
+            <div className="flex round-btn-container">
                 {buttons.sustain}
                 {buttons.soften}
                 {buttons.keyboard}            
             </div>
-            <div className="octave-controls">
+            <div className="flex rect-btn-container">
                 {buttons.octaveDown}
-                <h4 className="free-title">Octave</h4>
+                <h4 className="label">Octave</h4>
                 {buttons.octaveUp}
             </div>
         </div>

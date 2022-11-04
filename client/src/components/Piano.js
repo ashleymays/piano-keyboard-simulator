@@ -1,45 +1,67 @@
-import React from "react";
+import PianoKey from "./PianoKey";
+import { useState, useEffect } from "react";
+import keysMap from "../keysMap";
+
+
+
+function isValidInput(input) {
+    return keysMap.has(input) === true;
+}
+function getPitch(input) {
+    return keysMap.get(input).noteName + JSON.stringify(keysMap.get(input).octave);
+}
 
 function Piano() {
+    const [key, setNote] = useState(null);
+
+    useEffect(() => {
+        var currentlyPressedKeys = [];
+        if (isValidInput(key) && !currentlyPressedKeys.includes(key)) {
+            let pitch = getPitch(key);
+            currentlyPressedKeys.push(key);
+            console.log(pitch);
+        }
+    })
+    
     return (
-        <div id="piano">
-            <button name="piano-key" className="flex-column white-key" type="button" value="q">q</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="2">2</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="w">w</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="3">3</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="e">e</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="r">r</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="5">5</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="t">t</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="6">6</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="y">y</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="7">7</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="u">u</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="i">i</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="9">9</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="o">o</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="0">0</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="p">p</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="[">[</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="=">=</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="]">]</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="a">a</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="z">z</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="s">s</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="x">x</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="c">c</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="f">f</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="v">v</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="g">g</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="b">b</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="n">n</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="j">j</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="m">m</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="k">k</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value=",">,</button>
-            <button name="piano-key" className="flex-column black-key" type="button" value="l">l</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value=".">.</button>
-            <button name="piano-key" className="flex-column white-key" type="button" value="/">/</button>
+        <div id="piano" className="flex" tabIndex={-1} onKeyDown={(e) => setNote(e.key.toLowerCase())}>
+            <PianoKey keyColor="white" keyboardKey="q" />
+            <PianoKey keyColor="black" keyboardKey="2" />
+            <PianoKey keyColor="white" keyboardKey="w" />
+            <PianoKey keyColor="black" keyboardKey="3" />
+            <PianoKey keyColor="white" keyboardKey="e" />
+            <PianoKey keyColor="white" keyboardKey="r" />
+            <PianoKey keyColor="black" keyboardKey="5" />
+            <PianoKey keyColor="white" keyboardKey="t" />
+            <PianoKey keyColor="black" keyboardKey="6" />
+            <PianoKey keyColor="white" keyboardKey="y" />
+            <PianoKey keyColor="black" keyboardKey="7" />
+            <PianoKey keyColor="white" keyboardKey="u" />
+            <PianoKey keyColor="white" keyboardKey="i" />
+            <PianoKey keyColor="black" keyboardKey="9" />
+            <PianoKey keyColor="white" keyboardKey="o" />
+            <PianoKey keyColor="black" keyboardKey="0" />
+            <PianoKey keyColor="white" keyboardKey="p" />
+            <PianoKey keyColor="white" keyboardKey="[" />
+            <PianoKey keyColor="black" keyboardKey="=" />
+            <PianoKey keyColor="white" keyboardKey="]" />
+            <PianoKey keyColor="black" keyboardKey="a" />
+            <PianoKey keyColor="white" keyboardKey="z" />
+            <PianoKey keyColor="black" keyboardKey="s" />
+            <PianoKey keyColor="white" keyboardKey="x" />
+            <PianoKey keyColor="white" keyboardKey="c" />
+            <PianoKey keyColor="black" keyboardKey="f" />
+            <PianoKey keyColor="white" keyboardKey="v" />
+            <PianoKey keyColor="black" keyboardKey="g" />
+            <PianoKey keyColor="white" keyboardKey="b" />
+            <PianoKey keyColor="white" keyboardKey="n" />
+            <PianoKey keyColor="black" keyboardKey="j" />
+            <PianoKey keyColor="white" keyboardKey="m" />
+            <PianoKey keyColor="black" keyboardKey="k" />
+            <PianoKey keyColor="white" keyboardKey="," />
+            <PianoKey keyColor="black" keyboardKey="l" />
+            <PianoKey keyColor="white" keyboardKey="." />
+            <PianoKey keyColor="white" keyboardKey="/" />
         </div>
     )
 }

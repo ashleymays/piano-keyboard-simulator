@@ -10,15 +10,15 @@ function RecordingControls() {
     }
 
     return (
-        <div className="flex-column">
-            <div className="recording-controls">
+        <div className="flex flex-column">
+            <div className="flex round-btn-container">
                 {buttons.stop}
                 {buttons.record}
                 {buttons.play}
             </div>
-            <div className="menu-controls">
+            <div className="flex rect-btn-container">
                 {buttons.about}
-                <h4 className="free-title">Menu</h4>
+                <h4 className="label">Menu</h4>
                 {buttons.fullscreen}
             </div>
         </div>
