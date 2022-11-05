@@ -25,6 +25,8 @@ body {
     background-blend-mode: overlay;
     justify-content: center;
     height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -141,7 +143,8 @@ button {
 
 /* When keys are pressed this class is added to the key */
 
-.key-bkg-color {
+.pressed-key, 
+button[name="piano-key"]:active {
     background: #a5a5a5 !important;
     color: #fff !important;
 }

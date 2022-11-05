@@ -1,30 +1,8 @@
 import PianoKey from "./PianoKey";
-import { useState, useEffect } from "react";
-import keysMap from "../keysMap";
 
-
-
-function isValidInput(input) {
-    return keysMap.has(input) === true;
-}
-function getPitch(input) {
-    return keysMap.get(input).noteName + JSON.stringify(keysMap.get(input).octave);
-}
-
-function Piano() {
-    const [key, setNote] = useState(null);
-
-    useEffect(() => {
-        var currentlyPressedKeys = [];
-        if (isValidInput(key) && !currentlyPressedKeys.includes(key)) {
-            let pitch = getPitch(key);
-            currentlyPressedKeys.push(key);
-            console.log(pitch);
-        }
-    })
-    
+function Piano() {   
     return (
-        <div id="piano" className="flex" tabIndex={-1} onKeyDown={(e) => setNote(e.key.toLowerCase())}>
+        <div id="piano" className="flex">
             <PianoKey keyColor="white" keyboardKey="q" />
             <PianoKey keyColor="black" keyboardKey="2" />
             <PianoKey keyColor="white" keyboardKey="w" />
