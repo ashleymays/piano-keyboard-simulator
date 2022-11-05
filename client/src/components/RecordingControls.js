@@ -1,17 +1,14 @@
 import Button from "./Button";
-import { useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 function RecordingControls() {
-    const [isFullscreen, setIsFullscreen] = useState(false)
-
-    const handleFullscreen = () => {
+    const handleFullscreen = useCallback(() => {
         if (document.fullscreenElement === null) {
             document.documentElement.requestFullscreen();
         } else {
             document.exitFullscreen();
         }
-        setIsFullscreen(document.fullscreenElement !== null)
-    }
+    })
 
     useEffect(() => {
         const fullscreenBtn = document.querySelector('.fullscreen-btn');
@@ -19,7 +16,7 @@ function RecordingControls() {
         return () => {
             fullscreenBtn.removeEventListener('click', handleFullscreen)
         }
-    }, [isFullscreen])
+    }, [document.fullscreenElement])
 
     return (
         <div className="flex flex-column">

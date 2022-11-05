@@ -1,6 +1,6 @@
 import PianoKey from "./PianoKey";
 
-function Piano() {   
+function Piano() {
     return (
         <div id="piano" className="flex">
             <PianoKey keyColor="white" keyboardKey="q" />
