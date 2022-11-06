@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Piano from "./components/Piano";
 import Controls from "./components/Controls";
 import keysMap from "./keysMap";

@@ -4,7 +4,6 @@
   "description": "This is an online piano that can be played with computer keyboard, mouse, or touch inputs. You can play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record their playing and download their music as an .mp3 file.",
   "main": "server/server.js",
   "private": "true",
-  "proxy": "http://localhost:5000",
   "directories": {
     "doc": "docs"
   },
@@ -24,7 +23,9 @@
   },
   "homepage": "https://github.com/ashleymays/online-piano#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "read-file-tree": "^1.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
