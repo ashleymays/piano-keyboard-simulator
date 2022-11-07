@@ -1,7 +1,7 @@
 import Button from "./Button";
 import { useCallback, useEffect } from "react";
 
-function RecordingControls() {
+function RecordingControls(props) {
     const handleFullscreen = useCallback(() => {
         if (document.fullscreenElement === null) {
             document.documentElement.requestFullscreen();
