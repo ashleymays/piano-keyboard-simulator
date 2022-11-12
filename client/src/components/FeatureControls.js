@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "./Button";
+import OctaveControls from "./OctaveControls";
 
 function FeatureControls(props) {
     let hasSustain = props.hasSustain;
@@ -25,11 +26,7 @@ function FeatureControls(props) {
                 <Button type="checkbox" className="round-btn" onChange={() => setHasSoften(!hasSoften)}>Soften</Button>
                 <Button type="checkbox" className="round-btn" onChange={() => setIsKeyboardLabelsShown(!isKeyboardLabelsShown)}>Keyboard</Button>          
             </div>
-            <div className="flex rect-btn-container">
-                <Button type="button" className="rect-btn">-</Button>
-                <h4 className="label">Octave</h4>
-                <Button type="button" className="rect-btn">+</Button>
-            </div>
+            <OctaveControls />
         </div>
     )
 }

@@ -5,6 +5,8 @@ import keysMap from "./keysMap";
 
 const context = new AudioContext();
 const dest = context.createMediaStreamDestination();
+let currentlyPressedKeys = [];
+let gainNodes = [];
 
 
 // Get pitch by key name
@@ -42,22 +44,30 @@ const removeKeyColor = (key) => {
 
 
 
-
 function App() {
     const [buffers, setBuffers] = useState([]);
     const [hasSustain, setHasSustain] = useState(false);
     const [hasSoften, setHasSoften] = useState(false);
 
-    let currentlyPressedKeys = [];
-    let gainNodes = [];
+    const getVolume = useCallback(() => {
+        if (hasSoften) {
+            return 0.35;
+        }
+        return 1.5;
+    })
+
+    const stopNote = useCallback((pitch) => {
+        gainNodes[pitch].gain.setValueAtTime(0.01, context.currentTime);
+    })
 
     // Play note
     const playNote = useCallback((pitch) => {
         let gainNode = context.createGain();
         let bufferSource = context.createBufferSource();
+        let volume = getVolume();
         bufferSource.buffer = buffers[pitch];
-        gainNode.gain.setValueAtTime(1.5, context.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 13);
+        gainNode.gain.setValueAtTime(volume, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 10);
         bufferSource.connect(gainNode);
         gainNode.connect(dest);
         gainNode.connect(context.destination);
@@ -65,39 +75,30 @@ function App() {
         gainNodes[pitch] = gainNode;
     })
 
-    const stopNote = useCallback((pitch) => {
-        gainNodes[pitch].gain.setValueAtTime(0.01, context.currentTime);
-    })
-
-    // Add pressed key to the array
     const handleKey = useCallback((e) => {
-        let key = e.key || e.target.value;
+        e.preventDefault();
+        let key = e.key || e.target.value; // e.key for keyboard input and e.target.value for mouse and touch input
         let eventName = e.type;
-        let playEvent = [ "keydown", "mousedown" ];
-        let stopEvent = [ "keyup", "mouseup" ];
+        let playEvents = [ "keydown", "mousedown" ];
+        let stopEvents = [ "keyup", "mouseup" ];
 
         key = key.toLowerCase();
 
-        let pitch = getPitch(key);
-
-        if (playEvent.includes(eventName) && keysMap.has(key) && !currentlyPressedKeys.includes(key)) {
+        if (playEvents.includes(eventName) && keysMap.has(key) && !currentlyPressedKeys.includes(key)) {
+            let pitch = getPitch(key);
             playNote(pitch);
             currentlyPressedKeys.push(key);
             addKeyColor(key);     
         } 
-        else if (stopEvent.includes(eventName) && keysMap.has(key)) {
+        else if (stopEvents.includes(eventName) && keysMap.has(key)) {
+            let pitch = getPitch(key);
             currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
             removeKeyColor(key);
-
-            // Abruptly stop playing a note if 'sustain' isn't checked.
-            // If it is, let the note play completely.
             if (!hasSustain) {
                 stopNote(pitch);
             }
         }
     })
-
-
 
     useEffect(() => {
         document.addEventListener('keydown', handleKey);

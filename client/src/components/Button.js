@@ -1,6 +1,6 @@
 function Button(props) {
     return (
-        <label onChange={props.onChange} className="flex flex-column btn-container">
+        <label onChange={props.onChange} onClick={props.onClick} className="flex flex-column btn-container">
             <input type={props.type} name="button" />
             <span className="flex flex-column">
                 <div className={props.className} />
