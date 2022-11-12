@@ -44,10 +44,12 @@ const removeKeyColor = (key) => {
 
 
 function App() {
-    const [currentlyPressedKeys, setPressedKeys] = useState([]);
     const [buffers, setBuffers] = useState([]);
     const [hasSustain, setHasSustain] = useState(false);
     const [hasSoften, setHasSoften] = useState(false);
+
+    let currentlyPressedKeys = [];
+    let gainNodes = [];
 
     // Play note
     const playNote = useCallback((pitch) => {
@@ -60,6 +62,11 @@ function App() {
         gainNode.connect(dest);
         gainNode.connect(context.destination);
         bufferSource.start(context.currentTime);
+        gainNodes[pitch] = gainNode;
+    })
+
+    const stopNote = useCallback((pitch) => {
+        gainNodes[pitch].gain.setValueAtTime(0.01, context.currentTime);
     })
 
     // Add pressed key to the array
@@ -71,18 +78,22 @@ function App() {
 
         key = key.toLowerCase();
 
-        if (playEvent.includes(eventName) && 
-            keysMap.has(key) && 
-            !currentlyPressedKeys.includes(key)) {
+        let pitch = getPitch(key);
 
-            let pitch = getPitch(key);
+        if (playEvent.includes(eventName) && keysMap.has(key) && !currentlyPressedKeys.includes(key)) {
             playNote(pitch);
-            setPressedKeys(currentlyPressedKeys.concat(key));
-            addKeyColor(key);            
-        }
+            currentlyPressedKeys.push(key);
+            addKeyColor(key);     
+        } 
         else if (stopEvent.includes(eventName) && keysMap.has(key)) {
-            setPressedKeys(currentlyPressedKeys.filter((k) => k !== key));
+            currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
             removeKeyColor(key);
+
+            // Abruptly stop playing a note if 'sustain' isn't checked.
+            // If it is, let the note play completely.
+            if (!hasSustain) {
+                stopNote(pitch);
+            }
         }
     })
 
