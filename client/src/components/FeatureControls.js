@@ -1,25 +1,34 @@
+import { useState, useEffect } from "react";
 import Button from "./Button";
 
-const buttons = {
-    sustain: <Button type="checkbox" className="round-btn">Sustain</Button>,
-    soften: <Button type="checkbox" className="round-btn">Soften</Button>,
-    keyboard: <Button type="checkbox" className="round-btn">Keyboard</Button>,
-    octaveDown: <Button type="button" className="rect-btn">-</Button>,
-    octaveUp: <Button type="button" className="rect-btn">+</Button>
-}
+function FeatureControls(props) {
+    let hasSustain = props.hasSustain;
+    let setHasSustain = props.setHasSustain;
+    let hasSoften = props.hasSoften;
+    let setHasSoften = props.setHasSoften;
 
-function FeatureControls() {
+    const [isKeyboardLabelsShown, setIsKeyboardLabelsShown] = useState(false);
+
+    useEffect(() => {
+        let pianoKeys = document.querySelectorAll("button[name='piano-key']");
+        let newFontSize = isKeyboardLabelsShown ? "var(--key-font-size)" : "0";
+        
+        pianoKeys.forEach((item) => {
+            item.style.fontSize = newFontSize;
+        })
+    })
+
     return (
         <div className="flex flex-column">
             <div className="flex round-btn-container">
-                {buttons.sustain}
-                {buttons.soften}
-                {buttons.keyboard}            
+                <Button type="checkbox" className="round-btn" onChange={() => setHasSustain(!hasSustain)}>Sustain</Button>
+                <Button type="checkbox" className="round-btn" onChange={() => setHasSoften(!hasSoften)}>Soften</Button>
+                <Button type="checkbox" className="round-btn" onChange={() => setIsKeyboardLabelsShown(!isKeyboardLabelsShown)}>Keyboard</Button>          
             </div>
             <div className="flex rect-btn-container">
-                {buttons.octaveDown}
+                <Button type="button" className="rect-btn">-</Button>
                 <h4 className="label">Octave</h4>
-                {buttons.octaveUp}
+                <Button type="button" className="rect-btn">+</Button>
             </div>
         </div>
     )

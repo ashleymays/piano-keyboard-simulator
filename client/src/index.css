@@ -8,6 +8,9 @@
     --secondary-text-color: #dadada;
     --piano-width: 80vw;
     --piano-height: calc(var(--piano-width) * 0.24);
+    --heading-font-size: clamp(4.5rem, 3.5vw, 7.5rem);
+    --subheading-font-size: clamp(0.85rem, 0.825vw, 2.75rem);
+    --key-font-size: clamp(1.25rem, 1.5vw, 3.5rem);
 }
 
 html, body {
@@ -34,11 +37,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: clamp(4.5rem, 3.5vw, 7.5rem);
+    font-size: var(--heading-font-size);
 }
 
 h4 {
-    font-size: clamp(0.85rem, 0.825vw, 2.75rem);
+    font-size: var(--subheading-font-size);
 }
 
 input {
@@ -140,12 +143,17 @@ button {
     margin-left: calc(var(--piano-width) * -0.028 / 2);
 }
 
+/* When keys are pressed one of these classes is added to the key */
 
-/* When keys are pressed this class is added to the key */
+.pressed-key-black, 
+.black-key:active {
+    filter: brightness(2.85);
+    color: #fff !important;
+}
 
-.pressed-key, 
-button[name="piano-key"]:active {
-    background: #a5a5a5 !important;
+.pressed-key-white,
+.white-key:active {
+    filter: brightness(0.65);
     color: #fff !important;
 }
 

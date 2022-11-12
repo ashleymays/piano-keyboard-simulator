@@ -1,8 +1,11 @@
 import PianoKey from "./PianoKey";
 
-function Piano() {
+function Piano(props) {
     return (
-        <div id="piano" className="flex">
+        <div id="piano" className="flex" 
+            onMouseDown={props.handleKey} 
+            onMouseUp={props.handleKey}>
+
             <PianoKey keyColor="white" keyboardKey="q" />
             <PianoKey keyColor="black" keyboardKey="2" />
             <PianoKey keyColor="white" keyboardKey="w" />

@@ -5,9 +5,19 @@ import RecordingControls from "./RecordingControls";
 function Controls(props) {
     return (
         <div className="controls">
-            <RecordingControls context={props.context} />
-            <Screen context={props.context} buffers={props.buffers} setBuffers={props.setBuffers} />
-            <FeatureControls context={props.context} />
+            <RecordingControls 
+                context={props.context} />
+
+            <Screen 
+                context={props.context} 
+                setBuffers={props.setBuffers} />
+
+            <FeatureControls 
+                context={props.context}
+                hasSustain={props.hasSustain}
+                setHasSustain={props.setHasSustain}
+                hasSoften={props.hasSoften}
+                setHasSoften={props.setHasSoften} />
         </div>
     )
 }

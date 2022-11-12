@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 
 function Screen(props) {
-    const [instrument, setInstrument] = useState("Acoustic Grand");
+    const [instrument, setInstrument] = useState("Electric Piano");
 
-    const getAudioBuffers = (files) => {
+    const { context, setBuffers } = props;
+
+    const getAudioBuffers = useCallback((files) => {
         let audioBuffers = [];
         for (let file in files) {
             let req = new XMLHttpRequest;
@@ -12,7 +14,7 @@ function Screen(props) {
             req.responseType = 'arraybuffer';
             req.onload = () => {
                 let undecodedAudio = req.response;
-                props.context.decodeAudioData(undecodedAudio, (data) => {
+                context.decodeAudioData(undecodedAudio, (data) => {
                     let pitch = file.slice(0, file.length - 4);
                     audioBuffers[pitch] = data;
                 })
@@ -20,7 +22,7 @@ function Screen(props) {
             req.send();
         }
         return audioBuffers;
-    }
+    })
 
 
     useEffect(() => {
@@ -37,7 +39,7 @@ function Screen(props) {
         })
             .then(res => res.json())
             .then(data => { 
-                props.setBuffers(getAudioBuffers(data));
+                setBuffers(getAudioBuffers(data));
             })
             .catch(err => console.error(err))
     }, [instrument])
