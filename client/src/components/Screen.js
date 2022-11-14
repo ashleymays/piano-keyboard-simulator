@@ -1,7 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
 import Tab from "./Tab";
-import TabPanel from "./TabPanel";
-
 
 function Screen(props) {
     const [instrument, setInstrument] = useState("Electric Piano");
@@ -48,7 +46,7 @@ function Screen(props) {
 
     return (
         <div className="screen">
-            
+
         </div>
     )
 }
