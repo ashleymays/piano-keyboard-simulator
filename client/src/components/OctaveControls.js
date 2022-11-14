@@ -24,9 +24,9 @@ const moveOctaveUp = (e) => {
 function OctaveControls() {
     return (
         <div className="flex rect-btn-container">
-            <Button type="button" className="rect-btn" onClick={moveOctaveDown}>-</Button>
+            <Button type="button" className="rect-btn" onClick={moveOctaveDown} />
             <h4 className="label">Octave</h4>
-            <Button type="button" className="rect-btn" onClick={moveOctaveUp}>+</Button>
+            <Button type="button" className="rect-btn" onClick={moveOctaveUp} />
         </div>
     )
 }

@@ -26,8 +26,7 @@ function RecordingControls(props) {
                 <Button type="checkbox" className="round-btn">Play</Button>
             </div>
             <div className="flex rect-btn-container">
-                <Button type="button" className="rect-btn">About</Button>
-                <h4 className="label">Menu</h4>
+                <Button type="button" className="rect-btn">Home</Button>
                 <Button type="button"className="rect-btn fullscreen-btn">Fullscreen</Button>
             </div>
         </div>

@@ -10,7 +10,7 @@
     --piano-height: calc(var(--piano-width) * 0.22);
     --heading-font-size: clamp(4.5rem, 3.5vw, 7.5rem);
     --subheading-font-size: clamp(0.85rem, 0.825vw, 2.75rem);
-    --key-font-size: clamp(1.175rem, 1.35vw, 3.35rem);
+    --key-font-size: clamp(1.15rem, 1.3vw, 3.3rem);
 }
 
 html, body {
@@ -24,7 +24,7 @@ html {
 
 body {
     font-family: 'Mulish', sans-serif;
-    background: #101010;
+    background: #141116;
     background-blend-mode: overlay;
     justify-content: center;
     height: 100vh;
@@ -108,6 +108,7 @@ button {
     justify-content: flex-end;
     cursor: pointer;
     padding-bottom: 2.5rem;
+    text-transform: uppercase;
     font-size: 0;
     float: left;
     outline: none;
@@ -172,7 +173,7 @@ button {
 .controls {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: calc(var(--piano-width) * 0.19);
+    height: calc(var(--piano-width) * 0.1885);
     width: var(--piano-width);
     padding: 2.3% 0;
 }
@@ -184,9 +185,9 @@ button {
 }
 
 .rect-btn-container {
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 2.5%;
+    margin-bottom: -2.5%;
 }
 
 

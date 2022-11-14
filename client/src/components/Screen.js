@@ -1,4 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
+import Tab from "./Tab";
+import TabPanel from "./TabPanel";
 
 
 function Screen(props) {
@@ -45,7 +47,9 @@ function Screen(props) {
     }, [instrument])
 
     return (
-        <div className="screen"></div>
+        <div className="screen">
+            
+        </div>
     )
 }
 
