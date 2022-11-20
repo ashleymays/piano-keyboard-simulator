@@ -1,4 +1,5 @@
 import { useState } from "react";
+import images from '../../public/images';
 
 const dummyRecordings = [
     {
@@ -106,6 +107,8 @@ function Tab() {
             {item.title}
         </h1>
     )
+
+    console.log(images)
 
     return (
         <>
