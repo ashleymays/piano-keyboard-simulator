@@ -46,7 +46,7 @@ function Screen(props) {
 
     return (
         <div className="screen">
-
+            <Tab />
         </div>
     )
 }

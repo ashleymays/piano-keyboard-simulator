@@ -7,7 +7,7 @@ const app = express();
 app.use(cors())
 app.use(express.static(path.resolve(__dirname, "../client", "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 app.post('/audio', (req, res) => {
     const filePath = path.resolve(__dirname, "../client", "public", "audio", req.body.instrument);

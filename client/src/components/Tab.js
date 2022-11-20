@@ -83,12 +83,39 @@ const tabs = [
     }
 ];
 
+function TabTitle(props) {
+    const setCurrentTab = props.setCurrentTab;
+    const title = props.title;
+    const currentTab = props.currentTab;
+
+    return (
+        <h1 className={currentTab === title ? "flex flex-column tab-title active-tab" : "flex flex-column tab-title"} onClick={() => setCurrentTab(title)}>
+            {title}
+        </h1>
+    )
+}
+
 function Tab() {
     const [currentTab, setCurrentTab] = useState('Instruments');
 
-    
+    const contentArray = tabs.find(tabTitle => currentTab === tabTitle.id).content;
 
-    return <h1 className="tab-title" key={title} onClick={() => setCurrentTab(title)}>{title}</h1>
+    // for each option, assign 'content' variable to React elements
+    let contentElements = contentArray.map(item => 
+        <h1 className="tab-content" key={item.title}>
+            {item.title}
+        </h1>
+    )
+
+    return (
+        <>
+            <div className="tab-titles">
+                <TabTitle title="Instruments" currentTab={currentTab} setCurrentTab={setCurrentTab} />
+                <TabTitle title="Recordings" currentTab={currentTab} setCurrentTab={setCurrentTab} />
+            </div>
+            <div className="tab-contents">{contentElements}</div>
+        </>
+    )
 }
 
 export default Tab;

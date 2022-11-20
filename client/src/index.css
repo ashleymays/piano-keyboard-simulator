@@ -24,7 +24,7 @@ html {
 
 body {
     font-family: 'Mulish', sans-serif;
-    background: #141116;
+    background: #101010;
     background-blend-mode: overlay;
     justify-content: center;
     height: 100vh;
@@ -71,7 +71,7 @@ button {
 
 .piano-container {
     touch-action: manipulation;
-    background-image: url('../../docs/image.png'), linear-gradient(to bottom, #1a191b, #201d23);
+    background: url('../public/images/texture.png'), linear-gradient(to bottom, #1a191b, #201d23);
     background-blend-mode: overlay;
     padding: 0 3.5vw;
     position: relative;
@@ -266,8 +266,57 @@ input[type="checkbox"]:checked + span .round-btn {
 .screen {
     content: "";
     display: block;
+    padding: 2.5% 5% 0;
     border-radius: 0.92rem;
+    text-transform: uppercase;
     background: linear-gradient(143deg, #0e0e11 0%, #101012 100%);
     box-shadow: -0.69rem -0.916rem 1.147rem #19191c80 inset,
                 0.69rem 0.916rem 1.147rem #06060680 inset;
+}
+
+
+/* Tabs */
+
+.tab-titles {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.tab-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0.65em;
+    cursor: pointer;
+}
+
+.tab-title::after {
+    content: "";
+    display: block;
+    width: 150%;
+    height: 0.2vh;
+    margin-top: 0.5rem;
+    background: transparent;
+    transition-duration: 0.125s;
+}
+
+/* .active-tab::after {
+    background: white;
+} */
+
+.tab-contents {
+    overflow: scroll;
+    height: 15vh;
+}
+
+.tab-content {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 1.125em 0.5em;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 0.25em;
+    color: #555;
 }
