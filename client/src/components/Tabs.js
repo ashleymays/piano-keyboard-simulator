@@ -35,7 +35,7 @@ const tabs = [
     }
 ];
 
-function Tab(props) {
+function Tabs(props) {
     const [currentTab, setCurrentTab] = useState('Instruments');
 
     const instrument = props.instrument;
@@ -83,4 +83,4 @@ function Tab(props) {
     )
 }
 
-export default Tab;
+export default Tabs;

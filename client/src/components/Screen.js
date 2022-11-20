@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
-import Tab from "./Tab";
+import Tabs from "./Tabs";
 
 function Screen(props) {
     const [instrument, setInstrument] = useState("Acoustic Grand");
@@ -46,7 +46,7 @@ function Screen(props) {
 
     return (
         <div className="screen">
-            <Tab instrument={instrument} setInstrument={setInstrument} />
+            <Tabs instrument={instrument} setInstrument={setInstrument} />
         </div>
     )
 }
