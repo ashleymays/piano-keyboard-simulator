@@ -8,8 +8,6 @@
     --secondary-text-color: #dadada;
     --piano-width: 82vw;
     --piano-height: calc(var(--piano-width) * 0.22);
-    --heading-font-size: clamp(4.5rem, 3.5vw, 7.5rem);
-    --subheading-font-size: clamp(0.85rem, 0.825vw, 2.75rem);
     --key-font-size: clamp(1.15rem, 1.3vw, 3.3rem);
 }
 
@@ -37,11 +35,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: var(--heading-font-size);
+    font-size: clamp(4.5rem, 3.5vw, 7.5rem);
+}
+
+h3 {
+    font-size: clamp(1.4rem, 1.05vw, 3.25rem);
 }
 
 h4 {
-    font-size: var(--subheading-font-size);
+    font-size: clamp(0.85rem, 0.825vw, 2.75rem);
+}
+
+h6 {
+    font-size: clamp(0.8rem, 0.85vw, 2.5rem);
 }
 
 input {
@@ -284,7 +290,6 @@ input[type="checkbox"]:checked + span .round-btn {
 }
 
 .tab-title {
-    font-size: 1.8rem;
     font-weight: 500;
     margin: 0;
     padding: 0.65em;
@@ -311,12 +316,28 @@ input[type="checkbox"]:checked + span .round-btn {
 }
 
 .tab-content {
-    font-size: 1.4rem;
+    padding: 0 0.75em;
+    display: grid;
+    grid-template-columns: 5% 60% 30%;
+    align-items: center;
+}
+
+.tab-content__icon {
+    width: 1.75em;
+    height: 1.75em;
+    filter: brightness(50%);
+}
+
+.tab-content__title {
     font-weight: 400;
-    margin: 0;
-    padding: 1.125em 0.5em;
     line-height: 0;
-    cursor: pointer;
-    border-radius: 0.25em;
-    color: #555;
+    padding: 1.5em;
+    margin: 0;
+    color: #757575;
+}
+
+input[name="instrument"]:checked + .tab-content * {
+    filter: brightness(90%);
+    color: #f2f2f2;
+    transition-duration: 0.25s;
 }

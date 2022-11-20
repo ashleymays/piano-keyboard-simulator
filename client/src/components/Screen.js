@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import Tab from "./Tab";
 
 function Screen(props) {
-    const [instrument, setInstrument] = useState("Electric Piano");
+    const [instrument, setInstrument] = useState("Acoustic Grand");
 
     const { context, setBuffers } = props;
 
@@ -46,7 +46,7 @@ function Screen(props) {
 
     return (
         <div className="screen">
-            <Tab />
+            <Tab instrument={instrument} setInstrument={setInstrument} />
         </div>
     )
 }

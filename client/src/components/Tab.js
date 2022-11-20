@@ -1,75 +1,26 @@
 import { useState } from "react";
-import images from '../../public/images';
+import pianoIcon from '../icons/piano-icon.png';
+import gameControllerIcon from '../icons/game-controller-icon.png';
+import keyboardIcon from '../icons/keyboard-icon.png';
+import musicBoxIcon from '../icons/music-box-icon.png';
 
-const dummyRecordings = [
-    {
-        id: 1,
-        title: 'something.mp3',
-        url: 'akjdsnflakjsdfka'
-    },
-    {
-        id: 2,
-        title: 'here.mp3',
-        url: 'aksjdbflqoiwvofqh'
-    },
-    {
-        id: 3,
-        title: 'again.mp3',
-        url: 'ygrbflkhdbfvkjs'
-    },
-    {
-        id: 4,
-        title: 'wish.mp3',
-        url: 'laehgb'
-    },
-    {
-        id: 5,
-        title: 'i.mp3',
-        url: 'lvhjbeog'
-    },
-    {
-        id: 6,
-        title: 'could.mp3',
-        url: 'i3urbgkjdfnvsdkfnv'
-    },
-    {
-        id: 7,
-        title: 'run.mp3',
-        url: 'wlhnvwov'
-    },
-    {
-        id: 8,
-        title: 'away.mp3',
-        url: 'iwjenrvpwuev'
-    },
-    {
-        id: 9,
-        title: 'for.mp3',
-        url: 'ieuvqop3ruv'
-    },
-    {
-        id: 10,
-        title: 'good.mp3',
-        url: 'liefhbvqlebvioquebfv'
-    }
-]
 
 const instruments = [
     {
         title: 'Acoustic Grand',
-        icon: 'lkjdnvqoeurvq'
+        icon: pianoIcon
     },
     {
         title: 'Electric Piano',
-        icon: 'alkjdflkhebv'
+        icon: keyboardIcon
     },
     {
         title: 'Music Box',
-        icon: 'ienuvqnerviqenv'
+        icon: musicBoxIcon
     },
     {
         title: '8-Bit',
-        icon: 'eqifbuqleinlqkjwn'
+        icon: gameControllerIcon
     }
 ]
 
@@ -80,41 +31,52 @@ const tabs = [
     },
     {
         id: 'Recordings',
-        content: dummyRecordings
+        content: []
     }
 ];
 
-function TabTitle(props) {
-    const setCurrentTab = props.setCurrentTab;
-    const title = props.title;
-    const currentTab = props.currentTab;
-
-    return (
-        <h1 className={currentTab === title ? "flex flex-column tab-title active-tab" : "flex flex-column tab-title"} onClick={() => setCurrentTab(title)}>
-            {title}
-        </h1>
-    )
-}
-
-function Tab() {
+function Tab(props) {
     const [currentTab, setCurrentTab] = useState('Instruments');
 
+    const instrument = props.instrument;
+    const setInstrument = props.setInstrument;
     const contentArray = tabs.find(tabTitle => currentTab === tabTitle.id).content;
 
-    // for each option, assign 'content' variable to React elements
-    let contentElements = contentArray.map(item => 
-        <h1 className="tab-content" key={item.title}>
-            {item.title}
-        </h1>
-    )
+    // depending on the tab option, assign 'contentElements' variable to React elements
+    let contentElements;
 
-    console.log(images)
+    if (currentTab === "Instruments") {
+        contentElements = contentArray.map(item => 
+            <label key={item.title}>
+                <input type="radio" name="instrument" checked={instrument === item.title} onChange={() => setInstrument(item.title)} />
+                <span className="tab-content">
+                    <img className="tab-content__icon" src={item.icon} />
+                    <h6 className="tab-content__title">
+                        {item.title}
+                    </h6>
+                </span>
+            </label>
+        )
+    } else {
+        contentElements = contentArray.map((item, index) => 
+            <div className="tab-content" key={item.title}>
+                <h6 className="tab-content__title">{index + 1}</h6>
+                <h6 className="tab-content__title">{item.title}</h6>
+            </div>
+        )
+    }
 
     return (
         <>
             <div className="tab-titles">
-                <TabTitle title="Instruments" currentTab={currentTab} setCurrentTab={setCurrentTab} />
-                <TabTitle title="Recordings" currentTab={currentTab} setCurrentTab={setCurrentTab} />
+                <h3 className={currentTab === "Instruments" ? "flex flex-column tab-title active-tab" : "flex flex-column tab-title"} 
+                    onClick={() => setCurrentTab("Instruments")}>
+                    Instruments
+                </h3>
+                <h3 className={currentTab === "Recordings" ? "flex flex-column tab-title active-tab" : "flex flex-column tab-title"} 
+                    onClick={() => setCurrentTab("Recordings")}>
+                    Recordings
+                </h3>
             </div>
             <div className="tab-contents">{contentElements}</div>
         </>
