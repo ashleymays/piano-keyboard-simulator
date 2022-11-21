@@ -300,15 +300,15 @@ input[type="checkbox"]:checked + span .round-btn {
     content: "";
     display: block;
     width: 150%;
-    height: 0.2vh;
+    height: 0.15vh;
     margin-top: 0.5rem;
     background: transparent;
     transition-duration: 0.125s;
 }
 
-/* .active-tab::after {
+.active-tab::after {
     background: white;
-} */
+}
 
 .tab-contents {
     overflow: scroll;

@@ -23,6 +23,10 @@ connection.connect((err) => {
             res.json(tree)
         })
     })
+
+    app.get('/recordings', (req, res) => {
+        
+    })
 })
 
 
