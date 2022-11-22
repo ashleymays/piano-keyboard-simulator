@@ -12,7 +12,7 @@ function TabContent(props) {
                 <input type="radio" name="instrument" checked={checked} onChange={onChange} />
                 <span className="tab-content">
                     <img className="tab-content__icon" src={icon} />
-                    <h6 className="tab-content__title">{title}</h6>
+                    <h4 className="tab-content__title">{title}</h4>
                     <a href={url}></a>
                 </span>
             </label>

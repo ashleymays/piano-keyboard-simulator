@@ -39,15 +39,11 @@ h1 {
 }
 
 h3 {
-    font-size: clamp(1.4rem, 1.05vw, 3.25rem);
+    font-size: clamp(0.9rem, 1.05vw, 3.25rem);
 }
 
 h4 {
-    font-size: clamp(0.85rem, 0.825vw, 2.75rem);
-}
-
-h6 {
-    font-size: clamp(0.8rem, 0.85vw, 2.5rem);
+    font-size: clamp(0.82rem, 0.825vw, 2.75rem);
 }
 
 input {
@@ -179,7 +175,7 @@ button {
 .controls {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: calc(var(--piano-width) * 0.1885);
+    min-height: calc(var(--piano-width) * 0.1885);
     width: var(--piano-width);
     padding: 2.3% 0;
 }
@@ -270,9 +266,9 @@ input[type="checkbox"]:checked + span .round-btn {
 /* Screen */
 
 .screen {
-    content: "";
     display: block;
     padding: 2.5% 5% 0;
+    height: 100%;
     border-radius: 0.92rem;
     text-transform: uppercase;
     background: linear-gradient(143deg, #0e0e11 0%, #101012 100%);
@@ -287,6 +283,7 @@ input[type="checkbox"]:checked + span .round-btn {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background: #101010;
 }
 
 .tab-title {
@@ -323,8 +320,8 @@ input[type="checkbox"]:checked + span .round-btn {
 }
 
 .tab-content__icon {
-    width: 1.75em;
-    height: 1.75em;
+    width: 1.5em;
+    height: 1.5em;
     filter: brightness(50%);
 }
 
