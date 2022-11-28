@@ -82,6 +82,7 @@ recordBtn.addEventListener("click", function() {
 
         // end recording
         mediaRecorder.stop();
+        console.log(mediaRecorder)
     }
 })
 
