@@ -46,7 +46,9 @@ h4 {
     font-size: clamp(0.82rem, 0.825vw, 2.75rem);
 }
 
-input {
+input[type="radio"], 
+input[type="checkbox"],
+input[type="button"] {
     position: absolute;
     opacity: 0;
     display: none;
@@ -337,4 +339,62 @@ input[name="instrument"]:checked + .tab-content * {
     filter: brightness(90%);
     color: #f2f2f2;
     transition-duration: 0.25s;
+}
+
+#new-recording-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    opacity: 1;
+    transition-duration: 2s;
+}
+
+#new-recording-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: #555;
+    align-self: flex-start;
+    margin-bottom: 3vh;
+}
+
+#new-recording-input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 0.05em solid rgb(255, 255, 255, 0.35);
+    padding-bottom: 0.25em;
+    width: 40vw;
+    outline: none;
+    background: transparent;
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-family: inherit;
+    color: #fff;
+}
+
+#new-recording-btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#new-recording-btn * {
+    font-size: 3em;
+    color: rgb(255, 255, 255, 0.35);
+}
+
+.hide {
+    display: none !important;
+    opacity: 0 !important;
 }

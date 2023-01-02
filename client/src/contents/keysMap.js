@@ -1,3 +1,16 @@
+/*
+    FILE: keysMap.js
+    PURPOSE: List all the pitches the keyboard deals with, which is 85 keys: the full set of 88 keys minus
+            the three lowest pitches (A0, Bb0, and B0) because the keyboard UI can only display a range starting
+            at a C note.
+            
+            It correlates computer keyboard input with a note name and octave so that Piano.js can
+            quickly find what note the user's playing. Also, it separates note name from octave so that the octave
+            can be easily changed to allow users to play all 85 keys.
+
+            To get the pitch, we concatenate the note name and octave, in that order.
+*/
+
 const keysMap = new Map ([
     ['q', { noteName: "C", octave: 3 }],
     ['2', { noteName: "Db", octave: 3 }],

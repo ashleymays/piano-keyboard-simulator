@@ -24,8 +24,8 @@ connection.connect((err) => {
         })
     })
 
-    app.get('/recordings', (req, res) => {
-        
+    app.post('/recording', (req, res) => {
+        res.json(req.body);
     })
 })
 

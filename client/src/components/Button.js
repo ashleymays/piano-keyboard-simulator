@@ -1,3 +1,8 @@
+/*
+    FILE: Button.js
+    PURPOSE: Style all buttons displayed in the virtual keyboard.
+*/
+
 function Button(props) {
     return (
         <label onChange={props.onChange} onClick={props.onClick} className="flex flex-column btn-container">

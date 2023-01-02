@@ -1,3 +1,8 @@
+/*
+    FILE: PianoKey.js
+    PURPOSE: Style each piano key.
+*/
+
 function PianoKey(props) {
     return <button 
                 name="piano-key" 

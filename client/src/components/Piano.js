@@ -1,6 +1,12 @@
+/*
+    FILE: Piano.js
+    PURPOSE: Render the piano keys and define the behavior of the website when a key is pressed. Also
+            define the functionality of the 'sustain' and 'soften' buttons.
+*/
+
 import { useEffect, useCallback } from "react";
 import PianoKey from "./PianoKey";
-import keysMap from "../keysMap";
+import keysMap from "../contents/keysMap";
 
 let currentlyPressedKeys = [];
 let gainNodes = [];
@@ -40,7 +46,8 @@ function Piano(props) {
     const audioContext = props.audioContext;
     const hasSustain = props.hasSustain;
     const buffers = props.buffers;
-    const dest = audioContext.createMediaStreamDestination();
+    const dest = props.dest;
+    const isWindowOpen = props.isWindowOpen;
 
     const getVolume = useCallback(() => {
         if (hasSoften) {
@@ -69,7 +76,6 @@ function Piano(props) {
     })
 
     const handleKey = useCallback((e) => {
-        e.preventDefault();
         let key = e.key || e.target.value; // e.key for keyboard input and e.target.value for mouse and touch input
         let eventName = e.type;
         let playEvents = [ "keydown", "mousedown" ];
@@ -77,13 +83,18 @@ function Piano(props) {
 
         key = key.toLowerCase();
 
-        if (playEvents.includes(eventName) && keysMap.has(key) && !currentlyPressedKeys.includes(key)) {
+        if (playEvents.includes(eventName) 
+            && keysMap.has(key) 
+            && !currentlyPressedKeys.includes(key)
+            && !isWindowOpen) {
             let pitch = getPitch(key);
             playNote(pitch);
             currentlyPressedKeys.push(key);
-            addKeyColor(key);     
+            addKeyColor(key);  
         } 
-        else if (stopEvents.includes(eventName) && keysMap.has(key)) {
+        else if (stopEvents.includes(eventName) 
+                && keysMap.has(key)
+                && !isWindowOpen) {
             let pitch = getPitch(key);
             currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
             removeKeyColor(key);

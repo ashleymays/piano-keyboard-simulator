@@ -1,3 +1,9 @@
+/*
+    FILE: TabContent.js
+    PURPOSE: Style the content of each tab, and decide which tab's contents need to be displayed using the 
+            'currentTab' state that was passed as a property.
+*/
+
 function TabContent(props) {
     const title = props.children;
     const icon = props.icon;
