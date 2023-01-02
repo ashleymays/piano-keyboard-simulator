@@ -57,21 +57,21 @@ function Piano(props) {
 
     // Get the volume that the key should be played at. If softening is turned on, then play the note at 35%.
     // Else play it at 150%.
-    const getVolume = useCallback(() => {
+    const getVolume = () => {
         if (hasSoften) {
             return 0.35;
         }
         return 1.5;
-    })
+    }
 
     // Cancel the audio that is played by a particular piano key. This is done by reducing the volume
     // to 1% instantaneously.
-    const stopNote = useCallback((pitch) => {
+    const stopNote = (pitch) => {
         gainNodes[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
-    })
+    }
 
     // Play a note. This is called by the "handlekey" function.
-    const playNote = useCallback((pitch) => {
+    const playNote = (pitch) => {
         let gainNode = audioContext.createGain();
         let bufferSource = audioContext.createBufferSource();
         let volume = getVolume();
@@ -83,10 +83,10 @@ function Piano(props) {
         gainNode.connect(audioContext.destination);
         bufferSource.start(audioContext.currentTime);
         gainNodes[pitch] = gainNode;
-    })
+    }
 
     // Determine when a note should be played or ended depending on user interaction.
-    const handleKey = useCallback((e) => {
+    const handleKey = (e) => {
         
         // Uses e.key for keyboard input and e.target.value for mouse 
         // and touch input, where e.key is undefined.
@@ -124,7 +124,7 @@ function Piano(props) {
                 stopNote(pitch);
             }
         }
-    })
+    }
 
     useEffect(() => {
         document.addEventListener('keydown', handleKey);

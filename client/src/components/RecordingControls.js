@@ -6,27 +6,26 @@
 */
 
 import Button from "./Button";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function RecordingControls(props) {
     const [isRecording, setIsRecording] = useState(false);
     const [newRecordingTitle, setNewRecordingTitle] = useState('');
 
     const mediaRecorder = props.mediaRecorder;
-    const setIsWindowOpen = props.setIsWindowOpen;
-    const isWindowOpen = props.isWindowOpen;
+
 
     // Toggle fullscreen mode on and off.
-    const handleFullscreen = useCallback(() => {
+    const handleFullscreen = () => {
         if (document.fullscreenElement === null) {
             document.documentElement.requestFullscreen();
         } else {
             document.exitFullscreen();
         }
-    })
+    }
 
     // Save a user-generated recording by making a FETCH request to the server at port 5000.
-    const saveRecording = useCallback((e) => {
+    const saveRecording = (e) => {
         let data = [e.data];
         let blob = new Blob(data, { type: 'audio/mp3' });
         let url = URL.createObjectURL(blob);
@@ -47,29 +46,29 @@ function RecordingControls(props) {
             .then(res => res.json())
             .then(data => console.log(data))
             .catch(err => console.error(err))
-    })
+    }
 
-    const handleRecording = useCallback((e) => {
+    const handleRecording = (e) => {
         setIsRecording(!isRecording);
         if (isRecording) {
             mediaRecorder.start();
         } else {
             mediaRecorder.stop();
         }
-        document.getElementById('new-recording-form').classList.remove('hide');
-        setIsWindowOpen(true);
-    })
+    }
 
-    const handleRecordingTitle = useCallback((e) => {
+    const openRecordingTitleForm = () => {
+        document.getElementById('new-recording-form').classList.remove('hide');
+    }
+
+    const handleRecordingTitle = (e) => {
         e.preventDefault();
         setNewRecordingTitle(e.target.newRecordingTitle.value);
         document.getElementById('new-recording-form').classList.add('hide');
         // mediaRecorder.ondataavailable = saveRecording;
-        setIsWindowOpen(false);
-    })
+    }
 
 
-    // FIX THIS (?)
     useEffect(() => {
         const fullscreenBtn = document.querySelector('.fullscreen-btn');
         fullscreenBtn.addEventListener('click', handleFullscreen)

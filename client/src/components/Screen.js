@@ -5,7 +5,7 @@
             to be made available for listening and download.
 */
 
-import { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TabTitle from "./TabTitle";
 import TabContent from "./TabContent";
 import instruments from "../contents/instruments";
@@ -18,7 +18,7 @@ function Screen(props) {
     const setBuffers = props.setBuffers;
 
     // Convert audio for each note for a particular instrument from base64 to arraybuffer format.
-    const getAudio = useCallback((files) => {
+    const getAudio = (files) => {
         let audioBuffers = [];
         for (let file in files) {
             let req = new XMLHttpRequest;
@@ -35,7 +35,7 @@ function Screen(props) {
             req.send();
         }
         return audioBuffers;
-    })
+    }
 
 
     // Get instrument audio and update the 'buffers' state to be the array returned 

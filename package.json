@@ -1,7 +1,7 @@
 {
   "name": "online-piano",
   "version": "1.0.0",
-  "description": "This is an online piano that can be played with computer keyboard, mouse, or touch inputs. You can play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record their playing and download their music as an .mp3 file.",
+  "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
   "main": "server/server.js",
   "private": "true",
   "directories": {
