@@ -8,7 +8,10 @@ import { useEffect, useCallback } from "react";
 import PianoKey from "./PianoKey";
 import keysMap from "../contents/keysMap";
 
+// Used to avoid a note being played on release.
 let currentlyPressedKeys = [];
+
+// Used to store the gain nodes of each pitch.
 let gainNodes = [];
 
 // Get pitch by key name
@@ -18,7 +21,8 @@ const getPitch = (key) => {
     return noteName + octave;
 }
 
-
+// Change the background color of the piano key while it's being pressed down.
+// This is done by adding a CSS class that is defined in "index.css" in the src folder.
 const addKeyColor = (key) => {
     let pianoKey = document.querySelector(`button[value="${key}"]`);
     let isBlackKey = pianoKey.classList.contains("black-key");
@@ -30,6 +34,8 @@ const addKeyColor = (key) => {
     }
 }
 
+// Change the background color of the piano key when it is released.
+// This is done by removing a CSS class that is defined in "index.css" in the src folder.
 const removeKeyColor = (key) => {
     let pianoKey = document.querySelector(`button[value="${key}"]`);
     let isBlackKey = pianoKey.classList.contains("black-key");
@@ -49,6 +55,8 @@ function Piano(props) {
     const dest = props.dest;
     const isWindowOpen = props.isWindowOpen;
 
+    // Get the volume that the key should be played at. If softening is turned on, then play the note at 35%.
+    // Else play it at 150%.
     const getVolume = useCallback(() => {
         if (hasSoften) {
             return 0.35;
@@ -56,11 +64,13 @@ function Piano(props) {
         return 1.5;
     })
 
+    // Cancel the audio that is played by a particular piano key. This is done by reducing the volume
+    // to 1% instantaneously.
     const stopNote = useCallback((pitch) => {
         gainNodes[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
     })
 
-    // Play note
+    // Play a note. This is called by the "handlekey" function.
     const playNote = useCallback((pitch) => {
         let gainNode = audioContext.createGain();
         let bufferSource = audioContext.createBufferSource();
@@ -75,26 +85,38 @@ function Piano(props) {
         gainNodes[pitch] = gainNode;
     })
 
+    // Determine when a note should be played or ended depending on user interaction.
     const handleKey = useCallback((e) => {
-        let key = e.key || e.target.value; // e.key for keyboard input and e.target.value for mouse and touch input
+        
+        // Uses e.key for keyboard input and e.target.value for mouse 
+        // and touch input, where e.key is undefined.
+        let key = e.key || e.target.value;
         let eventName = e.type;
+
+
+        // The 'playEvents' array gives a list of JavaScript events that are associated with playing a note.
+        // The 'stopEvents' array gives a list of JavaScript events that are associated with ending a note.
+        // These are used to avoid writing the same code twice for different events.
         let playEvents = [ "keydown", "mousedown" ];
         let stopEvents = [ "keyup", "mouseup" ];
 
         key = key.toLowerCase();
 
+        // Play a certain note if the event is associated with playing notes and
+        // the pressed key is one associated with the virtual keyboard. 
         if (playEvents.includes(eventName) 
             && keysMap.has(key) 
-            && !currentlyPressedKeys.includes(key)
-            && !isWindowOpen) {
+            && !currentlyPressedKeys.includes(key)) {
             let pitch = getPitch(key);
             playNote(pitch);
             currentlyPressedKeys.push(key);
             addKeyColor(key);  
         } 
+
+        // End a certain note if the event is associated with ending notes and
+        // the pressed key is one associated with the virtual keyboard. 
         else if (stopEvents.includes(eventName) 
-                && keysMap.has(key)
-                && !isWindowOpen) {
+                && keysMap.has(key)) {
             let pitch = getPitch(key);
             currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
             removeKeyColor(key);
