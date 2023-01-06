@@ -53,7 +53,7 @@ function Piano(props) {
     const hasSustain = props.hasSustain;
     const buffers = props.buffers;
     const dest = props.dest;
-    const isWindowOpen = props.isWindowOpen;
+    const recordingFormIsOpen = props.recordingFormIsOpen;
 
     // Get the volume that the key should be played at. If softening is turned on, then play the note at 35%.
     // Else play it at 150%.
@@ -102,21 +102,27 @@ function Piano(props) {
 
         key = key.toLowerCase();
 
-        // Play a certain note if the event is associated with playing notes and
-        // the pressed key is one associated with the virtual keyboard. 
+        // Play a certain note if the event is associated with playing notes,
+        // the pressed key is one associated with the virtual keyboard, and
+        // the user isn't typing a recording's title
         if (playEvents.includes(eventName) 
             && keysMap.has(key) 
-            && !currentlyPressedKeys.includes(key)) {
+            && !currentlyPressedKeys.includes(key)
+            && !recordingFormIsOpen) 
+        {
             let pitch = getPitch(key);
             playNote(pitch);
             currentlyPressedKeys.push(key);
             addKeyColor(key);  
         } 
 
-        // End a certain note if the event is associated with ending notes and
-        // the pressed key is one associated with the virtual keyboard. 
+        // End a certain note if the event is associated with ending notes,
+        // the pressed key is one associated with the virtual keyboard, and
+        // the user isn't typing a recording's title
         else if (stopEvents.includes(eventName) 
-                && keysMap.has(key)) {
+                && keysMap.has(key)
+                && !recordingFormIsOpen) 
+        {
             let pitch = getPitch(key);
             currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
             removeKeyColor(key);

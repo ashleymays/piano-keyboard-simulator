@@ -1,35 +1,40 @@
 /*
     FILE: RecordingControls.js
-    PURPOSE: Render the section of recording buttons displayed on the virtual keyboard,
-            toggle fullscreen mode on and off, and define behavior for recording keyboard audio,
-            including naming an mp3 file and storing the data in a MySQL database.
+    PURPOSE: Render the section of recording buttons displayed on the virtual keyboard 
+            and define behavior for recording keyboard audio, including naming an mp3 
+            file and storing the data in a MySQL database.
 */
 
 import Button from "./Button";
+import FullscreenButton from "./FullscreenButton";
 import { useEffect, useState } from "react";
+import isMounted from "../hooks/isMounted";
+
+
+// Hide form to type recording's title
+const hideForm = () => {
+    document.getElementById('new-recording-form').classList.add('hide');
+}
+
+// Show form to type recording's title
+const showForm = () => {
+    document.getElementById('new-recording-form').classList.remove('hide');
+}
 
 function RecordingControls(props) {
     const [isRecording, setIsRecording] = useState(false);
-    const [newRecordingTitle, setNewRecordingTitle] = useState('');
-
+    const [recordingTitle, setRecordingTitle] = useState('');
+    const [url, setUrl] = useState('');
     const mediaRecorder = props.mediaRecorder;
+    const setRecordingFormIsOpen = props.setRecordingFormIsOpen;
+    const recordingFormIsOpen = props.recordingFormIsOpen;
+    const isMount = isMounted();
 
 
-    // Toggle fullscreen mode on and off.
-    const handleFullscreen = () => {
-        if (document.fullscreenElement === null) {
-            document.documentElement.requestFullscreen();
-        } else {
-            document.exitFullscreen();
-        }
-    }
 
-    // Save a user-generated recording by making a FETCH request to the server at port 5000.
-    const saveRecording = (e) => {
-        let data = [e.data];
-        let blob = new Blob(data, { type: 'audio/mp3' });
-        let url = URL.createObjectURL(blob);
-
+    // Hide the recording title form and make a FETCH request to the server 
+    // at port 5000 to save a user's recording.
+    const saveRecording = () => {
         fetch("http://localhost:5000/recording", {
             method: 'post',
             headers: new Headers({ 
@@ -38,7 +43,7 @@ function RecordingControls(props) {
                 "Content-Type": "application/json",
             }),
             body: JSON.stringify({ 
-                title: newRecordingTitle,
+                title: recordingTitle,
                 url: url,
             }),
             mode: 'cors'
@@ -48,34 +53,47 @@ function RecordingControls(props) {
             .catch(err => console.error(err))
     }
 
-    const handleRecording = (e) => {
-        setIsRecording(!isRecording);
+
+
+    // Get the recording's title and save the recording
+    const handleRecordingTitle = (e) => {
+        e.preventDefault();
+        setRecordingTitle(e.target.newRecordingTitle.value);
+        e.target.newRecordingTitle.value = ''; // clear form input
+        hideForm();
+    }
+
+
+
+    // Get the recording's URL and open the form to enter a title for the recording
+    mediaRecorder.ondataavailable = (e) => {
+        let data = [e.data];
+        let blob = new Blob(data, { type: 'audio/mp3' });
+        setUrl(URL.createObjectURL(blob));
+        showForm();
+        setRecordingFormIsOpen(!recordingFormIsOpen);
+    }
+
+
+
+    // Start and stop the media recording from recording audio in the tab.
+    useEffect(() => {
         if (isRecording) {
             mediaRecorder.start();
         } else {
             mediaRecorder.stop();
         }
-    }
-
-    const openRecordingTitleForm = () => {
-        document.getElementById('new-recording-form').classList.remove('hide');
-    }
-
-    const handleRecordingTitle = (e) => {
-        e.preventDefault();
-        setNewRecordingTitle(e.target.newRecordingTitle.value);
-        document.getElementById('new-recording-form').classList.add('hide');
-        // mediaRecorder.ondataavailable = saveRecording;
-    }
+    }, [isRecording])
 
 
+
+    // Save the recording iff the user adds a title
     useEffect(() => {
-        const fullscreenBtn = document.querySelector('.fullscreen-btn');
-        fullscreenBtn.addEventListener('click', handleFullscreen)
-        return () => {
-            fullscreenBtn.removeEventListener('click', handleFullscreen)
+        if (isMount) {
+            saveRecording();
         }
-    }, [document.fullscreenElement])
+    }, [recordingTitle])
+
 
 
     return (
@@ -83,12 +101,12 @@ function RecordingControls(props) {
             <div className="flex flex-column">
                 <div className="flex round-btn-container">
                     <Button type="checkbox" className="round-btn">Stop</Button>
-                    <Button type="checkbox" className="round-btn" onChange={handleRecording}>Record</Button>
+                    <Button type="checkbox" className="round-btn" onChange={() => setIsRecording(!isRecording)}>Record</Button>
                     <Button type="checkbox" className="round-btn">Play</Button>
                 </div>
                 <div className="flex rect-btn-container">
                     <Button type="button" className="rect-btn">About</Button>
-                    <Button type="button" className="rect-btn fullscreen-btn">Fullscreen</Button>
+                    <FullscreenButton />
                 </div>
             </div>
             <form className="flex hide" id="new-recording-form" onSubmit={handleRecordingTitle}>
