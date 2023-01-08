@@ -12,6 +12,7 @@ import instruments from "../contents/instruments";
 
 function Screen(props) {
     const [instrument, setInstrument] = useState("Acoustic Grand");
+    const [recordings, setRecordings] = useState([]);
     const [currentTab, setCurrentTab] = useState('Instruments');
 
     const audioContext = props.audioContext;
@@ -38,6 +39,27 @@ function Screen(props) {
     }
 
 
+    // Get recordings from database
+   useEffect(() => {
+        if (currentTab === 'Recordings') {
+            fetch("http://localhost:5000/recording", {
+                method: 'get',
+                headers: new Headers({ 
+                    "Access-Control-Allow-Origin": "http://localhost:5000",
+                    "Accept": "application/json", 
+                    "Content-Type": "application/json",
+                }),
+                mode: 'cors'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setRecordings(data);
+                })
+                .catch(err => console.error(err))
+        }
+    })
+
+
     // Get instrument audio and update the 'buffers' state to be the array returned 
     // from the 'getAudio' function.
     useEffect(() => {
@@ -52,16 +74,18 @@ function Screen(props) {
             mode: 'cors'
         })
             .then(res => res.json())
-            .then(data => { 
+            .then(data => {
                 setBuffers(getAudio(data));
             })
             .catch(err => console.error(err))
     }, [instrument])
 
+
     // Array used to display the contents of a particular tab. If the user clicks on the 'Instruments'
     // tab, then the instrument titles and icons are display. Else the titles of the users' recordings
     // are displayed as a numbered list along with options to listen to and download each recording.
-    const contentArray = (currentTab === "Instruments") ? instruments : [];
+    const contentArray = (currentTab === "Instruments") ? instruments : recordings;
+
 
     return (
         <div className="screen">
@@ -71,12 +95,14 @@ function Screen(props) {
             </div>
             <div className="tab-contents">
                 {
-                    contentArray.map(item =>
+                    contentArray.map((item, index) =>
                         <TabContent 
-                                key={item.title} 
-                                icon={item.icon} 
-                                checked={item.title === instrument} 
+                                key={index} 
+                                icon={item.icon}
+                                id={index + 1} 
+                                isCurrentInstrument={item.title === instrument} 
                                 currentTab={currentTab} 
+                                filePath={item.filePath}
                                 onChange={() => setInstrument(item.title)}>
                             {item.title}
                         </TabContent>

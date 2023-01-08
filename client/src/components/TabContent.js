@@ -4,30 +4,33 @@
             'currentTab' state that was passed as a property.
 */
 
+import downloadIcon from '../icons/download-icon.png';
+
 function TabContent(props) {
     const title = props.children;
     const icon = props.icon;
-    const url = props.url;
-    const checked = props.checked;
+    const filePath = props.filePath;
+    const isCurrentInstrument = props.isCurrentInstrument;
     const currentTab = props.currentTab;
     const onChange = props.onChange;
+    const id = props.id;
 
     if (currentTab === "Instruments") {
         return (
             <label>
-                <input type="radio" name="instrument" checked={checked} onChange={onChange} />
+                <input type="radio" name="instrument" checked={isCurrentInstrument} onChange={onChange} />
                 <span className="tab-content">
                     <img className="tab-content__icon" src={icon} />
                     <h4 className="tab-content__title">{title}</h4>
-                    <a href={url}></a>
                 </span>
             </label>
         )
     } else if (currentTab === "Recordings") {
         return (
             <div className="tab-content">
-                <h6 className="tab-content__title">`</h6>
-                <h6 className="tab-content__title">{title}</h6>
+                <h4 className="tab-content__title light-text">{id}</h4>
+                <h4 className="tab-content__title light-text">{title}</h4>
+                <img className="tab-content__icon" src={downloadIcon} />
             </div>
         )
     }
