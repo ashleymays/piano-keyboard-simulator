@@ -61,7 +61,7 @@ function Piano(props) {
         if (hasSoften) {
             return 0.35;
         }
-        return 1.5;
+        return 1;
     }
 
     // Cancel the audio that is played by a particular piano key. This is done by reducing the volume

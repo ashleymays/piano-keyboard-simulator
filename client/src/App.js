@@ -18,15 +18,12 @@ function App() {
     const [buffers, setBuffers] = useState([]);
     const [hasSustain, setHasSustain] = useState(false);
     const [hasSoften, setHasSoften] = useState(false);
-    const [recordingFormIsOpen,  setRecordingFormIsOpen] = useState(false);
 
     return (
         <section className="piano-container">
             <div className="controls">
                 <RecordingControls 
-                    mediaRecorder={mediaRecorder}
-                    recordingFormIsOpen={recordingFormIsOpen}
-                    setRecordingFormIsOpen={setRecordingFormIsOpen} />
+                    mediaRecorder={mediaRecorder} />
 
                 <Screen 
                     audioContext={audioContext} 
@@ -45,8 +42,7 @@ function App() {
                 hasSustain={hasSustain}
                 hasSoften={hasSoften}
                 buffers={buffers}
-                dest={dest}
-                recordingFormIsOpen={recordingFormIsOpen}/>
+                dest={dest} />
         </section>
     )
 }

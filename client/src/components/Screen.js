@@ -6,14 +6,10 @@
 */
 
 import { useState, useEffect } from "react";
-import TabTitle from "./TabTitle";
-import TabContent from "./TabContent";
 import instruments from "../contents/instruments";
 
 function Screen(props) {
     const [instrument, setInstrument] = useState("Acoustic Grand");
-    const [recordings, setRecordings] = useState([]);
-    const [currentTab, setCurrentTab] = useState('Instruments');
 
     const audioContext = props.audioContext;
     const setBuffers = props.setBuffers;
@@ -39,27 +35,6 @@ function Screen(props) {
     }
 
 
-    // Get recordings from database
-   useEffect(() => {
-        if (currentTab === 'Recordings') {
-            fetch("http://localhost:5000/recording", {
-                method: 'get',
-                headers: new Headers({ 
-                    "Access-Control-Allow-Origin": "http://localhost:5000",
-                    "Accept": "application/json", 
-                    "Content-Type": "application/json",
-                }),
-                mode: 'cors'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setRecordings(data);
-                })
-                .catch(err => console.error(err))
-        }
-    })
-
-
     // Get instrument audio and update the 'buffers' state to be the array returned 
     // from the 'getAudio' function.
     useEffect(() => {
@@ -81,31 +56,19 @@ function Screen(props) {
     }, [instrument])
 
 
-    // Array used to display the contents of a particular tab. If the user clicks on the 'Instruments'
-    // tab, then the instrument titles and icons are display. Else the titles of the users' recordings
-    // are displayed as a numbered list along with options to listen to and download each recording.
-    const contentArray = (currentTab === "Instruments") ? instruments : recordings;
-
-
     return (
         <div className="screen">
-            <div className="tab-titles">
-                <TabTitle currentTab={currentTab} setCurrentTab={setCurrentTab}>Instruments</TabTitle>
-                <TabTitle currentTab={currentTab} setCurrentTab={setCurrentTab}>Recordings</TabTitle>
-            </div>
-            <div className="tab-contents">
+            <h3 className="flex flex-column screen-title">Instruments</h3>
+            <div className="screen-content-container">
                 {
-                    contentArray.map((item, index) =>
-                        <TabContent 
-                                key={index} 
-                                icon={item.icon}
-                                id={index + 1} 
-                                isCurrentInstrument={item.title === instrument} 
-                                currentTab={currentTab} 
-                                filePath={item.filePath}
-                                onChange={() => setInstrument(item.title)}>
-                            {item.title}
-                        </TabContent>
+                    instruments.map((item) => 
+                        <label key={item.title}>
+                            <input type="radio" name="instrument" defaultChecked={item.title === instrument} onChange={() => setInstrument(item.title)} />
+                            <span className="screen-content">
+                                <img className="screen-content__icon" src={item.icon} />
+                                <h4 className="screen-content__title">{item.title}</h4>
+                            </span>
+                        </label>
                     )
                 }
             </div>

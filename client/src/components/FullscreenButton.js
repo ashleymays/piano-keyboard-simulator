@@ -25,7 +25,7 @@ function FullscreenButton() {
         }
     }, [document.fullscreenElement])
 
-    return <Button type="button" className="rect-btn fullscreen-btn">Fullscreen</Button>
+    return <Button type="checkbox" className="round-btn fullscreen-btn">Fullscreen</Button>
 }
 
 export default FullscreenButton;

@@ -278,56 +278,44 @@ input[type="checkbox"]:checked + span .round-btn {
                 0.69rem 0.916rem 1.147rem #06060680 inset;
 }
 
-
-/* Tabs */
-
-.tab-titles {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: #101010;
-}
-
-.tab-title {
+.screen-title {
     font-weight: 500;
     margin: 0;
     padding: 0.65em;
     cursor: pointer;
+    background: #101010;
 }
 
-.tab-title::after {
+.screen-title::after {
     content: "";
     display: block;
-    width: 150%;
-    height: 0.15vh;
+    width: 100%;
+    height: 0.1vh;
     margin-top: 0.5rem;
     background: transparent;
     transition-duration: 0.125s;
-}
-
-.active-tab::after {
     background: white;
 }
 
-.tab-contents {
+.screen-content-container {
     overflow: scroll;
     height: 15vh;
 }
 
-.tab-content {
+.screen-content {
     padding: 0 0.75em;
     display: grid;
     grid-template-columns: 5% 90% 5%;
     align-items: center;
 }
 
-.tab-content__icon {
-    width: 1.1em;
-    height: 1.1em;
+.screen-content__icon {
+    width: 1.625em;
+    height: 1.625em;
     filter: brightness(50%);
 }
 
-.tab-content__title {
+.screen-content__title {
     font-weight: 400;
     line-height: 0;
     padding: 1.5em;
@@ -335,73 +323,8 @@ input[type="checkbox"]:checked + span .round-btn {
     color: #757575;
 }
 
-.light-text {
-    color: #f2f2f2;
-}
-
-input[name="instrument"]:checked + .tab-content * {
+input[name="instrument"]:checked + .screen-content * {
     filter: brightness(90%);
     color: #f2f2f2;
     transition-duration: 0.25s;
-}
-
-
-/* Recording Title Form */
-
-#new-recording-form {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:rgba(0, 0, 0, 0.95);
-    z-index: 100;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    opacity: 1;
-    transition-duration: 2s;
-}
-
-#new-recording-label {
-    font-size: 1.4rem;
-    font-weight: 700;
-    font-family: inherit;
-    text-transform: uppercase;
-    color: #555;
-    align-self: flex-start;
-    margin-bottom: 3vh;
-}
-
-#new-recording-input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 0.05em solid rgb(255, 255, 255, 0.35);
-    padding-bottom: 0.25em;
-    width: 40vw;
-    outline: none;
-    background: transparent;
-    font-size: 3.5rem;
-    font-weight: 400;
-    font-family: inherit;
-    color: #fff;
-}
-
-#new-recording-btn {
-    border: none;
-    outline: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-#new-recording-btn * {
-    font-size: 3em;
-    color: rgb(255, 255, 255, 0.35);
-}
-
-.hide {
-    display: none !important;
-    opacity: 0 !important;
 }

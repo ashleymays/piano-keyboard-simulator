@@ -30,6 +30,7 @@ function FeatureControls(props) {
         })
     }, [isKeyboardLabelsShown])
 
+
     return (
         <div className="flex flex-column">
             <div className="flex round-btn-container">
