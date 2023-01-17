@@ -38,6 +38,10 @@ h1 {
     font-size: clamp(4.5rem, 3.5vw, 7.5rem);
 }
 
+h2 {
+    font-size: clamp(1.35rem, 1.275vw, 3.65rem);
+}
+
 h3 {
     font-size: clamp(0.9rem, 1.05vw, 3.25rem);
 }
@@ -327,4 +331,48 @@ input[name="instrument"]:checked + .screen-content * {
     filter: brightness(90%);
     color: #f2f2f2;
     transition-duration: 0.25s;
+}
+
+
+/* Page Overlay */
+
+.page-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background:rgba(0, 0, 0, 0.9625);
+    z-index: 5;
+    color: #f2f2f2;
+    justify-content: center;
+}
+
+#page-overlay__close-btn {
+    background: transparent;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 3.5vw;
+    right: 3.5vw;
+    cursor: pointer;
+}
+
+#page-overlay__close-btn__img {
+    width: 4vh;
+    height: 4vh;
+}
+
+.page-overlay__content {
+    width: 55%;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.75em;
+}
+
+.show {
+    display: flex !important;
 }

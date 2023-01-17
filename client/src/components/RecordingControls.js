@@ -7,18 +7,8 @@
 
 import Button from "./Button";
 import FullscreenButton from "./FullscreenButton";
+import PageOverlay from "./PageOverlay";
 import { useEffect, useState } from "react";
-
-
-function blobToBase64(blob) {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    return new Promise(resolve => {
-        reader.onloadend = () => {
-            resolve(reader.result);
-        };
-    });
-}
 
 
 function RecordingControls(props) {
@@ -41,6 +31,10 @@ function RecordingControls(props) {
         link.setAttribute("download", "Online_Piano_Recording");
         link.setAttribute("href", recordingURL);
         link.click();
+    }
+
+    const openOverlay = () => {
+        document.querySelector('.page-overlay').classList.add('show');
     }
 
     // Start and stop the media recording from recording audio in the tab.
@@ -68,6 +62,17 @@ function RecordingControls(props) {
     return (
         <>
             <audio hidden={true} id="recording-audio-element" src={recordingURL} type="audio/mp3"></audio>
+
+            {/* About */}
+            <PageOverlay>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur.
+            </PageOverlay>
+
+            {/* Info */}
+            <PageOverlay>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur.
+            </PageOverlay>
+
             <div className="flex flex-column">
                 <div className="flex round-btn-container">
                     <FullscreenButton />
@@ -75,8 +80,8 @@ function RecordingControls(props) {
                     <Button type="checkbox" className="round-btn" onChange={() => setIsPlaying(!isPlaying)}>Play</Button>
                 </div>
                 <div className="flex rect-btn-container">
-                    <Button type="button" className="rect-btn">About</Button>
-                    <Button type="button" className="rect-btn">Info</Button>
+                    <Button type="button" className="rect-btn" onClick={openOverlay}>About</Button>
+                    <Button type="button" className="rect-btn" onClick={openOverlay}>Info</Button>
                 </div>
             </div>
         </>
