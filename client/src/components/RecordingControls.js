@@ -8,6 +8,7 @@
 import Button from "./Button";
 import FullscreenButton from "./FullscreenButton";
 import PageOverlay from "./PageOverlay";
+import pageOverlayContents from "../contents/pageOverlay";
 import { useEffect, useState } from "react";
 
 
@@ -15,6 +16,7 @@ function RecordingControls(props) {
     const [isRecording, setIsRecording] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [recordingURL, setRecordingURL] = useState('');
+    const [currentOverlay, setCurrentOverlay] = useState('');
 
     const mediaRecorder = props.mediaRecorder;
 
@@ -26,22 +28,17 @@ function RecordingControls(props) {
         setRecordingURL(url);
     }
 
-    const downloadAudio = () => {
-        let link = document.createElement("a");
-        link.setAttribute("download", "Online_Piano_Recording");
-        link.setAttribute("href", recordingURL);
-        link.click();
-    }
-
-    const openOverlay = () => {
+    // Open page overlay
+    const openOverlay = (title) => {
         document.querySelector('.page-overlay').classList.add('show');
+        setCurrentOverlay(title)
     }
 
     // Start and stop the media recording from recording audio in the tab.
     useEffect(() => {
         // Start the recorder if isRecording has been set to true.
         if (isRecording) {
-            mediaRecorder.start();
+            mediaRecorder.start();          
         } else {
             mediaRecorder.stop();
         }
@@ -61,18 +58,14 @@ function RecordingControls(props) {
 
     return (
         <>
+            {/* Element that holds the recording last recorded */}
             <audio hidden={true} id="recording-audio-element" src={recordingURL} type="audio/mp3"></audio>
 
-            {/* About */}
-            <PageOverlay>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur.
+            <PageOverlay includeExitButton={true}>
+                {pageOverlayContents[currentOverlay]}
             </PageOverlay>
 
-            {/* Info */}
-            <PageOverlay>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur.
-            </PageOverlay>
-
+            {/* Buttons */}
             <div className="flex flex-column">
                 <div className="flex round-btn-container">
                     <FullscreenButton />
@@ -80,8 +73,8 @@ function RecordingControls(props) {
                     <Button type="checkbox" className="round-btn" onChange={() => setIsPlaying(!isPlaying)}>Play</Button>
                 </div>
                 <div className="flex rect-btn-container">
-                    <Button type="button" className="rect-btn" onClick={openOverlay}>About</Button>
-                    <Button type="button" className="rect-btn" onClick={openOverlay}>Info</Button>
+                    <Button type="button" className="rect-btn" onClick={() => openOverlay('about')}>About</Button>
+                    <Button type="button" className="rect-btn" onClick={() => openOverlay('help')}>Help</Button>
                 </div>
             </div>
         </>

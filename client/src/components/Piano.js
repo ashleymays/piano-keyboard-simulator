@@ -87,6 +87,7 @@ function Piano(props) {
 
     // Determine when a note should be played or ended depending on user interaction.
     const handleKey = (e) => {
+        e.preventDefault();
         
         // Uses e.key for keyboard input and e.target.value for mouse 
         // and touch input, where e.key is undefined.
