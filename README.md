@@ -2,11 +2,16 @@
 
 This is an online piano that can be played with computer keyboard, mouse, or touch inputs. You can play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record their playing and download their music as an .mp3 file.
 
-## How to Use
-Navigate to the website <a href="https://ashleymays.github.io/online-piano/">here</a>. There is no need to download any external libraries.
+Special thanks to Milan Maheshwari for their Skeumorphic Keyboard design on Figma.com, which this project took much of its inspiration from.
 
-## How to Install
-Press the green "Code" button at the top of the page and copy the HTTPS link. Then open <a href="https://git-scm.com/downloads">Git Bash</a> and navigate to the local folder you want the project to be in using Git Bash. Lastly enter `git clone LINK_HERE` in Git Bash. The project will appear in your local folder.
+## How to Use
+Clone the repository:
+`git clone https://github.com/ashleymays/online-piano.git`
+Use the following command to start the server:
+`npm start`
+Use the following command to start the client:
+`cd client && npm start`.
+The website will open in a browser window.
 
 ## License
-This project uses the MIT License.
+This project uses the MIT License. [Read more](docs/LICENSE.md).
