@@ -9,7 +9,6 @@ app.use(express.static(path.resolve(__dirname, "../client", "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-
 // Get audio files for a certain instrument from the directory
 app.post('/audio', (req, res) => {
     const filePath = path.resolve(__dirname, "../client", "public", "audio", req.body.instrument);

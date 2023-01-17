@@ -1,6 +1,6 @@
 {
   "name": "online-piano",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
   "main": "server/server.js",
   "private": "true",
@@ -13,11 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashleymays/online-piano.git"
+    "url": "https://github.com/ashleymays/online-piano.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ashleymays/online-piano/issues"
   },
