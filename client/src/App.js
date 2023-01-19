@@ -1,14 +1,17 @@
 /*
-    FILE: App.js
-    PURPOSE: Render the keyboard and define state variables and setters that will be passed down to
-            the appropriate components.
+    App.js: Render the keyboard and define state variables and setters that will be passed down to
+    the appropriate components.
 */
 
 import { useState } from "react";
 import Piano from "./components/Piano";
-import RecordingControls from './components/RecordingControls';
 import FeatureControls from './components/FeatureControls';
 import Screen from './components/Screen';
+import FullscreenButton from "./components/FullscreenButton";
+import PlayButton from "./components/PlayButton";
+import RecordButton from "./components/RecordButton";
+import TextOverlayButton from "./components/TextOverlayButton";
+import TextOverlay from "./components/TextOverlay";
 
 const audioContext = new AudioContext();
 const dest = audioContext.createMediaStreamDestination();
@@ -18,32 +21,52 @@ function App() {
     const [buffers, setBuffers] = useState([]);
     const [hasSustain, setHasSustain] = useState(false);
     const [hasSoften, setHasSoften] = useState(false);
+    const [currentTextOverlay, setCurrentTextOverlay] = useState(null);
 
     return (
-        <section className="piano-container">
-            <div className="controls">
-                <RecordingControls 
-                    mediaRecorder={mediaRecorder} />
+        <>
+            <TextOverlay currentTextOverlay={currentTextOverlay} />
 
-                <Screen 
-                    audioContext={audioContext} 
-                    setBuffers={setBuffers} />
+            <section className="piano-container">
+                <div className="controls">
+                    <div className="flex flex-column">
+                        <div className="flex round-btn-container">
+                            <FullscreenButton />
+                            <RecordButton mediaRecorder={mediaRecorder} />
+                            <PlayButton mediaRecorder={mediaRecorder} />
+                        </div>
+                        <div className="flex rect-btn-container">
+                            <TextOverlayButton 
+                                title="About"
+                                shouldShowTextOverlay
+                                setCurrentTextOverlay={setCurrentTextOverlay} />
+                            <TextOverlayButton 
+                                title="Help"
+                                shouldShowTextOverlay
+                                setCurrentTextOverlay={setCurrentTextOverlay} />
+                        </div>
+                    </div>
 
-                <FeatureControls 
+                    <Screen 
+                        audioContext={audioContext}
+                        setBuffers={setBuffers} />
+
+                    <FeatureControls 
+                        audioContext={audioContext}
+                        hasSustain={hasSustain}
+                        setHasSustain={setHasSustain}
+                        hasSoften={hasSoften}
+                        setHasSoften={setHasSoften} />
+                </div>
+
+                <Piano 
                     audioContext={audioContext}
                     hasSustain={hasSustain}
-                    setHasSustain={setHasSustain}
                     hasSoften={hasSoften}
-                    setHasSoften={setHasSoften} />
-            </div>
-
-            <Piano 
-                audioContext={audioContext}
-                hasSustain={hasSustain}
-                hasSoften={hasSoften}
-                buffers={buffers}
-                dest={dest} />
-        </section>
+                    buffers={buffers}
+                    dest={dest} />
+            </section>
+        </>
     )
 }
 

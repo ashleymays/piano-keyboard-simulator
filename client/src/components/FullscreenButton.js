@@ -1,14 +1,7 @@
-/*
-    FILE: FullscreenButton.js
-    PURPOSE: Render the fullscreen button and toggle it on and off. Separated into its own component
-            to simplify RecordingControls.js.
-*/
-
 import Button from "./Button";
 import { useEffect } from "react";
 
 function FullscreenButton() {
-    // Toggle fullscreen mode on and off.
     const handleFullscreen = () => {
         if (document.fullscreenElement === null) {
             document.documentElement.requestFullscreen();

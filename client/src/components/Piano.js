@@ -1,49 +1,36 @@
-/*
-    FILE: Piano.js
-    PURPOSE: Render the piano keys and define the behavior of the website when a key is pressed. Also
-            define the functionality of the 'sustain' and 'soften' buttons.
-*/
-
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import PianoKey from "./PianoKey";
 import keysMap from "../contents/keysMap";
 
-// Used to avoid a note being played on release.
 let currentlyPressedKeys = [];
+let gainNodesList = [];
 
-// Used to store the gain nodes of each pitch.
-let gainNodes = [];
-
-// Get pitch by key name
-const getPitch = (key) => {
-    let noteName = keysMap.get(key).noteName;
-    let octave = keysMap.get(key).octave;
+const getPitch = (keyboardCharacter) => {
+    let pianoKey = keysMap.get(keyboardCharacter);
+    let noteName = pianoKey.noteName;
+    let octave = pianoKey.octave;
     return noteName + octave;
 }
 
-// Change the background color of the piano key while it's being pressed down.
-// This is done by adding a CSS class that is defined in "index.css" in the src folder.
-const addKeyColor = (key) => {
-    let pianoKey = document.querySelector(`button[value="${key}"]`);
-    let isBlackKey = pianoKey.classList.contains("black-key");
+const addPianoKeyColor = (keyboardCharacter) => {
+    let pianoKeyElement = document.querySelector(`button[value="${keyboardCharacter}"]`);
+    let isBlackKey = pianoKeyElement.classList.contains("black-key");
 
     if (isBlackKey) {
-        pianoKey.classList.add('pressed-key-black');
+        pianoKeyElement.classList.add('pressed-key-black');
     } else {
-        pianoKey.classList.add('pressed-key-white');
+        pianoKeyElement.classList.add('pressed-key-white');
     }
 }
 
-// Change the background color of the piano key when it is released.
-// This is done by removing a CSS class that is defined in "index.css" in the src folder.
-const removeKeyColor = (key) => {
-    let pianoKey = document.querySelector(`button[value="${key}"]`);
-    let isBlackKey = pianoKey.classList.contains("black-key");
+const removePianoKeyColor = (keyboardCharacter) => {
+    let pianoKeyElement = document.querySelector(`button[value="${keyboardCharacter}"]`);
+    let isBlackKey = pianoKeyElement.classList.contains("black-key");
     
     if (isBlackKey) {
-        pianoKey.classList.remove('pressed-key-black');
+        pianoKeyElement.classList.remove('pressed-key-black');
     } else {
-        pianoKey.classList.remove('pressed-key-white');
+        pianoKeyElement.classList.remove('pressed-key-white');
     }
 }
 
@@ -53,100 +40,107 @@ function Piano(props) {
     const hasSustain = props.hasSustain;
     const buffers = props.buffers;
     const dest = props.dest;
-    const recordingFormIsOpen = props.recordingFormIsOpen;
+    const NOTE_DURATION_IN_SECONDS = 10;
 
-    // Get the volume that the key should be played at. If softening is turned on, then play the note at 35%.
-    // Else play it at 150%.
-    const getVolume = () => {
+    const getNoteVolume = () => {
         if (hasSoften) {
             return 0.35;
         }
         return 1;
     }
 
-    // Cancel the audio that is played by a particular piano key. This is done by reducing the volume
-    // to 1% instantaneously.
-    const stopNote = (pitch) => {
-        gainNodes[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
+    const endNote = (pitch) => {
+        gainNodesList[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
     }
 
-    // Play a note. This is called by the "handlekey" function.
-    const playNote = (pitch) => {
-        let gainNode = audioContext.createGain();
-        let bufferSource = audioContext.createBufferSource();
-        let volume = getVolume();
-        bufferSource.buffer = buffers[pitch];
-        gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 10);
+    const createNewGainNode = () => {
+        let newGainNode = audioContext.createGain();
+        let noteVolume = getNoteVolume();
+        newGainNode.gain.setValueAtTime(noteVolume, audioContext.currentTime);
+        newGainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + NOTE_DURATION_IN_SECONDS);
+        return newGainNode;
+    }
+
+    const createNewBufferSource = (pitch) => {
+        let newBufferSource = audioContext.createBufferSource();
+        newBufferSource.buffer = buffers[pitch];
+        return newBufferSource;
+    }
+
+    const connectToOutputSpeakers = (gainNode, bufferSource) => {
         bufferSource.connect(gainNode);
         gainNode.connect(dest);
         gainNode.connect(audioContext.destination);
-        bufferSource.start(audioContext.currentTime);
-        gainNodes[pitch] = gainNode;
     }
 
-    // Determine when a note should be played or ended depending on user interaction.
-    const handleKey = (e) => {
+    const addGainNodeToList = (gainNode, pitch) => {
+        gainNodesList[pitch] = gainNode;
+    }
+
+    const playNote = (pitch) => {
+        let gainNode = createNewGainNode();
+        let bufferSource = createNewBufferSource(pitch);
+        connectToOutputSpeakers(gainNode, bufferSource);
+        bufferSource.start(audioContext.currentTime);
+        addGainNodeToList(gainNode, pitch);
+    }
+
+    const canPlayPianoNote = (keyboardCharacter) => {
+        return keysMap.has(keyboardCharacter) 
+               && !currentlyPressedKeys.includes(keyboardCharacter);
+    }
+    
+    const canStopPianoNote = (keyboardCharacter) => {
+        return keysMap.has(keyboardCharacter) 
+               && currentlyPressedKeys.includes(keyboardCharacter);
+    }
+
+    const getKeyboardCharacterByEvent = (e) => {
+        let keyboardCharacter = e.key || e.target.value;
+        keyboardCharacter = keyboardCharacter.toLowerCase();
+        return keyboardCharacter;
+    }
+
+    const playNoteAtPianoKey = (e) => {
         e.preventDefault();
-        
-        // Uses e.key for keyboard input and e.target.value for mouse 
-        // and touch input, where e.key is undefined.
-        let key = e.key || e.target.value;
-        let eventName = e.type;
+        let keyboardCharacter = getKeyboardCharacterByEvent(e);
 
-
-        // The 'playEvents' array gives a list of JavaScript events that are associated with playing a note.
-        // The 'stopEvents' array gives a list of JavaScript events that are associated with ending a note.
-        // These are used to avoid writing the same code twice for different events.
-        let playEvents = [ "keydown", "mousedown" ];
-        let stopEvents = [ "keyup", "mouseup" ];
-
-        key = key.toLowerCase();
-
-        // Play a certain note if the event is associated with playing notes,
-        // the pressed key is one associated with the virtual keyboard, and
-        // the user isn't typing a recording's title
-        if (playEvents.includes(eventName) 
-            && keysMap.has(key) 
-            && !currentlyPressedKeys.includes(key)
-            && !recordingFormIsOpen) 
-        {
-            let pitch = getPitch(key);
+        if (canPlayPianoNote(keyboardCharacter)) {
+            let pitch = getPitch(keyboardCharacter);
             playNote(pitch);
-            currentlyPressedKeys.push(key);
-            addKeyColor(key);  
+            currentlyPressedKeys.push(keyboardCharacter);
+            addPianoKeyColor(keyboardCharacter);  
         } 
+    }
 
-        // End a certain note if the event is associated with ending notes,
-        // the pressed key is one associated with the virtual keyboard, and
-        // the user isn't typing a recording's title
-        else if (stopEvents.includes(eventName) 
-                && keysMap.has(key)
-                && !recordingFormIsOpen) 
-        {
-            let pitch = getPitch(key);
-            currentlyPressedKeys = currentlyPressedKeys.filter((k) => k !== key);
-            removeKeyColor(key);
+    const endNoteAtPianoKey = (e) => {
+        e.preventDefault();
+        let keyboardCharacter = getKeyboardCharacterByEvent(e);
+
+        if (canStopPianoNote(keyboardCharacter)) {
+            let pitch = getPitch(keyboardCharacter);
+            currentlyPressedKeys = currentlyPressedKeys.filter((char) => char !== keyboardCharacter);
+            removePianoKeyColor(keyboardCharacter);
             if (!hasSustain) {
-                stopNote(pitch);
+                endNote(pitch);
             }
-        }
+        } 
     }
 
     useEffect(() => {
-        document.addEventListener('keydown', handleKey);
-        document.addEventListener('keyup', handleKey);
+        document.addEventListener('keydown', playNoteAtPianoKey);
+        document.addEventListener('keyup', endNoteAtPianoKey);
 
         return () => {
-            document.removeEventListener('keydown', handleKey);
-            document.removeEventListener('keyup', handleKey);
+            document.removeEventListener('keydown', playNoteAtPianoKey);
+            document.removeEventListener('keyup', endNoteAtPianoKey);
         }
     })
 
     return (
         <div id="piano" className="flex" 
-            onMouseDown={handleKey} 
-            onMouseUp={handleKey}>
+            onMouseDown={playNoteAtPianoKey} 
+            onMouseUp={endNoteAtPianoKey}>
 
             <PianoKey keyColor="white" keyboardKey="q" />
             <PianoKey keyColor="black" keyboardKey="2" />

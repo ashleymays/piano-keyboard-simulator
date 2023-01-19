@@ -345,7 +345,7 @@ input[name="instrument"]:checked + .screen-content * {
 
 /* Page Overlay */
 
-.page-overlay {
+.text-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -360,7 +360,7 @@ input[name="instrument"]:checked + .screen-content * {
     justify-content: center;
 }
 
-#page-overlay__close-btn {
+#text-overlay__close-btn {
     background: transparent;
     outline: none;
     border: none;
@@ -370,12 +370,12 @@ input[name="instrument"]:checked + .screen-content * {
     cursor: pointer;
 }
 
-#page-overlay__close-btn__img {
+#text-overlay__close-btn__img {
     width: 3vh;
     height: 3vh;
 }
 
-.page-overlay__content {
+.text-overlay__content {
     width: 55%;
     text-align: center;
     font-weight: 400;
