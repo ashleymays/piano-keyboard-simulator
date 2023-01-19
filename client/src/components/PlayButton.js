@@ -20,7 +20,7 @@ function PlayButton(props) {
         createRecordingURL();
     }
 
-    // Play the most recent recording
+    // Plays the most recent recording.
     useEffect(() => {
         const audioPlayer = document.getElementById('recording-audio-player');
         if (shouldPlayRecording) {
