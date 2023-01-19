@@ -40,7 +40,7 @@ function Piano(props) {
     const hasSustain = props.hasSustain;
     const buffers = props.buffers;
     const dest = props.dest;
-    const NOTE_DURATION = 10;
+    const NOTE_DURATION_IN_SECONDS = 10;
 
     const getNoteVolume = () => {
         if (hasSoften) {
@@ -57,7 +57,7 @@ function Piano(props) {
         let newGainNode = audioContext.createGain();
         let noteVolume = getNoteVolume();
         newGainNode.gain.setValueAtTime(noteVolume, audioContext.currentTime);
-        newGainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + NOTE_DURATION);
+        newGainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + NOTE_DURATION_IN_SECONDS);
         return newGainNode;
     }
 
