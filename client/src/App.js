@@ -1,73 +1,63 @@
-/*
-    App.js: Render the keyboard and define state variables and setters that will be passed down to
-    the appropriate components.
-*/
-
 import { useState } from "react";
 import Piano from "./components/Piano";
-import FeatureControls from './components/FeatureControls';
-import Screen from './components/Screen';
-import FullscreenButton from "./components/FullscreenButton";
+import FeatureControls from "./components/FeatureControls";
+import Screen from "./components/Screen";
 import PlayButton from "./components/PlayButton";
 import RecordButton from "./components/RecordButton";
-import TextOverlayButton from "./components/TextOverlayButton";
-import TextOverlay from "./components/TextOverlay";
 
 const audioContext = new AudioContext();
 const dest = audioContext.createMediaStreamDestination();
 const mediaRecorder = new MediaRecorder(dest.stream);
 
 function App() {
-    const [buffers, setBuffers] = useState([]);
-    const [hasSustain, setHasSustain] = useState(false);
-    const [hasSoften, setHasSoften] = useState(false);
-    const [currentTextOverlay, setCurrentTextOverlay] = useState(null);
+  const [buffers, setBuffers] = useState([]);
+  const [hasSustain, setHasSustain] = useState(false);
+  const [hasSoften, setHasSoften] = useState(false);
 
-    return (
-        <>
-            <TextOverlay currentTextOverlay={currentTextOverlay} />
+  return (
+    <section className="piano-container absolute-center flex-column">
+      <div className="controls flex-row justify-space-btwn">
+        <FeatureControls
+          audioContext={audioContext}
+          hasSustain={hasSustain}
+          setHasSustain={setHasSustain}
+          hasSoften={hasSoften}
+          setHasSoften={setHasSoften}
+        />
+        <div className="flex-row justify-space-btwn">
+          <PlayButton mediaRecorder={mediaRecorder} />
+          <RecordButton mediaRecorder={mediaRecorder} />
+        </div>
+        <Screen audioContext={audioContext} setBuffers={setBuffers} />
+        <div className="flex-column align-items-end">
+          <h1>ARTURIA</h1>
+          <h5>Virtual Keyboard</h5>
+        </div>
+      </div>
 
-            <section className="piano-container">
-                <div className="controls">
-                    <div className="flex flex-column">
-                        <div className="flex round-btn-container">
-                            <FullscreenButton />
-                            <RecordButton mediaRecorder={mediaRecorder} />
-                            <PlayButton mediaRecorder={mediaRecorder} />
-                        </div>
-                        <div className="flex rect-btn-container">
-                            <TextOverlayButton 
-                                title="About"
-                                shouldShowTextOverlay
-                                setCurrentTextOverlay={setCurrentTextOverlay} />
-                            <TextOverlayButton 
-                                title="Help"
-                                shouldShowTextOverlay
-                                setCurrentTextOverlay={setCurrentTextOverlay} />
-                        </div>
-                    </div>
-
-                    <Screen 
-                        audioContext={audioContext}
-                        setBuffers={setBuffers} />
-
-                    <FeatureControls 
-                        audioContext={audioContext}
-                        hasSustain={hasSustain}
-                        setHasSustain={setHasSustain}
-                        hasSoften={hasSoften}
-                        setHasSoften={setHasSoften} />
-                </div>
-
-                <Piano 
-                    audioContext={audioContext}
-                    hasSustain={hasSustain}
-                    hasSoften={hasSoften}
-                    buffers={buffers}
-                    dest={dest} />
-            </section>
-        </>
-    )
+      <div className="flex-row">
+        <div className="octave-controls flex-column align-items-center">
+          <div className="octave-controls__btns flex-column align-items-center justify-space-btwn">
+            <button type="button">
+              <h5>+</h5>
+            </button>
+            <div className="line" />
+            <button type="button">
+              <h5>-</h5>
+            </button>
+          </div>
+          <h5>Octave</h5>
+        </div>
+        <Piano
+          audioContext={audioContext}
+          hasSustain={hasSustain}
+          hasSoften={hasSoften}
+          buffers={buffers}
+          dest={dest}
+        />
+      </div>
+    </section>
+  );
 }
 
 export default App;
