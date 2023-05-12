@@ -21,15 +21,7 @@ function FeatureControls(props) {
     });
   }, [isKeyboardLabelsShown]);
 
-  return (
-    <>
-      <Button onChange={() => setHasSustain(!hasSustain)}>Sustain</Button>
-      <Button onChange={() => setHasSoften(!hasSoften)}>Soften</Button>
-      <Button onChange={() => setIsKeyboardLabelsShown(!isKeyboardLabelsShown)}>
-        Keyboard
-      </Button>
-    </>
-  );
+  return <></>;
 }
 
 export default FeatureControls;

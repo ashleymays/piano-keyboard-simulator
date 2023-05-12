@@ -5,8 +5,6 @@
 
 :root {
   --black: #15191d;
-  --piano-width: 82vw;
-  --piano-height: calc(var(--piano-width) * 0.22);
   --key-font-size: clamp(1.15rem, 1.3vw, 3.3rem);
 }
 
@@ -21,7 +19,7 @@ html {
 }
 
 body {
-  background-color: #fff;
+  background-color: #202020;
   height: 100vh;
   user-select: none;
   -webkit-user-select: none;
@@ -54,7 +52,7 @@ p {
 }
 
 h1 {
-  font-size: clamp(3.4rem, 2.25vw, 5rem);
+  font-size: clamp(3rem, 2vw, 5rem);
   margin: 0;
   letter-spacing: 0.075em;
   line-height: 1.25em;
@@ -96,7 +94,7 @@ input {
 button {
   outline: none;
   border: transparent;
-  background: inherit;
+  background: transparent;
   cursor: pointer;
 }
 
@@ -137,35 +135,44 @@ button {
 .piano-container {
   touch-action: manipulation;
   background: linear-gradient(to bottom, #f4f5f6 0%, #f6f7f9 45%);
-  padding: 1.75% 3%;
-  width: var(--piano-width);
+  padding: 2rem 3rem;
+  width: 110rem;
+  height: 36rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
 }
 
-#piano {
-  position: relative;
+.top-row {
   width: 100%;
-  height: var(--piano-height);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1fr;
+}
+
+.bottom-row {
+  height: 100%;
+  margin-top: 3%;
+  display: grid;
+  grid-template-columns: 5rem 15fr;
+  column-gap: 2.5%;
+}
+
+#piano {
+  height: 100%;
 }
 
 .black-key,
 .white-key {
   justify-content: flex-end;
   cursor: pointer;
-  padding-bottom: 2.5rem;
+  padding-bottom: 10%;
   text-transform: uppercase;
   font-size: 0;
-  float: left;
-  outline: none;
-  border: transparent;
   font-family: inherit;
 }
 
 .white-key {
-  flex: 1 1 0;
-  height: 100%;
-  border-radius: 0 0 0.55rem 0.55rem;
+  width: 100%;
+  border-radius: 0 0 0.25rem 0.25rem;
   background: linear-gradient(
     to bottom,
     rgba(218, 221, 230, 0.25) 0%,
@@ -175,16 +182,12 @@ button {
 }
 
 .black-key {
-  width: calc(var(--piano-width) * 0.024);
+  width: 35%;
   height: 60%;
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 1;
-  margin-left: calc(var(--piano-width) * -0.028 / 2);
   background-color: #1d1b1c;
-}
-
-.black-key + .white-key {
-  margin-left: calc(var(--piano-width) * -0.028 / 2);
+  margin: 0 -1.25% 0;
 }
 
 .pressed-key-black,
@@ -195,15 +198,9 @@ button {
 .white-key:active {
 }
 
-.controls {
-  height: 12vh;
-  width: 100%;
-  margin-bottom: 2%;
-}
-
 .control-btn__design {
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   background-color: var(--black);
   opacity: 0.1;
   border-radius: 0.25rem;
@@ -216,9 +213,9 @@ button {
 }
 
 .screen {
-  overflow-y: scroll;
-  margin: 0 5%;
+  /* overflow-y: scroll; */
   border-radius: 0.25rem;
+  width: 100%;
   background: linear-gradient(143deg, #0e0e11 0%, #101012 100%);
   box-shadow: -0.69rem -0.916rem 1.147rem #19191c80 inset,
     0.69rem 0.916rem 1.147rem #06060680 inset;
@@ -230,20 +227,12 @@ button {
   margin: 0;
 }
 
-input[name="instrument"]:checked + .screen-content__title {
-  filter: brightness(90%);
-  color: #f2f2f2;
-  transition-duration: 0.25s;
-}
-
 .octave-controls {
-  height: var(--piano-height);
-  margin-right: 4%;
+  height: 100%;
 }
 
 .octave-controls__btns {
   height: 100%;
-  width: calc(var(--piano-width) * 0.045);
   padding: 5% 0;
   background: #f2f3f5;
   box-shadow: inset -0.02rem -0.2rem 0.4rem rgba(220, 221, 225, 0.5),

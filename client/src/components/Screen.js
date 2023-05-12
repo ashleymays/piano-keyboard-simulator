@@ -50,7 +50,7 @@ function Screen(props) {
   return (
     <div className="screen">
       <div className="screen-content">
-        {instruments.map((instrumentTitle) => (
+        {/* {instruments.map((instrumentTitle) => (
           <label key={instrumentTitle}>
             <input
               type="radio"
@@ -60,7 +60,7 @@ function Screen(props) {
             />
             <h4 className="screen-content__title">{instrumentTitle}</h4>
           </label>
-        ))}
+        ))} */}
       </div>
     </div>
   );
