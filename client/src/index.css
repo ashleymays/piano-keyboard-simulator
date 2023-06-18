@@ -243,10 +243,10 @@ button {
   background-color: var(--black);
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (width <= 1024px) {
   .piano-container {
-    top: 0;
+    /* top: 0; */
     left: 0;
-    transform: translate(0);
+    transform: translateX(0);
   }
 }
