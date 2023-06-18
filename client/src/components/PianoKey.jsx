@@ -1,12 +1,12 @@
-function PianoKey(props) {
+function PianoKey({ computerKey, color }) {
   return (
     <button
       name="piano-key"
-      className={`flex-column justify-end ${props.color}-key`}
+      className={`flex-column justify-end ${color}-key`}
       type="button"
-      value={props.computerKey}
+      value={computerKey}
     >
-      {props.computerKey}
+      {computerKey}
     </button>
   );
 }
