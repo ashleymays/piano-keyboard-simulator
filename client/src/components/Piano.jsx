@@ -1,5 +1,5 @@
-import PianoKey from './PianoKey';
-import pianoKeys from '../data/pianoKeys';
+import PianoKey from "./PianoKey";
+import pianoKeys from "../data/pianoKeys";
 
 function Piano() {
   const keys = pianoKeys.map((pianoKey) => (
