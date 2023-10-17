@@ -6,9 +6,7 @@ function PianoKeys() {
     <PianoKey key={pianoKey.computerKey} {...pianoKey} />
   ));
   return (
-    <div id="piano" className="flex-row justify-content-space-btwn">
-      {keys}
-    </div>
+    <div className="piano-keys flex-row justify-content-space-btwn">{keys}</div>
   );
 }
 

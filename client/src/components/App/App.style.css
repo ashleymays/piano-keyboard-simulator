@@ -19,13 +19,13 @@
   border-radius: 0.5rem;
 }
 
-.top-row {
+.keyboard__top-row {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1.5fr 1fr;
 }
 
-.bottom-row {
+.keyboard__bottom-row {
   height: 100%;
   margin-top: 3%;
   display: grid;
