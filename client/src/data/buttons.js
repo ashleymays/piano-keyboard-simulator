@@ -1,6 +1,6 @@
-import soften from "./controlButtonBehavior";
+import soften from "./buttonBehavior";
 
-const controlButtons = [
+const buttons = [
   {
     title: "Soften",
     onChange: soften,
@@ -13,4 +13,4 @@ const controlButtons = [
   },
 ];
 
-export default controlButtons;
+export default buttons;

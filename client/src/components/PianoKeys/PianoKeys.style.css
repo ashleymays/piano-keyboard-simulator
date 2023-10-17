@@ -2,5 +2,12 @@
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 30%);
+  border-right: 0.1rem solid rgba(0, 0, 0, 10%);
+  border-left: 0.1rem solid rgba(0, 0, 0, 10%);
+  border-top: 0.15rem solid #222329;
+  border-radius: 0 0 0.25rem 0.25rem;
   column-gap: 0.1rem;
+  box-shadow:
+    inset -0.2rem -0.2rem 4rem #aeb3c6,
+    inset 0.4rem 0.4rem 2rem #aeb3c6;
 }

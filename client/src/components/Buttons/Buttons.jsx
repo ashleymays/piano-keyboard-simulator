@@ -1,8 +1,8 @@
 import Button from "./Button";
-import controlButtons from "../../data/controlButtons";
+import buttonsData from "../../data/buttons";
 
 function Buttons() {
-  const buttons = controlButtons.map((button) => (
+  const buttons = buttonsData.map((button) => (
     <Button
       key={button.title}
       title={button.title}
