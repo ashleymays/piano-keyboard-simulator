@@ -3,7 +3,7 @@ function Button({ title, onChange }) {
     <button
       type="button"
       onChange={onChange}
-      className="control-btn flex-column align-items-center justify-space-btwn"
+      className="flex-column align-items-center justify-content-space-btwn"
     >
       <div className="control-btn__design" />
       <h5 className="control-btn__title">{title}</h5>

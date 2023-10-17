@@ -1,8 +1,9 @@
 function PianoKey({ computerKey, color }) {
+  const className = `flex-column justify-content-end ${color}-key`;
   return (
     <button
       name="piano-key"
-      className={`flex-column justify-end ${color}-key`}
+      className={className}
       type="button"
       value={computerKey}
     >
