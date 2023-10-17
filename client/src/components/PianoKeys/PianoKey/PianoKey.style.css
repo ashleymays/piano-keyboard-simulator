@@ -11,12 +11,8 @@
 .white-key {
   width: 100%;
   border-radius: 0 0 0.25rem 0.25rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(218, 221, 230, 0.25) 0%,
-    #f6f7fb 20%
-  );
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #dadce1 0%, #f0f1f6 20%);
+  background: #fff;
 }
 
 .black-key {
@@ -24,6 +20,6 @@
   height: 60%;
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 1;
-  background-color: #1d1b1c;
+  background-color: #232325;
   margin: 0 -1.25% 0;
 }

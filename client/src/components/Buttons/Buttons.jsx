@@ -1,7 +1,7 @@
 import Button from "./Button";
-import controlButtons from "../data/controlButtons";
+import controlButtons from "../../data/controlButtons";
 
-function Controls() {
+function Buttons() {
   const buttons = controlButtons.map((button) => (
     <Button
       key={button.title}
@@ -10,11 +10,8 @@ function Controls() {
     />
   ));
   return (
-    <>
-      <div className="flex-row">{buttons}</div>
-      <div className="flex-row"></div>
-    </>
+    <div className="buttons flex-row justify-content-space-btwn">{buttons}</div>
   );
 }
 
-export default Controls;
+export default Buttons;

@@ -12,6 +12,10 @@
   border-radius: 0.5rem;
 }
 
+.octave-controls__btn-arrow {
+  margin: 0.5em;
+}
+
 .octave-controls__line {
   width: 40%;
   height: 0.1rem;

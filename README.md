@@ -1,5 +1,3 @@
-![Gif of piano playing using the online piano](./client/public/images/piano-playing.gif)
-
 # Play piano in your browser.
 
 PianoSim is a virtual piano keyboard that can be played with a computer keyboard or a mouse. Play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record your playing and use it as a backing track.

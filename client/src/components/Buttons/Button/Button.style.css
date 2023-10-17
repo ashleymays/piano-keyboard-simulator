@@ -1,13 +1,8 @@
-.control-btn__design {
-  width: 4.5rem;
-  height: 4.5rem;
-  background-color: var(--black);
-  opacity: 0.225;
-  border-radius: 0.25rem;
-}
-
 .control-btn__title {
-  align-items: flex-end;
+  padding: 0.35rem 0.75rem;
+  background-color: #bfd1da;
+  color: var(--black);
+  border-radius: 0.25rem;
   text-align: center;
   margin: 0;
 }

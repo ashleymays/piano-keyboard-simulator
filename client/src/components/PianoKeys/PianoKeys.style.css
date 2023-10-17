@@ -1,3 +1,6 @@
 .piano-keys {
   height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 30%);
+  column-gap: 0.1rem;
 }
