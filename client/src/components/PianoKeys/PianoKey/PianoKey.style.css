@@ -9,7 +9,7 @@
 .white-key {
   width: 100%;
   color: var(--black-80);
-  background: #e0e2e1;
+  background: var(--white);
 }
 
 .white-key:active,
