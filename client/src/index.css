@@ -54,9 +54,9 @@ button {
 input {
   position: absolute;
   opacity: 0;
-  display: none;
-  background: none;
-  cursor: none;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 .flex-row {

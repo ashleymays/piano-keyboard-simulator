@@ -1,6 +1,6 @@
 .keyboard-container {
-  width: min(118rem, 400vw);
-  height: min(34rem, 90vh);
+  width: clamp(110rem, 75vw + 2rem, 125rem);
+  height: clamp(31rem, 32.5vh + 0.75rem, 38rem);
   margin: auto;
   position: absolute;
   top: 0;
@@ -34,4 +34,11 @@
 .keyboard__logo {
   width: auto;
   height: 55%;
+}
+
+@media screen and (width < 1024px) {
+  .keyboard-container {
+    width: 400vw;
+    height: 90vh;
+  }
 }
