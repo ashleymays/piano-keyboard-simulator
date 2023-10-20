@@ -1,8 +1,9 @@
 function Button({ title, onChange }) {
   return (
-    <button type="button" onChange={onChange} className="control-btn">
+    <label className="control-btn">
+      <input type="button" onChange={onChange} />
       {title}
-    </button>
+    </label>
   );
 }
 

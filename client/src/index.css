@@ -50,6 +50,14 @@ button {
   cursor: pointer;
 }
 
+input {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  background: none;
+  cursor: none;
+}
+
 .flex-row {
   display: flex;
 }
