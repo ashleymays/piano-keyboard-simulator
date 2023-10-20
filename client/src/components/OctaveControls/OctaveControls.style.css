@@ -12,7 +12,7 @@
 
 .octave-controls__btn-arrow {
   padding: 0.75em;
-  color: var(--black-80);
+  color: var(--black-90);
   font-weight: bold;
   font-size: var(--font-size-md);
   width: 100%;
@@ -27,7 +27,7 @@
   width: 40%;
   height: 0.1rem;
   margin-bottom: 0.05em;
-  background-color: var(--black-80);
+  background-color: var(--black-90);
 }
 
 .octave-controls__title {

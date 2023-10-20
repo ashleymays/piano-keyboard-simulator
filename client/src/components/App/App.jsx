@@ -7,7 +7,7 @@ import LoadingIcon from "../LoadingIcon";
 function App() {
   return (
     <>
-      <LoadingIcon />
+      {/* <LoadingIcon /> */}
       <section className="keyboard-container">
         <div className="keyboard">
           <div className="keyboard__top-row flex-row justify-content-space-btwn">
