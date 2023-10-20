@@ -1,6 +1,6 @@
 .keyboard-container {
-  width: min(115rem, 175vw);
-  height: min(35rem, 80vh);
+  width: min(115rem, 500vw);
+  height: min(34rem, 90vh);
   margin: auto;
   position: absolute;
   top: 0;

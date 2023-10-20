@@ -1,5 +1,6 @@
+// add another param to check if the h3 should be added in (ie if the keyboard lables should be shown)
 function PianoKey({ computerKey, color }) {
-  const className = `flex-column justify-content-end ${color}-key`;
+  const className = `piano-key flex-column align-items-center justify-content-end ${color}-key`;
   return (
     <button
       name="piano-key"

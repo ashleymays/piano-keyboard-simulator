@@ -6,18 +6,19 @@
   height: 100%;
   padding: 0.25em 0;
   background: #e0e2e1;
-  box-shadow:
-    inset -0.02rem -0.1rem 0.4rem #c5c7c7,
-    inset 0.4rem 0.1rem 0.2rem #c5c7c7;
   border-radius: 0.5rem;
+  border: 0.075rem solid var(--blue-25);
 }
 
 .octave-controls__btn-arrow {
   margin: 0.5em;
+  color: var(--black-80);
+  font-weight: bold;
+  font-size: var(--font-size-md);
 }
 
 .octave-controls__line {
   width: 40%;
   height: 0.1rem;
-  background-color: var(--black);
+  background-color: var(--black-80);
 }

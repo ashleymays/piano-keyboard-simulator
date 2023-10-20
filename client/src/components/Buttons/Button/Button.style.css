@@ -1,8 +1,9 @@
-.control-btn__title {
-  padding: 0.35rem 0.75rem;
+.control-btn {
+  padding: 0.45rem 1.125rem;
   background-color: #bfd1da;
   color: var(--black);
   border-radius: 0.25rem;
   text-align: center;
   margin: 0;
+  font-size: var(--font-size-base);
 }

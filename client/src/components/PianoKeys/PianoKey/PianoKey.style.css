@@ -1,25 +1,26 @@
-.black-key,
-.white-key {
-  justify-content: flex-end;
+.piano-key {
   cursor: pointer;
-  padding-bottom: 10%;
+  padding-bottom: 1em;
   text-transform: uppercase;
-  font-size: 0;
-  font-family: inherit;
+  border: 0.1rem solid var(--blue-25);
+  font-size: var(--font-size-md);
 }
 
 .white-key {
   width: 100%;
-  border-radius: 0 0 0.25rem 0.25rem;
-  /* background: linear-gradient(to bottom, #dadce1 0%, #f0f1f6 20%); */
-  background: #d9dde9;
+  color: var(--black-80);
+  background: #e0e2e1;
+}
+
+.white-key > h .white-key:active {
+  background: grey;
 }
 
 .black-key {
   width: 40%;
   height: 60%;
-  border-radius: 0 0 0.5rem 0.5rem;
   z-index: 1;
   background-color: #222329;
   margin: 0 -1.25% 0;
+  color: var(--light-blue);
 }
