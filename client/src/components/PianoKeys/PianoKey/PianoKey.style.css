@@ -2,7 +2,7 @@
   cursor: pointer;
   padding-bottom: 1em;
   text-transform: uppercase;
-  border: 0.1rem solid var(--blue-25);
+  border: 0.1rem solid var(--dark-blue-25);
   font-size: var(--font-size-md);
 }
 
@@ -12,15 +12,17 @@
   background: #e0e2e1;
 }
 
-.white-key:active {
-  background: grey;
+.white-key:active,
+.black-key:active {
+  background: var(--gray);
+  color: var(--black-80);
 }
 
 .black-key {
   width: 40%;
   height: 60%;
   z-index: 1;
-  background-color: #222329;
+  background: var(--dark-blue);
   margin: 0 -1.25% 0;
   color: var(--light-blue);
 }

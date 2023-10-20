@@ -1,8 +1,10 @@
 :root {
   --black: rgba(21, 25, 29, 100%);
   --black-80: rgba(21, 25, 29, 90%);
-  --blue-25: rgba(34, 35, 41, 25%);
+  --dark-blue: rgba(34, 35, 41, 100%);
+  --dark-blue-25: rgba(34, 35, 41, 25%);
   --light-blue: rgba(191, 209, 218, 100%);
+  --gray: rgba(175, 175, 175, 100%);
   --font-size-base: clamp(0.88rem, 0.26vw + 0.8rem, 1.04rem);
   --font-size-md: clamp(1.3rem, 0.44vw + 1.19rem, 1.54rem);
   --font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);

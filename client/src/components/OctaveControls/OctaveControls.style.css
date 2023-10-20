@@ -7,7 +7,7 @@
   padding: 0.25em 0;
   background: #e0e2e1;
   border-radius: 0.5rem;
-  border: 0.075rem solid var(--blue-25);
+  border: 0.075rem solid var(--dark-blue-25);
 }
 
 .octave-controls__btn-arrow {
