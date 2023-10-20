@@ -35,38 +35,10 @@ body {
   overflow-y: hidden;
 }
 
-h2,
-h3,
 p,
 button {
   font-family: inherit;
   font-weight: 400;
-}
-
-h2,
-h3 {
-  color: var(--black);
-}
-
-h2 {
-  font-size: var(--font-size-lg);
-}
-
-h3 {
-  font-size: var(--font-size-md);
-}
-
-p {
-  font-size: var(--font-size-base);
-  color: var(--black-90);
-}
-
-input {
-  position: absolute;
-  opacity: 0;
-  display: none;
-  cursor: none;
-  background: none;
 }
 
 button {
@@ -87,10 +59,6 @@ button {
 
 .align-items-center {
   align-items: center;
-}
-
-.align-items-end {
-  align-items: flex-end;
 }
 
 .justify-content-space-btwn {

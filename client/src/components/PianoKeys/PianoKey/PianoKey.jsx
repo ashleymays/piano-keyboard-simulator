@@ -1,4 +1,4 @@
-// add another param to check if the h3 should be added in (ie if the keyboard lables should be shown)
+// add another param to check if the inner text should be added in (ie if the keyboard lables should be shown)
 function PianoKey({ computerKey, color }) {
   const className = `piano-key flex-column align-items-center justify-content-end ${color}-key`;
   return (

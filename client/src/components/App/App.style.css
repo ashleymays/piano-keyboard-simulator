@@ -1,5 +1,5 @@
 .keyboard-container {
-  width: min(115rem, 500vw);
+  width: min(118rem, 400vw);
   height: min(34rem, 90vh);
   margin: auto;
   position: absolute;
@@ -16,7 +16,7 @@
   padding: 2.5%;
   width: 100%;
   height: 100%;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
 }
 

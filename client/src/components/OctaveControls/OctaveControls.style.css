@@ -22,3 +22,8 @@
   height: 0.1rem;
   background-color: var(--black-80);
 }
+
+.octave-controls__title {
+  font-size: var(--font-size-base);
+  color: var(--black-90);
+}

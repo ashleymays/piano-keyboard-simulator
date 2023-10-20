@@ -12,7 +12,7 @@
   background: #e0e2e1;
 }
 
-.white-key > h .white-key:active {
+.white-key:active {
   background: grey;
 }
 

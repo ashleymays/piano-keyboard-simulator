@@ -10,7 +10,7 @@ function OctaveControls() {
           &darr;
         </button>
       </div>
-      <p>Octave</p>
+      <p className="octave-controls__title">Octave</p>
     </div>
   );
 }
