@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PianoKey from "./PianoKey";
 import pianoKeys from "../../data/pianoKeys";
-import { playNote, endNote } from "./pianoFunctions";
+import { playNote, endNote } from "./PianoKeys.functions";
 
 function PianoKeys() {
   const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);

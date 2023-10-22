@@ -1,4 +1,4 @@
-import { handleOctaveUp, handleOctaveDown } from "./octaveControlFunctions";
+import { handleOctaveUp, handleOctaveDown } from "./OctaveControls.functions";
 
 function OctaveControls() {
   return (
