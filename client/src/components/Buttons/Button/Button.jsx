@@ -1,7 +1,12 @@
-function Button({ title, onChange }) {
+function Button({ title, isDefault }) {
   return (
     <label className="control-btn-container">
-      <input type="checkbox" onChange={onChange} />
+      <input
+        type="radio"
+        name="instrument"
+        value={title}
+        defaultChecked={isDefault}
+      />
       <span className="control-btn">{title}</span>
     </label>
   );

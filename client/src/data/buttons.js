@@ -1,15 +1,15 @@
-import soften from "./buttonBehavior";
-
 const buttons = [
   {
-    title: "Soften",
-    onChange: soften,
+    title: "Acoustic Grand",
+    isDefault: true,
   },
   {
-    title: "Sustain",
+    title: "Electric Piano",
+    isDefault: false,
   },
   {
-    title: "Keyboard",
+    title: "8-Bit",
+    isDefault: false,
   },
 ];
 
