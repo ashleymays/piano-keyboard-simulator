@@ -7,7 +7,8 @@ import LoadingIcon from "../LoadingIcon";
 function App() {
   return (
     <>
-      {/* <LoadingIcon /> */}
+      <LoadingIcon isAppLoading={false} />{" "}
+      {/* isAppLoading should be a Redux state */}
       <section className="keyboard-container">
         <div className="keyboard">
           <div className="keyboard__top-row flex-row justify-content-space-btwn">
