@@ -7,7 +7,7 @@ import LoadingIcon from "../LoadingIcon";
 function App() {
   return (
     <>
-      <LoadingIcon isAppLoading={false} />{" "}
+      <LoadingIcon isAppLoading={false} />
       {/* isAppLoading should be a Redux state */}
       <section className="keyboard-container">
         <div className="keyboard">

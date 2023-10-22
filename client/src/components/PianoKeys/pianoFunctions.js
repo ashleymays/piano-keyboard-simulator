@@ -2,7 +2,7 @@ import pianoKeys from "../../data/pianoKeys";
 
 const audioContext = new AudioContext();
 const destination = audioContext.createMediaStreamDestination();
-let currentlyPressedKeys = [];
+const currentlyPressedKeys = [];
 const gainNodesList = [];
 const NOTE_DURATION_IN_SECONDS = 10;
 
@@ -98,9 +98,8 @@ function removePianoKeyColor(computerKey) {
 }
 
 function removeComputerKeyFromPressedKeysArray(computerKey) {
-  currentlyPressedKeys = currentlyPressedKeys.filter(
-    (char) => char !== computerKey,
-  );
+  const index = currentlyPressedKeys.indexOf(computerKey);
+  currentlyPressedKeys.splice(index, 1);
 }
 
 function endNoteAtPitch(pitch) {
