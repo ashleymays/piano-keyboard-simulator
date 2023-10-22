@@ -28,6 +28,10 @@ function PianoKeys() {
     }
   };
 
+  const handleMouseLeave = (event) => {
+    setIsPianoKeyDown(false);
+  };
+
   const isGlissandoEffectInUse = (event) => {
     const PIANO_KEY_NAME = "piano-key";
     const currentElementName = event.target.name;
@@ -54,6 +58,7 @@ function PianoKeys() {
       onMouseUp={handleMouseUpAndTouchEnd}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onMouseLeave={handleMouseLeave}
       onTouchStart={handleMouseDownAndTouchStart}
       onTouchEnd={handleMouseUpAndTouchEnd}
     >
