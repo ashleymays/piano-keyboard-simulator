@@ -1,5 +1,5 @@
 .keyboard-container {
-  width: clamp(107rem, 74vw + 2rem, 123rem);
+  width: clamp(110rem, 75vw + 2rem, 125rem);
   height: clamp(31rem, 32.5vh + 0.75rem, 38rem);
   margin: auto;
   position: absolute;
@@ -13,7 +13,7 @@
   display: inline-block;
   touch-action: manipulation;
   background: #e1e3e3;
-  padding: 2.5%;
+  padding: 2.75%;
   width: 100%;
   height: 100%;
   box-shadow: 0 1.625rem 0 rgba(0, 0, 0, 0.2);
