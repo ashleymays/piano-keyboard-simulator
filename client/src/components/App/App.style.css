@@ -35,10 +35,3 @@
   width: auto;
   height: 55%;
 }
-
-@media screen and (width < 1024px) {
-  .keyboard-container {
-    width: 400vw;
-    height: 90vh;
-  }
-}

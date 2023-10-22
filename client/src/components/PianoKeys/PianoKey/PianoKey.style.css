@@ -13,7 +13,8 @@
 }
 
 .white-key:active,
-.black-key:active {
+.black-key:active,
+.pressed-piano-key {
   background: var(--gray);
   color: var(--black-90);
 }
