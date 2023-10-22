@@ -7,7 +7,7 @@ const gainNodesList = [];
 const NOTE_DURATION_IN_SECONDS = 10;
 
 export function playNote(event) {
-  event.preventDefault();
+  // event.preventDefault();
   const computerKey = getComputerKeyByEvent(event);
 
   if (canPlayNote(computerKey)) {
@@ -72,7 +72,7 @@ function addPianoKeyColor(computerKey) {
 }
 
 export function endNote(event) {
-  event.preventDefault();
+  // event.preventDefault();
   const computerKey = getComputerKeyByEvent(event);
 
   if (canStopNote(computerKey)) {

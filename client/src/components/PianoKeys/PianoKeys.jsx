@@ -4,15 +4,15 @@ import pianoKeys from "../../data/pianoKeys";
 import { playNote, endNote } from "./pianoFunctions";
 
 function PianoKeys() {
-  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [isKeyDown, setIsKeyDown] = useState(false);
 
-  const handleMouseDown = (event) => {
-    setIsMouseDown(true);
+  const handleMouseDownAndTouchStart = (event) => {
+    setIsKeyDown(true);
     playNote(event);
   };
 
-  const handleMouseUp = (event) => {
-    setIsMouseDown(false);
+  const handleMouseUpAndTouchEnd = (event) => {
+    setIsKeyDown(false);
     endNote(event);
   };
 
@@ -31,20 +31,16 @@ function PianoKeys() {
   const isGlissandoEffectInUse = (event) => {
     const PIANO_KEY_NAME = "piano-key";
     const currentElementName = event.target.name;
-    return isMouseDown && PIANO_KEY_NAME === currentElementName;
+    return isKeyDown && PIANO_KEY_NAME === currentElementName;
   };
 
   useEffect(() => {
     document.addEventListener("keydown", playNote);
     document.addEventListener("keyup", endNote);
-    document.addEventListener("touchstart", playNote);
-    document.addEventListener("touchend", endNote);
 
     return () => {
       document.removeEventListener("keydown", playNote);
       document.removeEventListener("keyup", endNote);
-      document.removeEventListener("touchstart", playNote);
-      document.removeEventListener("touchend", endNote);
     };
   }, []);
 
@@ -54,10 +50,12 @@ function PianoKeys() {
   return (
     <div
       className="piano-keys flex-row justify-content-space-btwn"
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
+      onMouseDown={handleMouseDownAndTouchStart}
+      onMouseUp={handleMouseUpAndTouchEnd}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onTouchStart={handleMouseDownAndTouchStart}
+      onTouchEnd={handleMouseUpAndTouchEnd}
     >
       {keys}
     </div>
