@@ -1,7 +1,11 @@
 .keyboard-container {
   width: clamp(110rem, 75vw + 2rem, 125rem);
   height: clamp(31rem, 32.5vh + 0.75rem, 38rem);
+
+  /* horizontally center */
   margin: auto;
+
+  /* vertically center */
   position: absolute;
   top: 0;
   bottom: 0;

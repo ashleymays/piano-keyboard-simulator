@@ -4,15 +4,15 @@ import pianoKeys from "../../data/pianoKeys";
 import { playNote, endNote } from "./pianoFunctions";
 
 function PianoKeys() {
-  const [isKeyDown, setIsKeyDown] = useState(false);
+  const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
 
   const handleMouseDownAndTouchStart = (event) => {
-    setIsKeyDown(true);
+    setIsPianoKeyDown(true);
     playNote(event);
   };
 
   const handleMouseUpAndTouchEnd = (event) => {
-    setIsKeyDown(false);
+    setIsPianoKeyDown(false);
     endNote(event);
   };
 
@@ -31,7 +31,7 @@ function PianoKeys() {
   const isGlissandoEffectInUse = (event) => {
     const PIANO_KEY_NAME = "piano-key";
     const currentElementName = event.target.name;
-    return isKeyDown && PIANO_KEY_NAME === currentElementName;
+    return isPianoKeyDown && PIANO_KEY_NAME === currentElementName;
   };
 
   useEffect(() => {
