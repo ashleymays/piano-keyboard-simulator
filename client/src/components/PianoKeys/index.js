@@ -1,4 +1,4 @@
-import "./PianoKeys.style.css";
+import './PianoKeys.style.css';
 
-export { default } from "./PianoKeys";
-export * from "./PianoKeys";
+export { default } from './PianoKeys';
+export * from './PianoKeys';

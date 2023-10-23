@@ -1,81 +1,103 @@
 :root {
-  --black: rgba(21, 25, 29, 100%);
-  --black-90: rgba(21, 25, 29, 90%);
-  --dark-blue: rgba(34, 35, 41, 100%);
-  --dark-blue-25: rgba(34, 35, 41, 25%);
-  --light-blue: rgba(191, 209, 218, 100%);
-  --gray: rgba(175, 175, 175, 100%);
-  --white: rgba(224, 226, 225, 100%);
-  --font-size-base: clamp(0.5rem, 0.01vw + 1rem, 10rem);
-  --font-size-md: clamp(1.3rem, 0.44vw + 1.19rem, 1.54rem);
-  --font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);
-  --font-main: "Noto Sans Mono", monospace;
+    --black: rgba(21, 25, 29, 100%);
+    --black-90: rgba(21, 25, 29, 90%);
+    --dark-blue: rgba(34, 35, 41, 100%);
+    --dark-blue-25: rgba(34, 35, 41, 25%);
+    --light-blue: rgba(191, 209, 218, 100%);
+    --gray: rgba(175, 175, 175, 100%);
+    --white: rgba(224, 226, 225, 100%);
+    --font-size-base: clamp(0.5rem, 0.01vw + 1rem, 10rem);
+    --font-size-md: clamp(1.3rem, 0.44vw + 1.19rem, 1.54rem);
+    --font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);
+    --font-main: 'Noto Sans Mono', monospace;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0;
-  width: 100%;
+    margin: 0;
+    width: 100%;
 }
 
 html {
-  font-size: 10px;
-  height: 100%;
+    font-size: 10px;
+    height: 100%;
 }
 
 body {
-  background-color: #c0c0c0;
-  height: 100%;
-  font-family: var(--font-main);
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: visible;
-  overflow-y: hidden;
+    background: #cccccc;
+    height: 100%;
+    font-family: var(--font-main);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: visible;
+    overflow-y: hidden;
 }
 
 p,
 button {
-  font-family: inherit;
-  font-weight: 400;
+    font-family: inherit;
+    font-weight: 400;
 }
 
 button {
-  outline: none;
-  border: transparent;
-  background: transparent;
-  cursor: pointer;
+    outline: none;
+    border: transparent;
+    background: transparent;
+    cursor: pointer;
 }
 
 input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .flex-row {
-  display: flex;
+    display: flex;
 }
 
 .flex-column {
-  display: flex;
-  flex-flow: column;
+    display: flex;
+    flex-flow: column;
 }
 
 .align-items-center {
-  align-items: center;
+    align-items: center;
 }
 
 .justify-content-space-btwn {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 .justify-content-end {
-  justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+.center-self {
+    /* horizontally center */
+    margin: auto;
+
+    /* vertically center */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.overlay {
+    background: var(--black-90);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
 }

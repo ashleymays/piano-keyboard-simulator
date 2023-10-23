@@ -7,6 +7,7 @@ Special thanks to Milan Maheshwari for their Skeumorphic Keyboard design on Figm
 Note: As of 16 January 2023, this website only works for desktops and tablets.
 
 ## How to Use
+
 Clone the repository:
 
 `git clone https://github.com/ashleymays/online-piano.git`
@@ -22,4 +23,5 @@ In a separate terminal, use the following command to start the client:
 The app will open in a browser window.
 
 ## License
+
 This project uses the MIT License. [Read more](docs/LICENSE.md).

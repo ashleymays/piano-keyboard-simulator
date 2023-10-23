@@ -1,4 +1,4 @@
-import "./OctaveControls.style.css";
+import './OctaveControls.style.css';
 
-export { default } from "./OctaveControls";
-export * from "./OctaveControls";
+export { default } from './OctaveControls';
+export * from './OctaveControls';

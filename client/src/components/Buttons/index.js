@@ -1,4 +1,4 @@
-import "./Buttons.style.css";
+import './Buttons.style.css';
 
-export { default } from "./Buttons";
-export * from "./Buttons";
+export { default } from './Buttons';
+export * from './Buttons';

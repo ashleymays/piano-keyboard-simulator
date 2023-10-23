@@ -1,4 +1,4 @@
-import "./LoadingIcon.style.css";
+import './LoadingIcon.style.css';
 
-export { default } from "./LoadingIcon";
-export * from "./LoadingIcon";
+export { default } from './LoadingIcon';
+export * from './LoadingIcon';
