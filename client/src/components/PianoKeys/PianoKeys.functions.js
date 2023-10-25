@@ -102,7 +102,7 @@ function endNoteAtPitch(pitch) {
 
 function getComputerKeyByEvent(event) {
     const computerKey = event.key || event.target.value;
-    return computerKey.toLowerCase();
+    return String(computerKey).toLowerCase();
 }
 
 function getPitchByComputerKey(computerKey) {
