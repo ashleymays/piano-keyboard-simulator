@@ -32,7 +32,6 @@ async function getInstrumentAudioFiles(instrument) {
 
 function getAudioBuffersFromAudioFiles(audioFiles) {
     const audioBuffers = [];
-    
 
     for (let audioFileName in audioFiles) {
         convertBase64ToArrayBuffer(audioFiles, audioFileName);
@@ -43,7 +42,7 @@ function getAudioBuffersFromAudioFiles(audioFiles) {
 function convertBase64ToArrayBuffer(audioFiles, audioFileName) {
     let undecodedAudio;
     let pitch;
-    
+
     const request = new XMLHttpRequest();
     const base64String = `data:application/octet;base64,${audioFiles[audioFileName]}`;
     request.open('GET', base64String);

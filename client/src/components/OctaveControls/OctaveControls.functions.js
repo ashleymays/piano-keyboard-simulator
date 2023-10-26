@@ -7,17 +7,17 @@ export function handleOctaveUp() {
     }
 }
 
-function canRaiseOctave() {
-    const HIGHEST_OCTAVE = 7;
-    const highestPianoKey = pianoKeys[pianoKeys.length - 1];
-    return highestPianoKey.octave < HIGHEST_OCTAVE;
-}
-
 export function handleOctaveDown() {
     if (canLowerOctave()) {
         const INCREMENT_VALUE = -1;
         updateOctaves(INCREMENT_VALUE);
     }
+}
+
+function canRaiseOctave() {
+    const HIGHEST_OCTAVE = 7;
+    const highestPianoKey = pianoKeys[pianoKeys.length - 1];
+    return highestPianoKey.octave < HIGHEST_OCTAVE;
 }
 
 function canLowerOctave() {

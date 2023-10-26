@@ -3,6 +3,14 @@ import PianoKey from './PianoKey';
 import pianoKeys from '../../data/pianoKeys';
 import { playNote, endNote } from './PianoKeys.functions';
 
+function getPianoKeysAsArray() {
+    var pianoKeyComponents = [];
+    pianoKeys.forEach((pianoKeyInfo, computerKey) =>
+        pianoKeyComponents.push(<PianoKey key={computerKey} {...pianoKeyInfo} />)
+    );
+    return pianoKeyComponents;
+}
+
 function PianoKeys() {
     const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
 
@@ -48,7 +56,7 @@ function PianoKeys() {
         };
     }, []);
 
-    const keys = pianoKeys.map((pianoKey) => <PianoKey key={pianoKey.computerKey} {...pianoKey} />);
+    const keys = getPianoKeysAsArray();
     return (
         <div
             className="piano-keys flex-row justify-content-space-btwn"

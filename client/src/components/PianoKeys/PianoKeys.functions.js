@@ -10,18 +10,15 @@ export function playNote(event) {
     const computerKey = getComputerKeyByEvent(event);
 
     if (canPlayNote(computerKey)) {
-        // const pitch = getPitchByComputerKey(computerKey);
-        // playNoteAtPitch(pitch);
+        const pitch = getPitchByComputerKey(computerKey);
+        playNoteAtPitch(pitch);
         addComputerKeyToPressedKeysArray(computerKey);
         addPianoKeyColor(computerKey);
     }
 }
 
 function canPlayNote(computerKey) {
-    return (
-        pianoKeys.some((pianoKey) => pianoKey.computerKey === computerKey) &&
-        !currentlyPressedKeys.includes(computerKey)
-    );
+    return pianoKeys.has(computerKey) && !currentlyPressedKeys.includes(computerKey);
 }
 
 function playNoteAtPitch(pitch) {
@@ -71,19 +68,16 @@ function addPianoKeyColor(computerKey) {
 export function endNote(event) {
     const computerKey = getComputerKeyByEvent(event);
 
-    if (canStopNote(computerKey)) {
-        // const pitch = getPitchByComputerKey(computerKey);
+    if (canEndNote(computerKey)) {
+        const pitch = getPitchByComputerKey(computerKey);
         removePianoKeyColor(computerKey);
         removeComputerKeyFromPressedKeysArray(computerKey);
-        // endNoteAtPitch(pitch);
+        endNoteAtPitch(pitch);
     }
 }
 
-function canStopNote(computerKey) {
-    return (
-        pianoKeys.some((pianoKey) => pianoKey.computerKey === computerKey) &&
-        currentlyPressedKeys.includes(computerKey)
-    );
+function canEndNote(computerKey) {
+    return pianoKeys.has(computerKey) && currentlyPressedKeys.includes(computerKey);
 }
 
 function removePianoKeyColor(computerKey) {

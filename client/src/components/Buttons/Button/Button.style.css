@@ -1,8 +1,9 @@
 .control-btn {
     padding: 0.45em 1.125em;
-    background: var(--light-blue);
-    color: var(--black);
+    background: var(--blue);
+    color: var(--white);
     border-radius: 0.25em;
+    border: 0.275em solid rgba(140, 162, 175, 100%);
     text-align: center;
     margin: 0;
     font-size: var(--font-size-base);
@@ -11,5 +12,5 @@
 }
 
 .control-btn-container input:checked ~ .control-btn {
-    filter: brightness(80%);
+    filter: brightness(50%);
 }
