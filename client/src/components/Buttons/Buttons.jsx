@@ -6,12 +6,12 @@ import Button from './Button';
 import buttonsData from '../../data/buttons';
 
 function Buttons() {
-    const { setBuffers, audioContext, isAppLoading, setIsAppLoading } = useContext(MainContext);
+    const { setBuffers, isAppLoading, setIsAppLoading } = useContext(MainContext);
 
     const handleInstrumentAudio = async (title) => {
         try {
             setIsAppLoading(true);
-            const audioBuffers = await getInstrumentAudioBuffers(title, audioContext);
+            const audioBuffers = await getInstrumentAudioBuffers(title);
             setBuffers({ ...audioBuffers });
         } catch (error) {
             throw error;

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export async function getInstrumentAudioBuffers(instrument, audioContext) {
+export async function getInstrumentAudioBuffers(instrument) {
     try {
         const audioFiles = await getInstrumentAudioFiles(instrument);
-        const audioBuffers = await getAudioBuffersFromAudioFiles(audioFiles, audioContext);
+        const audioBuffers = await getAudioBuffersFromAudioFiles(audioFiles);
         return audioBuffers;
     } catch (error) {
         throw error;
@@ -32,7 +32,7 @@ async function getInstrumentAudioFiles(instrument) {
     }
 }
 
-async function getAudioBuffersFromAudioFiles(audioFiles, audioContext) {
+async function getAudioBuffersFromAudioFiles(audioFiles) {
     try {
         const audioBuffers = {};
         let base64String;
@@ -43,7 +43,7 @@ async function getAudioBuffersFromAudioFiles(audioFiles, audioContext) {
         for (let audioFileName in audioFiles) {
             base64AudioData = audioFiles[audioFileName];
             base64String = `data:application/octet;base64,${base64AudioData}`;
-            audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
+            audioData = await convertBase64ToArrayBuffer(base64String);
             pitch = getPitchFromFileName(audioFileName);
             audioBuffers[pitch] = audioData;
         }
@@ -53,11 +53,12 @@ async function getAudioBuffersFromAudioFiles(audioFiles, audioContext) {
     }
 }
 
-async function convertBase64ToArrayBuffer(base64String, audioContext) {
+async function convertBase64ToArrayBuffer(base64String) {
     try {
+        const audioContext = new AudioContext();
         let undecodedAudio = await fetch(base64String);
         let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
-        return audioContext.current.decodeAudioData(undecodedAudioBuffer);
+        return audioContext.decodeAudioData(undecodedAudioBuffer);
     } catch (error) {
         throw error;
     }

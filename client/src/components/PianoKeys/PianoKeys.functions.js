@@ -3,31 +3,50 @@ import pianoKeys from '../../data/pianoKeys';
 const audioContext = new AudioContext();
 const destination = audioContext.createMediaStreamDestination();
 const currentlyPressedKeys = [];
-const gainNodesList = [];
+const gainNodesUsed = {};
 
-export function playNote(event, buffers, audioContext) {
+/**
+ * Plays the note at a computer key/piano key if it is allowed to be played.
+ */
+export function playNote(event, buffers) {
     const computerKey = getComputerKeyByEvent(event);
 
     if (canPlayNote(computerKey)) {
         const pitch = getPitchByComputerKey(computerKey);
-        playNoteAtPitch(pitch, buffers, audioContext);
+        playNoteAtPitch(pitch, buffers);
         addComputerKeyToPressedKeysArray(computerKey);
         addPianoKeyColor(computerKey);
     }
 }
 
+/**
+ * Check if the user can play the note at the desired computer key.
+ */
 function canPlayNote(computerKey) {
     return pianoKeys.has(computerKey) && !currentlyPressedKeys.includes(computerKey);
 }
 
-function playNoteAtPitch(pitch, buffers, audioContext) {
-    const gainNode = getNewGainNode();
+/**
+ * Plays the note at a pitch.
+ * Uses the Web Audio API to set the volume of the audio and play the sound to the user's output speakers.
+ */
+function playNoteAtPitch(pitch, buffers) {
+    const gainNode = getNewGainNode(audioContext);
     const bufferSource = getNewBufferSource(pitch, buffers);
     connectToOutputSpeakers(gainNode, bufferSource);
     bufferSource.start(audioContext.currentTime);
     addGainNodeToList(gainNode, pitch);
 }
 
+function getGainNode(pitch) {
+    if (gainNodesUsed[pitch]) {
+    }
+}
+
+/**
+ * Creates a new gain node. We use it to set the volume/gain of the audio.
+ * @returns { AudioNode }
+ */
 function getNewGainNode() {
     const newGainNode = audioContext.createGain();
     const NOTE_VOLUME = 1;
@@ -40,20 +59,31 @@ function getNewGainNode() {
     return newGainNode;
 }
 
+/**
+ * Creates a new buffer source. We use it to play the audio defined by the audio buffer.
+ * @returns { AudioBufferSourceNode }
+ */
 function getNewBufferSource(pitch, buffers) {
     const newBufferSource = audioContext.createBufferSource();
-    newBufferSource.buffer = buffers[pitch];
+    const currentNoteAudioBuffer = buffers[pitch];
+    newBufferSource.buffer = currentNoteAudioBuffer;
     return newBufferSource;
 }
 
+/**
+ * Hook the buffer source and gain node up to the user's output speakers so they can hear the audio.
+ */
 function connectToOutputSpeakers(gainNode, bufferSource) {
     bufferSource.connect(gainNode);
     gainNode.connect(destination);
     gainNode.connect(audioContext.destination);
 }
 
+/**
+ * Keep track of the gain nodes we've used
+ */
 function addGainNodeToList(gainNode, pitch) {
-    gainNodesList[pitch] = gainNode;
+    gainNodesUsed[pitch] = gainNode;
 }
 
 function addComputerKeyToPressedKeysArray(computerKey) {
@@ -91,7 +121,7 @@ function removeComputerKeyFromPressedKeysArray(computerKey) {
 }
 
 function endNoteAtPitch(pitch) {
-    gainNodesList[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
+    gainNodesUsed[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
 }
 
 function getComputerKeyByEvent(event) {

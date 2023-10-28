@@ -14,11 +14,11 @@ function getPianoKeysAsArray() {
 
 function PianoKeys() {
     const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
-    const { buffers, audioContext, isAppLoading } = useContext(MainContext);
+    const { buffers, isAppLoading } = useContext(MainContext);
 
     const handleKeyDown = useCallback((event) => {
         if (!isAppLoading) {
-            playNote(event, buffers, audioContext.current);
+            playNote(event, buffers);
         }
     });
 
@@ -30,7 +30,7 @@ function PianoKeys() {
 
     const handleMouseDownAndTouchStart = useCallback((event) => {
         setIsPianoKeyDown(true);
-        playNote(event, buffers, audioContext.current);
+        playNote(event, buffers);
     });
 
     const handleMouseUpAndTouchEnd = useCallback((event) => {
@@ -40,7 +40,7 @@ function PianoKeys() {
 
     const handleMouseOver = useCallback((event) => {
         if (isGlissandoEffectInUse(event)) {
-            playNote(event, buffers, audioContext.current);
+            playNote(event, buffers);
         }
     });
 
