@@ -14,6 +14,7 @@ function Buttons() {
             const audioBuffers = await getInstrumentAudioBuffers(title);
             setBuffers({ ...audioBuffers });
         } catch (error) {
+            console.log('Could not load audio.');
             throw error;
         } finally {
             setIsAppLoading(false);

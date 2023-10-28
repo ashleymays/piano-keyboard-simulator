@@ -9,6 +9,7 @@ const gainNodesUsed = {};
  * Plays the note at a computer key/piano key if it is allowed to be played.
  */
 export function playNote(event, buffers) {
+    audioContext.resume();
     const computerKey = getComputerKeyByEvent(event);
 
     if (canPlayNote(computerKey)) {
@@ -31,31 +32,22 @@ function canPlayNote(computerKey) {
  * Uses the Web Audio API to set the volume of the audio and play the sound to the user's output speakers.
  */
 function playNoteAtPitch(pitch, buffers) {
-    const gainNode = getNewGainNode(audioContext);
+    const gainNode = getNewGainNode();
     const bufferSource = getNewBufferSource(pitch, buffers);
     connectToOutputSpeakers(gainNode, bufferSource);
     bufferSource.start(audioContext.currentTime);
     addGainNodeToList(gainNode, pitch);
 }
 
-function getGainNode(pitch) {
-    if (gainNodesUsed[pitch]) {
-    }
-}
-
 /**
- * Creates a new gain node. We use it to set the volume/gain of the audio.
+ * Gets a new gain node.
+ * Sets the initial volume of the note.
  * @returns { AudioNode }
  */
 function getNewGainNode() {
     const newGainNode = audioContext.createGain();
     const NOTE_VOLUME = 1;
-    const NOTE_DURATION_IN_SECONDS = 10;
     newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
-    newGainNode.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + NOTE_DURATION_IN_SECONDS
-    );
     return newGainNode;
 }
 
@@ -80,21 +72,37 @@ function connectToOutputSpeakers(gainNode, bufferSource) {
 }
 
 /**
- * Keep track of the gain nodes we've used
+ * Keep track of the gain nodes we've created/used.
+ * @param { Audio Node }
+ * @param { string }
  */
 function addGainNodeToList(gainNode, pitch) {
     gainNodesUsed[pitch] = gainNode;
 }
 
+/**
+ * Keep track of the notes the user is playing at the moment.
+ * Prevents the note from starting over when the user holds a key down, which is default behavior for the keydown event.
+ * @param { string }
+ */
 function addComputerKeyToPressedKeysArray(computerKey) {
     currentlyPressedKeys.push(computerKey);
 }
 
+/**
+ * Sets the background color of the piano key being played.
+ * Needed for the keydown event.
+ * @param { string }
+ */
 function addPianoKeyColor(computerKey) {
     const pianoKeyElement = document.querySelector(`button[value="${computerKey}"]`);
     pianoKeyElement.classList.add('pressed-piano-key');
 }
 
+/**
+ * Stops playing a note.
+ * @param { Event }
+ */
 export function endNote(event) {
     const computerKey = getComputerKeyByEvent(event);
 
@@ -106,29 +114,61 @@ export function endNote(event) {
     }
 }
 
+/**
+ * Checks if the note can stop being played.
+ * Prevents errors when the user presses a key on their computer keyboard that is not used for the piano keyboard.
+ * @param { string }
+ * @returns { boolean }
+ */
 function canEndNote(computerKey) {
     return pianoKeys.has(computerKey) && currentlyPressedKeys.includes(computerKey);
 }
 
+/**
+ * Resets the background color of the piano key being played.
+ * Needed for the keyup event.
+ * @param { string }
+ */
 function removePianoKeyColor(computerKey) {
     const pianoKeyElement = document.querySelector(`button[value="${computerKey}"]`);
     pianoKeyElement.classList.remove('pressed-piano-key');
 }
 
+/**
+ * Keep track of the notes the user is playing at the moment.
+ * @param { string }
+ */
 function removeComputerKeyFromPressedKeysArray(computerKey) {
     const index = currentlyPressedKeys.indexOf(computerKey);
     currentlyPressedKeys.splice(index, 1);
 }
 
+/**
+ * Lowers the volume of the gain node down to imperceptible volume after a second.
+ * Makes the note ending sound natural.
+ * @param { string }
+ */
 function endNoteAtPitch(pitch) {
-    gainNodesUsed[pitch].gain.setValueAtTime(0.01, audioContext.currentTime);
+    const NOTE_DURATION = 0.1;
+    const currentNoteGainNode = gainNodesUsed[pitch];
+    currentNoteGainNode.gain.setValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
 }
 
+/**
+ * Get the computer key from any kind of DOM event.
+ * @param { Event }
+ * @returns { string }
+ */
 function getComputerKeyByEvent(event) {
     const computerKey = event.key || event.target.value;
     return String(computerKey).toLowerCase();
 }
 
+/**
+ * Get the pitch of the note by the computer key.
+ * @param { string }
+ * @returns { string }
+ */
 function getPitchByComputerKey(computerKey) {
     const pianoKey = pianoKeys.get(computerKey);
     const noteName = pianoKey.noteName;

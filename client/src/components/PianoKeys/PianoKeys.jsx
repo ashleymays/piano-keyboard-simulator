@@ -50,7 +50,7 @@ function PianoKeys() {
         }
     });
 
-    const handleMouseLeave = useCallback((event) => {
+    const handleMouseLeave = useCallback(() => {
         setIsPianoKeyDown(false);
     });
 
@@ -81,6 +81,9 @@ function PianoKeys() {
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleMouseDownAndTouchStart}
             onTouchEnd={handleMouseUpAndTouchEnd}
+            onContextMenu={(e) => {
+                e.preventDefault();
+            }}
         >
             {keys}
         </div>
