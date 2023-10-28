@@ -1,15 +1,25 @@
 import axios from 'axios';
 
+/**
+ * Get the audio for the selected instrument.
+ * @param { string }
+ * @returns { Object }
+ */
 export async function getInstrumentAudioBuffers(instrument) {
     try {
         const audioFiles = await getInstrumentAudioFiles(instrument);
-        const audioBuffers = await getAudioBuffersFromAudioFiles(audioFiles);
+        const audioBuffers = await getArrayBufferFromAudioFiles(audioFiles);
         return audioBuffers;
     } catch (error) {
         throw error;
     }
 }
 
+/**
+ * Fetch the audio for an instrument from the server in Base 64 format.
+ * @param { string }
+ * @returns { Object }
+ */
 async function getInstrumentAudioFiles(instrument) {
     try {
         const URL = '/audio';
@@ -32,7 +42,12 @@ async function getInstrumentAudioFiles(instrument) {
     }
 }
 
-async function getAudioBuffersFromAudioFiles(audioFiles) {
+/**
+ * Get the audio for the selected instrument as an object of ArrayBuffer.
+ * @param { Object }
+ * @returns { Object }
+ */
+async function getArrayBufferFromAudioFiles(audioFiles) {
     try {
         const audioBuffers = {};
         let base64String;
@@ -53,6 +68,11 @@ async function getAudioBuffersFromAudioFiles(audioFiles) {
     }
 }
 
+/**
+ * Converts a base 64 string to an array buffer.
+ * @param { string }
+ * @returns { ArrayBuffer }
+ */
 async function convertBase64ToArrayBuffer(base64String) {
     try {
         const audioContext = new AudioContext();
@@ -66,6 +86,11 @@ async function convertBase64ToArrayBuffer(base64String) {
     }
 }
 
+/**
+ * Pitch is the name of the audio file without the file extension (.mp3)
+ * @param { string }
+ * @returns { string }
+ */
 function getPitchFromFileName(audioFileName) {
     const FILE_EXTENSION = '.mp3';
     return audioFileName.slice(0, audioFileName.length - FILE_EXTENSION.length);

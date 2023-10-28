@@ -41,13 +41,16 @@ function playNoteAtPitch(pitch, buffers) {
 
 /**
  * Gets a new gain node.
- * Sets the initial volume of the note.
+ * Sets the initial volume of the note and sets it up to naturally lower in
+ * volume when the user holds the note.
  * @returns { AudioNode }
  */
 function getNewGainNode() {
     const newGainNode = audioContext.createGain();
     const NOTE_VOLUME = 1;
+    const NOTE_DURATION = 10;
     newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
+    newGainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
     return newGainNode;
 }
 
