@@ -1,27 +1,29 @@
-![Gif of piano playing using the online piano](./client/public/images/piano-playing.gif)
+![Picture of the main webpage](./pianoKeyboardSimulator.png)
 
-# Play piano in your browser.
+# Play piano right in your browser.
+Use your computer keyboard, mouse, tablet, or phone to play a virtual keyboard. Choose from three different instrument sounds and play whatever you want.
 
-PianoSim is a virtual piano keyboard that can be played with a computer keyboard or a mouse. Play one of four different instrument sounds and mimic the sustain and soften pedals on a grand piano. You can also record your playing and use it as a backing track.
+## Background
+I've been working on this since July 2022. I generally use this as a sandbox to learn new technologies. This was the first project I built with plain JavaScript, and then it was the first project I built with React. 
 
-Special thanks to Milan Maheshwari for their Skeumorphic Keyboard design on Figma.com, which this project took much of its inspiration from.
-
-Note: As of 16 January 2023, this website only works for desktops and tablets.
+Since I didn't know much about testing when I first started, there are no unit or integration tests available right now. I'll continue to work on that. This release will probably be the last, but please feel free to take the source code and do whatever you want with it (attribution would be nice, too :). 
 
 ## How to Use
+
 Clone the repository:
 
-`git clone https://github.com/ashleymays/online-piano.git`
+`git clone https://github.com/ashleymays/piano-keyboard-simulator.git`
 
 Use the following command to start the server:
 
-`npm start`
+`npm i && npm start`
 
-In a separate terminal, use the following command to start the client:
+Use the following command to start the client:
 
-`cd client && npm start`
+`cd client && npm i && npm start`
 
 The app will open in a browser window.
 
 ## License
-This project uses the MIT License. [Read more](docs/LICENSE.md).
+
+This project uses the [MIT License](docs/LICENSE.md).
