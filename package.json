@@ -1,6 +1,6 @@
 {
     "name": "piano-keyboard-simulator",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
     "main": "server/server.js",
     "private": "true",
@@ -9,7 +9,7 @@
     },
     "scripts": {
         "start": "nodemon server/server.js",
-        "build": "npm run server/server.js",
+        "build": "npm start server/server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
@@ -17,15 +17,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/ashleymays/piano-sim.git"
+        "url": "https://github.com/ashleymays/piano-keyboard-simulator.git"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/ashleymays/piano-sim/issues"
+        "url": "https://github.com/ashleymays/piano-keyboard-simulator/issues"
     },
-    "homepage": "https://github.com/ashleymays/piano-sim#readme",
+    "homepage": "https://github.com/ashleymays/piano-keyboard-simulator#readme",
     "dependencies": {
         "cors": "^2.8.5",
         "express": "^4.18.2",
