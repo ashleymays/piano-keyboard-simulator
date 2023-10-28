@@ -4,14 +4,13 @@ const audioContext = new AudioContext();
 const destination = audioContext.createMediaStreamDestination();
 const currentlyPressedKeys = [];
 const gainNodesList = [];
-const NOTE_DURATION_IN_SECONDS = 10;
 
-export function playNote(event) {
+export function playNote(event, buffers, audioContext) {
     const computerKey = getComputerKeyByEvent(event);
 
     if (canPlayNote(computerKey)) {
         const pitch = getPitchByComputerKey(computerKey);
-        playNoteAtPitch(pitch);
+        playNoteAtPitch(pitch, buffers, audioContext);
         addComputerKeyToPressedKeysArray(computerKey);
         addPianoKeyColor(computerKey);
     }
@@ -21,9 +20,9 @@ function canPlayNote(computerKey) {
     return pianoKeys.has(computerKey) && !currentlyPressedKeys.includes(computerKey);
 }
 
-function playNoteAtPitch(pitch) {
+function playNoteAtPitch(pitch, buffers, audioContext) {
     const gainNode = getNewGainNode();
-    const bufferSource = getNewBufferSource(pitch);
+    const bufferSource = getNewBufferSource(pitch, buffers);
     connectToOutputSpeakers(gainNode, bufferSource);
     bufferSource.start(audioContext.currentTime);
     addGainNodeToList(gainNode, pitch);
@@ -32,6 +31,7 @@ function playNoteAtPitch(pitch) {
 function getNewGainNode() {
     const newGainNode = audioContext.createGain();
     const NOTE_VOLUME = 1;
+    const NOTE_DURATION_IN_SECONDS = 10;
     newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
     newGainNode.gain.exponentialRampToValueAtTime(
         0.001,
@@ -40,7 +40,7 @@ function getNewGainNode() {
     return newGainNode;
 }
 
-function getNewBufferSource(pitch) {
+function getNewBufferSource(pitch, buffers) {
     const newBufferSource = audioContext.createBufferSource();
     newBufferSource.buffer = buffers[pitch];
     return newBufferSource;

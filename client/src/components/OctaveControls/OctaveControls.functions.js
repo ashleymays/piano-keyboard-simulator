@@ -16,13 +16,13 @@ export function handleOctaveDown() {
 
 function canRaiseOctave() {
     const HIGHEST_OCTAVE = 7;
-    const highestPianoKey = pianoKeys[pianoKeys.length - 1];
+    const highestPianoKey = pianoKeys.get('.');
     return highestPianoKey.octave < HIGHEST_OCTAVE;
 }
 
 function canLowerOctave() {
     const LOWEST_OCTAVE = 1;
-    const lowestPianoKey = pianoKeys[0];
+    const lowestPianoKey = pianoKeys.get('q');
     return lowestPianoKey.octave > LOWEST_OCTAVE;
 }
 

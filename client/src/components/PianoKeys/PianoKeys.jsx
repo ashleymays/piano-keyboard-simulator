@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useContext } from 'react';
 import PianoKey from './PianoKey';
 import pianoKeys from '../../data/pianoKeys';
+import { AudioBuffersContext, WebAudioContext } from '../../audioBuffersContext';
 import { playNote, endNote } from './PianoKeys.functions';
 
 function getPianoKeysAsArray() {
@@ -13,32 +15,43 @@ function getPianoKeysAsArray() {
 
 function PianoKeys() {
     const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
+    const { buffers } = useContext(AudioBuffersContext);
+    const audioContext = useContext(WebAudioContext);
 
-    const handleMouseDownAndTouchStart = (event) => {
+    const handleKeyDown = useCallback((event) => {
+        console.log(buffers);
+        playNote(event, buffers, audioContext);
+    });
+
+    const handleKeyUp = useCallback((event) => {
+        endNote(event);
+    });
+
+    const handleMouseDownAndTouchStart = useCallback((event) => {
         setIsPianoKeyDown(true);
-        playNote(event);
-    };
+        playNote(event, buffers, audioContext);
+    });
 
-    const handleMouseUpAndTouchEnd = (event) => {
+    const handleMouseUpAndTouchEnd = useCallback((event) => {
         setIsPianoKeyDown(false);
         endNote(event);
-    };
+    });
 
-    const handleMouseOver = (event) => {
+    const handleMouseOver = useCallback((event) => {
         if (isGlissandoEffectInUse(event)) {
-            playNote(event);
+            playNote(event, buffers, audioContext);
         }
-    };
+    });
 
-    const handleMouseOut = (event) => {
+    const handleMouseOut = useCallback((event) => {
         if (isGlissandoEffectInUse(event)) {
             endNote(event);
         }
-    };
+    });
 
-    const handleMouseLeave = (event) => {
+    const handleMouseLeave = useCallback((event) => {
         setIsPianoKeyDown(false);
-    };
+    });
 
     const isGlissandoEffectInUse = (event) => {
         const PIANO_KEY_NAME = 'piano-key';
@@ -47,14 +60,14 @@ function PianoKeys() {
     };
 
     useEffect(() => {
-        document.addEventListener('keydown', playNote);
-        document.addEventListener('keyup', endNote);
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
 
         return () => {
-            document.removeEventListener('keydown', playNote);
-            document.removeEventListener('keyup', endNote);
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keyup', handleKeyUp);
         };
-    }, []);
+    });
 
     const keys = getPianoKeysAsArray();
     return (
