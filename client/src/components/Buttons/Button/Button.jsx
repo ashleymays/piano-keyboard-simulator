@@ -1,32 +1,4 @@
-import { useEffect, useContext } from 'react';
-import { getInstrumentAudioBuffers } from './Button.functions';
-import { AudioBuffersContext, WebAudioContext } from '../../../audioBuffersContext';
-
-function Button({ title, isDefault }) {
-    const { buffers, setBuffers } = useContext(AudioBuffersContext);
-    const audioContext = useContext(WebAudioContext);
-
-    const handleClick = () => {
-        getInstrumentAudioBuffers(title, audioContext)
-            .then((audioBuffers) => {
-                setBuffers({ ...audioBuffers });
-            })
-            .catch((error) => {
-                throw error;
-            });
-    };
-
-    useEffect(() => {
-        const title = 'Acoustic Grand';
-        getInstrumentAudioBuffers(title, audioContext)
-            .then((audioBuffers) => {
-                setBuffers({ ...audioBuffers });
-            })
-            .catch((error) => {
-                throw error;
-            });
-    }, []);
-
+function Button({ title, isDefault, onChange }) {
     return (
         <label className="control-btn-container">
             <input
@@ -34,7 +6,7 @@ function Button({ title, isDefault }) {
                 name="instrument"
                 value={title}
                 defaultChecked={isDefault}
-                onChange={handleClick}
+                onChange={onChange}
             />
             <span className="control-btn">{title}</span>
         </label>

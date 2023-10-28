@@ -1,14 +1,20 @@
+.overlay {
+    background: var(--black-80);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
 .loading-icon {
-    width: 3%;
-    height: auto;
+    width: 4%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation-name: turn-logo;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation: 1.5s linear infinite turn-logo;
 }
 
 @keyframes turn-logo {

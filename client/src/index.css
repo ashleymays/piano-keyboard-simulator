@@ -1,6 +1,6 @@
 :root {
     --black: rgba(21, 25, 29, 100%);
-    --black-90: rgba(21, 25, 29, 90%);
+    --black-80: rgba(21, 25, 29, 80%);
     --dark-blue: rgba(34, 35, 41, 100%);
     --dark-blue-25: rgba(34, 35, 41, 25%);
     --blue: rgba(44, 55, 60, 100%);
@@ -91,14 +91,4 @@ input {
     bottom: 0;
     left: 0;
     right: 0;
-}
-
-.overlay {
-    background: var(--black-90);
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 2;
 }

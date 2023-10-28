@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
+import { MainContext } from '../../mainContext';
 import PianoKey from './PianoKey';
 import pianoKeys from '../../data/pianoKeys';
-import { AudioBuffersContext, WebAudioContext } from '../../audioBuffersContext';
 import { playNote, endNote } from './PianoKeys.functions';
 
 function getPianoKeysAsArray() {
@@ -15,21 +14,23 @@ function getPianoKeysAsArray() {
 
 function PianoKeys() {
     const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
-    const { buffers } = useContext(AudioBuffersContext);
-    const audioContext = useContext(WebAudioContext);
+    const { buffers, audioContext, isAppLoading } = useContext(MainContext);
 
     const handleKeyDown = useCallback((event) => {
-        console.log(buffers);
-        playNote(event, buffers, audioContext);
+        if (!isAppLoading) {
+            playNote(event, buffers, audioContext.current);
+        }
     });
 
     const handleKeyUp = useCallback((event) => {
-        endNote(event);
+        if (!isAppLoading) {
+            endNote(event);
+        }
     });
 
     const handleMouseDownAndTouchStart = useCallback((event) => {
         setIsPianoKeyDown(true);
-        playNote(event, buffers, audioContext);
+        playNote(event, buffers, audioContext.current);
     });
 
     const handleMouseUpAndTouchEnd = useCallback((event) => {
@@ -39,7 +40,7 @@ function PianoKeys() {
 
     const handleMouseOver = useCallback((event) => {
         if (isGlissandoEffectInUse(event)) {
-            playNote(event, buffers, audioContext);
+            playNote(event, buffers, audioContext.current);
         }
     });
 
@@ -67,7 +68,7 @@ function PianoKeys() {
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
         };
-    });
+    }, [buffers, isAppLoading]);
 
     const keys = getPianoKeysAsArray();
     return (

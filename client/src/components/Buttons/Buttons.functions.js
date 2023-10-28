@@ -57,7 +57,7 @@ async function convertBase64ToArrayBuffer(base64String, audioContext) {
     try {
         let undecodedAudio = await fetch(base64String);
         let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
-        return audioContext.decodeAudioData(undecodedAudioBuffer);
+        return audioContext.current.decodeAudioData(undecodedAudioBuffer);
     } catch (error) {
         throw error;
     }
