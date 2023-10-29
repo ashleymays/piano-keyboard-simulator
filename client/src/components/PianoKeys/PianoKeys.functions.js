@@ -152,7 +152,7 @@ function removeComputerKeyFromPressedKeysArray(computerKey) {
  * @param { string }
  */
 function endNoteAtPitch(pitch) {
-    const NOTE_DURATION = 0.1;
+    const NOTE_DURATION = 0.2;
     const currentNoteGainNode = gainNodesUsed[pitch];
     currentNoteGainNode.gain.setValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
 }
