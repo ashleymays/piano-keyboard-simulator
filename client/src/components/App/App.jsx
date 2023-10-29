@@ -1,4 +1,4 @@
-import GlobalContext from '../GlobalContext';
+import GlobalContext from '../../contexts/GlobalContext';
 import Keyboard from '../Keyboard';
 
 function App() {

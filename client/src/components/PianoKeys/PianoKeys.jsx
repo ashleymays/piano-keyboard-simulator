@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { MainContext } from '../../mainContext';
+import { MainContext } from '../../contexts/mainContext';
 import PianoKey from './PianoKey';
 import pianoKeys from '../../data/pianoKeys';
 import { playNote, endNote } from './PianoKeys.functions';

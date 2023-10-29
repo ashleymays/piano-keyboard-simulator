@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from '../../mainContext';
+import { MainContext } from '../../contexts/mainContext';
 import { getInstrumentAudioBuffers } from './Buttons.functions';
 import LoadingIcon from '../LoadingIcon';
 import Button from './Button';
