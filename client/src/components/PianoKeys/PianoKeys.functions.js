@@ -113,6 +113,7 @@ export function endNote(event) {
         const pitch = getPitchByComputerKey(computerKey);
         removePianoKeyColor(computerKey);
         removeComputerKeyFromPressedKeysArray(computerKey);
+        endNoteAtPitch(pitch);
     }
 }
 
@@ -143,6 +144,17 @@ function removePianoKeyColor(computerKey) {
 function removeComputerKeyFromPressedKeysArray(computerKey) {
     const index = currentlyPressedKeys.indexOf(computerKey);
     currentlyPressedKeys.splice(index, 1);
+}
+
+/**
+ * Lowers the volume of the gain node down to imperceptible volume after a second.
+ * Makes the note ending sound natural.
+ * @param { string }
+ */
+function endNoteAtPitch(pitch) {
+    const NOTE_DURATION = 0.5;
+    const currentNoteGainNode = gainNodesUsed[pitch];
+    currentNoteGainNode.gain.setValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
 }
 
 /**

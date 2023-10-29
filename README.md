@@ -14,13 +14,9 @@ Clone the repository:
 
 `git clone https://github.com/ashleymays/piano-keyboard-simulator.git`
 
-Use the following command to start the server:
+Use the following command to run the build:
 
 `npm i && npm start`
-
-Use the following command to start the client:
-
-`cd client && npm i && npm start`
 
 The app will open in a browser window.
 
