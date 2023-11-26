@@ -13,8 +13,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
 });
 
-app.post('/audio', (req, res) => {
-    const instrument = req.body.instrument;
+app.get('/audio/:instrument', (req, res) => {
+    const instrument = req.params.instrument;
     const instrumentAudioFilePath = path.resolve(__dirname, './audio', instrument);
 
     readdir(instrumentAudioFilePath, (error, audioFileNames) => {

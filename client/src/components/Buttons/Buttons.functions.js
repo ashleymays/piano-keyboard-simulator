@@ -17,24 +17,19 @@ export async function getInstrumentAudioBuffers(instrument) {
 
 /**
  * Fetch the audio for an instrument from the server in Base 64 format.
- * @param { string }
+ * @param { string } instrument
  * @returns { Object }
  */
 async function getInstrumentAudioFiles(instrument) {
     try {
-        const URL = '/audio';
-        const METHOD = 'post';
         const response = await axios({
-            url: URL,
-            method: METHOD,
+            url: `/audio/${instrument}`,
+            method: 'get',
             headers: new Headers({
                 'Access-Control-Allow-Origin': '*',
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             }),
-            data: {
-                instrument: instrument
-            }
         });
         return response.data;
     } catch (error) {
@@ -43,12 +38,13 @@ async function getInstrumentAudioFiles(instrument) {
 }
 
 /**
- * Get the audio for the selected instrument as an object of ArrayBuffer.
- * @param { Object }
+ * Get the audio for the selected instrument as an object of ArrayBuffers.
+ * @param { Object } audioFiles
  * @returns { Object }
  */
 async function getArrayBufferFromAudioFiles(audioFiles) {
     try {
+        const audioContext = new AudioContext();
         const audioBuffers = {};
         let base64String;
         let base64AudioData;
@@ -58,10 +54,11 @@ async function getArrayBufferFromAudioFiles(audioFiles) {
         for (let audioFileName in audioFiles) {
             base64AudioData = audioFiles[audioFileName];
             base64String = `data:application/octet;base64,${base64AudioData}`;
-            audioData = await convertBase64ToArrayBuffer(base64String);
+            audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
             pitch = getPitchFromFileName(audioFileName);
             audioBuffers[pitch] = audioData;
         }
+        audioContext.close();
         return audioBuffers;
     } catch (error) {
         throw error;
@@ -73,13 +70,11 @@ async function getArrayBufferFromAudioFiles(audioFiles) {
  * @param { string }
  * @returns { ArrayBuffer }
  */
-async function convertBase64ToArrayBuffer(base64String) {
+async function convertBase64ToArrayBuffer(base64String, audioContext) {
     try {
-        const audioContext = new AudioContext();
         let undecodedAudio = await fetch(base64String);
         let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
         const decodedAudioData = await audioContext.decodeAudioData(undecodedAudioBuffer);
-        audioContext.close();
         return decodedAudioData;
     } catch (error) {
         throw error;
