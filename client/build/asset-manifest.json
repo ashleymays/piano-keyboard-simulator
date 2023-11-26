@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f76922b1.css",
+    "main.js": "/static/js/main.f577fcb9.js",
+    "static/media/arturiaLogo.png": "/static/media/arturiaLogo.45d7fb471e82722c8d31.png",
+    "index.html": "/index.html",
+    "main.f76922b1.css.map": "/static/css/main.f76922b1.css.map",
+    "main.f577fcb9.js.map": "/static/js/main.f577fcb9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f76922b1.css",
+    "static/js/main.f577fcb9.js"
+  ]
+}

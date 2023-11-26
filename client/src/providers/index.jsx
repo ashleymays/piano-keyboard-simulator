@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MainContext } from '../context';
+import { MainContext } from 'src/context';
 
 function GlobalContext({ children }) {
     const [buffers, setBuffers] = useState({});

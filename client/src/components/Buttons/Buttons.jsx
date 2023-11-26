@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from '../../context';
-import { getInstrumentAudioBuffers } from '../../lib/getAudio';
+import { MainContext } from 'src/context';
+import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
 import LoadingIcon from '../LoadingIcon';
 import Button from './Button';
 
