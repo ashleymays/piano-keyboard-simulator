@@ -3,11 +3,11 @@ import { render } from '@testing-library/react';
 import GlobalContext from './components/GlobalContext';
 
 function CustomContext({ children }) {
-    return <GlobalContext>{children}</GlobalContext>;
+  return <GlobalContext>{children}</GlobalContext>;
 }
 
 function customRender(ui, options) {
-    render(ui, { wrapper: CustomContext, ...options });
+  render(ui, { wrapper: CustomContext, ...options });
 }
 
 export * from '@testing-library/react';

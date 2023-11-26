@@ -10,30 +10,34 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/audio/:instrument', (req, res) => {
-    const instrument = req.params.instrument;
-    const instrumentAudioFilePath = path.resolve(__dirname, './audio', instrument);
+  const instrument = req.params.instrument;
+  const instrumentAudioFilePath = path.resolve(
+    __dirname,
+    './audio',
+    instrument
+  );
 
-    readdir(instrumentAudioFilePath, (error, audioFileNames) => {
+  readdir(instrumentAudioFilePath, (error, audioFileNames) => {
+    if (error) throw error;
+    const audioFiles = {};
+    const encoding = 'base64';
+    let audioPitchFilePath;
+
+    audioFileNames.forEach((audioFileName, index) => {
+      audioPitchFilePath = path.resolve(instrumentAudioFilePath, audioFileName);
+
+      readFile(audioPitchFilePath, encoding, (error, audio) => {
         if (error) throw error;
-        const audioFiles = {};
-        const encoding = 'base64';
-        let audioPitchFilePath;
-
-        audioFileNames.forEach((audioFileName, index) => {
-            audioPitchFilePath = path.resolve(instrumentAudioFilePath, audioFileName);
-
-            readFile(audioPitchFilePath, encoding, (error, audio) => {
-                if (error) throw error;
-                audioFiles[audioFileName] = audio;
-                if (index === audioFileNames.length - 1) {
-                    res.send(audioFiles);
-                }
-            });
-        });
+        audioFiles[audioFileName] = audio;
+        if (index === audioFileNames.length - 1) {
+          res.send(audioFiles);
+        }
+      });
     });
+  });
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+  console.log(`Listening on port ${PORT}`);
 });
