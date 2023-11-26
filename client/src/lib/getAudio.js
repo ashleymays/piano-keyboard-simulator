@@ -8,8 +8,7 @@ import axios from 'axios';
 export async function getInstrumentAudioBuffers(instrument) {
   try {
     const audioFiles = await getInstrumentAudioFiles(instrument);
-    const audioBuffers = await getArrayBufferFromAudioFiles(audioFiles);
-    return audioBuffers;
+    return await getArrayBufferFromAudioFiles(audioFiles);
   } catch (error) {
     throw error;
   }
@@ -58,6 +57,7 @@ async function getArrayBufferFromAudioFiles(audioFiles) {
       pitch = getPitchFromFileName(audioFileName);
       audioBuffers[pitch] = audioData;
     }
+
     audioContext.close();
     return audioBuffers;
   } catch (error) {
@@ -74,9 +74,7 @@ async function convertBase64ToArrayBuffer(base64String, audioContext) {
   try {
     let undecodedAudio = await fetch(base64String);
     let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
-    const decodedAudioData =
-      await audioContext.decodeAudioData(undecodedAudioBuffer);
-    return decodedAudioData;
+    return await audioContext.decodeAudioData(undecodedAudioBuffer);
   } catch (error) {
     throw error;
   }
