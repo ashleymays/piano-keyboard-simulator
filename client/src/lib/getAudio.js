@@ -22,9 +22,8 @@ export async function getInstrumentAudioBuffers(instrument) {
  */
 async function getInstrumentAudioFiles(instrument) {
     try {
-        const url = `${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`;
         const response = await axios({
-            url: url,
+            url: `/audio/${instrument}`,
             method: 'get',
             headers: new Headers({
                 'Access-Control-Allow-Origin': '*',

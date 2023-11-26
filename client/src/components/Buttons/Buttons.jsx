@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { MainContext } from 'src/context';
 import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
+import LoadingIcon from '../LoadingIcon';
 import Button from './Button';
 
 const buttonsData = [
@@ -45,7 +46,12 @@ function Buttons() {
             {...button}
         />
     ));
-    return <div className="buttons flex-row justify-content-space-btwn">{buttons}</div>;
+    return (
+        <>
+            <div className="buttons flex-row justify-content-space-btwn">{buttons}</div>
+            <LoadingIcon isAppLoading={isAppLoading} />
+        </>
+    );
 }
 
 export default Buttons;
