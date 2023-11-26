@@ -1,5 +1,5 @@
-import GlobalContext from './provider';
-import Keyboard from './components/Keyboard';
+import GlobalContext from 'src/providers';
+import Keyboard from 'src/components/Keyboard';
 
 function App() {
     return (

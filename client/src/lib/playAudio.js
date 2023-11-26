@@ -1,4 +1,4 @@
-import pianoKeys from '../data/pianoKeys';
+import pianoKeys from 'src/data/pianoKeys';
 
 const audioContext = new AudioContext();
 const destination = audioContext.createMediaStreamDestination();
