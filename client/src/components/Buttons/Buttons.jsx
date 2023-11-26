@@ -1,9 +1,23 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from '../../contexts/mainContext';
-import { getInstrumentAudioBuffers } from './Buttons.functions';
+import { MainContext } from '../../context';
+import { getInstrumentAudioBuffers } from '../../lib/getAudio';
 import LoadingIcon from '../LoadingIcon';
 import Button from './Button';
-import buttonsData from '../../data/buttons';
+
+const buttonsData = [
+    {
+        title: 'Acoustic Grand',
+        isDefault: true
+    },
+    {
+        title: 'Electric Piano',
+        isDefault: false
+    },
+    {
+        title: '8-Bit',
+        isDefault: false
+    }
+];
 
 function Buttons() {
     const { setBuffers, isAppLoading, setIsAppLoading } = useContext(MainContext);

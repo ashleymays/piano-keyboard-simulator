@@ -5,13 +5,9 @@ const { readdir, readFile } = require('fs');
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, '../client', 'build')));
+app.use(express.static(path.resolve(__dirname, '../client', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-});
 
 app.get('/audio/:instrument', (req, res) => {
     const instrument = req.params.instrument;
@@ -19,11 +15,9 @@ app.get('/audio/:instrument', (req, res) => {
 
     readdir(instrumentAudioFilePath, (error, audioFileNames) => {
         if (error) throw error;
-
         const audioFiles = {};
         const encoding = 'base64';
         let audioPitchFilePath;
-        let isLastAudioFile;
 
         audioFileNames.forEach((audioFileName, index) => {
             audioPitchFilePath = path.resolve(instrumentAudioFilePath, audioFileName);
@@ -31,8 +25,7 @@ app.get('/audio/:instrument', (req, res) => {
             readFile(audioPitchFilePath, encoding, (error, audio) => {
                 if (error) throw error;
                 audioFiles[audioFileName] = audio;
-                isLastAudioFile = index === audioFileNames.length - 1;
-                if (isLastAudioFile) {
+                if (index === audioFileNames.length - 1) {
                     res.send(audioFiles);
                 }
             });

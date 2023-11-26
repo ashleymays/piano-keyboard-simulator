@@ -23,13 +23,13 @@ export async function getInstrumentAudioBuffers(instrument) {
 async function getInstrumentAudioFiles(instrument) {
     try {
         const response = await axios({
-            url: `/audio/${instrument}`,
+            url: `https://localhost:5000/audio/${instrument}`,
             method: 'get',
             headers: new Headers({
                 'Access-Control-Allow-Origin': '*',
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }),
+            })
         });
         return response.data;
     } catch (error) {
