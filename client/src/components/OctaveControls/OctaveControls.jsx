@@ -1,4 +1,5 @@
 import { handleOctaveUp, handleOctaveDown } from 'src/lib/octaveControls';
+import pianoKeys from 'src/data/pianoKeys';
 
 function OctaveControls() {
   return (
@@ -8,7 +9,7 @@ function OctaveControls() {
           type="button"
           name="octave-up"
           className="octave-controls__btn-arrow flex-column"
-          onClick={handleOctaveUp}
+          onClick={() => handleOctaveUp(pianoKeys)}
         >
           &uarr;
         </button>
@@ -17,7 +18,7 @@ function OctaveControls() {
           type="button"
           name="octave-down"
           className="octave-controls__btn-arrow flex-column justify-content-end"
-          onClick={handleOctaveDown}
+          onClick={() => handleOctaveDown(pianoKeys)}
         >
           &darr;
         </button>

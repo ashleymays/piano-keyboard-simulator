@@ -1,32 +1,30 @@
-import pianoKeys from 'src/data/pianoKeys';
-
-export function handleOctaveUp() {
-  if (canRaiseOctave()) {
+export function handleOctaveUp(pianoKeys) {
+  if (canRaiseOctave(pianoKeys)) {
     const INCREMENT_VALUE = 1;
-    updateOctaves(INCREMENT_VALUE);
+    updateOctaves(pianoKeys, INCREMENT_VALUE);
   }
 }
 
-export function handleOctaveDown() {
-  if (canLowerOctave()) {
+export function handleOctaveDown(pianoKeys) {
+  if (canLowerOctave(pianoKeys)) {
     const INCREMENT_VALUE = -1;
-    updateOctaves(INCREMENT_VALUE);
+    updateOctaves(pianoKeys, INCREMENT_VALUE);
   }
 }
 
-function canRaiseOctave() {
+function canRaiseOctave(pianoKeys) {
   const HIGHEST_OCTAVE = 7;
   const highestPianoKey = pianoKeys.get('.');
   return highestPianoKey.octave < HIGHEST_OCTAVE;
 }
 
-function canLowerOctave() {
+function canLowerOctave(pianoKeys) {
   const LOWEST_OCTAVE = 1;
   const lowestPianoKey = pianoKeys.get('q');
   return lowestPianoKey.octave > LOWEST_OCTAVE;
 }
 
-function updateOctaves(INCREMENT_VALUE) {
+function updateOctaves(pianoKeys, INCREMENT_VALUE) {
   pianoKeys.forEach((pianoKey) => {
     pianoKey.octave += INCREMENT_VALUE;
   });
