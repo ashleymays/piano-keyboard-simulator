@@ -2,7 +2,7 @@ import PianoKeys from '../PianoKeys';
 import Buttons from '../Buttons';
 import OctaveControls from '../OctaveControls';
 
-import ArturiaLogo from '../../assets/images/arturiaLogo.png';
+import ArturiaLogo from '../../assets/arturiaLogo.png';
 
 function Keyboard() {
     return (
