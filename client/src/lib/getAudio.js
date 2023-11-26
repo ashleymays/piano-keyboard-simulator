@@ -6,13 +6,13 @@ import axios from 'axios';
  * @returns { Object }
  */
 export async function getInstrumentAudioBuffers(instrument) {
-    try {
-        const audioFiles = await getInstrumentAudioFiles(instrument);
-        const audioBuffers = await getArrayBufferFromAudioFiles(audioFiles);
-        return audioBuffers;
-    } catch (error) {
-        throw error;
-    }
+  try {
+    const audioFiles = await getInstrumentAudioFiles(instrument);
+    const audioBuffers = await getArrayBufferFromAudioFiles(audioFiles);
+    return audioBuffers;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -21,21 +21,21 @@ export async function getInstrumentAudioBuffers(instrument) {
  * @returns { Object }
  */
 async function getInstrumentAudioFiles(instrument) {
-    try {
-        const url = `${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`;
-        const response = await axios({
-            url: url,
-            method: 'get',
-            headers: new Headers({
-                'Access-Control-Allow-Origin': '*',
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            })
-        });
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
+  try {
+    const url = `${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`;
+    const response = await axios({
+      url: url,
+      method: 'get',
+      headers: new Headers({
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      })
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -44,26 +44,26 @@ async function getInstrumentAudioFiles(instrument) {
  * @returns { Object }
  */
 async function getArrayBufferFromAudioFiles(audioFiles) {
-    try {
-        const audioContext = new AudioContext();
-        const audioBuffers = {};
-        let base64String;
-        let base64AudioData;
-        let audioData;
-        let pitch;
+  try {
+    const audioContext = new AudioContext();
+    const audioBuffers = {};
+    let base64String;
+    let base64AudioData;
+    let audioData;
+    let pitch;
 
-        for (let audioFileName in audioFiles) {
-            base64AudioData = audioFiles[audioFileName];
-            base64String = `data:application/octet;base64,${base64AudioData}`;
-            audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
-            pitch = getPitchFromFileName(audioFileName);
-            audioBuffers[pitch] = audioData;
-        }
-        audioContext.close();
-        return audioBuffers;
-    } catch (error) {
-        throw error;
+    for (let audioFileName in audioFiles) {
+      base64AudioData = audioFiles[audioFileName];
+      base64String = `data:application/octet;base64,${base64AudioData}`;
+      audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
+      pitch = getPitchFromFileName(audioFileName);
+      audioBuffers[pitch] = audioData;
     }
+    audioContext.close();
+    return audioBuffers;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -72,14 +72,15 @@ async function getArrayBufferFromAudioFiles(audioFiles) {
  * @returns { ArrayBuffer }
  */
 async function convertBase64ToArrayBuffer(base64String, audioContext) {
-    try {
-        let undecodedAudio = await fetch(base64String);
-        let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
-        const decodedAudioData = await audioContext.decodeAudioData(undecodedAudioBuffer);
-        return decodedAudioData;
-    } catch (error) {
-        throw error;
-    }
+  try {
+    let undecodedAudio = await fetch(base64String);
+    let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
+    const decodedAudioData =
+      await audioContext.decodeAudioData(undecodedAudioBuffer);
+    return decodedAudioData;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -88,6 +89,6 @@ async function convertBase64ToArrayBuffer(base64String, audioContext) {
  * @returns { string }
  */
 function getPitchFromFileName(audioFileName) {
-    const FILE_EXTENSION = '.mp3';
-    return audioFileName.slice(0, audioFileName.length - FILE_EXTENSION.length);
+  const FILE_EXTENSION = '.mp3';
+  return audioFileName.slice(0, audioFileName.length - FILE_EXTENSION.length);
 }
