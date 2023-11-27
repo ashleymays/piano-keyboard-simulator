@@ -1,5 +1,5 @@
-@use '../assets/styles/variables.scss';
-@use '../assets/styles/placeholders.scss';
+@use 'src/assets/styles/variables.scss';
+@use 'src/assets/styles/placeholders.scss';
 
 .octave-controls {
   @extend %flex-column;
@@ -24,7 +24,7 @@
   @extend %flex-column;
 
   padding: 0.75em;
-  color: variables.$black-90;
+  color: variables.$black-80;
   font-weight: bold;
   font-size: variables.$font-size-md;
   width: 100%;
@@ -43,10 +43,10 @@
   width: 40%;
   height: 0.1rem;
   margin-bottom: 0.05em;
-  background-color: variables.$black-90;
+  background-color: variables.$black-80;
 }
 
 .octave-controls__title {
   font-size: variables.$font-size-base;
-  color: variables.$black-90;
+  color: variables.$black-80;
 }

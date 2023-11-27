@@ -1,5 +1,5 @@
-@use '../assets/styles/variables.scss';
-@use '../assets/styles/placeholders.scss';
+@use 'src/assets/styles/variables.scss';
+@use 'src/assets/styles/placeholders.scss';
 
 .keyboard-container {
   @extend %center-self;

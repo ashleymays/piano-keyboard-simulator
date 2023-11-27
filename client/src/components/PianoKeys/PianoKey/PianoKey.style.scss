@@ -1,11 +1,11 @@
-@use '../../assets/styles/variables.scss';
-@use '../../assets/styles/placeholders.scss';
+@use 'src/assets/styles/variables.scss';
+@use 'src/assets/styles/placeholders.scss';
 
 .piano-key {
   @extend %flex-column;
   @extend %align-items-center;
   @extend %justify-content-end;
-  
+
   cursor: pointer;
   padding-bottom: 1em;
   text-transform: uppercase;
@@ -15,7 +15,7 @@
 
 .white-key {
   width: 100%;
-  color: variables.$black-90;
+  color: variables.$black-80;
   background: variables.$white;
 }
 
@@ -29,6 +29,6 @@
 }
 
 .pressed-piano-key {
-  background: variables.$gray) !important;
-  color: variables.$black-90) !important;
+  background: variables.$gray !important;
+  color: variables.$black-80 !important;
 }
