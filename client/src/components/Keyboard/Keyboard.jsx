@@ -6,9 +6,9 @@ import ArturiaLogo from 'src/assets/images/arturiaLogo.png';
 
 function Keyboard() {
   return (
-    <section className="keyboard-container center-self">
+    <section className="keyboard-container">
       <div className="keyboard">
-        <div className="keyboard__top-row flex-row justify-content-space-btwn">
+        <div className="keyboard__top-row">
           <Buttons />
           <img
             className="keyboard__logo"
@@ -16,7 +16,7 @@ function Keyboard() {
             src={ArturiaLogo}
           />
         </div>
-        <div className="keyboard__bottom-row flex-row align-items-center justify-content-space-btwn">
+        <div className="keyboard__bottom-row">
           <OctaveControls />
           <PianoKeys />
         </div>

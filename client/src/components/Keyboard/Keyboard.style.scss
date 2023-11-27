@@ -1,6 +1,9 @@
 @use '../assets/styles/variables.scss';
+@use '../assets/styles/placeholders.scss';
 
 .keyboard-container {
+  @extend %center-self;
+
   width: clamp(110rem, 75vw + 2rem, 125rem);
   height: clamp(31rem, 32.5vh + 0.75rem, 38rem);
 }
@@ -17,12 +20,19 @@
 }
 
 .keyboard__top-row {
+  @extend %flex-row;
+  @extend %justify-content-space-btwn;
+
   width: 100%;
   margin-bottom: 2%;
   height: 20%;
 }
 
 .keyboard__bottom-row {
+  @extend %flex-row;
+  @extend %align-items-center;
+  @extend %justify-content-space-btwn;
+
   column-gap: 4%;
   height: 80%;
 }
