@@ -17,10 +17,10 @@
   font-size: var(--font-size-md);
   width: 100%;
   height: 100%;
-}
 
-.octave-controls__btn-arrow:active {
-  background: var(--gray);
+  &:active {
+    background: var(--gray);
+  }
 }
 
 .octave-controls__line {
