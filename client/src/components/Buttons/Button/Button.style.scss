@@ -1,12 +1,14 @@
+@use '../../assets/styles/variables.scss';
+
 .control-btn {
   padding: 0.45em 1.125em;
-  background: var(--blue);
-  color: var(--white);
+  background: variables.$blue;
+  color: variables.$white;
   border-radius: 0.25em;
   border: 0.275em solid rgba(140, 162, 175, 100%);
   text-align: center;
   margin: 0;
-  font-size: var(--font-size-base);
+  font-size: variables.$font-size-base;
   cursor: pointer;
   white-space: nowrap; /* disable text wrapping inside button */
 

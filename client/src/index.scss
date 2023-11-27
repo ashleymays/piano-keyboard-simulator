@@ -16,9 +16,9 @@ html {
 }
 
 body {
-  background: $background;
+  background: variables.$background;
   height: 100%;
-  font-family: $font-main;
+  font-family: variables.$font-main;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;

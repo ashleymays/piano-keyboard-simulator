@@ -1,25 +1,27 @@
+@use '../assets/styles/variables.scss';
+
 .octave-controls {
   height: 100%;
 }
 
 .octave-controls__btns {
   height: 100%;
-  background: var(--white);
+  background: variables.$white;
   border-radius: 0.5rem;
-  border: 0.075rem solid var(--dark-blue-25);
+  border: 0.075rem solid variables.$dark-blue-25;
   overflow: hidden;
 }
 
 .octave-controls__btn-arrow {
   padding: 0.75em;
-  color: var(--black-90);
+  color: variables.$black-90;
   font-weight: bold;
-  font-size: var(--font-size-md);
+  font-size: variables.$font-size-md;
   width: 100%;
   height: 100%;
 
   &:active {
-    background: var(--gray);
+    background: variables.$gray;
   }
 }
 
@@ -27,10 +29,10 @@
   width: 40%;
   height: 0.1rem;
   margin-bottom: 0.05em;
-  background-color: var(--black-90);
+  background-color: variables.$black-90;
 }
 
 .octave-controls__title {
-  font-size: var(--font-size-base);
-  color: var(--black-90);
+  font-size: variables.$font-size-base;
+  color: variables.$black-90;
 }

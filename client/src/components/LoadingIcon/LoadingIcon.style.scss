@@ -1,5 +1,7 @@
+@use '../assets/styles/variables.scss';
+
 .overlay {
-  background: var(--black-80);
+  background: variables.$black-80;
   position: fixed;
   top: 0;
   right: 0;
