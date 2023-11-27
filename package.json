@@ -30,7 +30,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "sass": "^1.69.5"
   },
   "devDependencies": {
     "eslint": "^8.52.0",
