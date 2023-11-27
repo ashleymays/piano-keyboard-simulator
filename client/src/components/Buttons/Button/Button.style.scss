@@ -9,8 +9,8 @@
   font-size: var(--font-size-base);
   cursor: pointer;
   white-space: nowrap; /* disable text wrapping inside button */
-}
 
-.control-btn-container input:checked ~ .control-btn {
-  filter: brightness(50%);
+  & input:checked ~ .control-btn {
+    filter: brightness(50%);
+  }
 }
