@@ -1,5 +1,5 @@
 function PianoKey({ computerKey, color }) {
-  const className = `piano-key flex-column align-items-center justify-content-end ${color}-key`;
+  const className = `piano-key ${color}-key`;
   return (
     <button
       name="piano-key"

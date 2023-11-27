@@ -73,7 +73,7 @@ function PianoKeys() {
   const keys = getPianoKeysAsArray();
   return (
     <div
-      className="piano-keys flex-row justify-content-space-btwn"
+      className="piano-keys"
       onMouseDown={handleMouseDownAndTouchStart}
       onMouseUp={handleMouseUpAndTouchEnd}
       onMouseOver={handleMouseOver}

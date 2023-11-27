@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.3f1b10bb.css",
-    "main.js": "/static/js/main.09bf74f8.js",
+    "main.css": "/static/css/main.7efa08b5.css",
+    "main.js": "/static/js/main.c940e119.js",
     "static/media/arturiaLogo.png": "/static/media/arturiaLogo.45d7fb471e82722c8d31.png",
     "index.html": "/index.html",
-    "main.3f1b10bb.css.map": "/static/css/main.3f1b10bb.css.map",
-    "main.09bf74f8.js.map": "/static/js/main.09bf74f8.js.map"
+    "main.7efa08b5.css.map": "/static/css/main.7efa08b5.css.map",
+    "main.c940e119.js.map": "/static/js/main.c940e119.js.map"
   },
-  "entrypoints": ["static/css/main.3f1b10bb.css", "static/js/main.09bf74f8.js"]
+  "entrypoints": [
+    "static/css/main.7efa08b5.css",
+    "static/js/main.c940e119.js"
+  ]
 }

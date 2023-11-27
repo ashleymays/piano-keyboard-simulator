@@ -1,4 +1,9 @@
+@use 'src/assets/styles/placeholders.scss';
+
 .piano-keys {
+  @extend %flex-row;
+  @extend %justify-content-space-btwn;
+
   height: 100%;
   width: 100%;
   border-right: 0.075rem solid rgba(34, 35, 41, 25%);

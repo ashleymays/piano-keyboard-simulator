@@ -1,0 +1,34 @@
+@use 'src/assets/styles/variables.scss';
+@use 'src/assets/styles/placeholders.scss';
+
+.piano-key {
+  @extend %flex-column;
+  @extend %align-items-center;
+  @extend %justify-content-end;
+
+  cursor: pointer;
+  padding-bottom: 1em;
+  text-transform: uppercase;
+  border: 0.125rem solid variables.$dark-blue-25;
+  font-size: variables.$font-size-md;
+}
+
+.white-key {
+  width: 100%;
+  color: variables.$black-80;
+  background: variables.$white;
+}
+
+.black-key {
+  width: 40%;
+  height: 60%;
+  z-index: 1;
+  background: variables.$dark-blue;
+  margin: 0 -1.25% 0;
+  color: variables.$white;
+}
+
+.pressed-piano-key {
+  background: variables.$gray !important;
+  color: variables.$black-80 !important;
+}

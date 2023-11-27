@@ -45,9 +45,7 @@ function Buttons() {
       {...button}
     />
   ));
-  return (
-    <div className="buttons flex-row justify-content-space-btwn">{buttons}</div>
-  );
+  return <div className="buttons">{buttons}</div>;
 }
 
 export default Buttons;
