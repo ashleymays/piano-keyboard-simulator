@@ -1,0 +1,32 @@
+%flex-row {
+  display: flex;
+}
+
+%flex-column {
+  display: flex;
+  flex-flow: column;
+}
+
+%align-items-center {
+  align-items: center;
+}
+
+%justify-content-space-btwn {
+  justify-content: space-between;
+}
+
+%justify-content-end {
+  justify-content: flex-end;
+}
+
+%center-self {
+  /* horizontally center */
+  margin: auto;
+
+  /* vertically center */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
