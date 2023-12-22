@@ -1,4 +1,4 @@
-const pianoKeys = new Map([
+export const pianoKeys = new Map([
   ['q', { computerKey: 'q', noteName: 'C', octave: 3, color: 'white' }],
   ['2', { computerKey: '2', noteName: 'Db', octave: 3, color: 'black' }],
   ['w', { computerKey: 'w', noteName: 'D', octave: 3, color: 'white' }],
@@ -36,5 +36,3 @@ const pianoKeys = new Map([
   ['l', { computerKey: 'l', noteName: 'Bb', octave: 5, color: 'black' }],
   ['.', { computerKey: '.', noteName: 'B', octave: 5, color: 'white' }]
 ]);
-
-export default pianoKeys;

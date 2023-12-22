@@ -1,7 +1,9 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from 'src/context';
-import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
-import Button from '../Button';
+
+import MainContext from '@/context';
+import Button from '@/components/Button';
+
+import { getInstrumentAudioBuffers } from '@/lib/getAudio';
 
 const buttonsData = [
   {

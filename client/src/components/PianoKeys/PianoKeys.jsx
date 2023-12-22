@@ -1,5 +1,5 @@
-import PianoKey from 'src/components/PianoKey';
-import pianoKeys from 'src/data/pianoKeys';
+import PianoKey from '@/components/PianoKey';
+import { pianoKeys } from '@/data';
 
 function getPianoKeysAsArray() {
   var pianoKeyComponents = [];

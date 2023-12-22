@@ -1,9 +1,8 @@
 function PianoKey({ computerKey, color }) {
-  const className = `piano-key ${color}-key`;
   return (
     <button
       name="piano-key"
-      className={className}
+      className={`piano-key ${color}-key`}
       type="button"
       value={computerKey}
     >

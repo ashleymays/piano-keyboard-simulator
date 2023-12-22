@@ -1,5 +1,5 @@
-import { handleOctaveUp, handleOctaveDown } from 'src/lib/octaveControls';
-import pianoKeys from 'src/data/pianoKeys';
+import { handleOctaveUp, handleOctaveDown } from '@/lib/octaveControls';
+import { pianoKeys } from '@/data';
 
 function OctaveControls() {
   return (

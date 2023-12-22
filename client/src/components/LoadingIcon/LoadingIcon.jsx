@@ -1,4 +1,4 @@
-import LoadingImage from 'src/assets/images/loadingIcon.png';
+import LoadingImage from '@/images/loadingIcon.png';
 
 function LoadingIcon({ isAppLoading }) {
   if (isAppLoading) {
