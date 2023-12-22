@@ -1,34 +1,31 @@
-@use 'src/assets/styles/variables.scss';
-@use 'src/assets/styles/placeholders.scss';
-
 .piano-key {
-  @extend %flex-column;
-  @extend %align-items-center;
-  @extend %justify-content-end;
-
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-end;
   cursor: pointer;
   padding-bottom: 1em;
   text-transform: uppercase;
-  border: 0.125rem solid variables.$dark-blue-25;
-  font-size: variables.$font-size-md;
+  border: 0.125rem solid rgba($dark-blue, $op-high);
+  font-size: $font-size-md;
 }
 
 .white-key {
   width: 100%;
-  color: variables.$black-80;
-  background: variables.$white;
+  color: rgba($dark-blue, $op-medium);
+  background: $off-white;
 }
 
 .black-key {
   width: 40%;
   height: 60%;
   z-index: 1;
-  background: variables.$dark-blue;
+  background: $dark-blue;
   margin: 0 -1.25% 0;
-  color: variables.$white;
+  color: $off-white;
 }
 
 .pressed-piano-key {
-  background: variables.$gray !important;
-  color: variables.$black-80 !important;
+  background: $gray !important;
+  color: $dark-blue !important;
 }
