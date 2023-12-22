@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { MainContext } from 'src/context';
 import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
-import Button from './Button';
+import Button from '../Button';
 
 const buttonsData = [
   {
@@ -19,7 +19,7 @@ const buttonsData = [
 ];
 
 function Buttons() {
-  const { setBuffers, isAppLoading, setIsAppLoading } = useContext(MainContext);
+  const { setBuffers, setIsAppLoading } = useContext(MainContext);
 
   const handleInstrumentAudio = async (title) => {
     try {

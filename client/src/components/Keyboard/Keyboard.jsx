@@ -2,7 +2,7 @@ import PianoKeys from 'src/components/PianoKeys';
 import Buttons from 'src/components/Buttons';
 import OctaveControls from 'src/components/OctaveControls';
 
-import ArturiaLogo from 'src/assets/images/arturiaLogo.png';
+import arturiaLogo from 'src/assets/images/arturiaLogo.png';
 
 function Keyboard() {
   return (
@@ -13,7 +13,7 @@ function Keyboard() {
           <img
             className="keyboard__logo"
             alt="Arturia logo"
-            src={ArturiaLogo}
+            src={arturiaLogo}
           />
         </div>
         <div className="keyboard__bottom-row">

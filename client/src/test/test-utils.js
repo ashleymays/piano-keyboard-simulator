@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'jest';
 import { render } from '@testing-library/react';
-import GlobalContext from 'src/providers';
+import GlobalContext from 'src/context';
 
 function CustomContext({ children }) {
   return <GlobalContext>{children}</GlobalContext>;
