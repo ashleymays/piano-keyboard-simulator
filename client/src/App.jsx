@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import Keyboard from '@/components/Keyboard';
+import LoadingIcon from './components/LoadingIcon';
+import Keyboard from './components/Keyboard';
 
 function App() {
   const [buffers, setBuffers] = useState({});

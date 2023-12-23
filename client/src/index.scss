@@ -1,17 +1,4 @@
-$dark-blue: rgb(21, 25, 29);
-$blue: rgb(44, 55, 60);
-$dark-purple_gray: rgb(34, 35, 41);
-$blue-gray: rgb(226, 230, 236);
-$gray: rgb(175, 175, 175);
-$off-white: rgb(249, 249, 249);
-$black: rgb(0,0,0);
-
-$op-medium: 80%;
-$op-high: 25%;
-
-$font-size-base: clamp(0.5rem, 0.01vw + 1rem, 10rem);
-$font-size-md: clamp(1.3rem, 0.44vw + 1.19rem, 1.54rem);
-$font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);
+@import './variables.scss';
 
 * {
   box-sizing: border-box;
@@ -29,7 +16,7 @@ html {
 }
 
 body {
-  background: $background;
+  background: $off-white;
   height: 100%;
   font-family: 'Noto Sans Mono', monospace;
   user-select: none;
