@@ -3,6 +3,8 @@ import { useState } from 'react';
 import LoadingIcon from './components/LoadingIcon';
 import Keyboard from './components/Keyboard';
 
+import MainContext from './context';
+
 function App() {
   const [buffers, setBuffers] = useState({});
   const [isAppLoading, setIsAppLoading] = useState(true);

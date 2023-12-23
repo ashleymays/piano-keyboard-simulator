@@ -104,7 +104,7 @@ function addComputerKeyToPressedKeysArray(computerKey) {
  */
 function addPianoKeyColor(computerKey) {
   const pianoKeyElement = document.querySelector(
-    `button[value="variables.${computerKey}"]`
+    `button[value="${computerKey}"]`
   );
   pianoKeyElement.classList.add('pressed-piano-key');
 }
@@ -143,7 +143,7 @@ function canEndNote(computerKey) {
  */
 function removePianoKeyColor(computerKey) {
   const pianoKeyElement = document.querySelector(
-    `button[value="variables.${computerKey}"]`
+    `button[value="${computerKey}"]`
   );
   pianoKeyElement.classList.remove('pressed-piano-key');
 }

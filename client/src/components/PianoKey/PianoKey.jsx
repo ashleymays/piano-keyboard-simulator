@@ -2,7 +2,7 @@ function PianoKey({ computerKey, color }) {
   return (
     <button
       name="piano-key"
-      className={`piano-key variables.${color}-key`}
+      className={`piano-key ${color}-key`}
       type="button"
       value={computerKey}
     >

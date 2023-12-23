@@ -11,7 +11,7 @@ function getPianoKeysAsArray() {
 
 function PianoKeys() {
   return (
-    <div>
+    <div className="piano-keys">
       {getPianoKeysAsArray()}
     </div>
   );
