@@ -12,11 +12,17 @@ Since I didn't know much about testing when I first started, there are no unit o
 
 ## How to Use
 
+### Option 1: Open online with Stackblitz
+
+<a href="https://stackblitz.com/~/github.com/ashleymays/piano-keyboard-simulator">https://stackblitz.com/~/github.com/ashleymays/piano-keyboard-simulator</a>
+
+### Option 2: Install it locally
+
 Clone the repository:
 
 `git clone https://github.com/ashleymays/piano-keyboard-simulator.git`
 
-Use the following command to run the build:
+Run the build:
 
 `npm i && npm start`
 

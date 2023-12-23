@@ -1,4 +1,4 @@
-import pianoKeys from 'src/data/pianoKeys';
+import { pianoKeys } from 'src/data';
 
 const audioContext = new AudioContext();
 const destination = audioContext.createMediaStreamDestination();
@@ -9,22 +9,24 @@ const gainNodesUsed = {};
  * Plays the note at a computer key/piano key if it is allowed to be played.
  */
 export function playNote(event, buffers) {
-    audioContext.resume();
-    const computerKey = getComputerKeyByEvent(event);
+  audioContext.resume();
+  const computerKey = getComputerKeyByEvent(event);
 
-    if (canPlayNote(computerKey)) {
-        const pitch = getPitchByComputerKey(computerKey);
-        playNoteAtPitch(pitch, buffers);
-        addComputerKeyToPressedKeysArray(computerKey);
-        addPianoKeyColor(computerKey);
-    }
+  if (canPlayNote(computerKey)) {
+    const pitch = getPitchByComputerKey(computerKey);
+    playNoteAtPitch(pitch, buffers);
+    addComputerKeyToPressedKeysArray(computerKey);
+    addPianoKeyColor(computerKey);
+  }
 }
 
 /**
  * Check if the user can play the note at the desired computer key.
  */
 function canPlayNote(computerKey) {
-    return pianoKeys.has(computerKey) && !currentlyPressedKeys.includes(computerKey);
+  return (
+    pianoKeys.has(computerKey) && !currentlyPressedKeys.includes(computerKey)
+  );
 }
 
 /**
@@ -32,11 +34,11 @@ function canPlayNote(computerKey) {
  * Uses the Web Audio API to set the volume of the audio and play the sound to the user's output speakers.
  */
 function playNoteAtPitch(pitch, buffers) {
-    const gainNode = getNewGainNode();
-    const bufferSource = getNewBufferSource(pitch, buffers);
-    connectToOutputSpeakers(gainNode, bufferSource);
-    bufferSource.start(audioContext.currentTime);
-    addGainNodeToList(gainNode, pitch);
+  const gainNode = getNewGainNode();
+  const bufferSource = getNewBufferSource(pitch, buffers);
+  connectToOutputSpeakers(gainNode, bufferSource);
+  bufferSource.start(audioContext.currentTime);
+  addGainNodeToList(gainNode, pitch);
 }
 
 /**
@@ -46,12 +48,15 @@ function playNoteAtPitch(pitch, buffers) {
  * @returns { AudioNode }
  */
 function getNewGainNode() {
-    const newGainNode = audioContext.createGain();
-    const NOTE_VOLUME = 1;
-    const NOTE_DURATION = 10;
-    newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
-    newGainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
-    return newGainNode;
+  const newGainNode = audioContext.createGain();
+  const NOTE_VOLUME = 1;
+  const NOTE_DURATION = 10;
+  newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
+  newGainNode.gain.exponentialRampToValueAtTime(
+    0.01,
+    audioContext.currentTime + NOTE_DURATION
+  );
+  return newGainNode;
 }
 
 /**
@@ -59,19 +64,19 @@ function getNewGainNode() {
  * @returns { AudioBufferSourceNode }
  */
 function getNewBufferSource(pitch, buffers) {
-    const newBufferSource = audioContext.createBufferSource();
-    const currentNoteAudioBuffer = buffers[pitch];
-    newBufferSource.buffer = currentNoteAudioBuffer;
-    return newBufferSource;
+  const newBufferSource = audioContext.createBufferSource();
+  const currentNoteAudioBuffer = buffers[pitch];
+  newBufferSource.buffer = currentNoteAudioBuffer;
+  return newBufferSource;
 }
 
 /**
  * Hook the buffer source and gain node up to the user's output speakers so they can hear the audio.
  */
 function connectToOutputSpeakers(gainNode, bufferSource) {
-    bufferSource.connect(gainNode);
-    gainNode.connect(destination);
-    gainNode.connect(audioContext.destination);
+  bufferSource.connect(gainNode);
+  gainNode.connect(destination);
+  gainNode.connect(audioContext.destination);
 }
 
 /**
@@ -80,7 +85,7 @@ function connectToOutputSpeakers(gainNode, bufferSource) {
  * @param { string }
  */
 function addGainNodeToList(gainNode, pitch) {
-    gainNodesUsed[pitch] = gainNode;
+  gainNodesUsed[pitch] = gainNode;
 }
 
 /**
@@ -89,7 +94,7 @@ function addGainNodeToList(gainNode, pitch) {
  * @param { string }
  */
 function addComputerKeyToPressedKeysArray(computerKey) {
-    currentlyPressedKeys.push(computerKey);
+  currentlyPressedKeys.push(computerKey);
 }
 
 /**
@@ -98,8 +103,10 @@ function addComputerKeyToPressedKeysArray(computerKey) {
  * @param { string }
  */
 function addPianoKeyColor(computerKey) {
-    const pianoKeyElement = document.querySelector(`button[value="${computerKey}"]`);
-    pianoKeyElement.classList.add('pressed-piano-key');
+  const pianoKeyElement = document.querySelector(
+    `button[value="${computerKey}"]`
+  );
+  pianoKeyElement.classList.add('pressed-piano-key');
 }
 
 /**
@@ -107,14 +114,14 @@ function addPianoKeyColor(computerKey) {
  * @param { Event }
  */
 export function endNote(event) {
-    const computerKey = getComputerKeyByEvent(event);
+  const computerKey = getComputerKeyByEvent(event);
 
-    if (canEndNote(computerKey)) {
-        const pitch = getPitchByComputerKey(computerKey);
-        removePianoKeyColor(computerKey);
-        removeComputerKeyFromPressedKeysArray(computerKey);
-        endNoteAtPitch(pitch);
-    }
+  if (canEndNote(computerKey)) {
+    const pitch = getPitchByComputerKey(computerKey);
+    removePianoKeyColor(computerKey);
+    removeComputerKeyFromPressedKeysArray(computerKey);
+    endNoteAtPitch(pitch);
+  }
 }
 
 /**
@@ -124,7 +131,9 @@ export function endNote(event) {
  * @returns { boolean }
  */
 function canEndNote(computerKey) {
-    return pianoKeys.has(computerKey) && currentlyPressedKeys.includes(computerKey);
+  return (
+    pianoKeys.has(computerKey) && currentlyPressedKeys.includes(computerKey)
+  );
 }
 
 /**
@@ -133,8 +142,10 @@ function canEndNote(computerKey) {
  * @param { string }
  */
 function removePianoKeyColor(computerKey) {
-    const pianoKeyElement = document.querySelector(`button[value="${computerKey}"]`);
-    pianoKeyElement.classList.remove('pressed-piano-key');
+  const pianoKeyElement = document.querySelector(
+    `button[value="${computerKey}"]`
+  );
+  pianoKeyElement.classList.remove('pressed-piano-key');
 }
 
 /**
@@ -142,8 +153,8 @@ function removePianoKeyColor(computerKey) {
  * @param { string }
  */
 function removeComputerKeyFromPressedKeysArray(computerKey) {
-    const index = currentlyPressedKeys.indexOf(computerKey);
-    currentlyPressedKeys.splice(index, 1);
+  const index = currentlyPressedKeys.indexOf(computerKey);
+  currentlyPressedKeys.splice(index, 1);
 }
 
 /**
@@ -152,9 +163,12 @@ function removeComputerKeyFromPressedKeysArray(computerKey) {
  * @param { string }
  */
 function endNoteAtPitch(pitch) {
-    const NOTE_DURATION = 0.5;
-    const currentNoteGainNode = gainNodesUsed[pitch];
-    currentNoteGainNode.gain.setValueAtTime(0.01, audioContext.currentTime + NOTE_DURATION);
+  const NOTE_DURATION = 0.5;
+  const currentNoteGainNode = gainNodesUsed[pitch];
+  currentNoteGainNode.gain.setValueAtTime(
+    0.01,
+    audioContext.currentTime + NOTE_DURATION
+  );
 }
 
 /**
@@ -163,8 +177,8 @@ function endNoteAtPitch(pitch) {
  * @returns { string }
  */
 function getComputerKeyByEvent(event) {
-    const computerKey = event.key || event.target.value;
-    return String(computerKey).toLowerCase();
+  const computerKey = event.key || event.target.value;
+  return String(computerKey).toLowerCase();
 }
 
 /**
@@ -173,8 +187,8 @@ function getComputerKeyByEvent(event) {
  * @returns { string }
  */
 function getPitchByComputerKey(computerKey) {
-    const pianoKey = pianoKeys.get(computerKey);
-    const noteName = pianoKey.noteName;
-    const octave = pianoKey.octave;
-    return String(noteName) + String(octave);
+  const pianoKey = pianoKeys.get(computerKey);
+  const noteName = pianoKey.noteName;
+  const octave = pianoKey.octave;
+  return String(noteName) + String(octave);
 }

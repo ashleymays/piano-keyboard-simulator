@@ -1,41 +1,42 @@
 {
-    "name": "piano-keyboard-simulator",
-    "version": "4.0.0",
-    "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
-    "main": "server/server.js",
-    "private": "true",
-    "directories": {
-        "doc": "docs"
-    },
-    "scripts": {
-        "start": "npm run build",
-        "build": "node server/server.js",
-        "dev": "nodemon server/server.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint .",
-        "lint:fix": "eslint --fix",
-        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ashleymays/piano-keyboard-simulator.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/ashleymays/piano-keyboard-simulator/issues"
-    },
-    "homepage": "https://github.com/ashleymays/piano-keyboard-simulator#readme",
-    "dependencies": {
-        "cors": "^2.8.5",
-        "express": "^4.18.2",
-        "fs": "^0.0.1-security"
-    },
-    "devDependencies": {
-        "eslint": "^8.52.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-prettier": "^5.0.1",
-        "nodemon": "^2.0.20"
-    }
+  "name": "piano-keyboard-simulator",
+  "version": "4.5.0",
+  "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
+  "main": "server/server.js",
+  "private": "true",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "npm run build",
+    "build": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashleymays/piano-keyboard-simulator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashleymays/piano-keyboard-simulator/issues"
+  },
+  "homepage": "https://github.com/ashleymays/piano-keyboard-simulator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "sass": "^1.69.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "nodemon": "^2.0.20"
+  }
 }
