@@ -11,6 +11,7 @@ I've been working on this since July 2022. I generally use this as a sandbox to 
 Since I didn't know much about testing when I first started, there are no unit or integration tests available right now. I'll continue to work on that. This release will probably be the last, but please feel free to take the source code and do whatever you want with it (attribution would be nice, too :).
 
 ## How to Use
+
 ### Option 1: Open online with Stackblitz
 
 <a href="https://stackblitz.com/~/github.com/ashleymays/piano-keyboard-simulator">https://stackblitz.com/~/github.com/ashleymays/piano-keyboard-simulator</a>

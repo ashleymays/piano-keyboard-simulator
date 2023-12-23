@@ -6,6 +6,7 @@ const app = express();
 
 app.use(cors());
 // app.use(express.static(path.resolve(__dirname, '../client', 'build')));
+app.use(express.static(path.resolve(__dirname, '../client', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,27 +18,29 @@ app.get('/audio/:instrument', (req, res) => {
     instrument
   );
 
-  readdir(instrumentAudioFilePath, (error, audioFileNames) => {
-    if (error) throw error;
-    const audioFiles = {};
-    const encoding = 'base64';
-    let audioPitchFilePath;
+  res.send(instrumentAudioFilePath);
 
-    audioFileNames.forEach((audioFileName, index) => {
-      audioPitchFilePath = path.resolve(instrumentAudioFilePath, audioFileName);
+  // readdir(instrumentAudioFilePath, (error, audioFileNames) => {
+  //   if (error) throw error;
+  //   const audioFiles = {};
+  //   const encoding = 'base64';
+  //   let audioPitchFilePath;
 
-      readFile(audioPitchFilePath, encoding, (error, audio) => {
-        if (error) throw error;
-        audioFiles[audioFileName] = audio;
-        if (index === audioFileNames.length - 1) {
-          res.send(audioFiles);
-        }
-      });
-    });
-  });
+  //   audioFileNames.forEach((audioFileName, index) => {
+  //     audioPitchFilePath = path.resolve(instrumentAudioFilePath, audioFileName);
+
+  //     readFile(audioPitchFilePath, encoding, (error, audio) => {
+  //       if (error) throw error;
+  //       audioFiles[audioFileName] = audio;
+  //       if (index === audioFileNames.length - 1) {
+  //         res.send(audioFiles);
+  //       }
+  //     });
+  //   });
+  // });
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Listening on port variables.${PORT}`);
+  console.log(`Listening on port ${PORT}`);
 });

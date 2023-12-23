@@ -16,7 +16,7 @@ export async function getInstrumentAudioBuffers(instrument) {
 
 /**
  * Fetch the audio for an instrument from the server in Base 64 format.
- * @param { string } instrument
+ * @param { string } instrument the name of the directory for the instrument's audio files
  * @returns { Object }
  */
 async function getInstrumentAudioFiles(instrument) {

@@ -5,7 +5,7 @@ import Button from 'src/components/Button';
 
 import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
 
-const buttonsData = [
+const buttons = [
   {
     title: 'Acoustic Grand',
     isDefault: true
@@ -29,7 +29,6 @@ function Buttons() {
       const audioBuffers = await getInstrumentAudioBuffers(title);
       setBuffers({ ...audioBuffers });
     } catch (error) {
-      console.log('Could not load audio.');
       throw error;
     } finally {
       setIsAppLoading(false);
@@ -40,14 +39,17 @@ function Buttons() {
     handleInstrumentAudio('Acoustic Grand');
   }, []);
 
-  const buttons = buttonsData.map((button) => (
-    <Button
-      key={button.title}
-      onChange={() => handleInstrumentAudio(button.title)}
-      {...button}
-    />
-  ));
-  return <div className="buttons">{buttons}</div>;
+  return (
+    <div className="buttons">
+      {buttons.map((button) => (
+        <Button
+          key={button.title}
+          onChange={() => handleInstrumentAudio(button.title)}
+          {...button}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Buttons;
