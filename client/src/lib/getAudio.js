@@ -22,7 +22,7 @@ export async function getInstrumentAudioBuffers(instrument) {
 async function getInstrumentAudioFiles(instrument) {
   try {
     const response = await axios({
-      url: `${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`,
+      url: `variables.${process.env.REACT_APP_SERVER_BASE_URL}/audio/variables.${instrument}`,
       method: 'get',
       headers: new Headers({
         'Access-Control-Allow-Origin': '*',
@@ -52,7 +52,7 @@ async function getArrayBufferFromAudioFiles(audioFiles) {
 
     for (let audioFileName in audioFiles) {
       base64AudioData = audioFiles[audioFileName];
-      base64String = `data:application/octet;base64,${base64AudioData}`;
+      base64String = `data:application/octet;base64,variables.${base64AudioData}`;
       audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
       pitch = getPitchFromFileName(audioFileName);
       audioBuffers[pitch] = audioData;

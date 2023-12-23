@@ -1,5 +1,7 @@
+@use 'src/_variables.scss';
+
 .overlay {
-  background: rgba($dark-blue, $op-medium);
+  background: rgba(variables.$dark-blue, variables.$op-medium);
   position: fixed;
   top: 0;
   right: 0;

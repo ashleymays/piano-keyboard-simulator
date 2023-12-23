@@ -1,4 +1,4 @@
-@import './variables.scss';
+@use 'variables';
 
 * {
   box-sizing: border-box;
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background: $off-white;
+  background: variables.$off-white;
   height: 100%;
   font-family: 'Noto Sans Mono', monospace;
   user-select: none;
