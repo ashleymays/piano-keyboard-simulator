@@ -39,7 +39,7 @@ function Buttons() {
   };
 
   useEffect(() => {
-    handleInstrumentAudio('Acoustic Grand');
+    handleInstrumentAudio(buttons[0].directory);
   }, []);
 
   return (
@@ -47,7 +47,7 @@ function Buttons() {
       {buttons.map((button) => (
         <Button
           key={button.title}
-          onChange={() => handleInstrumentAudio(button.title)}
+          onChange={() => handleInstrumentAudio(button.directory)}
           {...button}
         />
       ))}

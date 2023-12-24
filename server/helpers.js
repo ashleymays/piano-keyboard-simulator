@@ -29,15 +29,14 @@ function getAudioFiles(fileNames, instrumentDirectoryPath) {
 }
 
 /**
- * Gets the audio file data at the specified
+ * Gets the audio file data at the specified path
  * @param { string } audioFilePath
  * @returns { Promise }
  */
 function getAudioFile(audioFilePath) {
   return getPromiseWrapper({
     fn: readFile,
-    path: audioFilePath,
-    options: { encoding: 'base64' }
+    path: audioFilePath
   });
 }
 

@@ -21,7 +21,7 @@ app.get('/audio/:instrument', async (req, res) => {
     const files = await getAudioFiles(fileNames, instrumentDirectoryPath);
     res.status(200).send(combineArraysToObject(fileNames, files));
   } catch (error) {
-    res.status(500).send(new Error('this is an error message'));
+    res.status(500).send({ message: String(error) });
   }
 });
 
