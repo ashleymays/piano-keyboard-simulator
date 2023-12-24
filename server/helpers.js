@@ -1,4 +1,4 @@
-const path = require('path');
+const { resolve } = require('path');
 const { readdir, readFile } = require('fs');
 
 /**
@@ -7,32 +7,52 @@ const { readdir, readFile } = require('fs');
  * @returns { Promise }
  */
 function getAudioFileNames(instrumentDirectoryPath) {
-  return new Promise((resolve, reject) =>
-    readdir(instrumentDirectoryPath, (error, fileNames) =>
-      error != null ? reject(error) : resolve(fileNames)
-    )
-  );
+  return getPromiseWrapper({
+    fn: readdir,
+    path: instrumentDirectoryPath
+  });
 }
 
+/**
+ * Get the data for all audio files in a directory
+ * @param { Array<string> } fileNames
+ * @param { string } instrumentDirectoryPath
+ */
 function getAudioFiles(fileNames, instrumentDirectoryPath) {
   const audioFiles = [];
   let filePath;
   fileNames.forEach((fileName) => {
-    filePath = path.resolve(instrumentDirectoryPath, fileName);
+    filePath = resolve(instrumentDirectoryPath, fileName);
     audioFiles.push(getAudioFile(filePath));
   });
   return Promise.all(audioFiles);
 }
 
 /**
- * Gets the audio file data at the specified path.
+ * Gets the audio file data at the specified
  * @param { string } audioFilePath
  * @returns { Promise }
  */
 function getAudioFile(audioFilePath) {
+  return getPromiseWrapper({
+    fn: readFile,
+    path: audioFilePath,
+    options: { encoding: 'base64' }
+  });
+}
+
+/**
+ * Wraps an callback-based function in a promise.
+ * @param { Object } params the parameters needed to for the callback-based function and the callback itself
+ * @param { function } params.fn the callback-based function to call
+ * @param { string } params.path
+ * @param { Object } params.options the options needed for the callback
+ * @returns { Promise }
+ */
+function getPromiseWrapper({ fn, path, options = {} }) {
   return new Promise((resolve, reject) =>
-    readFile(audioFilePath, 'base64', (error, audio) =>
-      error != null ? reject(error) : resolve(audio)
+    fn(path, options, (error, result) =>
+      error != null ? reject(error) : resolve(result)
     )
   );
 }
@@ -45,12 +65,17 @@ function getAudioFile(audioFilePath) {
  * @returns { Object }
  */
 function combineArraysToObject(keys, values) {
-  if (keys.length !== values.length) return null;
-  const obj = {};
-  for (let i = 0; i < keys.length; ++i) {
-    obj[keys[i]] = values[i];
+  if (keys == null || values == null || keys.length !== values.length) {
+    return null;
   }
-  return obj;
+
+  const result = {};
+
+  for (let i = 0; i < keys.length; ++i) {
+    result[keys[i]] = values[i];
+  }
+
+  return result;
 }
 
 module.exports = {
