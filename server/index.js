@@ -4,6 +4,7 @@ const path = require('path');
 const {
   getAudioFileNames,
   getAudioFiles,
+  getPitchesFromFileNames,
   combineArraysToObject
 } = require('./helpers');
 
@@ -23,7 +24,9 @@ app.get('/audio/:instrument', async (req, res) => {
     );
     const fileNames = await getAudioFileNames(instrumentDirectoryPath);
     const files = await getAudioFiles(fileNames, instrumentDirectoryPath);
-    res.status(200).send(combineArraysToObject(fileNames, files));
+    const pitches = getPitchesFromFileNames(fileNames);
+    const audioObject = combineArraysToObject(pitches, files);
+    res.status(200).send(audioObject);
   } catch (error) {
     res.status(500).send({ message: String(error) });
   }

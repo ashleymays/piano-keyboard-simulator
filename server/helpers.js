@@ -81,8 +81,26 @@ function combineArraysToObject(keys, values) {
   return result;
 }
 
+function getPitchesFromFileNames(fileNames) {
+  const pitches = [];
+  let pitch;
+
+  for (let i in fileNames) {
+    pitch = getPitchFromFileName(fileNames[i]);
+    pitches.push(pitch);
+  }
+
+  return pitches;
+}
+
+function getPitchFromFileName(fileName) {
+  const fileExtension = '.mp3';
+  return fileName.slice(0, fileName.length - fileExtension.length);
+}
+
 module.exports = {
   getAudioFileNames,
   getAudioFiles,
+  getPitchesFromFileNames,
   combineArraysToObject
 };
