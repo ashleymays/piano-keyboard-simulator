@@ -6,12 +6,12 @@ import Keyboard from './components/Keyboard';
 import MainContext from './context';
 
 function App() {
-  const [buffers, setBuffers] = useState({});
+  const [audio, setAudio] = useState({});
   const [isAppLoading, setIsAppLoading] = useState(true);
 
   return (
     <MainContext.Provider
-      value={{ buffers, setBuffers, isAppLoading, setIsAppLoading }}
+      value={{ audio, setAudio, isAppLoading, setIsAppLoading }}
     >
       <LoadingIcon />
       <Keyboard />

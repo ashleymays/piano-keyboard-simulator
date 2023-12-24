@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const path = require('path');
 const { readdir, readFile } = require('fs');
 
 /**
@@ -7,8 +7,8 @@ const { readdir, readFile } = require('fs');
  * @returns { Promise }
  */
 function getAudioFileNames(instrumentDirectoryPath) {
-  return getPromiseWrapper({
-    fn: readdir,
+  return getAsyncFunctionAsPromise({
+    asyncFn: readdir,
     path: instrumentDirectoryPath
   });
 }
@@ -17,14 +17,17 @@ function getAudioFileNames(instrumentDirectoryPath) {
  * Get the data for all audio files in a directory
  * @param { Array<string> } fileNames
  * @param { string } instrumentDirectoryPath
+ * @returns { Promise }
  */
 function getAudioFiles(fileNames, instrumentDirectoryPath) {
   const audioFiles = [];
   let filePath;
+
   fileNames.forEach((fileName) => {
-    filePath = resolve(instrumentDirectoryPath, fileName);
+    filePath = path.resolve(instrumentDirectoryPath, fileName);
     audioFiles.push(getAudioFile(filePath));
   });
+
   return Promise.all(audioFiles);
 }
 
@@ -34,23 +37,24 @@ function getAudioFiles(fileNames, instrumentDirectoryPath) {
  * @returns { Promise }
  */
 function getAudioFile(audioFilePath) {
-  return getPromiseWrapper({
-    fn: readFile,
-    path: audioFilePath
+  return getAsyncFunctionAsPromise({
+    asyncFn: readFile,
+    path: audioFilePath,
+    options: { encoding: 'base64' }
   });
 }
 
 /**
  * Wraps an callback-based function in a promise.
  * @param { Object } params the parameters needed to for the callback-based function and the callback itself
- * @param { function } params.fn the callback-based function to call
+ * @param { function } params.asyncFn the callback-based function to call
  * @param { string } params.path
  * @param { Object } params.options the options needed for the callback
  * @returns { Promise }
  */
-function getPromiseWrapper({ fn, path, options = {} }) {
+function getAsyncFunctionAsPromise({ asyncFn, path, options = {} }) {
   return new Promise((resolve, reject) =>
-    fn(path, options, (error, result) =>
+    asyncFn(path, options, (error, result) =>
       error != null ? reject(error) : resolve(result)
     )
   );

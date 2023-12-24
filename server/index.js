@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { resolve } = require('path');
+const path = require('path');
 const {
   getAudioFileNames,
   getAudioFiles,
@@ -16,7 +16,11 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/audio/:instrument', async (req, res) => {
   try {
     const instrument = req.params.instrument;
-    const instrumentDirectoryPath = resolve(__dirname, './audio', instrument);
+    const instrumentDirectoryPath = path.resolve(
+      __dirname,
+      './audio',
+      instrument
+    );
     const fileNames = await getAudioFileNames(instrumentDirectoryPath);
     const files = await getAudioFiles(fileNames, instrumentDirectoryPath);
     res.status(200).send(combineArraysToObject(fileNames, files));

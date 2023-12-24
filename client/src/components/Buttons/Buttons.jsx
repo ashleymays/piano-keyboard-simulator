@@ -3,7 +3,7 @@ import { useEffect, useContext } from 'react';
 import MainContext from 'src/context';
 import Button from 'src/components/Button';
 
-import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
+import getInstrumentAudio from 'src/lib/getAudio';
 
 const buttons = [
   {
@@ -24,13 +24,13 @@ const buttons = [
 ];
 
 function Buttons() {
-  const { setBuffers, setIsAppLoading } = useContext(MainContext);
+  const { setAudio, setIsAppLoading } = useContext(MainContext);
 
   const handleInstrumentAudio = async (title) => {
     try {
       setIsAppLoading(true);
-      const audioBuffers = await getInstrumentAudioBuffers(title);
-      setBuffers({ ...audioBuffers });
+      const audio = await getInstrumentAudio(title);
+      setAudio({ ...audio });
     } catch (error) {
       throw error;
     } finally {
@@ -39,7 +39,7 @@ function Buttons() {
   };
 
   useEffect(() => {
-    handleInstrumentAudio(buttons[0].directory);
+    handleInstrumentAudio('acoustic-grand');
   }, []);
 
   return (

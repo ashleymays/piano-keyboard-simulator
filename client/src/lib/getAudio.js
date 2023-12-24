@@ -1,12 +1,10 @@
 import axios from 'axios';
 import decodeAudio from 'audio-decode';
 
-export async function getInstrumentAudioBuffers(instrument) {
+export default async function getInstrumentAudio(instrument) {
   const audioFiles = await getAudioFiles(instrument);
-  const audioBuffers = getAudioBuffers(audioFiles);
-  const updatedAudioBuffers = updateAudioBufferKeys(audioBuffers);
-  console.log(updatedAudioBuffers);
-  return updatedAudioBuffers;
+  const audio = await getAudioObject(audioFiles);
+  return audio;
 }
 
 async function getAudioFiles(instrument) {
@@ -15,58 +13,70 @@ async function getAudioFiles(instrument) {
   return response.data;
 }
 
-function getAudioBuffers(audioFiles) {
-  let blob;
-  let url;
-  for (let i in audioFiles) {
-    blob = new Blob([audioFiles[i].data]);
-    url = URL.createObjectURL(blob, 'audio/mp3');
-    audioFiles[i] = url;
-  }
-  return audioFiles;
-}
-
-// async function getAudioBuffers(audioFiles) {
-//   let undecodedAudioFiles = [];
-//   let arrayBuffers = [];
-//   let audioBuffers = [];
-//   let base64String;
-//   let undecodedAudio;
-//   let arrayBuffer;
-
-//   for (let i in audioFiles) {
-//     base64String = `data:application/octet;base64,${audioFiles[i]}`;
-//     undecodedAudioFiles.push(fetch(base64String));
-//   }
-
-//   undecodedAudioFiles = await Promise.all(undecodedAudioFiles);
-
-//   for (let i in undecodedAudioFiles) {
-//     undecodedAudio = undecodedAudioFiles[i];
-//     arrayBuffers.push(undecodedAudio.arrayBuffer());
-//   }
-
-//   arrayBuffers = await Promise.all(arrayBuffers);
-
-//   for (let i in arrayBuffers) {
-//     arrayBuffer = arrayBuffers[i];
-//     audioBuffers.push(decodeAudio(arrayBuffer));
-//   }
-
-//   return Promise.all(audioBuffers);
-// }
-
-function updateAudioBufferKeys(audioBuffers) {
-  const audioFileNames = Object.keys(audioBuffers);
-  const updatedAudioBuffers = {};
+async function getAudioObject(audioFiles) {
+  const audioBuffers = await getAudioBuffers(audioFiles);
+  const audioFileNames = Object.keys(audioFiles);
+  const audioObject = {};
   let pitch;
 
-  audioFileNames.forEach((fileName) => {
+  audioFileNames.forEach((fileName, index) => {
     pitch = getPitchFromFileName(fileName);
-    updatedAudioBuffers[pitch] = audioBuffers[fileName];
+    audioObject[pitch] = audioBuffers[index];
   });
 
-  return updatedAudioBuffers;
+  return audioObject;
+}
+
+async function getAudioBuffers(audioFiles) {
+  const undecodedAudioFiles = await getUndecodedAudioFiles(audioFiles);
+  const arrayBuffers = await getArrayBuffers(undecodedAudioFiles);
+
+  const getAudioBufferPromise = (i) => {
+    const arrayBuffer = arrayBuffers[i];
+    return decodeAudio(arrayBuffer);
+  };
+
+  return resolvePromisesConcurrently({
+    asyncFn: getAudioBufferPromise,
+    numberOfPromises: arrayBuffers.length
+  });
+}
+
+function getUndecodedAudioFiles(audioFiles) {
+  const base64AudioList = Object.values(audioFiles);
+
+  const getUndecodedAudioFilesPromise = (i) => {
+    const base64Audio = base64AudioList[i];
+    const base64String = `data:application/octet;base64,${base64Audio}`;
+    return fetch(base64String);
+  };
+
+  return resolvePromisesConcurrently({
+    asyncFn: getUndecodedAudioFilesPromise,
+    numberOfPromises: base64AudioList.length
+  });
+}
+
+function getArrayBuffers(undecodedAudioFiles) {
+  const getArrayBuffersPromise = (i) => {
+    const undecodedAudioFile = undecodedAudioFiles[i];
+    return undecodedAudioFile.arrayBuffer();
+  };
+
+  return resolvePromisesConcurrently({
+    asyncFn: getArrayBuffersPromise,
+    numberOfPromises: undecodedAudioFiles.length
+  });
+}
+
+function resolvePromisesConcurrently({ asyncFn, numberOfPromises }) {
+  const promises = [];
+
+  for (let i = 0; i < numberOfPromises; ++i) {
+    promises.push(asyncFn(i));
+  }
+
+  return Promise.all(promises);
 }
 
 function getPitchFromFileName(fileName) {
