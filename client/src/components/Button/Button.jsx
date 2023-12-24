@@ -1,10 +1,10 @@
-function Button({ title, isDefault, onChange }) {
+function Button({ title, isDefault, directory, onChange }) {
   return (
     <label className="control-btn-container">
       <input
         type="radio"
         name="instrument"
-        value={title}
+        value={directory}
         defaultChecked={isDefault}
         onChange={onChange}
       />

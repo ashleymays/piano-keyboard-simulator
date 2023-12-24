@@ -30,4 +30,4 @@ The app will open in a browser window.
 
 ## License
 
-This project uses the [MIT License](docs/LICENSE.md).
+This project uses the [MIT License](LICENSE.md).

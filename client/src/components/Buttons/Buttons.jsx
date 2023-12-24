@@ -8,14 +8,17 @@ import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
 const buttons = [
   {
     title: 'Acoustic Grand',
+    directory: 'acoustic-grand',
     isDefault: true
   },
   {
     title: 'Electric Piano',
+    directory: 'electric-piano',
     isDefault: false
   },
   {
     title: '8-Bit',
+    directory: '8-bit',
     isDefault: false
   }
 ];

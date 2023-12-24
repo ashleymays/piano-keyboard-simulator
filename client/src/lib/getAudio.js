@@ -1,26 +1,20 @@
 import axios from 'axios';
+import decodeAudio from 'audio-decode';
 
-/**
- * Get the audio for the selected instrument.
- * @param { string }
- * @returns { Object }
- */
 export async function getInstrumentAudioBuffers(instrument) {
   try {
-    const audioFiles = await getInstrumentAudioFiles(instrument);
-    return await getArrayBufferFromAudioFiles(audioFiles);
+    const audioFiles = await getAudioFiles(instrument);
+    getAudioBuffers(audioFiles);
+    return {};
+    // return await getAudioBuffers(audioFiles);
   } catch (error) {
     throw error;
   }
 }
 
-/**
- * Fetch the audio for an instrument from the server in Base 64 format.
- * @param { string } instrument the name of the directory for the instrument's audio files
- * @returns { Object }
- */
-async function getInstrumentAudioFiles(instrument) {
+async function getAudioFiles(instrument) {
   try {
+    console.log(`${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`);
     const response = await axios({
       url: `${process.env.REACT_APP_SERVER_BASE_URL}/audio/${instrument}`,
       method: 'get',
@@ -36,56 +30,19 @@ async function getInstrumentAudioFiles(instrument) {
   }
 }
 
-/**
- * Get the audio for the selected instrument as an object of ArrayBuffers.
- * @param { Object } audioFiles
- * @returns { Object }
- */
-async function getArrayBufferFromAudioFiles(audioFiles) {
+async function getAudioBuffers(files) {
+  console.log(files);
+}
+
+function getPitchFromFileName(fileName) {
+  const fileExtension = '.mp3';
+  return fileName.slice(0, fileName.length - fileExtension.length);
+}
+
+async function resolvePromises(promises) {
   try {
-    const audioContext = new AudioContext();
-    const audioBuffers = {};
-    let base64String;
-    let base64AudioData;
-    let audioData;
-    let pitch;
-
-    for (let audioFileName in audioFiles) {
-      base64AudioData = audioFiles[audioFileName];
-      base64String = `data:application/octet;base64,variables.${base64AudioData}`;
-      audioData = await convertBase64ToArrayBuffer(base64String, audioContext);
-      pitch = getPitchFromFileName(audioFileName);
-      audioBuffers[pitch] = audioData;
-    }
-
-    audioContext.close();
-    return audioBuffers;
+    return await Promise.all(promises);
   } catch (error) {
     throw error;
   }
-}
-
-/**
- * Converts a base 64 string to an array buffer.
- * @param { string }
- * @returns { ArrayBuffer }
- */
-async function convertBase64ToArrayBuffer(base64String, audioContext) {
-  try {
-    let undecodedAudio = await fetch(base64String);
-    let undecodedAudioBuffer = await undecodedAudio.arrayBuffer();
-    return await audioContext.decodeAudioData(undecodedAudioBuffer);
-  } catch (error) {
-    throw error;
-  }
-}
-
-/**
- * Pitch is the name of the audio file without the file extension (.mp3)
- * @param { string }
- * @returns { string }
- */
-function getPitchFromFileName(audioFileName) {
-  const FILE_EXTENSION = '.mp3';
-  return audioFileName.slice(0, audioFileName.length - FILE_EXTENSION.length);
 }
