@@ -7,11 +7,10 @@ const { readdir, readFile } = require('fs');
  * @returns { Promise }
  */
 function getAudioFileNames(instrumentDirectoryPath) {
-  const params = {
+  return getPromiseWrapper({
     fn: readdir,
     path: instrumentDirectoryPath
-  };
-  return getPromiseWrapper(params);
+  });
 }
 
 function getAudioFiles(fileNames, instrumentDirectoryPath) {
@@ -30,12 +29,11 @@ function getAudioFiles(fileNames, instrumentDirectoryPath) {
  * @returns { Promise }
  */
 function getAudioFile(audioFilePath) {
-  const params = {
+  return getPromiseWrapper({
     fn: readFile,
     path: audioFilePath,
     options: { encoding: 'base64' }
-  };
-  return getPromiseWrapper(params);
+  });
 }
 
 /**
