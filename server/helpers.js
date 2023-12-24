@@ -7,10 +7,11 @@ const { readdir, readFile } = require('fs');
  * @returns { Promise }
  */
 function getAudioFileNames(instrumentDirectoryPath) {
-  return getPromiseWrapper({
-    fn: readdir,
-    path: instrumentDirectoryPath
-  });
+  return new Promise((resolve, reject) =>
+    readdir(instrumentDirectoryPath, (error, fileNames) =>
+      error != null ? reject(error) : resolve(fileNames)
+    )
+  );
 }
 
 function getAudioFiles(fileNames, instrumentDirectoryPath) {
@@ -29,25 +30,9 @@ function getAudioFiles(fileNames, instrumentDirectoryPath) {
  * @returns { Promise }
  */
 function getAudioFile(audioFilePath) {
-  return getPromiseWrapper({
-    fn: readFile,
-    path: audioFilePath,
-    options: { encoding: 'base64' }
-  });
-}
-
-/**
- * Wraps an callback-based function in a promise.
- * @param { Object } params the parameters needed to for the callback-based function and the callback itself
- * @param { function } params.fn the callback-based function to call
- * @param { string } params.path
- * @param { Object } params.options the options needed for the callback
- * @returns { Promise }
- */
-function getPromiseWrapper({ fn, path, options = {} }) {
   return new Promise((resolve, reject) =>
-    fn(path, options, (error, result) =>
-      error != null ? reject(error) : resolve(result)
+    readFile(audioFilePath, 'base64', (error, audio) =>
+      error != null ? reject(error) : resolve(audio)
     )
   );
 }
