@@ -1,33 +1,37 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from 'src/context';
-import { getInstrumentAudioBuffers } from 'src/lib/getAudio';
-import Button from './Button';
 
-const buttonsData = [
+import MainContext from 'src/context';
+import Button from 'src/components/Button';
+
+import getInstrumentAudio from 'src/helpers/getAudio';
+
+const buttons = [
   {
     title: 'Acoustic Grand',
+    directory: 'acoustic-grand',
     isDefault: true
   },
   {
     title: 'Electric Piano',
+    directory: 'electric-piano',
     isDefault: false
   },
   {
     title: '8-Bit',
+    directory: '8-bit',
     isDefault: false
   }
 ];
 
 function Buttons() {
-  const { setBuffers, isAppLoading, setIsAppLoading } = useContext(MainContext);
+  const { setAudio, setIsAppLoading } = useContext(MainContext);
 
   const handleInstrumentAudio = async (title) => {
     try {
       setIsAppLoading(true);
-      const audioBuffers = await getInstrumentAudioBuffers(title);
-      setBuffers({ ...audioBuffers });
+      const audio = await getInstrumentAudio(title);
+      setAudio({ ...audio });
     } catch (error) {
-      console.log('Could not load audio.');
       throw error;
     } finally {
       setIsAppLoading(false);
@@ -35,17 +39,20 @@ function Buttons() {
   };
 
   useEffect(() => {
-    handleInstrumentAudio('Acoustic Grand');
+    handleInstrumentAudio('acoustic-grand');
   }, []);
 
-  const buttons = buttonsData.map((button) => (
-    <Button
-      key={button.title}
-      onChange={() => handleInstrumentAudio(button.title)}
-      {...button}
-    />
-  ));
-  return <div className="buttons">{buttons}</div>;
+  return (
+    <div className="buttons">
+      {buttons.map((button) => (
+        <Button
+          key={button.title}
+          onChange={() => handleInstrumentAudio(button.directory)}
+          {...button}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Buttons;

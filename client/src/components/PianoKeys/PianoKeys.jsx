@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { MainContext } from 'src/context';
-import PianoKey from './PianoKey';
-import pianoKeys from 'src/data/pianoKeys';
-import { playNote, endNote } from 'src/lib/playAudio';
+import MainContext from 'src/context';
+import PianoKey from 'src/components/PianoKey';
+import { pianoKeys } from 'src/data';
+import { playNote, endNote } from 'src/helpers/playAudio';
 
 function getPianoKeysAsArray() {
   var pianoKeyComponents = [];
@@ -14,11 +14,11 @@ function getPianoKeysAsArray() {
 
 function PianoKeys() {
   const [isPianoKeyDown, setIsPianoKeyDown] = useState(false);
-  const { buffers, isAppLoading } = useContext(MainContext);
+  const { audio, isAppLoading } = useContext(MainContext);
 
   const handleKeyDown = useCallback((event) => {
     if (!isAppLoading) {
-      playNote(event, buffers);
+      playNote(event, audio);
     }
   });
 
@@ -30,7 +30,7 @@ function PianoKeys() {
 
   const handleMouseDownAndTouchStart = useCallback((event) => {
     setIsPianoKeyDown(true);
-    playNote(event, buffers);
+    playNote(event, audio);
   });
 
   const handleMouseUpAndTouchEnd = useCallback((event) => {
@@ -40,7 +40,7 @@ function PianoKeys() {
 
   const handleMouseOver = useCallback((event) => {
     if (isGlissandoEffectInUse(event)) {
-      playNote(event, buffers);
+      playNote(event, audio);
     }
   });
 
@@ -68,7 +68,7 @@ function PianoKeys() {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
     };
-  }, [buffers, isAppLoading]);
+  }, [audio, isAppLoading]);
 
   const keys = getPianoKeysAsArray();
   return (

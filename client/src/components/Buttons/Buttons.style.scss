@@ -1,9 +1,6 @@
-@use 'src/assets/styles/placeholders.scss';
-
 .buttons {
-  @extend %flex-row;
-  @extend %justify-content-space-btwn;
-
+  display: flex;
+  justify-content: space-between;
   width: 30%;
   height: max-content;
 }

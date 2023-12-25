@@ -1,4 +1,4 @@
-@use './assets/styles/variables.scss';
+@use 'variables';
 
 * {
   box-sizing: border-box;
@@ -16,9 +16,9 @@ html {
 }
 
 body {
-  background: variables.$background;
+  background: variables.$blue-gray;
   height: 100%;
-  font-family: variables.$font-main;
+  font-family: 'Noto Sans Mono', monospace;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;

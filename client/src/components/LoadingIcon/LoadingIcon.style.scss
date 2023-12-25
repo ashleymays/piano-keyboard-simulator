@@ -1,7 +1,7 @@
-@use 'src/assets/styles/variables.scss';
+@use 'src/_variables.scss';
 
 .overlay {
-  background: variables.$black-80;
+  background: rgba(variables.$dark-blue, variables.$op-medium);
   position: fixed;
   top: 0;
   right: 0;

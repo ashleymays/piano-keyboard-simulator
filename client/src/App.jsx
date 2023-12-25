@@ -1,11 +1,21 @@
-import GlobalContext from 'src/providers';
-import Keyboard from 'src/components/Keyboard';
+import { useState } from 'react';
+
+import LoadingIcon from './components/LoadingIcon';
+import Keyboard from './components/Keyboard';
+
+import MainContext from './context';
 
 function App() {
+  const [audio, setAudio] = useState({});
+  const [isAppLoading, setIsAppLoading] = useState(true);
+
   return (
-    <GlobalContext>
+    <MainContext.Provider
+      value={{ audio, setAudio, isAppLoading, setIsAppLoading }}
+    >
+      <LoadingIcon />
       <Keyboard />
-    </GlobalContext>
+    </MainContext.Provider>
   );
 }
 
