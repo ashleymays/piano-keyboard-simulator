@@ -15,13 +15,16 @@ export function playNote(event, buffers) {
   if (canPlayNote(computerKey)) {
     const pitch = getPitchByComputerKey(computerKey);
     playNoteAtPitch(pitch, buffers);
-    addComputerKeyToPressedKeysArray(computerKey);
     addPianoKeyColor(computerKey);
+    currentlyPressedKeys.push(computerKey);
   }
 }
 
 /**
  * Check if the user can play the note at the desired computer key.
+ *
+ * @param { string } computerKey
+ * @returns { boolean }
  */
 function canPlayNote(computerKey) {
   return (
@@ -38,7 +41,7 @@ function playNoteAtPitch(pitch, buffers) {
   const bufferSource = getNewBufferSource(pitch, buffers);
   connectToOutputSpeakers(gainNode, bufferSource);
   bufferSource.start(audioContext.currentTime);
-  addGainNodeToList(gainNode, pitch);
+  gainNodesUsed[pitch] = gainNode;
 }
 
 /**
@@ -49,12 +52,12 @@ function playNoteAtPitch(pitch, buffers) {
  */
 function getNewGainNode() {
   const newGainNode = audioContext.createGain();
-  const NOTE_VOLUME = 1;
-  const NOTE_DURATION = 10;
-  newGainNode.gain.setValueAtTime(NOTE_VOLUME, audioContext.currentTime);
+  const noteVolume = 1;
+  const noteDuration = 10;
+  newGainNode.gain.setValueAtTime(noteVolume, audioContext.currentTime);
   newGainNode.gain.exponentialRampToValueAtTime(
     0.01,
-    audioContext.currentTime + NOTE_DURATION
+    audioContext.currentTime + noteDuration
   );
   return newGainNode;
 }
@@ -65,8 +68,7 @@ function getNewGainNode() {
  */
 function getNewBufferSource(pitch, buffers) {
   const newBufferSource = audioContext.createBufferSource();
-  const currentNoteAudioBuffer = buffers[pitch];
-  newBufferSource.buffer = currentNoteAudioBuffer;
+  newBufferSource.buffer = buffers[pitch];
   return newBufferSource;
 }
 
@@ -77,24 +79,6 @@ function connectToOutputSpeakers(gainNode, bufferSource) {
   bufferSource.connect(gainNode);
   gainNode.connect(destination);
   gainNode.connect(audioContext.destination);
-}
-
-/**
- * Keep track of the gain nodes we've created/used.
- * @param { Audio Node }
- * @param { string }
- */
-function addGainNodeToList(gainNode, pitch) {
-  gainNodesUsed[pitch] = gainNode;
-}
-
-/**
- * Keep track of the notes the user is playing at the moment.
- * Prevents the note from starting over when the user holds a key down, which is default behavior for the keydown event.
- * @param { string }
- */
-function addComputerKeyToPressedKeysArray(computerKey) {
-  currentlyPressedKeys.push(computerKey);
 }
 
 /**
@@ -163,11 +147,11 @@ function removeComputerKeyFromPressedKeysArray(computerKey) {
  * @param { string }
  */
 function endNoteAtPitch(pitch) {
-  const NOTE_DURATION = 0.5;
+  const noteDuration = 0.5;
   const currentNoteGainNode = gainNodesUsed[pitch];
   currentNoteGainNode.gain.setValueAtTime(
     0.01,
-    audioContext.currentTime + NOTE_DURATION
+    audioContext.currentTime + noteDuration
   );
 }
 
@@ -183,12 +167,11 @@ function getComputerKeyByEvent(event) {
 
 /**
  * Get the pitch of the note by the computer key.
- * @param { string }
+ * @param { string } computerKey
  * @returns { string }
  */
 function getPitchByComputerKey(computerKey) {
   const pianoKey = pianoKeys.get(computerKey);
-  const noteName = pianoKey.noteName;
-  const octave = pianoKey.octave;
-  return String(noteName) + String(octave);
+  const { noteName, octave } = pianoKey;
+  return `${noteName}${octave}`;
 }
