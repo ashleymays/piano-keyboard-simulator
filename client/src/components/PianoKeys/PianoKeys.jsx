@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useContext } from 'react';
 import MainContext from 'src/context';
 import PianoKey from 'src/components/PianoKey';
 import { pianoKeys } from 'src/data';
-import { playNote, endNote } from 'src/lib/playAudio';
+import { playNote, endNote } from 'src/helpers/playAudio';
 
 function getPianoKeysAsArray() {
   var pianoKeyComponents = [];

@@ -3,7 +3,7 @@ import { useEffect, useContext } from 'react';
 import MainContext from 'src/context';
 import Button from 'src/components/Button';
 
-import getInstrumentAudio from 'src/lib/getAudio';
+import getInstrumentAudio from 'src/helpers/getAudio';
 
 const buttons = [
   {

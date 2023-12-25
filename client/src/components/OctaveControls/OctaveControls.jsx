@@ -1,4 +1,4 @@
-import { handleOctaveUp, handleOctaveDown } from 'src/lib/octaveControls';
+import { handleOctaveUp, handleOctaveDown } from 'src/helpers/octaveControls';
 import { pianoKeys } from 'src/data';
 
 function OctaveControls() {
