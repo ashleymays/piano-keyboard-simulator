@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 
-import MainContext from '@/context';
-import Button from '@/components/Button';
+import MainContext from '~/context';
+import Button from '~/components/Button';
 
 const buttons = [
   {

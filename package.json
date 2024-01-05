@@ -31,7 +31,8 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
     "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "vite-jsconfig-paths": "^2.0.1"
   },
   "browserslist": {
     "production": [

@@ -1,8 +1,8 @@
-import PianoKeys from '@/components/PianoKeys';
-import Buttons from '@/components/Buttons';
-import OctaveControls from '@/components/OctaveControls';
+import PianoKeys from '~/components/PianoKeys';
+import Buttons from '~/components/Buttons';
+import OctaveControls from '~/components/OctaveControls';
 
-import arturiaLogo from '@/images/arturiaLogo.png';
+import arturiaLogo from '~/images/arturiaLogo.png';
 
 function Keyboard() {
   return (

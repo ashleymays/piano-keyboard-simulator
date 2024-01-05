@@ -5,7 +5,7 @@ import Keyboard from "./components/Keyboard";
 import MainContext from "./context";
 
 function App() {
-  const [isAppLoading, setIsAppLoading] = useState(true);
+  const [isAppLoading, setIsAppLoading] = useState(false);
   return (
     <MainContext.Provider value={{ isAppLoading, setIsAppLoading }}>
       <LoadingIcon />

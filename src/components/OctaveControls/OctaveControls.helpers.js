@@ -1,4 +1,4 @@
-import { pianoKeys } from '@/data';
+import { pianoKeys } from '~/data';
 
 export function handleOctaveUp() {
   if (canRaiseOctave()) {
