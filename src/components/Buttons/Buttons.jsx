@@ -1,6 +1,3 @@
-import { useEffect, useContext } from 'react';
-
-import MainContext from '~/context';
 import Button from '~/components/Button';
 
 const buttons = [
@@ -22,14 +19,10 @@ const buttons = [
 ];
 
 function Buttons() {
-  const { setIsAppLoading } = useContext(MainContext);
-
-  useEffect(() => {}, []);
-
   return (
     <div className="buttons">
       {buttons.map((button) => (
-        <Button key={button.title} onChange={() => {}} {...button} />
+        <Button key={button.title} {...button} />
       ))}
     </div>
   );

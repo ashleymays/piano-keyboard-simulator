@@ -1,4 +1,7 @@
-import { handleOctaveUp, handleOctaveDown } from './OctaveControls.helpers';
+import { handleOctaveUp, handleOctaveDown } from "./OctaveControls.helpers";
+
+const upArrow = <>&uarr;</>;
+const downArrow = <>&darr;</>;
 
 function OctaveControls() {
   return (
@@ -8,18 +11,18 @@ function OctaveControls() {
           type="button"
           name="octave-up"
           className="octave-controls__btn-arrow"
-          onClick={() => handleOctaveUp()}
+          onClick={handleOctaveUp}
         >
-          &uarr;
+          {upArrow}
         </button>
         <div className="octave-controls__line" />
         <button
           type="button"
           name="octave-down"
           className="octave-controls__btn-arrow"
-          onClick={() => handleOctaveDown()}
+          onClick={handleOctaveDown}
         >
-          &darr;
+          {downArrow}
         </button>
       </div>
       <p className="octave-controls__title">Octave</p>
