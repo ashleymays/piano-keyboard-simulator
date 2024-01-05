@@ -1,4 +1,8 @@
+import { useEffect, useContext } from 'react';
+
 import Button from '~/components/Button';
+import getInstrumentNotes from './Buttons.helpers';
+import MainContext from '~/context';
 
 const buttons = [
   {
@@ -19,10 +23,24 @@ const buttons = [
 ];
 
 function Buttons() {
+  const { setNotes, setIsAppLoading } = useContext(MainContext);
+  
+  const handleAudio = async (directory) => {
+    try {
+      setIsAppLoading(true);
+      const notes = await getInstrumentNotes(directory);
+      setNotes({ ...notes });
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsAppLoading(false);
+    }
+  }
+
   return (
     <div className="buttons">
       {buttons.map((button) => (
-        <Button key={button.title} {...button} />
+        <Button key={button.title} onChange={() => handleAudio(button.directory)} {...button} />
       ))}
     </div>
   );

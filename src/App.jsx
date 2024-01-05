@@ -5,9 +5,12 @@ import Keyboard from "./components/Keyboard";
 import MainContext from "./context";
 
 function App() {
+  const [notes, setNotes] = useState({});
   const [isAppLoading, setIsAppLoading] = useState(false);
   return (
-    <MainContext.Provider value={{ isAppLoading, setIsAppLoading }}>
+    <MainContext.Provider
+      value={{ notes, setNotes, isAppLoading, setIsAppLoading }}
+    >
       <LoadingIcon />
       <Keyboard />
     </MainContext.Provider>
