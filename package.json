@@ -1,16 +1,13 @@
 {
   "name": "piano-keyboard-simulator",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
-  "main": "server/index.js",
+  "main": "src/index.jsx",
   "private": "true",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -27,16 +24,17 @@
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
     "sass": "^1.69.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.5.1"
+    "vite": "^5.0.10"
   },
   "browserslist": {
     "production": [
