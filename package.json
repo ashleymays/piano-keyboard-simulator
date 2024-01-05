@@ -5,8 +5,9 @@
   "main": "server/index.js",
   "private": "true",
   "scripts": {
-    "build": "node server/index.js",
-    "dev": "cd server && npm i && npm start && cd client && npm i && npm start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
@@ -22,9 +23,31 @@
     "url": "https://github.com/ashleymays/piano-keyboard-simulator/issues"
   },
   "homepage": "https://github.com/ashleymays/piano-keyboard-simulator#readme",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.69.5"
+  },
   "devDependencies": {
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1"
+    "eslint-plugin-prettier": "^5.0.1",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
