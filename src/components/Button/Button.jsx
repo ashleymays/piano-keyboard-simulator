@@ -1,4 +1,4 @@
-function Button({ title, isDefault, directory, onChange }) {
+export function Button({ title, isDefault, directory, onChange }) {
   return (
     <label className="control-btn-container">
       <input
@@ -12,5 +12,3 @@ function Button({ title, isDefault, directory, onChange }) {
     </label>
   );
 }
-
-export default Button;

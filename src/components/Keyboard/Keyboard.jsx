@@ -1,10 +1,9 @@
-import PianoKeys from '~/components/PianoKeys';
-import Buttons from '~/components/Buttons';
-import OctaveControls from '~/components/OctaveControls';
-
+import { PianoKeys } from '~/components/PianoKeys';
+import { Buttons } from '~/components/Buttons';
+import { OctaveControls } from '~/components/OctaveControls';
 import arturiaLogo from '~/images/arturiaLogo.png';
 
-function Keyboard() {
+export function Keyboard() {
   return (
     <section className="keyboard-container">
       <div className="keyboard">
@@ -24,5 +23,3 @@ function Keyboard() {
     </section>
   );
 }
-
-export default Keyboard;

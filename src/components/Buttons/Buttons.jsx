@@ -1,8 +1,7 @@
-import { useEffect, useContext } from 'react';
-
-import Button from '~/components/Button';
-import getInstrumentNotes from './Buttons.helpers';
-import MainContext from '~/context';
+import { useContext } from 'react';
+import { Button } from '~/components/Button';
+import { MainContext } from '~/context';
+import { getNotesByInstrument } from './Buttons.helpers';
 
 const buttons = [
   {
@@ -22,7 +21,7 @@ const buttons = [
   }
 ];
 
-function Buttons() {
+export function Buttons() {
   const { setNotes, setIsAppLoading } = useContext(MainContext);
   
   const handleAudio = async (directory) => {
@@ -45,5 +44,3 @@ function Buttons() {
     </div>
   );
 }
-
-export default Buttons;

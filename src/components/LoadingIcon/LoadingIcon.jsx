@@ -1,9 +1,8 @@
 import { useContext } from "react";
-
-import MainContext from "~/context";
+import { MainContext } from "~/context";
 import LoadingImage from "~/images/loadingIcon.png";
 
-function LoadingIcon() {
+export function LoadingIcon() {
   const { isAppLoading } = useContext(MainContext);
   return (
     isAppLoading && (
@@ -13,5 +12,3 @@ function LoadingIcon() {
     )
   );
 }
-
-export default LoadingIcon;

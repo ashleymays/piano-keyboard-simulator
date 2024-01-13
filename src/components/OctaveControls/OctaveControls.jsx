@@ -3,7 +3,7 @@ import { handleOctaveUp, handleOctaveDown } from "./OctaveControls.helpers";
 const upArrow = <>&uarr;</>;
 const downArrow = <>&darr;</>;
 
-function OctaveControls() {
+export function OctaveControls() {
   return (
     <div className="octave-controls">
       <div className="octave-controls__btns">
@@ -29,5 +29,3 @@ function OctaveControls() {
     </div>
   );
 }
-
-export default OctaveControls;

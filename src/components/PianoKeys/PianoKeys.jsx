@@ -1,7 +1,7 @@
-import PianoKey from "~/components/PianoKey";
+import { PianoKey } from "~/components/PianoKey";
 import { pianoKeys } from "~/data";
 
-function PianoKeys() {
+export function PianoKeys() {
   const getPianoKeysAsArray = () => {
     const components = [];
     pianoKeys.forEach((pianoKey, computerKey) =>
@@ -9,7 +9,6 @@ function PianoKeys() {
     );
     return components;
   };
+  
   return <div className="piano-keys">{getPianoKeysAsArray()}</div>;
 }
-
-export default PianoKeys;
