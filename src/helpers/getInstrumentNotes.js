@@ -1,6 +1,6 @@
 import { ToneAudioBuffers } from 'tone';
 
-export async function getNotesByInstrument(directory) {
+export async function getInstrumentNotes(directory) {
     const urls = getUrlList(directory);
     return await new ToneAudioBuffers(urls);
 }

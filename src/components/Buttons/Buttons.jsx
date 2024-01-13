@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Button } from '~/components/Button';
 import { MainContext } from '~/context';
-import { getNotesByInstrument } from './Buttons.helpers';
+import { getNotesByInstrument } from '~/helpers/getAudio';
 
 const buttons = [
   {
