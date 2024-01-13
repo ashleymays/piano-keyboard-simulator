@@ -4,11 +4,16 @@ import LoadingImage from '~/images/loadingIcon.png';
 
 export function LoadingIcon() {
   const { isAppLoading } = useContext(MainContext);
-  return (
-    isAppLoading && (
+
+  if (isAppLoading) {
+    return (
       <div className="overlay">
-        <img className="loading-icon" alt="loading icon" src={LoadingImage} />
+        <img
+          className="loading-icon"
+          alt="loading icon"
+          src={LoadingImage}
+        />
       </div>
-    )
-  );
+    );
+  }
 }

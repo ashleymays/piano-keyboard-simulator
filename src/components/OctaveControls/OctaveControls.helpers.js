@@ -26,8 +26,8 @@ function canLowerOctave() {
   return lowestPianoKey.octave > LOWEST_OCTAVE;
 }
 
-function updateOctaves(INCREMENT_VALUE) {
+function updateOctaves(value) {
   pianoKeys.forEach((pianoKey) => {
-    pianoKey.octave += INCREMENT_VALUE;
+    pianoKey.octave += value;
   });
 }

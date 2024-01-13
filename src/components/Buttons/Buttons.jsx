@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Button } from '~/components/Button';
 import { MainContext } from '~/context';
-import { getInstrumentNotes } from '~/helpers/getInstrumentNotes';
+import { getInstrumentNotes } from './Buttons.helpers';
 
 const buttons = [
   {
