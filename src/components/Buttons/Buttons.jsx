@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Button } from '~/components/Button';
 import { MainContext } from '~/context';
-import { getNotesByInstrument } from '~/helpers/getAudio';
+import { getInstrumentNotes } from '~/helpers/getInstrumentNotes';
 
 const buttons = [
   {
@@ -23,7 +23,7 @@ const buttons = [
 
 export function Buttons() {
   const { setNotes, setIsAppLoading } = useContext(MainContext);
-  
+
   const handleAudio = async (directory) => {
     try {
       setIsAppLoading(true);
@@ -34,12 +34,16 @@ export function Buttons() {
     } finally {
       setIsAppLoading(false);
     }
-  }
+  };
 
   return (
     <div className="buttons">
       {buttons.map((button) => (
-        <Button key={button.title} onChange={() => handleAudio(button.directory)} {...button} />
+        <Button
+          key={button.title}
+          onChange={() => handleAudio(button.directory)}
+          {...button}
+        />
       ))}
     </div>
   );

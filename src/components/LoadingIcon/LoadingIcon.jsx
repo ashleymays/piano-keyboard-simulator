@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { MainContext } from "~/context";
-import LoadingImage from "~/images/loadingIcon.png";
+import { useContext } from 'react';
+import { MainContext } from '~/context';
+import LoadingImage from '~/images/loadingIcon.png';
 
 export function LoadingIcon() {
   const { isAppLoading } = useContext(MainContext);

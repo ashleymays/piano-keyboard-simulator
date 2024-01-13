@@ -36,4 +36,3 @@ export const pianoKeys = new Map([
   ['l', { computerKey: 'l', noteName: 'Bb', octave: 5, color: 'black' }],
   ['.', { computerKey: '.', noteName: 'B', octave: 5, color: 'white' }]
 ]);
-

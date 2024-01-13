@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { LoadingIcon } from "./components/LoadingIcon";
-import { Keyboard } from "./components/Keyboard";
-import { MainContext } from "./context";
+import { useState } from 'react';
+import { LoadingIcon } from './components/LoadingIcon';
+import { Keyboard } from './components/Keyboard';
+import { MainContext } from './context';
 
 export function App() {
   const [notes, setNotes] = useState({});

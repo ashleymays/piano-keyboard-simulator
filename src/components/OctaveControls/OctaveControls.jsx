@@ -1,4 +1,4 @@
-import { handleOctaveUp, handleOctaveDown } from "./OctaveControls.helpers";
+import { handleOctaveUp, handleOctaveDown } from './OctaveControls.helpers';
 
 const upArrow = <>&uarr;</>;
 const downArrow = <>&darr;</>;
