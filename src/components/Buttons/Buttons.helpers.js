@@ -1,10 +1,20 @@
 import { ToneAudioBuffers } from 'tone';
 
+/**
+ * Returns the audio buffers for the instrument notes.
+ * @param { string } directory
+ * @return { object }
+ */
 export async function getInstrumentNotes(directory) {
   const urls = getUrlList(directory);
   return await new ToneAudioBuffers(urls);
 }
 
+/**
+ * Returns the urls to the requested audio files.
+ * @param { string } directory
+ * @return { object }
+ */
 function getUrlList(directory) {
   const notes = [
     'A',
@@ -25,8 +35,8 @@ function getUrlList(directory) {
 
   let pitch;
 
-  for (let note of notes) {
-    for (let octave of octaves) {
+  for (const note of notes) {
+    for (const octave of octaves) {
       pitch = `${note}${octave}`;
       urls[pitch] = `${import.meta.url}/public/audio/${directory}/${pitch}.mp3`;
     }

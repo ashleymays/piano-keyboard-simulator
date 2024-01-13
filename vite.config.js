@@ -1,6 +1,8 @@
+/* eslint spaced-comment: 0 */
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import eslint from 'vite-plugin-eslint';
 import path from 'path';
 
 export default defineConfig({
@@ -15,5 +17,5 @@ export default defineConfig({
   build: {
     outDir: 'build'
   },
-  plugins: [react()]
+  plugins: [react(), eslint()]
 });

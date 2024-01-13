@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['google', 'plugin:react/recommended'],
   overrides: [
     {
       env: {
@@ -19,22 +19,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'prettier'],
   rules: {
-    indent: ['error', 2],
-    semi: ['error', 'always'],
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    'require-await': 'error',
-    'react/jsx-sort-props': [
-      'error',
-      {
-        callbacksLast: true,
-        shorthandFirst: true,
-        multiline: 'last',
-        ignoreCase: true,
-        noSortAlphabetically: false
-      }
-    ]
+    'comma-dangle': 'off',
+    'object-curly-spacing': 'off',
+    'prefer-const': 'error'
   }
 };
