@@ -1,5 +1,5 @@
 import { PianoKey } from '~/components/piano-key';
-import { pianoKeys } from '~/constants';
+import { pianoKeys } from '~/data';
 
 const pianoKeyComponents = (() => {
   const components = [];
