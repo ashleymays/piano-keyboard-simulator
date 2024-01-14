@@ -23,6 +23,10 @@ module.exports = {
   rules: {
     'comma-dangle': 'off',
     'object-curly-spacing': 'off',
-    'prefer-const': 'error'
+    'prefer-const': 'error',
+    'react/react-in-jsx-scope': 'off',
+    'indent': 'off',
+    'require-jsdoc': 'warn',
+    'react/prop-types': 'warn'
   }
 };

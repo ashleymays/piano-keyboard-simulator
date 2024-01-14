@@ -1,6 +1,6 @@
 export function Button({ title, isDefault, directory, onChange }) {
   return (
-    <label className="control-btn-container">
+    <label>
       <input
         type="radio"
         name="instrument"
@@ -8,7 +8,7 @@ export function Button({ title, isDefault, directory, onChange }) {
         defaultChecked={isDefault}
         onChange={onChange}
       />
-      <span className="control-btn">{title}</span>
+      <span className="instrument-btn">{title}</span>
     </label>
   );
 }

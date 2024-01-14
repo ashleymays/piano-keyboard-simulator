@@ -1,15 +1,12 @@
 import { useState } from 'react';
-import { LoadingIcon } from './components/LoadingIcon';
-import { Keyboard } from './components/Keyboard';
+import { LoadingIcon } from './components/loading-icon';
+import { Keyboard } from './components/keyboard';
 import { MainContext } from './context';
 
 export function App() {
-  const [notes, setNotes] = useState({});
   const [isAppLoading, setIsAppLoading] = useState(false);
   return (
-    <MainContext.Provider
-      value={{ notes, setNotes, isAppLoading, setIsAppLoading }}
-    >
+    <MainContext.Provider value={{ isAppLoading, setIsAppLoading }}>
       <LoadingIcon />
       <Keyboard />
     </MainContext.Provider>

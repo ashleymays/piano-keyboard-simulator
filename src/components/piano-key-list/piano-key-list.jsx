@@ -1,4 +1,4 @@
-import { PianoKey } from '~/components/PianoKey';
+import { PianoKey } from '~/components/piano-key';
 import { pianoKeys } from '~/constants';
 
 const pianoKeyComponents = (() => {
@@ -14,6 +14,6 @@ const pianoKeyComponents = (() => {
   return components;
 })();
 
-export function PianoKeys() {
-  return <div className="piano-keys">{pianoKeyComponents}</div>;
+export function PianoKeyList() {
+  return <div className="piano-key-list">{pianoKeyComponents}</div>;
 }

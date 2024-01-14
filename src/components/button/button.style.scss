@@ -1,6 +1,6 @@
 @use '~/styles/_variables.scss';
 
-.control-btn {
+.instrument-btn {
   padding: 0.45em 1.125em;
   background: variables.$blue;
   color: variables.$off-white;
@@ -12,7 +12,7 @@
   cursor: pointer;
   white-space: nowrap;
 
-  & input:checked + .control-btn {
+  & input:checked + .instrument-btn {
     filter: brightness(50%);
   }
 }
