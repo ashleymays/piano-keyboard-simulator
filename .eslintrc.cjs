@@ -25,8 +25,10 @@ module.exports = {
     'object-curly-spacing': 'off',
     'prefer-const': 'error',
     'react/react-in-jsx-scope': 'off',
-    'indent': 'off',
+    indent: 'off',
     'require-jsdoc': 'warn',
-    'react/prop-types': 'warn'
+    'react/prop-types': 'warn',
+    'guard-for-in': 'off',
+    'max-len': 'warn'
   }
 };
