@@ -1,4 +1,4 @@
-/* eslint spaced-comment: 0 */
+/* eslint spaced-comment: 0, import/no-extraneous-dependencies: 0 */
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';

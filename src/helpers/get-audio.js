@@ -1,8 +1,8 @@
-/* eslint new-cap: 0 */
+/* eslint new-cap: 0, no-use-before-define: 0 */
 import { ToneAudioBuffers } from 'tone';
 
 /**
- * Returns a promise for the loaded audio buffers.
+ * Get the loaded audio buffers.
  * @param { string } directory
  * @return { Promise<ToneAudioBuffersUrlMap> }
  */
@@ -15,12 +15,12 @@ export function getAudioBuffers(directory) {
  * Wraps an callback-based constructor from Tone.js in a promise.
  * @param { function } constructor the callback-based function to call
  * @param { object } options the options needed for the callback
- * @return { Promise }
+ * @return { Promise<any> }
  */
 function getPromiseForToneConstructor(constructor, options) {
   return new Promise((resolve, reject) => {
     const results = new constructor(options, (error) =>
-      error == null ? resolve(results) : reject(error)
+      error ? reject(error) : resolve(results)
     );
   });
 }
@@ -43,12 +43,12 @@ function getAudioFilePaths(directory) {
 
   let pitch;
 
-  for (const note of notes) {
-    for (const octave of octaves) {
+  notes.forEach((note) => {
+    octaves.forEach((octave) => {
       pitch = `${note}${octave}`;
       filePaths[pitch] = `${path}/${pitch}.mp3`;
-    }
-  }
+    });
+  });
 
   return filePaths;
 }

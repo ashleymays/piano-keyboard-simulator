@@ -9,12 +9,18 @@ parserOptions:
   sourceType: module
 rules:
   import/prefer-default-export: 'off'
+  import/no-unresolved: 'off'
+  import/extensions: 'off'
   comma-dangle: 'off'
   object-curly-spacing: 'off'
   prefer-const: error
-  react/react-in-jsx-scope: 'off'
+  react/react-in-jsx-scope: 'warn'
+  react/jsx-props-no-spreading:  'off'
+  react/jsx-no-constructed-context-values: 'warn'
+  jsx-a11y/label-has-associated-control: 'warn'
   indent: 'off'
-  require-jsdoc: warn
-  react/prop-types: warn
+  require-jsdoc: 'off'
+  react/prop-types: 'off'
   guard-for-in: 'off'
   max-len: warn
+  no-console: warn

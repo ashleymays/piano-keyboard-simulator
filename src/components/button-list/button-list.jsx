@@ -26,13 +26,15 @@ export function ButtonList() {
 
   const getAudio = async (directory) => {
     try {
-      if (!buffers.current[directory]) {
+      if (buffers.current[directory]) {
+        console.log('Cache hit');
+        console.log(buffers.current[directory]);
+      } else {
         const loadedBuffers = await getAudioBuffers(directory);
         buffers.current[directory] = { ...loadedBuffers };
       }
-      buffers.current[directory].active = true;
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   };
 

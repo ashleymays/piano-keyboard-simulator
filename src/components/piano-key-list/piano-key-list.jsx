@@ -3,10 +3,10 @@ import { pianoKeys } from '~/data';
 
 const pianoKeyComponents = (() => {
   const components = [];
-  pianoKeys.forEach((pianoKey, computerKey) =>
+  pianoKeys.forEach((pianoKey) =>
     components.push(
       <PianoKey
-        key={computerKey}
+        key={pianoKey.computerKey}
         {...pianoKey}
       />
     )
