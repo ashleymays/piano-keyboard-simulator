@@ -1,22 +1,14 @@
 env:
   browser: true
   es2021: true
-extends:
-  - airbnb-base
-  - 'plugin:prettier/recommended'
-  - 'plugin:react/recommended'
-overrides:
-  - env:
-      node: true
-    parserOptions:
-      sourceType: script
+extends: 
+- airbnb
+- plugin:prettier/recommended
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-plugins:
-  - react
-  - prettier
 rules:
+  import/prefer-default-export: 'off'
   comma-dangle: 'off'
   object-curly-spacing: 'off'
   prefer-const: error
