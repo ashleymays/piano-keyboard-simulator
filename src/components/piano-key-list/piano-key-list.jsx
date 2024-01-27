@@ -20,11 +20,12 @@ const pianoKeyComponents = (() => {
 
 export function PianoKeyList() {
   const { buffers } = useContext(MainContext);
-  const currentBuffers = buffers.current[buffers.current.activeDirectory];
+  const currentBuffers = buffers.current[buffers.current._active];
 
   return (
     <div
       className="piano-key-list"
+      onMouseDown={(event) => playAudio(event, currentBuffers)}
       onKeyDown={(event) => playAudio(event, currentBuffers)}
     >
       {pianoKeyComponents}

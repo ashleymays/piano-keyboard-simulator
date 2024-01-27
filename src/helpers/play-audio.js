@@ -1,6 +1,19 @@
+import { pianoKeys } from '~/data';
+
 export function playAudio(event, currentBuffers) {
-  // const computerKey = event.key || event.target.value;
-  // const pitch = 'A1';
-  // const buffer = currentBuffers.get(pitch);
-  console.log(currentBuffers.get('C4'));
+  const pitch = getPitchFromEvent(event);
+  if (pitch === null) {
+    return;
+  }
+  const buffer = currentBuffers.get(pitch);
+  console.log(buffer);
+}
+
+function getPitchFromEvent(event) {
+  const computerKey = event.key || event.target.value;
+  const pianoKey = pianoKeys.get(computerKey);
+  if (pianoKey === undefined) {
+    return null;
+  }
+  return `${pianoKey.noteName}${pianoKey.octave}`;
 }
