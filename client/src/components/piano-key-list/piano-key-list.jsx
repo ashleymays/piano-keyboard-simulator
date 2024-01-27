@@ -21,7 +21,7 @@ const pianoKeyComponents = (() => {
 export function PianoKeyList() {
   const { buffers } = useContext(MainContext);
   const currentBuffers = buffers.current[buffers.current._active];
-
+  console.log(currentBuffers);
   return (
     <div
       className="piano-key-list"

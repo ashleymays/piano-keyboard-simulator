@@ -12,7 +12,7 @@ export function playAudio(event, currentBuffers) {
 function getPitchFromEvent(event) {
   const computerKey = event.key || event.target.value;
   const pianoKey = pianoKeys.get(computerKey);
-  if (pianoKey === undefined) {
+  if (pianoKey == null) {
     return null;
   }
   return `${pianoKey.noteName}${pianoKey.octave}`;
