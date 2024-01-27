@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { MainContext } from '~/context';
-import LoadingImage from '~/images/loadingIcon.png';
+import { loadingIcon } from '~/images';
 
 export function LoadingIcon() {
   const { isAppLoading } = useContext(MainContext);
@@ -11,7 +11,7 @@ export function LoadingIcon() {
         <img
           className="loading-icon"
           alt="loading icon"
-          src={LoadingImage}
+          src={loadingIcon}
         />
       </div>
     );

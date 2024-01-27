@@ -1,7 +1,7 @@
 import { PianoKeyList } from '~/components/piano-key-list';
 import { ButtonList } from '~/components/button-list';
 import { OctaveControls } from '~/components/octave-controls';
-import arturiaLogo from '~/images/arturiaLogo.png';
+import { arturiaLogo } from '~/images';
 
 export function Keyboard() {
   return (

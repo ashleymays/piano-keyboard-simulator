@@ -13,8 +13,8 @@ rules:
   import/extensions: 'off'
   comma-dangle: 'off'
   object-curly-spacing: 'off'
-  prefer-const: error
-  react/react-in-jsx-scope: 'warn'
+  prefer-const: 'error'
+  react/react-in-jsx-scope: 'off'
   react/jsx-props-no-spreading:  'off'
   react/jsx-no-constructed-context-values: 'warn'
   jsx-a11y/label-has-associated-control: 'warn'
@@ -22,5 +22,7 @@ rules:
   require-jsdoc: 'off'
   react/prop-types: 'off'
   guard-for-in: 'off'
-  max-len: warn
-  no-console: warn
+  max-len: 'warn'
+  no-console: 'warn'
+  no-use-before-define: 'off'
+  no-underscore-dangle: 'off'

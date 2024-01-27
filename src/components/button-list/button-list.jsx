@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { MainContext } from '~/context';
 import { Button } from '~/components/button';
 import { getAudioBuffers } from '~/helpers/get-audio';
@@ -6,44 +6,51 @@ import { getAudioBuffers } from '~/helpers/get-audio';
 const buttons = [
   {
     title: 'Acoustic Grand',
-    directory: 'acoustic-grand',
-    isDefault: true
+    directory: 'acoustic-grand'
   },
   {
     title: 'Electric Piano',
-    directory: 'electric-piano',
-    isDefault: false
+    directory: 'electric-piano'
   },
   {
     title: '8-Bit',
-    directory: '8-bit',
-    isDefault: false
+    directory: '8-bit'
   }
 ];
 
 export function ButtonList() {
-  const { buffers } = useContext(MainContext);
+  const [directory, setDirectory] = useState('acoustic-grand');
+  const { buffers, setIsAppLoading } = useContext(MainContext);
 
-  const getAudio = async (directory) => {
+  const setBuffers = async () => {
+    if (!buffers.current[directory]) {
+      buffers.current[directory] = await getAudioBuffers(directory);
+    }
+    buffers.current._active = directory;
+  };
+
+  const setAudio = async () => {
     try {
-      if (buffers.current[directory]) {
-        console.log('Cache hit');
-        console.log(buffers.current[directory]);
-      } else {
-        const loadedBuffers = await getAudioBuffers(directory);
-        buffers.current[directory] = { ...loadedBuffers };
-      }
+      setIsAppLoading(true);
+      await setBuffers();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsAppLoading(false);
     }
   };
 
+  useEffect(() => {
+    setAudio();
+  }, [directory]);
+
   return (
-    <div className="button-list">
+    <div className="instrument-btn-list">
       {buttons.map((button) => (
         <Button
-          key={button.title}
-          onChange={() => getAudio(button.directory)}
+          key={button.directory}
+          onClick={() => setDirectory(button.directory)}
+          isActive={button.directory === directory}
           {...button}
         />
       ))}

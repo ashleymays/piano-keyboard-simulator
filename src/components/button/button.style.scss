@@ -11,8 +11,8 @@
   font-size: variables.$font-size-base;
   cursor: pointer;
   white-space: nowrap;
+}
 
-  & input:checked + .instrument-btn {
-    filter: brightness(50%);
-  }
+.active {
+  filter: brightness(60%);
 }

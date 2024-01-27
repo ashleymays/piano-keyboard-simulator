@@ -1,14 +1,13 @@
-export function Button({ title, isDefault, directory, onChange }) {
+export function Button({ title, directory, isActive, onClick }) {
   return (
-    <label>
-      <input
-        type="radio"
-        name="instrument"
-        value={directory}
-        defaultChecked={isDefault}
-        onChange={onChange}
-      />
-      <span className="instrument-btn">{title}</span>
-    </label>
+    <button
+      type="button"
+      name="instrument"
+      value={directory}
+      onClick={onClick}
+      className={`instrument-btn ${isActive ? 'active' : ''}`}
+    >
+      {title}
+    </button>
   );
 }
