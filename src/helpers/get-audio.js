@@ -1,14 +1,30 @@
 import { ToneAudioBuffers } from 'tone';
+import { instruments } from '~/data';
 
 /**
  * Returns the audio buffers for a specific instrument.
- * @param { string } directory 
- * @returns { Promise<ToneAudioBuffers> }
+ * @param { string } directory
+ * @returns { Promise<ToneAudioBuffers>? }
  */
 export function getAudioBuffers(directory) {
+  if (!isValidDirectory(directory)) {
+    return null;
+  }
   const filePaths = getAudioFilePaths(directory);
   return getToneConstructorAsPromise(ToneAudioBuffers, filePaths);
-};
+}
+
+/**
+ * Returns true if the given directory exists in the filesystem.
+ * @param { string } directory
+ * @returns { boolean }
+ */
+function isValidDirectory(directory) {
+  const currInstrument = instruments.filter(
+    (instrument) => instrument.directory === directory
+  );
+  return currInstrument.length !== 0;
+}
 
 /**
  * Returns the paths to the audio for a specific instrument.
@@ -32,12 +48,12 @@ function getAudioFilePaths(directory) {
   });
 
   return filePaths;
-};
+}
 
 /**
  * Wraps a constructor from Tone.js in a awaitable Promise.
- * @param { ToneAudioBuffers } ToneConstructor 
- * @param { object } options 
+ * @param { ToneAudioBuffers } ToneConstructor
+ * @param { object } options
  * @returns { Promise<ToneAudioBuffers> }
  */
 function getToneConstructorAsPromise(ToneConstructor, options) {
@@ -46,4 +62,4 @@ function getToneConstructorAsPromise(ToneConstructor, options) {
       error ? reject(error) : resolve(results)
     );
   });
-};
+}

@@ -1,3 +1,18 @@
+export const instruments = [
+  {
+    title: 'Acoustic Grand',
+    directory: 'acoustic-grand'
+  },
+  {
+    title: 'Electric Piano',
+    directory: 'electric-piano'
+  },
+  {
+    title: '8-Bit',
+    directory: '8-bit'
+  }
+];
+
 export const pianoKeys = new Map([
   ['q', { computerKey: 'q', noteName: 'C', octave: 3, color: 'white' }],
   ['2', { computerKey: '2', noteName: 'Db', octave: 3, color: 'black' }],

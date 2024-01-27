@@ -2,21 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { MainContext } from '~/context';
 import { Button } from '~/components/button';
 import { getAudioBuffers } from '~/helpers/get-audio';
-
-const buttons = [
-  {
-    title: 'Acoustic Grand',
-    directory: 'acoustic-grand'
-  },
-  {
-    title: 'Electric Piano',
-    directory: 'electric-piano'
-  },
-  {
-    title: '8-Bit',
-    directory: '8-bit'
-  }
-];
+import { instruments } from '~/data';
 
 export function ButtonList() {
   const [directory, setDirectory] = useState('acoustic-grand');
@@ -46,12 +32,12 @@ export function ButtonList() {
 
   return (
     <div className="instrument-btn-list">
-      {buttons.map((button) => (
+      {instruments.map((instrument) => (
         <Button
-          key={button.directory}
-          onClick={() => setDirectory(button.directory)}
-          isActive={button.directory === directory}
-          {...button}
+          key={instrument.directory}
+          onClick={() => setDirectory(instrument.directory)}
+          isActive={instrument.directory === directory}
+          {...instrument}
         />
       ))}
     </div>
