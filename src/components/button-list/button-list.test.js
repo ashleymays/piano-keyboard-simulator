@@ -1,5 +1,5 @@
 /* eslint no-undef: 0 */
-import { getAudioBuffers } from '../get-audio';
+import { getAudioBuffers } from './button-list.helpers';
 
 describe('getAudioBuffers', () => {
   it('should return null for an instrument directory that is not in the audio directory', async () => {

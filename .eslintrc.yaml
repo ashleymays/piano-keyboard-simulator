@@ -21,8 +21,6 @@ rules:
   indent: 'off'
   require-jsdoc: 'off'
   react/prop-types: 'off'
-  guard-for-in: 'off'
-  max-len: 'warn'
   no-console: 'warn'
   no-use-before-define: 'off'
   no-underscore-dangle: 'off'
