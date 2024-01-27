@@ -6,7 +6,7 @@
   "private": "true",
   "type": "module",
   "scripts": {
-    "start": "npm run format && vite",
+    "start": "npm i && npm run format && vite",
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",
