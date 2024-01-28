@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { MainContext } from '~/context';
-import { getAudio } from './button-list.helpers';
+import { getAudioBuffers } from './button-list.helpers';
 
 export function useAudio() {
   const [instrumentDirectory, setInstrumentDirectory] =
@@ -8,8 +8,16 @@ export function useAudio() {
 
   const { buffers } = useContext(MainContext);
 
+  const setAudioBuffers = async () => {
+    try {
+      buffers.current = await getAudioBuffers(instrumentDirectory);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    buffers.current = getAudio(instrumentDirectory);
+    setAudioBuffers();
   }, [instrumentDirectory]);
 
   return [instrumentDirectory, setInstrumentDirectory];

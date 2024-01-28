@@ -4,19 +4,16 @@ import { ToneAudioBuffers } from 'tone';
  *
  * @async
  * @param { string } directory
+ * @returns { Promise<ToneAudioBuffers> }
  */
-export async function getAudio(directory) {
+export async function getAudioBuffers(directory) {
   const response = await getAudioFromServer(directory);
 
   if (response.error) {
     throw new Error(response.error);
   }
 
-  const audioBuffers = await getToneConstructorAsPromise(
-    ToneAudioBuffers,
-    response
-  );
-  console.log(audioBuffers);
+  return getToneConstructorAsPromise(ToneAudioBuffers, response);
 }
 
 /**
