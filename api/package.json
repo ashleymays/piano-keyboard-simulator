@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "test": "mocha"
   },
   "author": "",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
+    "chai": "^5.0.3",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
