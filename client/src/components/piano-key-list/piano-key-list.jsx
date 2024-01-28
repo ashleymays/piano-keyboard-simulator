@@ -1,9 +1,6 @@
 /* eslint jsx-a11y/no-static-element-interactions: 0 */
-import { useContext } from 'react';
-import { MainContext } from '~/context';
 import { PianoKey } from '~/components/piano-key';
 import { pianoKeys } from '~/data';
-import { playAudio } from '~/helpers/play-audio';
 
 const pianoKeyComponents = (() => {
   const components = [];
@@ -19,16 +16,5 @@ const pianoKeyComponents = (() => {
 })();
 
 export function PianoKeyList() {
-  const { buffers } = useContext(MainContext);
-  const currentBuffers = buffers.current[buffers.current._active];
-  console.log(currentBuffers);
-  return (
-    <div
-      className="piano-key-list"
-      onMouseDown={(event) => playAudio(event, currentBuffers)}
-      onKeyDown={(event) => playAudio(event, currentBuffers)}
-    >
-      {pianoKeyComponents}
-    </div>
-  );
+  return <div className="piano-key-list">{pianoKeyComponents}</div>;
 }

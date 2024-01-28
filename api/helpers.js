@@ -102,7 +102,7 @@ function mapAudioFileToPitch(audioFiles, pitches) {
   const map = {};
 
   for (let i = 0; i < audioFiles.length; ++i) {
-    map[pitches[i]] = audioFiles[i];
+    map[pitches[i]] = `data:application/octet;base64,${audioFiles[i]}`;
   }
 
   return map;
