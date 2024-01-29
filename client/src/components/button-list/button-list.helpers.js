@@ -13,7 +13,7 @@ export async function getAudioBuffers(directory) {
     throw new Error(response.error);
   }
 
-  return getToneConstructorAsPromise(ToneAudioBuffers, response);
+  return getToneAudioBuffers(response);
 }
 
 /**
@@ -30,15 +30,15 @@ async function getAudioFromServer(directory) {
 }
 
 /**
- * Wraps a constructor from Tone.js in a awaitable Promise.
+ * Wraps the ToneAudioBuffers constructor from Tone.js in a Promise.
  * @param { ToneAudioBuffers } ToneConstructor
  * @param { object } options
  * @returns { Promise<ToneAudioBuffers> }
  */
-function getToneConstructorAsPromise(ToneConstructor, options) {
+function getToneAudioBuffers(options) {
   return new Promise((resolve, reject) => {
-    const results = new ToneConstructor(options, (error) =>
-      error ? reject(error) : resolve(results)
+    const audioBuffers = new ToneAudioBuffers(options, (error) =>
+      error ? reject(error) : resolve(audioBuffers)
     );
   });
 }

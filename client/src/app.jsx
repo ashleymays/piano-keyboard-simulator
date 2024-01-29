@@ -1,19 +1,15 @@
-import { useRef, useMemo } from 'react';
+import { useState } from 'react';
+import { AudioContext } from './context';
 import { LoadingIcon } from './components/loading-icon';
 import { Keyboard } from './components/keyboard';
-import { MainContext } from './context';
 
 export function App() {
-  const buffers = useRef({});
-
-  const value = useMemo(() => {
-    return { buffers };
-  }, []);
+  const [audioBuffers, setAudioBuffers] = useState(null);
 
   return (
-    <MainContext.Provider value={value}>
+    <AudioContext.Provider value={{ audioBuffers, setAudioBuffers }}>
       <LoadingIcon />
       <Keyboard />
-    </MainContext.Provider>
+    </AudioContext.Provider>
   );
 }

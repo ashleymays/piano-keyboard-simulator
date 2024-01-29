@@ -1,24 +1,25 @@
 import { useState, useEffect, useContext } from 'react';
-import { MainContext } from '~/context';
+import { AudioContext } from '~/context';
 import { getAudioBuffers } from './button-list.helpers';
 
-export function useAudio() {
-  const [instrumentDirectory, setInstrumentDirectory] =
-    useState('acoustic-grand');
+export function useInstrument(initialValue = 'acoustic-grand') {
+  const [activeInstrument, setActiveInstrument] = useState(initialValue);
 
-  const { buffers } = useContext(MainContext);
+  const { setAudioBuffers } = useContext(AudioContext);
 
-  const setAudioBuffers = async () => {
+  const setAudioBuffersForInstrument = async (instrumentDirectory) => {
     try {
-      buffers.current = await getAudioBuffers(instrumentDirectory);
+      setActiveInstrument(instrumentDirectory);
+      const audioBuffersMap = await getAudioBuffers(instrumentDirectory);
+      setAudioBuffers(audioBuffersMap._buffers);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    setAudioBuffers();
-  }, [instrumentDirectory]);
+    setAudioBuffersForInstrument(activeInstrument);
+  }, []);
 
-  return [instrumentDirectory, setInstrumentDirectory];
+  return [activeInstrument, setAudioBuffersForInstrument];
 }
