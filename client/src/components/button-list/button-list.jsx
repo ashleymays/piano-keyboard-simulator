@@ -15,6 +15,7 @@ export function ButtonList() {
         <Button
           key={instrument.directory}
           onClick={() => dispatch(selectInstrument(instrument.directory))}
+          isActive={instrument.directory === selectedInstrument}
           {...instrument}
         />
       ))}
