@@ -19,8 +19,6 @@ export async function getAudioFromFilesystem(instrument) {
 }
 
 /**
- * Returns the directory to the audio files
- * for the given instrument.
  * 
  * @param {string} instrument
  * @returns {string}
@@ -32,7 +30,6 @@ function getDirectory(instrument) {
 }
 
 /**
- * Returns the names of the audio files.
  * 
  * @param {string} directoryPath 
  * @returns {Promise<string[]>}
@@ -42,7 +39,6 @@ function getAudioFileNames(directoryPath) {
 }
 
 /**
- * Returns the audio files.
  * 
  * @param {string[]} fileNames 
  * @param {string} directoryPath 
@@ -61,6 +57,7 @@ function getAudioFiles(fileNames, directoryPath) {
 
 /**
  * Returns the audio file for the given file path.
+ * 
  * @param {string} filePath 
  * @returns {Promise<string>}
  */
@@ -69,7 +66,7 @@ function getAudioFile(filePath) {
 }
 
 /**
- * Returns the audio pitch given by the file name.
+ * 
  * @param {string} fileName 
  * @returns {string}
  */
@@ -79,7 +76,6 @@ function getPitchFromFileName(fileName) {
 }
 
 /**
- * Returns the audio pitches from the file names.
  * 
  * @param {string[]} fileNames 
  * @returns {string[]}
@@ -95,7 +91,7 @@ function getPitchesFromFileNames(fileNames) {
 }
 
 /**
- * Returns an object mapping the audio pitches to the audio files.
+ * 
  * @param {string[]} audioFiles 
  * @param {string[]} pitches 
  * @returns {object?}
