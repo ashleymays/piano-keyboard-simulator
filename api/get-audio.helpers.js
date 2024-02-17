@@ -5,9 +5,10 @@ import { readdir, readFile } from 'node:fs/promises';
 /**
  * Returns the audio as a map where the 
  * pitch maps to the audio file's contents.
+ * 
  * @async
- * @param { string } instrument 
- * @returns { object }
+ * @param {string} instrument 
+ * @returns {object}
  */
 export async function getAudioFromFilesystem(instrument) {
   const directoryPath = getDirectory(instrument);
@@ -20,8 +21,9 @@ export async function getAudioFromFilesystem(instrument) {
 /**
  * Returns the directory to the audio files
  * for the given instrument.
- * @param { string } instrument
- * @returns { string }
+ * 
+ * @param {string} instrument
+ * @returns {string}
  */
 function getDirectory(instrument) {
   const __filename = fileURLToPath(import.meta.url);
@@ -31,8 +33,9 @@ function getDirectory(instrument) {
 
 /**
  * Returns the names of the audio files.
- * @param { string } directoryPath 
- * @returns { Promise<Array<string>> }
+ * 
+ * @param {string} directoryPath 
+ * @returns {Promise<string[]>}
  */
 function getAudioFileNames(directoryPath) {
   return readdir(directoryPath);
@@ -40,16 +43,17 @@ function getAudioFileNames(directoryPath) {
 
 /**
  * Returns the audio files.
- * @param { Array<string> } fileNames 
- * @param { string } directoryPath 
- * @returns { Promise<Array<string>>}
+ * 
+ * @param {string[]} fileNames 
+ * @param {string} directoryPath 
+ * @returns {Promise<string[]>}
  */
 function getAudioFiles(fileNames, directoryPath) {
   const audioFiles = [];
 
   for (const fileName of fileNames) {
     const audioFilePath = path.resolve(directoryPath, fileName);
-    audioFiles.push(getAudioFile(audioFilePath));    
+    audioFiles.push(getAudioFile(audioFilePath));
   }
 
   return Promise.all(audioFiles);
@@ -57,8 +61,8 @@ function getAudioFiles(fileNames, directoryPath) {
 
 /**
  * Returns the audio file for the given file path.
- * @param { string } filePath 
- * @returns { Promise<string> }
+ * @param {string} filePath 
+ * @returns {Promise<string>}
  */
 function getAudioFile(filePath) {
   return readFile(filePath, 'base64');
@@ -66,8 +70,8 @@ function getAudioFile(filePath) {
 
 /**
  * Returns the audio pitch given by the file name.
- * @param { string } fileName 
- * @returns { string }
+ * @param {string} fileName 
+ * @returns {string}
  */
 function getPitchFromFileName(fileName) {
   const dotIndex = fileName.indexOf('.');
@@ -76,8 +80,9 @@ function getPitchFromFileName(fileName) {
 
 /**
  * Returns the audio pitches from the file names.
- * @param { Array<string> } fileNames 
- * @returns { Array<string> }
+ * 
+ * @param {string[]} fileNames 
+ * @returns {string[]}
  */
 function getPitchesFromFileNames(fileNames) {
   const pitches = [];
@@ -91,14 +96,15 @@ function getPitchesFromFileNames(fileNames) {
 
 /**
  * Returns an object mapping the audio pitches to the audio files.
- * @param { Array<string> } audioFiles 
- * @param { Array<string> } pitches 
- * @returns { object? }
+ * @param {string[]} audioFiles 
+ * @param {string[]} pitches 
+ * @returns {object?}
  */
 function mapAudioFileToPitch(audioFiles, pitches) {
   if (audioFiles.length !== pitches.length) {
     return null;
   }
+
   const map = {};
 
   for (let i = 0; i < audioFiles.length; ++i) {

@@ -1,4 +1,4 @@
-import { getAudioFromFilesystem } from './helpers.js';
+import { getAudioFromFilesystem } from './get-audio.helpers.js';
 
 export const getAudio = async (req, res) => {
   try {
@@ -11,6 +11,6 @@ export const getAudio = async (req, res) => {
 
     res.status(200).json(audioMap);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(error.statusCode || 500).json(error);
   }
 }

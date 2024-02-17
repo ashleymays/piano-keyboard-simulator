@@ -4,16 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "mocha"
   },
-  "author": "",
+  "author": "Ashley Mays",
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "chai": "^5.0.3",
+    "chai": "^5.1.0",
     "chai-http": "^4.4.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.3.0",
     "nodemon": "^3.0.3"
   },
   "dependencies": {
