@@ -3,8 +3,8 @@ import { ToneAudioBuffers } from 'tone';
 /**
  *
  * @async
- * @param { string } directory
- * @returns { Promise<ToneAudioBuffers> }
+ * @param {string} directory
+ * @returns {Promise<ToneAudioBuffers>}
  */
 export async function getAudioBuffers(directory) {
   const response = await getAudioFromServer(directory);
@@ -13,14 +13,14 @@ export async function getAudioBuffers(directory) {
     throw new Error(response.error);
   }
 
-  return getToneAudioBuffers(response);
+  return getToneAudioBuffersPromise(response);
 }
 
 /**
  *
  * @async
- * @param { string } directory
- * @returns { Promise<object> }
+ * @param {string} directory
+ * @returns {Promise<object>}
  */
 async function getAudioFromServer(directory) {
   const response = await fetch(
@@ -31,11 +31,12 @@ async function getAudioFromServer(directory) {
 
 /**
  * Wraps the ToneAudioBuffers constructor from Tone.js in a Promise.
- * @param { ToneAudioBuffers } ToneConstructor
- * @param { object } options
- * @returns { Promise<ToneAudioBuffers> }
+ *
+ * @param {ToneAudioBuffers} ToneConstructor
+ * @param {object} options
+ * @returns {Promise<ToneAudioBuffers>}
  */
-function getToneAudioBuffers(options) {
+function getToneAudioBuffersPromise(options) {
   return new Promise((resolve, reject) => {
     const audioBuffers = new ToneAudioBuffers(options, (error) =>
       error ? reject(error) : resolve(audioBuffers)
