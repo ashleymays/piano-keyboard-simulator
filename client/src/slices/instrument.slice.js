@@ -4,6 +4,7 @@ const initialState = {
   value: 'electric-piano'
 };
 
+/* eslint no-param-reassign: 0 */
 export const instrumentSlice = createSlice({
   name: 'instrument',
   initialState,

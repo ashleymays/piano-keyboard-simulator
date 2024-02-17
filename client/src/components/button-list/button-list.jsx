@@ -4,8 +4,10 @@ import { Button } from '~/components/button';
 import { instruments } from '~/data';
 
 export function ButtonList() {
-  const count = useSelector((state) => state.instrument.value);
+  const selectedInstrument = useSelector((state) => state.instrument.value);
   const dispatch = useDispatch();
+
+  console.log(selectedInstrument);
 
   return (
     <div className="instrument-btn-list">
