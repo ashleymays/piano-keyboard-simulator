@@ -4,8 +4,8 @@
   "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file",
   "main": "api/index.js",
   "scripts": {
-    "api": "cd api && npm start",
-    "client": "cd client && npm start"
+    "api": "cd api && yarn start",
+    "client": "cd client && yarn start"
   },
   "author": "",
   "license": "MIT"

@@ -1,22 +1,33 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { selectInstrument } from '~/slices/instrument.slice';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { getAudio } from '~/slices/audio.slice';
 import { Button } from '~/components/button';
 import { instruments } from '~/data';
 
 export function ButtonList() {
-  const selectedInstrument = useSelector((state) => state.instrument.value);
+  const [activeInstrument, setActiveInstrument] = useState(
+    instruments[0].directory
+  );
   const dispatch = useDispatch();
 
-  console.log(selectedInstrument);
+  const setAudioForInstrument = (newDirectory) => {
+    setActiveInstrument(newDirectory);
+    dispatch(getAudio(newDirectory));
+  };
+
+  useEffect(() => {
+    setAudioForInstrument(activeInstrument);
+  }, []);
 
   return (
     <div className="instrument-btn-list">
-      {instruments.map((instrument) => (
+      {instruments.map(({ directory, title }) => (
         <Button
-          key={instrument.directory}
-          onClick={() => dispatch(selectInstrument(instrument.directory))}
-          isActive={instrument.directory === selectedInstrument}
-          {...instrument}
+          key={directory}
+          onClick={() => setAudioForInstrument(directory)}
+          isActive={directory === activeInstrument}
+          title={title}
+          directory={directory}
         />
       ))}
     </div>

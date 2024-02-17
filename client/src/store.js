@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { instrumentReducer } from './slices/instrument.slice';
+import { audioReducer } from './slices/audio.slice';
 
 export const store = configureStore({
   reducer: {
-    instrument: instrumentReducer
+    audio: audioReducer
   }
 });
