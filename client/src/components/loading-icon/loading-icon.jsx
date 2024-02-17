@@ -1,15 +1,17 @@
-// import { loadingIcon } from '~/images';
+import { useSelector } from 'react-redux';
+import { loadingIcon } from '~/images';
 
 export function LoadingIcon() {
-  // if (isAppLoading) {
-  //   return (
-  //     <div className="overlay">
-  //       <img
-  //         className="loading-icon"
-  //         alt="loading icon"
-  //         src={loadingIcon}
-  //       />
-  //     </div>
-  //   );
-  // }
+  const isLoading = useSelector((state) => state.audio.isLoading);
+  if (isLoading) {
+    return (
+      <div className="overlay">
+        <img
+          className="loading-icon"
+          alt="loading icon"
+          src={loadingIcon}
+        />
+      </div>
+    );
+  }
 }
