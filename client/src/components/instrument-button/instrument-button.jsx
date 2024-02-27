@@ -1,4 +1,4 @@
-export function Button({ title, directory, isActive, onClick }) {
+export function InstrumentButton({ title, directory, isActive, onClick }) {
   return (
     <button
       type="button"

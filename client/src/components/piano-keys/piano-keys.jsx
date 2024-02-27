@@ -1,11 +1,11 @@
 import { PianoKey } from '~/components/piano-key';
-import { pianoKeys } from '~/data';
+import { keysMap } from '~/common/keys-map';
 
-export function PianoKeyList() {
-  const pianoKeysArray = Array.from(pianoKeys.values());
+export function PianoKeys() {
+  const pianoKeysArray = Array.from(keysMap.values());
 
   return (
-    <div className="piano-key-list">
+    <div className="piano-keys">
       {pianoKeysArray.map((pianoKey) => (
         <PianoKey
           key={pianoKey.computerKey}

@@ -1,4 +1,4 @@
-export function PianoKey({ computerKey, color, onClick }) {
+export function PianoKey({ color, computerKey, onClick }) {
   return (
     <button
       name="piano-key"

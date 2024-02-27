@@ -1,19 +1,19 @@
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { getAudio } from '~/slices/audio.slice';
+import { loadAudioSamples } from '~/features/audio.slice';
 
 export function useInstrument(defaultInstrument) {
   const [activeInstrument, setActiveInstrument] = useState(defaultInstrument);
   const dispatch = useDispatch();
 
-  const setAudioForInstrument = (newDirectory) => {
+  const loadAudioForInstrument = (newDirectory) => {
     setActiveInstrument(newDirectory);
-    dispatch(getAudio(newDirectory));
+    dispatch(loadAudioSamples(newDirectory));
   };
 
   useEffect(() => {
-    setAudioForInstrument(activeInstrument);
+    loadAudioForInstrument(activeInstrument);
   }, []);
 
-  return [activeInstrument, setAudioForInstrument];
+  return [activeInstrument, loadAudioForInstrument];
 }

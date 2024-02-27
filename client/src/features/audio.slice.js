@@ -1,9 +1,9 @@
 /* eslint no-param-reassign: 0 */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAudioBuffers } from '~/lib/get-audio';
+import { getAudioBuffers } from './audio.api';
 
-export const getAudio = createAsyncThunk(
-  'audio/getAudio',
+export const loadAudioSamples = createAsyncThunk(
+  'audio/loadAudioSamples',
   async (instrumentDirectory) => {
     const response = await getAudioBuffers(instrumentDirectory);
     return JSON.stringify(response._buffers);
@@ -11,7 +11,7 @@ export const getAudio = createAsyncThunk(
 );
 
 const initialState = {
-  buffers: {},
+  audioSamples: {},
   isLoading: false,
   error: null
 };
@@ -21,14 +21,14 @@ const audioSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAudio.pending, (state) => {
+    builder.addCase(loadAudioSamples.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getAudio.fulfilled, (state, action) => {
+    builder.addCase(loadAudioSamples.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.buffers = action.payload;
+      state.audioSamples = action.payload;
     });
-    builder.addCase(getAudio.rejected, (state, action) => {
+    builder.addCase(loadAudioSamples.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
