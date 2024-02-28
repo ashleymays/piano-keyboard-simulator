@@ -13,7 +13,7 @@
     "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,cjs,json}' --config ./.prettierrc.yaml"
+    "format": "prettier --write './**/*.{js,jsx}' --config ./.prettierrc.yaml"
   },
   "repository": {
     "type": "git",

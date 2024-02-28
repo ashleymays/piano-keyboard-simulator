@@ -13,4 +13,4 @@ export const getAudio = async (req, res) => {
   } catch (error) {
     res.status(error.statusCode || 500).json(error);
   }
-}
+};

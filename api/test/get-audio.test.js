@@ -1,3 +1,4 @@
+/* eslint no-unused-expressions: 0 */
 import * as baseChai from 'chai';
 import chaiHttp from 'chai-http';
 
@@ -12,8 +13,8 @@ export const okStatusForValidDirectory = (done) => {
       expect(error).to.be.null;
       expect(response).to.have.status(200);
       done();
-  })
-}
+    });
+};
 
 export const internalServerErrorStatusForMissingDirectory = (done) => {
   request('http://localhost:8080')
@@ -22,8 +23,8 @@ export const internalServerErrorStatusForMissingDirectory = (done) => {
       expect(error).to.be.null;
       expect(response).to.have.status(500);
       done();
-  })
-}
+    });
+};
 
 export const internalServerErrorStatusForWrongDirectory = (done) => {
   request('http://localhost:8080')
@@ -32,5 +33,5 @@ export const internalServerErrorStatusForWrongDirectory = (done) => {
       expect(error).to.be.null;
       expect(response).to.have.status(500);
       done();
-  })
-}
+    });
+};
