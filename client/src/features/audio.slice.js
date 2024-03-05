@@ -1,12 +1,15 @@
 /* eslint no-param-reassign: 0 */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { replacer } from '~/common/json-replacer';
 import { getAudioBuffers } from './audio.api';
 
 export const loadAudioSamples = createAsyncThunk(
   'audio/loadAudioSamples',
   async (instrumentDirectory) => {
     const response = await getAudioBuffers(instrumentDirectory);
-    return JSON.stringify(response._buffers);
+    const audioSamples = response._buffers;
+
+    return JSON.stringify(audioSamples, replacer);
   }
 );
 
