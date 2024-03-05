@@ -1,6 +1,6 @@
 import { InstrumentButton } from '~/components/instrument-button';
 import { instruments } from '~/common/instruments';
-import { useInstrument } from './use-instrument.hook';
+import { useInstrument } from './use-instrument';
 
 export function InstrumentButtons() {
   const [activeInstrument, loadAudioForInstrument] = useInstrument(
