@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getPitchByEvent, playNote } from './use-piano-keys.helpers';
+import { getPitchByEvent, playNote, endNote } from './use-piano-keys.helpers';
 
 export function usePianoKeys() {
   const audioSamples = useSelector((state) => state.audio.samples);
@@ -13,11 +13,18 @@ export function usePianoKeys() {
     }
   };
 
+  const stopPianoKey = (event) => {
+    const pitch = getPitchByEvent(event);
+    endNote(pitch);
+  };
+
   useEffect(() => {
     document.addEventListener('keydown', playPianoKey);
+    document.addEventListener('keyup', stopPianoKey);
 
     return () => {
       document.removeEventListener('keydown', playPianoKey);
+      document.removeEventListener('keyup', stopPianoKey);
     };
   }, [audioSamples]);
 
