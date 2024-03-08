@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getPitchByEvent, playNote } from './use-piano-keys.helpers';
 
 export function usePianoKeys() {
-  const audioSamples = useSelector((state) => state.audio.audioSamples);
+  const audioSamples = useSelector((state) => state.audio.samples);
 
   const playPianoKey = (event) => {
     const pitch = getPitchByEvent(event);
@@ -19,7 +19,7 @@ export function usePianoKeys() {
     return () => {
       document.removeEventListener('keydown', playPianoKey);
     };
-  }, []);
+  }, [audioSamples]);
 
   return playPianoKey;
 }
