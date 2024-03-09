@@ -1,4 +1,3 @@
-import { InstrumentButton } from '~/components/instrument-button';
 import { instruments } from '~/common/instruments';
 import { useInstrument } from './use-instrument';
 
@@ -19,5 +18,19 @@ export function InstrumentButtons() {
         />
       ))}
     </div>
+  );
+}
+
+function InstrumentButton({ title, value, isActive, onClick }) {
+  return (
+    <button
+      type="button"
+      name="instrument"
+      value={value}
+      onClick={onClick}
+      className={`instrument-btn ${isActive ? 'active' : ''}`}
+    >
+      {title}
+    </button>
   );
 }

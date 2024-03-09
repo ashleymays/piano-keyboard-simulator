@@ -1,4 +1,3 @@
-import { PianoKey } from '~/components/piano-key';
 import { keysMap } from '~/common/keys-map';
 import { usePianoKeys } from './use-piano-keys';
 
@@ -16,5 +15,19 @@ export function PianoKeys() {
         />
       ))}
     </div>
+  );
+}
+
+function PianoKey({ color, computerKey, onClick }) {
+  return (
+    <button
+      name="piano-key"
+      className={`piano-key ${color}-key`}
+      type="button"
+      value={computerKey}
+      onClick={onClick}
+    >
+      {computerKey}
+    </button>
   );
 }
