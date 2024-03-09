@@ -3,8 +3,9 @@ import { keysMap } from '~/common/keys-map';
 
 const currentlyPlayedKeys = [];
 
-/** @param {string} computerKey */
-export function endNote(computerKey) {
+/** @param {MouseEvent|KeyboardEvent} event */
+export function endNote(event) {
+  const computerKey = getComputerKeyByEvent(event);
   const index = currentlyPlayedKeys.indexOf(computerKey);
 
   if (index !== -1) {

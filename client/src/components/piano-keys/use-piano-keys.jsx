@@ -9,15 +9,19 @@ export function usePianoKeys() {
     playNote(event, audioSamples);
   };
 
+  const stopPianoKey = (event) => {
+    endNote(event);
+  };
+
   useEffect(() => {
     document.addEventListener('keydown', playPianoKey);
-    document.addEventListener('keyup', endNote);
+    document.addEventListener('keyup', stopPianoKey);
 
     return () => {
       document.removeEventListener('keydown', playPianoKey);
-      document.removeEventListener('keyup', endNote);
+      document.removeEventListener('keyup', stopPianoKey);
     };
   }, [audioSamples]);
 
-  return playPianoKey;
+  return [playPianoKey, stopPianoKey];
 }

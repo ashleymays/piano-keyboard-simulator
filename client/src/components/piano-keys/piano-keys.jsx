@@ -3,14 +3,15 @@ import { usePianoKeys } from './use-piano-keys';
 
 export function PianoKeys() {
   const pianoKeysArray = Array.from(keysMap.values());
-  const playPianoKey = usePianoKeys();
+  const [playPianoKey, stopPianoKey] = usePianoKeys();
 
   return (
     <div className="piano-keys">
       {pianoKeysArray.map((pianoKey) => (
         <PianoKey
           key={pianoKey.computerKey}
-          onClick={playPianoKey}
+          onMouseDown={playPianoKey}
+          onMouseUp={stopPianoKey}
           {...pianoKey}
         />
       ))}
@@ -18,14 +19,15 @@ export function PianoKeys() {
   );
 }
 
-function PianoKey({ color, computerKey, onClick }) {
+function PianoKey({ color, computerKey, onMouseDown, onMouseUp }) {
   return (
     <button
       name="piano-key"
       className={`piano-key ${color}-key`}
       type="button"
       value={computerKey}
-      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
     >
       {computerKey}
     </button>
