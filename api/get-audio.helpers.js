@@ -8,10 +8,10 @@ import { readdir, readFile } from 'node:fs/promises';
  *
  * @async
  * @param {string} instrument
- * @returns {object}
+ * @returns {Promise<object>}
  */
 export async function getAudioFromFilesystem(instrument) {
-  const directoryPath = getDirectory(instrument);
+  const directoryPath = getInstrumentDirectory(instrument);
   const fileNames = await getAudioFileNames(directoryPath);
   const audioFiles = await getAudioFiles(fileNames, directoryPath);
   const pitches = getPitchesFromFileNames(fileNames);
@@ -19,17 +19,21 @@ export async function getAudioFromFilesystem(instrument) {
 }
 
 /**
+ * Returns the directory path where the instrument's audio is found.
+ * Needed since ES modules don't have a global "_dirname" variable.
  *
  * @param {string} instrument
  * @returns {string}
  */
-function getDirectory(instrument) {
+function getInstrumentDirectory(instrument) {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   return path.resolve(__dirname, './audio', instrument);
 }
 
 /**
+ * Get the names of the audio files from the filesystem.
+ * Used to read the audio data for each file.
  *
  * @param {string} directoryPath
  * @returns {Promise<string[]>}
@@ -39,7 +43,6 @@ function getAudioFileNames(directoryPath) {
 }
 
 /**
- *
  * @param {string[]} fileNames
  * @param {string} directoryPath
  * @returns {Promise<string[]>}
@@ -66,7 +69,6 @@ function getAudioFile(filePath) {
 }
 
 /**
- *
  * @param {string} fileName
  * @returns {string}
  */
@@ -76,7 +78,6 @@ function getPitchFromFileName(fileName) {
 }
 
 /**
- *
  * @param {string[]} fileNames
  * @returns {string[]}
  */
@@ -91,10 +92,9 @@ function getPitchesFromFileNames(fileNames) {
 }
 
 /**
- *
  * @param {string[]} audioFiles
  * @param {string[]} pitches
- * @returns {object?}
+ * @returns {object}
  */
 function mapAudioFileToPitch(audioFiles, pitches) {
   if (audioFiles.length !== pitches.length) {
