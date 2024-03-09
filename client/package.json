@@ -35,7 +35,6 @@
     "tone": "^14.7.77"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.2.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
