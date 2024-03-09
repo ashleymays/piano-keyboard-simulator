@@ -5,7 +5,7 @@ export const getAudio = async (req, res) => {
     const { instrument } = req.query;
     const audioMap = await getAudioFromFilesystem(instrument);
 
-    if (!audioMap) {
+    if (Object.keys(audioMap).length === 0) {
       throw new Error('Could not get audio');
     }
 

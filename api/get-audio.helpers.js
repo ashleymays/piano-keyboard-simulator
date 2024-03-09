@@ -98,7 +98,7 @@ function getPitchesFromFileNames(fileNames) {
  */
 function mapAudioFileToPitch(audioFiles, pitches) {
   if (audioFiles.length !== pitches.length) {
-    return null;
+    return {};
   }
 
   const map = {};
