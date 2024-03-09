@@ -1,30 +1,13 @@
 {
   "name": "piano-keyboard-simulator",
-  "version": "5.0.0",
-  "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs. Users can play one of four different instrument sounds, mimic the sustain and soften pedals on a grand piano, record their playing, and download recordings as an .mp3 file.",
-  "main": "server/index.js",
-  "private": "true",
+  "version": "6.0.0",
+  "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs.",
+  "main": "./api/index.js",
   "scripts": {
-    "build": "node server/index.js",
-    "dev": "cd server && npm i && npm start && cd client && npm i && npm start",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "start": "cd ./api && yarn install && yarn start",
+    "api": "cd ./api && yarn install && yarn dev",
+    "client": "cd ./client && yarn install && yarn dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ashleymays/piano-keyboard-simulator.git"
-  },
-  "keywords": [],
   "author": "Ashley Mays",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ashleymays/piano-keyboard-simulator/issues"
-  },
-  "homepage": "https://github.com/ashleymays/piano-keyboard-simulator#readme",
-  "devDependencies": {
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1"
-  }
+  "license": "MIT"
 }
