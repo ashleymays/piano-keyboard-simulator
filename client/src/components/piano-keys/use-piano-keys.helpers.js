@@ -24,8 +24,6 @@ export function playNote(event, audioSamples) {
   const computerKey = getComputerKeyByEvent(event);
   const pitch = getPitchByComputerKey(computerKey);
 
-  console.log(event.target);
-
   if (pitch && !currentlyPlayedKeys.includes(computerKey)) {
     playNoteAtPitch(pitch, audioSamples);
     addPressedPianoKeyColor(computerKey);
