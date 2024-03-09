@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 import { keysMap } from '~/common/keys-map';
 
 export function shiftOctaveUp() {
