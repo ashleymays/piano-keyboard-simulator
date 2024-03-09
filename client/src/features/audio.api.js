@@ -2,11 +2,10 @@ import { ToneAudioBuffers } from 'tone';
 
 /**
  * Get the audio buffers for the given instrument.
- * Tokenizes the value so it can be saved in the store.
  *
  * @async
  * @param {string} instrumentId - the ID defined in the instruments file
- * @returns {Promise<ToneAudioBuffers>}
+ * @returns {Promise<Map<string, ToneAudioBuffer>>}
  */
 export async function getAudioSamples(instrumentId) {
   const response = await fetchAudioSamples(instrumentId);
