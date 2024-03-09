@@ -1,9 +1,9 @@
-export function InstrumentButton({ title, directory, isActive, onClick }) {
+export function InstrumentButton({ title, value, isActive, onClick }) {
   return (
     <button
       type="button"
       name="instrument"
-      value={directory}
+      value={value}
       onClick={onClick}
       className={`instrument-btn ${isActive ? 'active' : ''}`}
     >

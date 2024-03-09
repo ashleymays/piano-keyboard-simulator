@@ -4,18 +4,18 @@ import { useInstrument } from './use-instrument';
 
 export function InstrumentButtons() {
   const [activeInstrument, loadAudioForInstrument] = useInstrument(
-    instruments[0].directory
+    instruments[0].id
   );
 
   return (
     <div className="instrument-btns">
-      {instruments.map(({ directory, title }) => (
+      {instruments.map((instrument) => (
         <InstrumentButton
-          key={directory}
-          onClick={() => loadAudioForInstrument(directory)}
-          isActive={directory === activeInstrument}
-          title={title}
-          directory={directory}
+          key={instrument.id}
+          onClick={() => loadAudioForInstrument(instrument.id)}
+          isActive={instrument.id === activeInstrument}
+          title={instrument.title}
+          value={instrument.id}
         />
       ))}
     </div>

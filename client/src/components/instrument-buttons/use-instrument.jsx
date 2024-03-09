@@ -6,13 +6,13 @@ export function useInstrument(defaultInstrument) {
   const [activeInstrument, setActiveInstrument] = useState(defaultInstrument);
   const dispatch = useDispatch();
 
-  const loadAudioForInstrument = (newDirectory) => {
-    setActiveInstrument(newDirectory);
-    dispatch(loadAudioSamples(newDirectory));
+  const loadAudioForInstrument = (newInstrument) => {
+    setActiveInstrument(newInstrument);
+    dispatch(loadAudioSamples(newInstrument));
   };
 
   useEffect(() => {
-    loadAudioForInstrument(activeInstrument);
+    loadAudioForInstrument(defaultInstrument);
   }, []);
 
   return [activeInstrument, loadAudioForInstrument];

@@ -1,14 +1,14 @@
 export const instruments = [
   {
-    title: 'Acoustic Grand',
-    directory: 'acoustic-grand'
+    id: 'acoustic-grand',
+    title: 'Acoustic Grand'
   },
   {
-    title: 'Electric Piano',
-    directory: 'electric-piano'
+    id: 'electric-piano',
+    title: 'Electric Piano'
   },
   {
-    title: '8-Bit',
-    directory: '8-bit'
+    id: '8-bit',
+    title: '8-Bit'
   }
 ];
