@@ -1,5 +1,5 @@
 <div align="center">
-    <img width=700 src="./simulator.png" alt="Main Webpage" />
+    <img width=700 src="./simulator.webp" alt="Main Webpage" />
 </div>
 
 # Piano Keyboard Simulator
