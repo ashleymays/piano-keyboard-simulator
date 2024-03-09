@@ -2,7 +2,7 @@
   "name": "client",
   "version": "6.0.0",
   "description": "",
-  "main": "src/index.jsx",
+  "main": "./src/index.jsx",
   "private": "true",
   "type": "module",
   "scripts": {
@@ -10,7 +10,6 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx}' --config ./.prettierrc.yaml"
@@ -45,8 +44,7 @@
     "eslint-plugin-react": "^7.33.2",
     "prettier": "^3.2.1",
     "vite": "^5.0.10",
-    "vite-plugin-eslint": "^1.8.1",
-    "vitest": "^1.2.0"
+    "vite-plugin-eslint": "^1.8.1"
   },
   "browserslist": {
     "production": [

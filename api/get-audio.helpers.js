@@ -1,6 +1,6 @@
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import { readdir, readFile } from 'node:fs/promises';
+import { getDirname } from './utils.js';
 
 /**
  * Returns the audio as a map where the
@@ -20,15 +20,12 @@ export async function getAudioFromFilesystem(instrument) {
 
 /**
  * Returns the directory path where the instrument's audio is found.
- * Needed since ES modules don't have a global "_dirname" variable.
  *
  * @param {string} instrument
  * @returns {string}
  */
 function getInstrumentDirectory(instrument) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  return path.resolve(__dirname, './audio', instrument);
+  return path.resolve(getDirname(), './audio', instrument);
 }
 
 /**
