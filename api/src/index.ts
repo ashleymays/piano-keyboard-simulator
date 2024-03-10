@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { getAudio } from './get-audio.controller.js';
+import { getAudio } from './controller';
 
 const app = express();
 

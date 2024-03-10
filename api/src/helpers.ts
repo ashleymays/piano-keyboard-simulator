@@ -1,5 +1,7 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { readdir, readFile } from 'node:fs/promises';
+import type { AudioMap } from './types/audio-map';
 
 /**
  * Returns the audio as a map where the
@@ -7,9 +9,11 @@ import { readdir, readFile } from 'node:fs/promises';
  *
  * @async
  * @param {string} instrument
- * @returns {Promise<object>}
+ * @returns {Promise<AudioMap>}
  */
-export async function getAudioFromFilesystem(instrument) {
+export async function getAudioFromFilesystem(
+  instrument: string
+): Promise<AudioMap> {
   const directoryPath = getInstrumentDirectory(instrument);
   const fileNames = await getAudioFileNames(directoryPath);
   const audioFiles = await getAudioFiles(fileNames, directoryPath);
@@ -23,7 +27,7 @@ export async function getAudioFromFilesystem(instrument) {
  * @param {string} instrument
  * @returns {string}
  */
-function getInstrumentDirectory(instrument) {
+function getInstrumentDirectory(instrument: string): string {
   const filename = fileURLToPath(import.meta.url);
   const dirname = path.dirname(filename);
   return path.resolve(dirname, './audio', instrument);
@@ -36,7 +40,7 @@ function getInstrumentDirectory(instrument) {
  * @param {string} directoryPath
  * @returns {Promise<string[]>}
  */
-function getAudioFileNames(directoryPath) {
+function getAudioFileNames(directoryPath: string): Promise<string[]> {
   return readdir(directoryPath);
 }
 
@@ -45,8 +49,11 @@ function getAudioFileNames(directoryPath) {
  * @param {string} directoryPath
  * @returns {Promise<string[]>}
  */
-function getAudioFiles(fileNames, directoryPath) {
-  const audioFiles = [];
+function getAudioFiles(
+  fileNames: string[],
+  directoryPath: string
+): Promise<string[]> {
+  const audioFiles: Promise<string>[] = [];
 
   fileNames.forEach((fileName) => {
     const audioFilePath = path.resolve(directoryPath, fileName);
@@ -62,7 +69,7 @@ function getAudioFiles(fileNames, directoryPath) {
  * @param {string} filePath
  * @returns {Promise<string>}
  */
-function getAudioFile(filePath) {
+function getAudioFile(filePath: string): Promise<string> {
   return readFile(filePath, 'base64');
 }
 
@@ -70,7 +77,7 @@ function getAudioFile(filePath) {
  * @param {string} fileName
  * @returns {string}
  */
-function getPitchFromFileName(fileName) {
+function getPitchFromFileName(fileName: string): string {
   const dotIndex = fileName.indexOf('.');
   return fileName.slice(0, dotIndex);
 }
@@ -79,8 +86,8 @@ function getPitchFromFileName(fileName) {
  * @param {string[]} fileNames
  * @returns {string[]}
  */
-function getPitchesFromFileNames(fileNames) {
-  const pitches = [];
+function getPitchesFromFileNames(fileNames: string[]): string[] {
+  const pitches: string[] = [];
 
   fileNames.forEach((fileName) => {
     pitches.push(getPitchFromFileName(fileName));
@@ -92,17 +99,22 @@ function getPitchesFromFileNames(fileNames) {
 /**
  * @param {string[]} audioFiles
  * @param {string[]} pitches
- * @returns {object}
+ * @returns {AudioMap}
  */
-function mapAudioFileToPitch(audioFiles, pitches) {
+function mapAudioFileToPitch(
+  audioFiles: string[],
+  pitches: string[]
+): AudioMap {
   if (audioFiles.length !== pitches.length) {
     return {};
   }
 
-  const map = {};
+  const map: AudioMap = {};
 
   for (let i = 0; i < audioFiles.length; i += 1) {
-    map[pitches[i]] = `data:application/octet;base64,${audioFiles[i]}`;
+    const pitch = pitches[i];
+    const fileSnippet = audioFiles[i];
+    map[pitch] = `data:application/octet;base64,${fileSnippet}`;
   }
 
   return map;
