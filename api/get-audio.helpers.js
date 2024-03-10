@@ -1,6 +1,5 @@
 import path from 'node:path';
 import { readdir, readFile } from 'node:fs/promises';
-import { getDirname } from './utils.js';
 
 /**
  * Returns the audio as a map where the
@@ -25,7 +24,9 @@ export async function getAudioFromFilesystem(instrument) {
  * @returns {string}
  */
 function getInstrumentDirectory(instrument) {
-  return path.resolve(getDirname(), './audio', instrument);
+  const filename = fileURLToPath(import.meta.url);
+  const dirname = path.dirname(filename);
+  return path.resolve(dirname, './audio', instrument);
 }
 
 /**
