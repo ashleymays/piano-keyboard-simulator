@@ -24,9 +24,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "audio"
   ],
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./test/*.ts"
   ]
 }
