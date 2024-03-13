@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add start-server-and-test --dev
+  /usr/local/bin/node /usr/local/bin/yarn add @ashleymays/nodejs-utils
 
 PATH: 
   /bin:/usr/bin:/usr/local/bin
@@ -14,29 +14,24 @@ Platform:
   linux x64
 
 Trace: 
-  TypeError: Failed to fetch
-      at https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:61659
-      at https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:61857
-      at _0x1b906f.applyPolyfills (https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:62066)
-      at https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:604035
-      at _0x15a2e9 (https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:600751)
-      at applyPolyfills (https://pianokeyboardsimulator-rlnr.w-corp-staticblitz.com/blitz.dc33e3af.js:352:603976)
-      at Object.eval (file:///usr/local/lib/node_modules/yarn/dist/yarn.js:74463:29)
+  SyntaxError: /home/ashleymays/piano-keyboard-simulator/package.json: Expected double-quoted property name in JSON at position 380 (line 12 column 1)
+      at JSON.parse (<anonymous>)
+      at eval (file:///usr/local/lib/node_modules/yarn/dist/yarn.js:1397:57)
       at Generator.next (<anonymous>)
       at step (file:///usr/local/lib/node_modules/yarn/dist/yarn.js:309:30)
-      at eval (file:///usr/local/lib/node_modules/yarn/dist/yarn.js:327:14)
+      at eval (file:///usr/local/lib/node_modules/yarn/dist/yarn.js:320:13)
 
 npm manifest: 
   {
     "name": "api",
     "version": "1.0.0",
     "description": "",
-    "main": "src/index.ts",
+    "main": "./src/index.ts",
     "scripts": {
-      "start": "tsx src/index.ts",
-      "dev": "tsx src/index.ts",
+      "start": "tsx ./src/index.ts",
+      "dev": "tsx ./src/index.ts",
       "build": "tsc",
-      "test": "yarn dev & mocha --loader=tsx ./test/*.ts",
+      "test": "mocha --loader=tsx ./test/*.ts",
       "lint": "eslint .",
       "lint:fix": "eslint --fix",
       "format": "prettier --write './**/*.ts' --config ./.prettierrc.yaml"
