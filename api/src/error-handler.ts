@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'node:http';
 import type { Request, Response, NextFunction } from 'express';
 
 interface CustomError extends Error {
@@ -15,5 +16,5 @@ export const errorHandler = (
 };
 
 const isHttpStatusCode = (code: string | number) => {
-  return !isNaN(Number(code));
+  return typeof STATUS_CODES[code] !== 'undefined';
 };
