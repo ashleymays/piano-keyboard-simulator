@@ -1,5 +1,5 @@
 import { describe, it } from 'mocha';
-import * as tests from './get-audio.test.js';
+import * as tests from './get-audio.test';
 
 describe('get audio', () => {
   it(

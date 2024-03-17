@@ -4,7 +4,6 @@
   "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs.",
   "main": "./api/index.js",
   "scripts": {
-    "start": "cd ./api && yarn install && yarn start",
     "api": "cd ./api && yarn install && yarn dev",
     "client": "cd ./client && yarn install && yarn dev"
   },

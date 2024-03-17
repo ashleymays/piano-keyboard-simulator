@@ -1,17 +1,16 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import { getAudio } from './get-audio.controller.js';
-import { getDirname } from './utils.js';
+import { errorHandler } from './error-handler';
+import { getAudio } from './controller';
 
 const app = express();
-
-app.use(express.static(path.join(getDirname(), '../client/build')));
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/audio', getAudio);
+
+app.use(errorHandler);
 
 app.listen(8080);
