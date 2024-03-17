@@ -1,7 +1,10 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readdir, readFile } from 'node:fs/promises';
-import type { AudioMap } from './types/audio-map';
+
+type AudioMap = {
+  [pitch: string]: string;
+};
 
 /**
  * Returns the audio as a map where the
