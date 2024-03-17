@@ -1,13 +1,13 @@
 import { catchErrors, GeneralError } from '@ashleymays/nodejs-utils';
-import { getAudioFromFilesystem } from './helpers';
+import { getAudioSamplesForInstrument } from './helpers';
 
 export const getAudio = catchErrors(async (req, res) => {
   const { instrument } = req.query as { instrument: string };
-  const audioMap = await getAudioFromFilesystem(instrument);
+  const audioSamples = await getAudioSamplesForInstrument(instrument);
 
-  if (Object.keys(audioMap).length === 0) {
-    throw new GeneralError('Could not get audio');
+  if (Object.keys(audioSamples).length === 0) {
+    throw new GeneralError('Could not get audio samples');
   }
 
-  res.status(200).json(audioMap);
+  res.status(200).json(audioSamples);
 });

@@ -10,5 +10,10 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(error.code || 500).json(error);
+  const errorCode = isHttpStatusCode(error.code) ? error.code : 500;
+  res.status(errorCode).json(error);
+};
+
+const isHttpStatusCode = (code: number) => {
+  return !isNaN(code);
 };
