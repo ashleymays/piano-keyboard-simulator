@@ -1,7 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readdir, readFile } from 'node:fs/promises';
-import { GeneralError } from '@ashleymays/nodejs-utils';
 
 type AudioSamples = {
   [pitch: string]: string;
@@ -15,17 +14,12 @@ type AudioSamples = {
  * @param {string} instrument
  * @returns {Promise<AudioSamples>}
  */
-export const getAudioSamplesForInstrument = async (
+export const getAudioSamples = async (
   instrument: string
 ): Promise<AudioSamples> => {
   const instrumentDirPath = getInstrumentDirectoryPath(instrument);
   const fileNames = await getAudioFileNames(instrumentDirPath);
   const files = await getAudioFiles(fileNames, instrumentDirPath);
-
-  if (fileNames.length !== files.length) {
-    throw new GeneralError('Could not get all audio samples.');
-  }
-
   return createAudioSamples(fileNames, files);
 };
 

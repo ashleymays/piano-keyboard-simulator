@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@ashleymays/nodejs-utils@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ashleymays/nodejs-utils/-/nodejs-utils-1.0.2.tgz#916d039b183b4afaa718b18a570c64f847c66dea"
-  integrity sha512-v+0JfQ8g3YdlQeHtt+gilhmxqwEvkJjcOXMKySSpWzrVt4MKn4CRoFVonE/xmUUngwmNeUQdipjoj9avFdvbJA==
+"@ashleymays/nodejs-utils@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ashleymays/nodejs-utils/-/nodejs-utils-2.0.0.tgz#f8cf29532cbdade51ac72c6a23f5d769be963f8c"
+  integrity sha512-iRJPDbxKtx77Vd/M86ZhhfuG9kotaHTtfBPGYxdG10jD6swnMvFx31/YiPyvXTC/zpmCW4ay3QGFsaXmbMwGvw==
   dependencies:
     "@types/express" "^4.17.21"
 

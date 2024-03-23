@@ -1,9 +1,5 @@
-import { STATUS_CODES } from 'node:http';
 import type { Request, Response, NextFunction } from 'express';
-
-interface CustomError extends Error {
-  code: number;
-}
+import type { CustomError } from '@ashleymays/nodejs-utils';
 
 export const errorHandler = (
   error: CustomError,
@@ -11,10 +7,5 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  const errorCode = isHttpStatusCode(error.code) ? error.code : 500;
-  res.status(errorCode).json(error);
-};
-
-const isHttpStatusCode = (code: string | number) => {
-  return typeof STATUS_CODES[code] !== 'undefined';
+  res.status(error.statusCode || 500).json({ error: error.message });
 };
