@@ -1,3 +1,4 @@
+/* eslint jsx-a11y/control-has-associated-label: 0 */
 import { keysMap } from '~/common/keys-map';
 import { usePianoKeys } from './use-piano-keys';
 
@@ -28,8 +29,6 @@ function PianoKey({ color, computerKey, onMouseDown, onMouseUp }) {
       value={computerKey}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
-    >
-      {computerKey}
-    </button>
+    />
   );
 }

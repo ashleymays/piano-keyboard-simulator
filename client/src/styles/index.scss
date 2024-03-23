@@ -5,25 +5,30 @@
 }
 
 html,
-body {
+body,
+main,
+#root {
   margin: 0;
   width: 100%;
+  height: 100%;
 }
 
 html {
   font-size: 10px;
-  height: 100%;
 }
 
 body {
-  background: variables.$blue-gray;
-  height: 100%;
-  font-family: 'Noto Sans Mono', monospace;
+  background: variables.$black;
+  font-family: 'Inter', sans-serif;
+  overflow-x: visible;
+  overflow-y: hidden;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
-  overflow-x: visible;
-  overflow-y: hidden;
+}
+
+main {
+  position: relative;
 }
 
 p,

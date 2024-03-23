@@ -1,24 +1,16 @@
-import { PianoKeys } from '~/components/piano-keys';
-import { InstrumentButtons } from '~/components/instrument-buttons';
-import { OctaveControls } from '~/components/octave-controls';
-import { arturiaLogo } from '~/images';
-
 export function Keyboard() {
   return (
-    <section className="keyboard-container">
-      <div className="keyboard">
-        <div className="keyboard__top-row">
-          <InstrumentButtons />
-          <img
-            className="keyboard__logo"
-            alt="Arturia logo"
-            src={arturiaLogo}
-          />
-        </div>
-        <div className="keyboard__bottom-row">
-          <OctaveControls />
-          <PianoKeys />
-        </div>
+    <section className="keyboard">
+      <div className="keyboard__row--top">
+        <header className="keyboard__header">
+          <h1 className="keyboard__heading">Piano Keyboard</h1>
+          <h2 className="keyboard__subheading">synthesizer</h2>
+          <div className="keyboard__dots">
+            <span />
+            <span />
+            <span />
+          </div>
+        </header>
       </div>
     </section>
   );
