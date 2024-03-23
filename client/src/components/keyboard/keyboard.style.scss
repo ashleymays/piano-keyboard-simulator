@@ -6,7 +6,7 @@
   inset: 0;
   display: flex;
   flex-flow: column;
-  gap: 1em;
+  gap: 4em;
   width: clamp(120rem, 80vw + 2rem, 135rem);
   height: clamp(40rem, 46vh + 0.75rem, 50rem);
   background: variables.$off-white;
@@ -44,12 +44,12 @@
 .keyboard__dots {
   display: flex;
   justify-content: space-between;
-  width: 25%;
-  margin-top: 1.5em;
+  width: 35%;
+  margin-top: 2em;
 }
 
 .keyboard__dots span {
-  padding: 2.5px;
+  padding: 0.25em;
   border-radius: 50%;
   background: variables.$c-text-primary;
 }
@@ -60,4 +60,6 @@
 
 .keyboard__row--bottom {
   flex: 4;
+  display: flex;
+  justify-content: space-between;
 }
