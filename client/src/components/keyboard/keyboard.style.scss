@@ -4,6 +4,9 @@
   position: absolute;
   margin: auto;
   inset: 0;
+  display: flex;
+  flex-flow: column;
+  gap: 1em;
   width: clamp(120rem, 80vw + 2rem, 135rem);
   height: clamp(40rem, 46vh + 0.75rem, 50rem);
   background: variables.$off-white;
@@ -11,6 +14,10 @@
   border-radius: 2.5em;
   padding: 4.5em;
   touch-action: manipulation;
+}
+
+.keyboard__row--top {
+  flex: 1;
 }
 
 .keyboard__header {
@@ -49,4 +56,8 @@
 
 .keyboard__dots span:first-child {
   background: #0AFF81;
+}
+
+.keyboard__row--bottom {
+  flex: 4;
 }

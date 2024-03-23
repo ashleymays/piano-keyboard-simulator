@@ -1,3 +1,5 @@
+import { OctaveControls } from '~/components/octave-controls';
+
 export function Keyboard() {
   return (
     <section className="keyboard">
@@ -11,6 +13,9 @@ export function Keyboard() {
             <span />
           </div>
         </header>
+      </div>
+      <div className="keyboard__row--bottom">
+        <OctaveControls />
       </div>
     </section>
   );
