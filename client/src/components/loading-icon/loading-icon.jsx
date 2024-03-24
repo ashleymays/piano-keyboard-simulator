@@ -8,7 +8,6 @@ export function LoadingIcon() {
     isLoading && (
       <div className="overlay">
         <img
-          className="loading-icon"
           alt="loading icon"
           src={loadingIcon}
         />

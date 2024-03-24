@@ -9,8 +9,8 @@
   gap: 4em;
   width: clamp(120rem, 80vw + 2rem, 135rem);
   height: clamp(40rem, 46vh + 0.75rem, 50rem);
-  background: variables.$off-white;
-  box-shadow: 0 0.75rem 0 rgba(variables.$black, variables.$op-high);
+  background: rgb(249, 249, 249);
+  box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.85);
   border-radius: 2.5em;
   padding: 4.5em;
   touch-action: manipulation;
@@ -26,17 +26,17 @@
 
 .keyboard__heading,
 .keyboard__subheading {
-  color: variables.$c-text-primary;
+  color: variables.$color-text-primary;
   margin: 0;
 }
 
 .keyboard__heading {
-  font-size: variables.$text-lg;
+  font-size: variables.$text-size-lg;
   font-weight: 600;
 }
 
 .keyboard__subheading {
-  font-size: variables.$text-md;
+  font-size: variables.$text-size-md;
   font-weight: 400;
   margin-top: 0.5em;
 }
@@ -51,11 +51,11 @@
 .keyboard__dots span {
   padding: 0.25em;
   border-radius: 50%;
-  background: variables.$c-text-primary;
+  background: variables.$color-text-primary;
 }
 
 .keyboard__dots span:first-child {
-  background: #0AFF81;
+  background: rgb(10, 255, 129);
 }
 
 .keyboard__row--bottom {

@@ -12,9 +12,9 @@
   flex: 1;
   display: flex;
   flex-flow: column;
-  background: #BFBFBF;
-  padding: variables.$btn-spacing--parent;
-  border-radius: variables.$border-radius--parent;
+  background: rgb(191, 191, 191);
+  padding: variables.$btn-spacing--container;
+  border-radius: variables.$border-radius--container;
 }
 
 .octave-controls__arrow-btn {
@@ -22,23 +22,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F0F0F0;
+  background: rgb(240, 240, 240);
   width: 3.25em;
-  border-radius: variables.$border-radius--child;
+  border-radius: variables.$border-radius--item;
   border-width: 0.2em;
   border-style: solid;
 
   &:first-child {
-    border-top-color: white;
+    border-top-color: rgb(255, 255, 255);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    margin-bottom: variables.$btn-spacing--child;
+    margin-bottom: variables.$btn-spacing--item;
   }
 
   &:last-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    margin-top: variables.$btn-spacing--child;
+    margin-top: variables.$btn-spacing--item;
   }
 
   &:active {
@@ -48,11 +48,11 @@
 }
 
 .octave-controls__arrow-icon {
-  color: #818181;
+  color: rgb(129, 129, 129);
   font-size: 0.55em;
 }
 
 .octave-controls__label {
   font-size: 1.25em;
-  color: variables.$c-text-primary;
+  color: variables.$color-text-primary;
 }

@@ -1,33 +1,10 @@
-$dark-blue: rgb(21, 25, 29);
-$blue: rgb(44, 55, 60);
-$dark-purple_gray: rgb(34, 35, 41);
-$blue-gray: rgb(226, 230, 236);
-$gray: rgb(175, 175, 175);
-$off-white: rgb(249, 249, 249);
-// $black: rgb(0,0,0);
+$color-text-primary: #6d6d6d;
 
-$op-medium: 80%;
-$op-high: 25%;
+$text-size-lg: 2.5em;
+$text-size-md: 1.25em;
 
-$font-size-base: clamp(0.5rem, 0.01vw + 1rem, 10rem);
-$font-size-md: clamp(1.3rem, 0.44vw + 1.19rem, 1.54rem);
-$font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);
+$btn-spacing--container: 0.2rem;
+$btn-spacing--item: calc($btn-spacing--container / 2);
 
-
-
-$black: #1A1A1A;
-
-$c-bg-keys: $black;
-
-$c-text-primary: #6D6D6D;
-$c-bg-keyboard: #fff;
-$c-bg-piano-key-container: #121212;
-
-$text-lg: 2.5em;
-$text-md: 1.25em;
-
-$btn-spacing--parent: 0.2rem;
-$btn-spacing--child: calc($btn-spacing--parent / 2);
-
-$border-radius--parent: 1rem;
-$border-radius--child: calc($border-radius--parent * 0.8);
+$border-radius--container: 1rem;
+$border-radius--item: calc($border-radius--container * 0.8);

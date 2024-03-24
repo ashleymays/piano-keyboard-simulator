@@ -1,5 +1,3 @@
-@use 'variables';
-
 * {
   box-sizing: border-box;
 }
@@ -18,8 +16,8 @@ html {
 }
 
 body {
-  background: variables.$black;
-  font-family: 'Inter', sans-serif;
+  background: rgb(26, 26, 26);
+  font-family: 'Inter', system-ui, sans-serif;
   overflow-x: visible;
   overflow-y: hidden;
   user-select: none;
