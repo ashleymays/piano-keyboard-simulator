@@ -4,7 +4,7 @@ $dark-purple_gray: rgb(34, 35, 41);
 $blue-gray: rgb(226, 230, 236);
 $gray: rgb(175, 175, 175);
 $off-white: rgb(249, 249, 249);
-$black: rgb(0,0,0);
+// $black: rgb(0,0,0);
 
 $op-medium: 80%;
 $op-high: 25%;
@@ -15,9 +15,19 @@ $font-size-lg: clamp(1.69rem, 0.58vw + 1.55rem, 2.01rem);
 
 
 
+$black: #1A1A1A;
+
+$c-bg-keys: $black;
+
 $c-text-primary: #6D6D6D;
 $c-bg-keyboard: #fff;
 $c-bg-piano-key-container: #121212;
 
 $text-lg: 2.5em;
 $text-md: 1.25em;
+
+$btn-spacing--parent: 0.2rem;
+$btn-spacing--child: calc($btn-spacing--parent / 2);
+
+$border-radius--parent: 1rem;
+$border-radius--child: calc($border-radius--parent * 0.8);

@@ -1,8 +1,5 @@
 @use '~/styles/_variables.scss';
 
-$btn-spacing: 0.2rem;
-$border-radius: 1rem;
-
 .octave-controls {
   flex: 1;
   display: flex;
@@ -16,8 +13,8 @@ $border-radius: 1rem;
   display: flex;
   flex-flow: column;
   background: #BFBFBF;
-  padding: $btn-spacing;
-  border-radius: $border-radius;
+  padding: variables.$btn-spacing--parent;
+  border-radius: variables.$border-radius--parent;
 }
 
 .octave-controls__arrow-btn {
@@ -27,7 +24,7 @@ $border-radius: 1rem;
   justify-content: center;
   background: #F0F0F0;
   width: 3.25em;
-  border-radius: calc($border-radius * 0.8);
+  border-radius: variables.$border-radius--child;
   border-width: 0.2em;
   border-style: solid;
 
@@ -35,13 +32,13 @@ $border-radius: 1rem;
     border-top-color: white;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    margin-bottom: calc($btn-spacing / 2);
+    margin-bottom: variables.$btn-spacing--child;
   }
 
   &:last-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    margin-top: calc($btn-spacing / 2);
+    margin-top: variables.$btn-spacing--child;
   }
 
   &:active {

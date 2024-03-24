@@ -1,46 +1,67 @@
 @use '~/styles/_variables.scss';
 
+$total-key-count: 36;
+
+$base-key-width: calc(100% / $total-key-count);
+$white-key-width: calc($base-key-width * 1.6469);
+$black-key-width: calc($white-key-width * 0.4);
+
+// shifts black keys so that they lay in between their two adjacent white keys
+$black-key-margin: calc($black-key-width / -2);
+
 .piano-keys {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
   width: 100%;
-  border-right: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-left: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-top: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-radius: 0 0 0.25rem 0.25rem;
-  column-gap: 0.025%;
+  position: relative;
+  padding: variables.$btn-spacing--parent;
+  border-radius: variables.$border-radius--parent;
+  background: variables.$c-bg-keys;
   touch-action: none;
 }
 
 .piano-key {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
-  padding-bottom: 1em;
-  text-transform: uppercase;
-  border: 0.125rem solid rgba(variables.$dark-blue, variables.$op-high);
-  font-size: variables.$font-size-md;
+  display: block;
+  position: relative;
+  float: left;
+  border-radius: 0 0 variables.$border-radius--child variables.$border-radius--child;
+
+  &:first-child {
+    border-top-left-radius: variables.$border-radius--child;
+  }
+
+  &:last-child {
+    border-top-right-radius: variables.$border-radius--child;
+  }
 }
 
 .white-key {
-  width: 100%;
   color: rgba(variables.$dark-blue, variables.$op-medium);
   background: variables.$off-white;
+  width: $white-key-width;
+  height: 100%;
+  margin: 0 calc(variables.$btn-spacing--child * 2);
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  & + .white-key {
+    margin-left: 0;
+  }
 }
 
 .black-key {
-  width: 40%;
+  width: $black-key-width;
+  background: variables.$black;
   height: 60%;
-  z-index: 1;
-  background: variables.$dark-blue;
-  margin: 0 -1.25% 0;
-  color: variables.$off-white;
+  position: relative;
+  z-index: 10;
 }
 
-.pressed-piano-key {
-  background: variables.$gray !important;
-  color: variables.$dark-blue !important;
+.black-key,
+.black-key + .white-key {
+  margin-left: $black-key-margin;
 }
