@@ -35,7 +35,7 @@ $black-key-margin: calc($black-key-width / -2);
 
 .white-key {
   color: rgba(variables.$dark-blue, variables.$op-medium);
-  background: variables.$off-white;
+  background: linear-gradient(#DCDCDC, #F7F7F7);
   width: $white-key-width;
   height: 100%;
   margin: 0 calc(variables.$btn-spacing--child * 2);
@@ -55,10 +55,12 @@ $black-key-margin: calc($black-key-width / -2);
 
 .black-key {
   width: $black-key-width;
-  background: variables.$black;
+  background: #171717;
   height: 60%;
   position: relative;
   z-index: 10;
+  border-bottom: 0.3em solid #3B3B3B;
+  box-shadow: 0 0.7em 0.7em rgba(0, 0, 0, variables.$op-high);
 }
 
 .black-key,
