@@ -7,8 +7,8 @@
   display: flex;
   flex-flow: column;
   gap: 4em;
-  width: clamp(120rem, 80vw + 2rem, 135rem);
-  height: clamp(40rem, 46vh + 0.75rem, 50rem);
+  width: clamp(125rem, 82vw + 2rem, 150rem);
+  height: clamp(41rem, 42vh + 0.75rem, 50rem);
   background: rgb(249, 249, 249);
   box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.85);
   border-radius: 2.5em;
@@ -44,12 +44,12 @@
 .keyboard__dots {
   display: flex;
   justify-content: space-between;
-  width: 35%;
+  width: 30%;
   margin-top: 2em;
 }
 
 .keyboard__dots span {
-  padding: 0.25em;
+  padding: 0.3em;
   border-radius: 50%;
   background: variables.$color-text-primary;
 }

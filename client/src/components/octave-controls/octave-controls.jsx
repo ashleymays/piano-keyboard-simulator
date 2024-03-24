@@ -15,7 +15,7 @@ export function OctaveControls() {
           onClick={shiftOctaveDown}
         />
       </div>
-      <p className="octave-controls__label">Octave</p>
+      <p className="octave-controls__label">Octaves</p>
     </div>
   );
 }

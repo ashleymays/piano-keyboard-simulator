@@ -1,17 +1,11 @@
 @use '~/styles/_variables.scss';
 
-$total-key-count: 36;
-
-$base-key-width: calc(100% / $total-key-count);
-$white-key-width: calc($base-key-width * 1.6469);
-$black-key-width: calc($white-key-width * 0.42);
-
-// shifts black keys so that they lay in between their two adjacent white keys
+$black-key-width: 2%;
 $black-key-margin: calc($black-key-width / -2);
 
 .piano-keys {
   width: 100%;
-  position: relative;
+  display: flex;
   padding: variables.$btn-spacing--container;
   border-radius: variables.$border-radius--container;
   background: rgb(26, 26, 26);
@@ -19,9 +13,6 @@ $black-key-margin: calc($black-key-width / -2);
 }
 
 .piano-key {
-  display: block;
-  position: relative;
-  float: left;
   border-radius: 0 0 variables.$border-radius--item variables.$border-radius--item;
 
   &:first-child {
@@ -36,8 +27,7 @@ $black-key-margin: calc($black-key-width / -2);
 .white-key {
   color: rgba(21, 25, 29);
   background: linear-gradient(rgb(220, 220, 220), rgb(247, 247, 247));
-  width: $white-key-width;
-  height: 100%;
+  flex: 1;
   margin: 0 calc(variables.$btn-spacing--item * 2);
 
   &:first-child {
@@ -57,7 +47,6 @@ $black-key-margin: calc($black-key-width / -2);
   width: $black-key-width;
   background: rgb(23, 23, 23);
   height: 60%;
-  position: relative;
   z-index: 10;
   border-bottom: 0.3em solid rgb(59, 59, 59);
   box-shadow: 0 0.7em 0.7em rgba(0, 0, 0, 0.5);
