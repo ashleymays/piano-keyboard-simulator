@@ -7,12 +7,12 @@
   display: flex;
   flex-flow: column;
   gap: 4em;
-  width: clamp(125rem, 82vw + 2rem, 150rem);
-  height: clamp(41rem, 42vh + 0.75rem, 50rem);
+  width: clamp(110rem, 75vw + 2rem, 132rem);
+  height: clamp(38rem, 40vh + 0.75rem, 48rem);
   background: rgb(249, 249, 249);
   box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.85);
   border-radius: 2.5em;
-  padding: 4.5em;
+  padding: 4.25em;
   touch-action: manipulation;
 }
 
