@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+main,
+#root {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background: rgb(26, 26, 26);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: visible;
+    overflow-y: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+main {
+    position: relative;
+}
+
+p,
+button {
+    font-family: inherit;
+    font-weight: 400;
+}
+
+button {
+    outline: none;
+    border: transparent;
+    background: transparent;
+    cursor: pointer;
+}
