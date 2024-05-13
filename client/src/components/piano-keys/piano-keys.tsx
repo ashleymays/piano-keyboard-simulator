@@ -4,13 +4,17 @@ import type { IPianoKey } from '~/keys-map';
 const computerKeys = Array.from(keysMap.keys());
 
 export const PianoKeys = () => {
-  return computerKeys.map((computerKey) => (
-    <PianoKey
-      key={computerKey}
-      computerKey={computerKey}
-      type={keysMap.get(computerKey)!.type}
-    />
-  ));
+  return (
+    <div className="piano-keys">
+      {computerKeys.map((computerKey) => (
+        <PianoKey
+          key={computerKey}
+          computerKey={computerKey}
+          type={keysMap.get(computerKey)!.type}
+        />
+      ))}
+    </div>
+  );
 };
 
 type PianoKeyProps = {

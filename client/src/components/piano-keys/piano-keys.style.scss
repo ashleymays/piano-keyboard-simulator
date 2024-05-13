@@ -5,11 +5,12 @@
   display: flex;
   padding: variables.$btn-spacing--container;
   border-radius: variables.$border-radius--container;
-  background: #1a1a1a;
+  background: rgb(26, 26, 26);
   touch-action: none;
 }
 
-.piano-key {
+.piano-key--white,
+.piano-key--black {
   border-radius: 0 0 variables.$border-radius--item variables.$border-radius--item;
 
   &:first-child {
@@ -22,8 +23,8 @@
 }
 
 .piano-key--white {
-  color: #15191d;
-  background: linear-gradient(#dcdcdc, #f7f7f7);
+  color: rgb(21, 26, 30);
+  background: linear-gradient(rgb(219, 219, 219), rgb(247, 247, 247));
   flex: 1;
   margin: 0 calc(variables.$btn-spacing--item * 2);
 
@@ -35,7 +36,7 @@
     margin-right: 0;
   }
 
-  & + .piano-key--white {
+  &+.piano-key--white {
     margin-left: 0;
   }
 }
@@ -44,14 +45,14 @@ $black-key-width: 2%;
 
 .piano-key--black {
   width: $black-key-width;
-  background: #171717;
+  background: rgb(23, 23, 23);
   height: 60%;
   z-index: 10;
-  border-bottom: 0.3em solid #3b3b3b;
-  box-shadow: 0 0.7em 0.7em #00000080;
+  border-bottom: 0.3em solid rgb(59, 59, 59);
+  box-shadow: 0 0.7em 0.7em rgba(0, 0, 0, 0.5);
 }
 
 .piano-key--black,
-.piano-key--black + .piano-key--white {
+.piano-key--black+.piano-key--white {
   margin-left: calc($black-key-width / -2);
 }

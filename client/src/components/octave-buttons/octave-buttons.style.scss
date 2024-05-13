@@ -17,7 +17,7 @@
   flex: 1;
   display: flex;
   flex-flow: column;
-  background: #bfbfbf;
+  background: rgb(191, 191, 191);
   padding: variables.$btn-spacing--container;
   border-radius: variables.$border-radius--container;
 }
@@ -27,14 +27,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f0f0;
+  background: rgb(240, 240, 240);
   width: 3.25em;
   border-radius: variables.$border-radius--item;
   border-width: 0.2em;
   border-style: solid;
 
   &:first-child {
-    border-top-color: #ffffff;
+    border-top-color: rgb(255, 255, 255);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     margin-bottom: variables.$btn-spacing--item;
@@ -53,7 +53,7 @@
   }
 
   &__icon {
-    color: #818181;
+    color: rgb(129, 129, 129);
     font-size: 0.55em;
   }
 }
