@@ -8,25 +8,29 @@ import {
 } from '~/keys-map';
 
 export const raiseOctave = () => {
-  if (!isAtHighestOctave()) {
+  const highestPianoKey = keysMap.get(HIGHEST_KEY);
+
+  /** @TODO Should either log or raise an error in this case. */
+  if (!highestPianoKey) {
+    return;
+  }
+
+  if (highestPianoKey.octave !== HIGHEST_OCTAVE) {
     shiftOctave(1);
   }
 };
 
 export const lowerOctave = () => {
-  if (!isAtLowestOctave()) {
+  const lowestPianoKey = keysMap.get(LOWEST_KEY);
+
+  /** @TODO Should either log or raise an error in this case. */
+  if (!lowestPianoKey) {
+    return;
+  }
+
+  if (lowestPianoKey.octave !== LOWEST_OCTAVE) {
     shiftOctave(-1);
   }
-};
-
-const isAtHighestOctave = () => {
-  const highestPianoKey = keysMap.get(HIGHEST_KEY);
-  return highestPianoKey?.octave === HIGHEST_OCTAVE;
-};
-
-const isAtLowestOctave = () => {
-  const lowestPianoKey = keysMap.get(LOWEST_KEY);
-  return lowestPianoKey?.octave === LOWEST_OCTAVE;
 };
 
 const shiftOctave = (incrementValue: number) => {
