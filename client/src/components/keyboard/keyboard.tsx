@@ -1,4 +1,5 @@
 import { PianoKeys } from '~/components/piano-keys';
+import { OctaveButtons } from '~/components/octave-buttons';
 
 export const Keyboard = () => {
   return (
@@ -15,6 +16,7 @@ export const Keyboard = () => {
         </header>
       </div>
       <div className="keyboard__row--bottom">
+        <OctaveButtons />
         <PianoKeys />
       </div>
     </section>
