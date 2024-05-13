@@ -1,0 +1,57 @@
+@use '~/styles/_variables.scss';
+
+.piano-keys {
+  width: 100%;
+  display: flex;
+  padding: variables.$btn-spacing--container;
+  border-radius: variables.$border-radius--container;
+  background: #1a1a1a;
+  touch-action: none;
+}
+
+.piano-key {
+  border-radius: 0 0 variables.$border-radius--item variables.$border-radius--item;
+
+  &:first-child {
+    border-top-left-radius: variables.$border-radius--item;
+  }
+
+  &:last-child {
+    border-top-right-radius: variables.$border-radius--item;
+  }
+}
+
+.piano-key--white {
+  color: #15191d;
+  background: linear-gradient(#dcdcdc, #f7f7f7);
+  flex: 1;
+  margin: 0 calc(variables.$btn-spacing--item * 2);
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  & + .piano-key--white {
+    margin-left: 0;
+  }
+}
+
+$black-key-width: 2%;
+
+.piano-key--black {
+  width: $black-key-width;
+  background: #171717;
+  height: 60%;
+  z-index: 10;
+  border-bottom: 0.3em solid #3b3b3b;
+  box-shadow: 0 0.7em 0.7em #00000080;
+}
+
+.piano-key--black,
+.piano-key--black + .piano-key--white {
+  margin-left: calc($black-key-width / -2);
+}

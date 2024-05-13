@@ -1,3 +1,5 @@
+import { PianoKeys } from '~/components/piano-keys';
+
 export const Keyboard = () => {
   return (
     <section className="keyboard">
@@ -12,7 +14,9 @@ export const Keyboard = () => {
           </div>
         </header>
       </div>
-      <div className="keyboard__row--bottom" />
+      <div className="keyboard__row--bottom">
+        <PianoKeys />
+      </div>
     </section>
   );
 };
