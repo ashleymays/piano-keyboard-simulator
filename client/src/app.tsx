@@ -1,3 +1,9 @@
+import { Keyboard } from './components/keyboard';
+
 export const App = () => {
-  return <main>Hello World</main>;
+  return (
+    <main>
+      <Keyboard />
+    </main>
+  );
 };

@@ -1,0 +1,66 @@
+@use '../../styles/_variables.scss';
+
+.keyboard {
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  display: flex;
+  flex-flow: column;
+  gap: 4em;
+  width: clamp(110rem, 75vw + 2rem, 132rem);
+  height: clamp(38rem, 40vh + 0.75rem, 48rem);
+  background: #f9f9f9;
+  box-shadow: 0 0.75rem 0 #000000d9;
+  border-radius: 2.5em;
+  padding: 4.25em;
+  touch-action: manipulation;
+
+  &__row--top {
+    flex: 1;
+  }
+
+  &__row--bottom {
+    flex: 4;
+    display: flex;
+    justify-content: space-between;
+    gap: 4em;
+  }
+
+  &__header {
+    width: max-content;
+  }
+
+  &__heading,
+  &__subheading {
+    color: variables.$c-text-primary;
+    margin: 0;
+  }
+
+  &__heading {
+    font-size: variables.$text-size-lg;
+    font-weight: 600;
+  }
+
+  &__subheading {
+    font-size: variables.$text-size-md;
+    font-weight: 400;
+    margin-top: 0.5em;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-top: 2em;
+
+    & span {
+      padding: 0.3em;
+      border-radius: 50%;
+      background: variables.$c-text-primary;
+    }
+
+    & span:first-child {
+      background: #0aff81;
+    }
+  }
+}
