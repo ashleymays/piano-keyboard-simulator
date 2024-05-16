@@ -9,8 +9,8 @@
   gap: 4em;
   width: clamp(110rem, 75vw + 2rem, 132rem);
   height: clamp(38rem, 40vh + 0.75rem, 48rem);
-  background: #f9f9f9;
-  box-shadow: 0 0.75rem 0 #000000d9;
+  background: rgb(250, 250, 250);
+  box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.851);
   border-radius: 2.5em;
   padding: 4.25em;
   touch-action: manipulation;
@@ -60,7 +60,7 @@
     }
 
     & span:first-child {
-      background: #0aff81;
+      background: rgb(10, 255, 129)
     }
   }
 }
