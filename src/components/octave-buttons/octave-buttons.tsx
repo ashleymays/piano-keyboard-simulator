@@ -1,8 +1,9 @@
-import { useOctaveButtons } from './use-octave-buttons';
+import { useKeysMap } from '~/keys-map/store';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
-  const [raiseOctave, lowerOctave] = useOctaveButtons();
+  const raiseOctave = useKeysMap((state) => state.raiseOctave);
+  const lowerOctave = useKeysMap((state) => state.lowerOctave);
 
   return (
     <div className="octave-control-panel">

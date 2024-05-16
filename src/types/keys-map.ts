@@ -1,4 +1,4 @@
-export type PianoKey = {
+export interface IPianoKey {
   note:
     | 'C'
     | 'Db'
@@ -14,8 +14,6 @@ export type PianoKey = {
     | 'B';
   octave: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   type: 'natural' | 'flat';
-};
+}
 
-export type KeysMap = {
-  [computerKey: string]: PianoKey;
-};
+export type KeysMap = Map<string, IPianoKey>;
