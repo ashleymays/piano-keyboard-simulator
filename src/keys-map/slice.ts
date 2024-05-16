@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { raiseOctave, lowerOctave } from './helpers';
+import { raiseOctaveKeys, lowerOctaveKeys } from './helpers';
 import type { KeysMap } from '~/types/keys-map';
 
 const initialState: KeysMap = {
@@ -45,9 +45,11 @@ const keysMapSlice = createSlice({
   name: 'keysMap',
   initialState,
   reducers: {
-    raiseOctave,
-    lowerOctave
+    raiseOctave: raiseOctaveKeys,
+    lowerOctave: lowerOctaveKeys
   }
 });
+
+export const { raiseOctave, lowerOctave } = keysMapSlice.actions;
 
 export const keysMapReducer = keysMapSlice.reducer;

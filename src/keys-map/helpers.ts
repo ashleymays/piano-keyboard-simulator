@@ -6,7 +6,7 @@ const LOWEST_KEY = 'q';
 const HIGHEST_OCTAVE = 7;
 const LOWEST_OCTAVE = 1;
 
-export const raiseOctave = (state: KeysMap) => {
+export const raiseOctaveKeys = (state: KeysMap) => {
   const highestPianoKey = state[HIGHEST_KEY];
 
   if (!highestPianoKey) {
@@ -18,7 +18,7 @@ export const raiseOctave = (state: KeysMap) => {
   }
 };
 
-export const lowerOctave = (state: KeysMap) => {
+export const lowerOctaveKeys = (state: KeysMap) => {
   const lowestPianoKey = state[LOWEST_KEY];
 
   if (!lowestPianoKey) {
