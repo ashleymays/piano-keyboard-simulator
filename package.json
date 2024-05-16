@@ -1,6 +1,7 @@
 {
   "name": "piano-keyboard-simulator",
   "version": "6.0.0",
+  "private": true,
   "description": "A virtual piano keyboard that can be played with a computer keyboard, a mouse, or touch inputs.",
   "main": "./api/index.js",
   "scripts": {
