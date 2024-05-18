@@ -1,0 +1,12 @@
+@use '~/styles/utils.scss';
+
+.instrument-dropdown {
+  color: utils.$c-text-primary;
+  font-size: 1.25em;
+  width: 25%;
+}
+
+.focused {
+  border: 2px solid red;
+  background: red;
+}

@@ -1,7 +1,7 @@
 @use '~/styles/utils.scss';
 
 @function scaleDimension($scalar) {
-  @return $scalar * (9 / 28);
+  @return $scalar * calc(9 / 28);
 }
 
 .keyboard {
@@ -23,6 +23,12 @@
   */
   width: clamp(110rem, 75vw + 2rem, 132rem);
   height: clamp(scaleDimension(110rem), scaleDimension(75vw) + scaleDimension(2rem), scaleDimension(132rem));
+
+  &__row--top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
 
   &__row--bottom {
     height: 100%;
