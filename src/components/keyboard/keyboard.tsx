@@ -1,5 +1,3 @@
-import { OctaveButtons } from '~/components/octave-buttons';
-
 export const Keyboard = () => {
   return (
     <section className="keyboard">
@@ -14,9 +12,7 @@ export const Keyboard = () => {
           </div>
         </header>
       </div>
-      <div className="keyboard__row--bottom">
-        <OctaveButtons />
-      </div>
+      <div className="keyboard__row--bottom" />
     </section>
   );
 };
