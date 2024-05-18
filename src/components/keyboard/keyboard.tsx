@@ -4,7 +4,7 @@ import { OctaveButtons } from '~/components/octave-buttons';
 export const Keyboard = () => {
   return (
     <section className="keyboard">
-      <div className="keyboard__row--top">
+      <div>
         <header className="keyboard__header">
           <h1 className="keyboard__heading">Piano Keyboard</h1>
           <h2 className="keyboard__subheading">synthesizer</h2>
