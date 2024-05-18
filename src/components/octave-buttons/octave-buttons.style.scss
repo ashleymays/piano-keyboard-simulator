@@ -58,13 +58,4 @@ $border-radius--item: utils.calculateBorderRadius($border-radius--container);
     transition-timing-function: ease-out;
     transition-duration: 100ms;
   }
-
-  &__icon {
-    color: rgb(129, 129, 129);
-    font-size: 0.5em;
-
-    &:last-child {
-      transform: rotate(180deg);
-    }
-  }
 }

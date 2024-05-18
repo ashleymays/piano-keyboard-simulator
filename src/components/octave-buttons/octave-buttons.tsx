@@ -1,10 +1,12 @@
+import { UpArrowIcon, DownArrowIcon } from '../arrow-icon';
+
 export const OctaveButtons = () => {
   return (
     <div className="octave-control-panel">
       <div className="octave-btn-container">
-        <OctaveButton ariaLabel="Octave Up" />
+        <OctaveButton type="UP" />
         <div />
-        <OctaveButton ariaLabel="Octave Down" />
+        <OctaveButton type="DOWN" />
       </div>
       <p className="octave-control-panel__label">Octaves</p>
     </div>
@@ -12,21 +14,19 @@ export const OctaveButtons = () => {
 };
 
 type OctaveButtonProps = {
-  ariaLabel: string;
+  type: 'UP' | 'DOWN';
 };
 
-const OctaveButton = ({ ariaLabel }: OctaveButtonProps) => {
+const OctaveButton = ({ type }: OctaveButtonProps) => {
+  const Icon = type === 'UP' ? UpArrowIcon : DownArrowIcon;
+
   return (
     <button
       type="button"
-      aria-label={ariaLabel}
+      aria-label={type === 'UP' ? 'Octave Up' : 'Octave Down'}
       className="octave-btn"
     >
-      <ArrowIcon />
+      <Icon />
     </button>
   );
-};
-
-const ArrowIcon = () => {
-  return <span className="octave-btn__icon">&#x25B2;</span>;
 };
