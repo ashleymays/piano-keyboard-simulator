@@ -1,21 +1,10 @@
-import { useOctaves } from '~/keys-map/store';
-import type { MouseEventHandler } from 'react';
-
 export const OctaveButtons = () => {
-  const { raiseOctave, lowerOctave } = useOctaves();
-
   return (
     <div className="octave-control-panel">
       <div className="octave-btn-container">
-        <OctaveButton
-          ariaLabel="Octave Up"
-          onClick={raiseOctave}
-        />
+        <OctaveButton ariaLabel="Octave Up" />
         <div />
-        <OctaveButton
-          ariaLabel="Octave Down"
-          onClick={lowerOctave}
-        />
+        <OctaveButton ariaLabel="Octave Down" />
       </div>
       <p className="octave-buttons__label">Octaves</p>
     </div>
@@ -24,16 +13,14 @@ export const OctaveButtons = () => {
 
 type OctaveButtonProps = {
   ariaLabel: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-const OctaveButton = ({ ariaLabel, onClick }: OctaveButtonProps) => {
+const OctaveButton = ({ ariaLabel }: OctaveButtonProps) => {
   return (
     <button
       type="button"
       aria-label={ariaLabel}
       className="octave-btn"
-      onClick={onClick}
     >
       <ArrowIcon />
     </button>
