@@ -1,24 +1,33 @@
-@use '~/styles/_variables.scss';
+@use '~/styles/utils.scss';
+
+$piano-keys-spacing: 0.3rem;
+$piano-key-spacing: utils.calculateButtonSpacing($piano-keys-spacing);
+
+$piano-keys-radius: 1.2rem;
+$piano-key-radius: utils.calculateBorderRadius($piano-keys-radius);
+
+$black-key-width: 2%;
 
 .piano-keys {
   width: 100%;
   display: flex;
-  padding: variables.$btn-spacing--container;
-  border-radius: variables.$border-radius--container;
+  padding: $piano-keys-spacing;
+  border-radius: $piano-keys-radius;
   background: rgb(26, 26, 26);
   touch-action: none;
+  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.25);
 }
 
 .piano-key--white,
 .piano-key--black {
-  border-radius: 0 0 variables.$border-radius--item variables.$border-radius--item;
+  border-radius: 0 0 $piano-key-radius $piano-key-radius;
 
   &:first-child {
-    border-top-left-radius: variables.$border-radius--item;
+    border-top-left-radius: $piano-key-radius;
   }
 
   &:last-child {
-    border-top-right-radius: variables.$border-radius--item;
+    border-top-right-radius: $piano-key-radius;
   }
 }
 
@@ -26,7 +35,7 @@
   color: rgb(21, 26, 30);
   background: linear-gradient(rgb(219, 219, 219), rgb(247, 247, 247));
   flex: 1;
-  margin: 0 calc(variables.$btn-spacing--item * 2);
+  margin: 0 calc($piano-key-spacing * 2);
 
   &:first-child {
     margin-left: 0;
@@ -41,15 +50,13 @@
   }
 }
 
-$black-key-width: 2%;
-
 .piano-key--black {
   width: $black-key-width;
   background: rgb(23, 23, 23);
-  height: 60%;
+  height: 55%;
   z-index: 10;
   border-bottom: 0.3em solid rgb(59, 59, 59);
-  box-shadow: 0 0.7em 0.7em rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.5em 0.7em rgba(0, 0, 0, 0.35);
 }
 
 .piano-key--black,

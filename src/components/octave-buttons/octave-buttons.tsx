@@ -6,7 +6,7 @@ export const OctaveButtons = () => {
         <div />
         <OctaveButton ariaLabel="Octave Down" />
       </div>
-      <p className="octave-buttons__label">Octaves</p>
+      <p className="octave-control-panel__label">Octaves</p>
     </div>
   );
 };

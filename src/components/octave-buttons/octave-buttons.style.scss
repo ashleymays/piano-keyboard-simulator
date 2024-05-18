@@ -1,4 +1,10 @@
-@use '~/styles/_variables.scss';
+@use '~/styles/utils.scss';
+
+$btn-spacing--container: 0.2rem;
+$btn-spacing--item: utils.calculateButtonSpacing($btn-spacing--container);
+
+$border-radius--container: 0.9rem;
+$border-radius--item: utils.calculateBorderRadius($border-radius--container);
 
 .octave-control-panel {
   flex: 1;
@@ -9,7 +15,8 @@
 
   &__label {
     font-size: 1.25em;
-    color: variables.$c-text-primary;
+    color: utils.$c-text-primary;
+    margin-bottom: 0;
   }
 }
 
@@ -18,8 +25,8 @@
   display: flex;
   flex-flow: column;
   background: rgb(191, 191, 191);
-  padding: variables.$btn-spacing--container;
-  border-radius: variables.$border-radius--container;
+  padding: $btn-spacing--container;
+  border-radius: $border-radius--container;
 }
 
 .octave-btn {
@@ -29,21 +36,21 @@
   justify-content: center;
   background: rgb(240, 240, 240);
   width: 3.25em;
-  border-radius: variables.$border-radius--item;
+  border-radius: $border-radius--item;
   border-width: 0.2em;
   border-style: solid;
 
   &:first-child {
     border-top-color: rgb(255, 255, 255);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: variables.$btn-spacing--item;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    margin-bottom: $btn-spacing--item;
   }
 
   &:last-child {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    margin-top: variables.$btn-spacing--item;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    margin-top: $btn-spacing--item;
   }
 
   &:active {
@@ -54,6 +61,10 @@
 
   &__icon {
     color: rgb(129, 129, 129);
-    font-size: 0.55em;
+    font-size: 0.5em;
+
+    &:last-child {
+      transform: rotate(180deg);
+    }
   }
 }

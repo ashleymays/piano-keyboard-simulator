@@ -1,0 +1,9 @@
+$c-text-primary: rgb(110, 110, 110);
+
+@function calculateButtonSpacing($containerSpacing) {
+    @return calc($containerSpacing / 2);
+}
+
+@function calculateBorderRadius($containerBorderRadius) {
+    @return calc($containerBorderRadius * 0.8);
+}
