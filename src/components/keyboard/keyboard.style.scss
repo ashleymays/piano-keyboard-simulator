@@ -1,5 +1,9 @@
 @use '~/styles/utils.scss';
 
+@function scaleDimension($scalar) {
+  @return $scalar * (1 / 3);
+}
+
 .keyboard {
   position: absolute;
   margin: auto;
@@ -7,13 +11,18 @@
   display: flex;
   flex-flow: column;
   gap: 4em;
-  width: clamp(110rem, 75vw + 2rem, 132rem);
-  height: clamp(37.8125rem, 25.78125vw + 0.6875rem, 45.375rem);
   background: rgb(255, 255, 255);
   box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.851);
   border-radius: 2.5em;
   padding: 4em;
   touch-action: manipulation;
+
+  /*
+    We use the "scaleDimension" function so that the scale of the 
+    keyboard and its components is consistent across screen sizes.
+  */
+  width: clamp(110rem, 75vw + 2rem, 132rem);
+  height: clamp(scaleDimension(110rem), scaleDimension(75vw) + scaleDimension(2rem), scaleDimension(132rem));
 
   &__row--top {
     flex: 1;
@@ -42,9 +51,9 @@
   }
 
   &__subheading {
-    font-size: 1.4em;
+    font-size: 1.375em;
     font-weight: 400;
-    margin-top: 0.5em;
+    margin-top: 0.4em;
   }
 
   &__dots {
