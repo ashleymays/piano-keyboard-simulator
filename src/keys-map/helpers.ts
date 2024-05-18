@@ -2,35 +2,27 @@ import type { KeysMapState } from './store';
 import type { KeysMap } from '~/types/keys-map';
 
 const HIGHEST_KEY = '.';
-const LOWEST_KEY = 'q';
-
 const HIGHEST_OCTAVE = 7;
+
+const LOWEST_KEY = 'q';
 const LOWEST_OCTAVE = 1;
 
-export const raiseOctave = (state: KeysMapState) => {
-  const updatedKeysMap = new Map(state.initialState.keysMap);
+export const getHigherKeys = (state: KeysMapState) => {
+  const updatedKeysMap = new Map(state.keys.map);
   const highestPianoKey = updatedKeysMap.get(HIGHEST_KEY);
 
-  if (!highestPianoKey) {
-    return updatedKeysMap;
-  }
-
-  if (highestPianoKey.octave !== HIGHEST_OCTAVE) {
+  if (highestPianoKey && highestPianoKey.octave !== HIGHEST_OCTAVE) {
     shiftOctave(updatedKeysMap, 1);
   }
 
   return updatedKeysMap;
 };
 
-export const lowerOctave = (state: KeysMapState) => {
-  const updatedKeysMap = new Map(state.initialState.keysMap);
+export const getLowerKeys = (state: KeysMapState) => {
+  const updatedKeysMap = new Map(state.keys.map);
   const lowestPianoKey = updatedKeysMap.get(LOWEST_KEY);
 
-  if (!lowestPianoKey) {
-    return updatedKeysMap;
-  }
-
-  if (lowestPianoKey.octave !== LOWEST_OCTAVE) {
+  if (lowestPianoKey && lowestPianoKey.octave !== LOWEST_OCTAVE) {
     shiftOctave(updatedKeysMap, -1);
   }
 
@@ -38,7 +30,6 @@ export const lowerOctave = (state: KeysMapState) => {
 };
 
 const shiftOctave = (updatedKeysMap: KeysMap, incrementValue: number) => {
-  console.log(`updating keys: ${incrementValue}`);
   updatedKeysMap.forEach((pianoKey) => {
     pianoKey.octave += incrementValue;
   });

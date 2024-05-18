@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { raiseOctave, lowerOctave } from './helpers';
+import { getHigherKeys, getLowerKeys } from './helpers';
 import type { KeysMap } from '~/types/keys-map';
 
-const initialState = {
-  keysMap: new Map([
+const keys = {
+  map: new Map([
     ['q', { note: 'C', octave: 3, type: 'natural' }],
     ['2', { note: 'Db', octave: 3, type: 'flat' }],
     ['w', { note: 'D', octave: 3, type: 'natural' }],
@@ -44,19 +44,27 @@ const initialState = {
 };
 
 export type KeysMapState = {
-  initialState: {
-    keysMap: KeysMap;
+  keys: {
+    map: KeysMap;
   };
-  raiseOctave: () => void;
-  lowerOctave: () => void;
+  actions: {
+    raiseOctave: () => void;
+    lowerOctave: () => void;
+  }
 };
 
-export const useKeysMap = create<KeysMapState>((set) => ({
-  initialState,
-
-  raiseOctave: () =>
-    set((state) => ({ initialState: { keysMap: raiseOctave(state) } })),
-
-  lowerOctave: () =>
-    set((state) => ({ initialState: { keysMap: lowerOctave(state) } }))
+const useKeysMapStore = create<KeysMapState>((set) => ({
+  keys,
+  actions: {
+    raiseOctave: () => set((state) => ({ keys: { map: getHigherKeys(state) } })),
+    lowerOctave: () => set((state) => ({ keys: { map: getLowerKeys(state) } }))
+  }
 }));
+
+export const useKeysMap = () => {
+  return useKeysMapStore((state) => state.keys.map);
+}
+
+export const useOctaves = () => {
+  return useKeysMapStore((state) => state.actions);
+}
