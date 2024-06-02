@@ -11,8 +11,10 @@
     "format": "prettier \"./src/**/*.{ts,tsx}\" --write"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.1.2",
     "react-select": "^5.8.0",
     "sass": "^1.77.1"
   },

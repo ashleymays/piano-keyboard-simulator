@@ -1,24 +1,8 @@
-export interface IPianoKey {
-  note:
-    | 'C'
-    | 'Db'
-    | 'D'
-    | 'Eb'
-    | 'E'
-    | 'F'
-    | 'Gb'
-    | 'G'
-    | 'Ab'
-    | 'A'
-    | 'Bb'
-    | 'B';
-  octave: 1 | 2 | 3 | 4 | 5 | 6 | 7;
-  type: 'natural' | 'flat';
-}
+import { createSlice } from '@reduxjs/toolkit';
+import { raiseOctaveKeys, lowerOctaveKeys } from './helpers';
+import type { KeysMap, IPianoKey } from '~/types/keys-map';
 
-export type KeysMap = Map<string, IPianoKey>;
-
-export const keysMap = new Map<string, IPianoKey>([
+const initialState = new Map<string, IPianoKey>([
   ['q', { note: 'C', octave: 3, type: 'natural' }],
   ['2', { note: 'Db', octave: 3, type: 'flat' }],
   ['w', { note: 'D', octave: 3, type: 'natural' }],
@@ -55,4 +39,17 @@ export const keysMap = new Map<string, IPianoKey>([
   [',', { note: 'A', octave: 5, type: 'natural' }],
   ['l', { note: 'Bb', octave: 5, type: 'flat' }],
   ['.', { note: 'B', octave: 5, type: 'natural' }]
-]);
+]) satisfies KeysMap;
+
+const keysMapSlice = createSlice({
+  name: 'keysMap',
+  initialState,
+  reducers: {
+    raiseOctave: raiseOctaveKeys,
+    lowerOctave: lowerOctaveKeys
+  }
+});
+
+export const { raiseOctave, lowerOctave } = keysMapSlice.actions;
+
+export const keysMapReducer = keysMapSlice.reducer;
