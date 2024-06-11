@@ -4,9 +4,9 @@ export const OctaveButtons = () => {
   return (
     <div className="octave-control-panel">
       <div className="octave-btn-container">
-        <OctaveButton type="UP" />
+        <OctaveButton direction="UP" />
         <div />
-        <OctaveButton type="DOWN" />
+        <OctaveButton direction="DOWN" />
       </div>
       <p className="octave-control-panel__label">Octaves</p>
     </div>
@@ -14,16 +14,16 @@ export const OctaveButtons = () => {
 };
 
 type OctaveButtonProps = {
-  type: 'UP' | 'DOWN';
+  direction: 'UP' | 'DOWN';
 };
 
-const OctaveButton = ({ type }: OctaveButtonProps) => {
-  const Icon = type === 'UP' ? UpArrowIcon : DownArrowIcon;
+const OctaveButton = ({ direction }: OctaveButtonProps) => {
+  const Icon = direction === 'UP' ? UpArrowIcon : DownArrowIcon;
 
   return (
     <button
       type="button"
-      aria-label={type === 'UP' ? 'Octave Up' : 'Octave Down'}
+      aria-label={direction === 'UP' ? 'Octave Up' : 'Octave Down'}
       className="octave-btn"
     >
       <Icon />
