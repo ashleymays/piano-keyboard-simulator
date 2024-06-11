@@ -17,3 +17,9 @@ export interface IPianoKey {
 }
 
 export type KeysMap = Map<string, IPianoKey>;
+
+export type KeysMapState = {
+  wrapper: { keysMap: KeysMap };
+  raiseOctave: () => void;
+  lowerOctave: () => void;
+};

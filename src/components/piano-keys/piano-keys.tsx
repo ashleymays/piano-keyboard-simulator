@@ -1,9 +1,10 @@
-import { keysMap } from '~/keys-map';
-import type { IPianoKey } from '~/keys-map';
-
-const computerKeys = Array.from(keysMap.keys());
+import { useKeysMap } from '~/features/keys-map';
+import type { IPianoKey } from '~/features/keys-map/types';
 
 export const PianoKeys = () => {
+  const [keysMap] = useKeysMap();
+  const computerKeys = Array.from(keysMap.keys());
+
   return (
     <div className="piano-keys">
       {computerKeys.map((computerKey) => (
