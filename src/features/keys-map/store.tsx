@@ -44,42 +44,50 @@ const initialState = {
 
 export const useKeysMapStore = create((set) => ({
   wrapper: initialState,
-  raiseOctave: () => set((state) => raiseOctaveKeys(state.wrapper)),
-  lowerOctave: () => set((state) => lowerOctaveKeys(state.wrapper))
+  raiseOctaves: () => set((state) => raiseOctaves(state.wrapper)),
+  lowerOctaves: () => set((state) => lowerOctaves(state.wrapper))
 }));
 
-const raiseOctaveKeys = (keysMap: KeysMap) => {
+const raiseOctaves = (keysMap: KeysMap) => {
   const HIGHEST_KEY = '.';
   const HIGHEST_OCTAVE = 7;
 
   const highestPianoKey = keysMap[HIGHEST_KEY];
 
-  if (!highestPianoKey) {
-    return;
+  if (highestPianoKey && highestPianoKey.octave !== HIGHEST_OCTAVE) {
+    return getHigherKeys(keysMap);
   }
 
-  if (highestPianoKey.octave !== HIGHEST_OCTAVE) {
-    shiftOctave(keysMap, 1);
-  }
+  return keysMap;
 };
 
-const lowerOctaveKeys = (keysMap: KeysMap) => {
+const getHigherKeys = (keysMap: KeysMap) => {
+  return getNewKeys(keysMap, 1);
+};
+
+const lowerOctaves = (keysMap: KeysMap) => {
   const LOWEST_KEY = 'q';
   const LOWEST_OCTAVE = 1;
 
   const lowestPianoKey = keysMap[LOWEST_KEY];
 
-  if (!lowestPianoKey) {
-    return;
+  if (lowestPianoKey && lowestPianoKey.octave !== LOWEST_OCTAVE) {
+    return getLowerKeys(keysMap);
   }
 
-  if (lowestPianoKey.octave !== LOWEST_OCTAVE) {
-    shiftOctave(keysMap, -1);
-  }
+  return keysMap;
 };
 
-const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
-  Object.values(keysMap).forEach((pianoKey) => {
+const getLowerKeys = (keysMap: KeysMap) => {
+  return getNewKeys(keysMap, -1);
+};
+
+const getNewKeys = (keysMap: KeysMap, incrementValue: number) => {
+  const newKeysMap = new Map(keysMap);
+
+  Object.values(newKeysMap).forEach((pianoKey) => {
     pianoKey.octave += incrementValue;
   });
+
+  return newKeysMap;
 };
