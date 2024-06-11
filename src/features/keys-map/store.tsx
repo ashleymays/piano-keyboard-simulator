@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 import { raiseOctaves, lowerOctaves } from './helpers';
-import type { KeysMap, IPianoKey } from './types';
+import type { KeysMap, PianoKey } from './types';
 
 const initialState = {
-  keysMap: new Map<string, IPianoKey>([
+  keysMap: new Map<string, PianoKey>([
     ['q', { note: 'C', octave: 3, type: 'natural' }],
     ['2', { note: 'Db', octave: 3, type: 'flat' }],
     ['w', { note: 'D', octave: 3, type: 'natural' }],

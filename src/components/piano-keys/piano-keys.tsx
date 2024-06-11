@@ -1,5 +1,5 @@
 import { useKeysMap } from '~/features/keys-map';
-import type { IPianoKey } from '~/features/keys-map/types';
+import type { PianoKey as PianoKeyType } from '~/features/keys-map/types';
 
 export const PianoKeys = () => {
   const [keysMap] = useKeysMap();
@@ -20,7 +20,7 @@ export const PianoKeys = () => {
 
 type PianoKeyProps = {
   computerKey: string;
-  type: IPianoKey['type'];
+  type: PianoKeyType['type'];
 };
 
 const PianoKey = ({ computerKey, type }: PianoKeyProps) => {
