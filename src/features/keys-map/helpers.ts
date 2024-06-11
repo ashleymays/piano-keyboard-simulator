@@ -14,7 +14,7 @@ export const raiseOctaves = (keysMap: KeysMap) => {
 };
 
 const getHigherKeys = (keysMap: KeysMap) => {
-  return getNewKeys(keysMap, 1);
+  return getShiftedKeys(keysMap, 1);
 };
 
 export const lowerOctaves = (keysMap: KeysMap) => {
@@ -31,10 +31,10 @@ export const lowerOctaves = (keysMap: KeysMap) => {
 };
 
 const getLowerKeys = (keysMap: KeysMap) => {
-  return getNewKeys(keysMap, -1);
+  return getShiftedKeys(keysMap, -1);
 };
 
-const getNewKeys = (keysMap: KeysMap, incrementValue: number) => {
+const getShiftedKeys = (keysMap: KeysMap, incrementValue: number) => {
   const newKeysMap = new Map(keysMap);
 
   Object.values(newKeysMap).forEach((pianoKey) => {
