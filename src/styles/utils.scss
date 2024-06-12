@@ -1,4 +1,6 @@
 $c-text-primary: rgb(109, 109, 109);
+$c-bg-btn--border: rgb(191, 191, 191);
+$c-bg-btn: rgb(240, 240, 240);
 
 @function calculateButtonSpacing($containerSpacing) {
     @return calc($containerSpacing / 2);

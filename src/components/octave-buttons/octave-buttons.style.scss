@@ -24,7 +24,7 @@ $border-radius--item: utils.calculateBorderRadius($border-radius--container);
   flex: 1;
   display: flex;
   flex-flow: column;
-  background: rgb(191, 191, 191);
+  background: utils.$c-bg-btn--border;
   padding: $btn-spacing--container;
   border-radius: $border-radius--container;
 }
@@ -34,7 +34,7 @@ $border-radius--item: utils.calculateBorderRadius($border-radius--container);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(240, 240, 240);
+  background: utils.$c-bg-btn;
   width: 3.25em;
   border-radius: $border-radius--item;
   border-width: 0.2em;

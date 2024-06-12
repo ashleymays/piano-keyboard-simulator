@@ -1,12 +1,53 @@
 @use '~/styles/utils.scss';
 
+$border-radius--container: 0.9rem;
+$border-radius--item: utils.calculateBorderRadius($border-radius--container);
+
+$option-height: 1rem;
+
 .instrument-dropdown {
   color: utils.$c-text-primary;
   font-size: 1.25em;
   width: 25%;
-}
+  background: utils.$c-bg-btn;
+  border-radius: $border-radius--container;
+  border: 2px solid utils.$c-bg-btn--border;
+  cursor: pointer;
+  position: relative;
 
-.focused {
-  border: 2px solid red;
-  background: red;
+  &--selected {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $option-height;
+  }
+
+  &--options {
+    position: absolute;
+    top: 100%;
+    z-index: 9999;
+    width: 100%;
+    background: utils.$c-bg-btn;
+    border-radius: $border-radius--container;
+    border: 2px solid utils.$c-bg-btn--border;
+  }
+
+  &--option {
+    padding: $option-height;
+    
+    &:first-child {
+      border-top-right-radius: $border-radius--item;
+      border-top-left-radius: $border-radius--item;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: $border-radius--item;
+      border-bottom-left-radius: $border-radius--item;
+    }
+
+    &:hover {
+      background: darken(utils.$c-bg-btn, 10%);
+    }
+  }
 }

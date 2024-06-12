@@ -1,23 +1,33 @@
 import { useState } from 'react';
-import Select from 'react-select';
+import Dropdown from 'react-dropdown';
+import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 
 const options = [
-  { value: 'acoustic-grand', label: 'Acoustic Grand' },
-  { value: 'electric-piano', label: 'Electric Piano' },
-  { value: '8-bit', label: '8-Bit' }
+  {
+    value: 'acoustic-grand',
+    label: 'Acoustic Grand',
+    className: 'instrument-dropdown--option'
+  },
+  {
+    value: 'electric-piano',
+    label: 'Electric Piano',
+    className: 'instrument-dropdown--option'
+  },
+  { value: '8-bit', label: '8-Bit', className: 'instrument-dropdown--option' }
 ];
 
 export const InstrumentDropdown = () => {
-  const [instrument, setInstrument] = useState(options[0]);
-
-  console.log(instrument);
+  const [instrument, setInstrument] = useState(options[0].value);
 
   return (
-    <Select
-      defaultValue={instrument}
-      onChange={setInstrument}
+    <Dropdown
       options={options}
+      value={instrument}
       className="instrument-dropdown"
+      controlClassName="instrument-dropdown--selected"
+      menuClassName="instrument-dropdown--options"
+      arrowClosed={<DownArrowIcon />}
+      arrowOpen={<UpArrowIcon />}
     />
   );
 };
