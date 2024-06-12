@@ -35,7 +35,7 @@ const getLowerKeys = (keysMap: KeysMap) => {
 };
 
 const getShiftedKeys = (keysMap: KeysMap, incrementValue: number) => {
-  const newKeysMap = new Map(keysMap);
+  const newKeysMap: KeysMap = new Map(keysMap);
 
   Object.values(newKeysMap).forEach((pianoKey) => {
     pianoKey.octave += incrementValue;
