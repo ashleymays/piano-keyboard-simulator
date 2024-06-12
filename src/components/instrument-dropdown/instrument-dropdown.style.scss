@@ -15,7 +15,7 @@ $option-height: 1rem;
   cursor: pointer;
   position: relative;
 
-  &--selected {
+  &__selected {
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -23,7 +23,7 @@ $option-height: 1rem;
     padding: $option-height;
   }
 
-  &--options {
+  &__options {
     position: absolute;
     top: 100%;
     z-index: 9999;
@@ -33,7 +33,7 @@ $option-height: 1rem;
     border: 2px solid utils.$c-bg-btn--border;
   }
 
-  &--option {
+  &__option {
     padding: $option-height;
     
     &:first-child {
