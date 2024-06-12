@@ -19,7 +19,7 @@ export type PianoKey = {
 export type KeysMap = Map<string, PianoKey>;
 
 export type KeysMapState = {
-  wrapper: { keysMap: KeysMap };
+  keysMapWrapper: { keysMap: KeysMap };
   raiseOctave: () => void;
   lowerOctave: () => void;
 };

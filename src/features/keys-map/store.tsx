@@ -44,7 +44,7 @@ const initialState = {
 };
 
 export const useKeysMapStore = create((set) => ({
-  wrapper: initialState,
-  raiseOctaves: () => set((state) => raiseOctaves(state.wrapper)),
-  lowerOctaves: () => set((state) => lowerOctaves(state.wrapper))
+  keysMapWrapper: initialState,
+  raiseOctaves: () => set((state) => raiseOctaves(state.keysMapWrapper)),
+  lowerOctaves: () => set((state) => lowerOctaves(state.keysMapWrapper))
 }));
