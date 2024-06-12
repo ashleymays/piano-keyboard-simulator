@@ -35,7 +35,11 @@ $black-key-width: 2%;
   color: rgb(21, 26, 30);
   background: linear-gradient(rgb(219, 219, 219), rgb(247, 247, 247));
   flex: 1;
-  margin: 0 calc($piano-key-spacing * 2);
+  margin-right: calc($piano-key-spacing * 2);
+
+  &_active {
+    background: linear-gradient(rgb(169, 169, 169), rgb(187, 187, 187));
+  }
 
   &:first-child {
     margin-left: 0;
@@ -43,10 +47,6 @@ $black-key-width: 2%;
 
   &:last-child {
     margin-right: 0;
-  }
-
-  &+.piano-key--white {
-    margin-left: 0;
   }
 }
 
@@ -57,9 +57,14 @@ $black-key-width: 2%;
   z-index: 0;
   border-bottom: 0.3em solid rgb(59, 59, 59);
   box-shadow: 0 0.5em 0.7em rgba(0, 0, 0, 0.35);
+
+  &_active {
+    background: rgb(63, 63, 63);
+  }
 }
 
+// Move the black keys in between its neighboring white keys.
 .piano-key--black,
-.piano-key--black+.piano-key--white {
+.piano-key--black + .piano-key--white {
   margin-left: calc($black-key-width / -2);
 }
