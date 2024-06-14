@@ -1,5 +1,13 @@
 import type { KeysMap } from './types';
 
+/**
+ * Raises the octaves for each key.
+ *
+ * Simulates moving hands to the right on a piano keyboard.
+ *
+ * @param keysMap
+ * @returns A new copy of the keys map with the octave for each note raised by one.
+ */
 export const raiseOctaves = (keysMap: KeysMap) => {
   const HIGHEST_KEY = '.';
   const HIGHEST_OCTAVE = 7;
@@ -17,6 +25,14 @@ const getHigherKeys = (keysMap: KeysMap) => {
   return getShiftedKeys(keysMap, 1);
 };
 
+/**
+ * Lowers the octaves for each key.
+ *
+ * Simulates moving hands to the left on a piano keyboard.
+ *
+ * @param keysMap
+ * @returns A new copy of the keys map with the octave for each note lowered by one.
+ */
 export const lowerOctaves = (keysMap: KeysMap) => {
   const LOWEST_KEY = 'q';
   const LOWEST_OCTAVE = 1;
