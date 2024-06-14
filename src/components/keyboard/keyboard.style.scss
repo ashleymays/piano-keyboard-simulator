@@ -12,10 +12,10 @@
   border-radius: 2.5em;
   padding: 4em;
   touch-action: manipulation;
-
+  
   /*
-    We use the "scaleDimension" function so that the scale of the 
-    keyboard and its components is consistent across screen sizes.
+    The height needs to be calculated based on the width so that the 
+    keyboard and its components are always scaled properly
   */
   width: 115rem;
   height: 115rem * calc(9 / 28);
