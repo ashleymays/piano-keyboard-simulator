@@ -9,6 +9,7 @@ export const useKeysMap = () => {
   const raiseOctave = useKeysMapStore(
     (state: KeysMapState) => state.raiseOctave
   );
+
   const lowerOctave = useKeysMapStore(
     (state: KeysMapState) => state.lowerOctave
   );
