@@ -11,7 +11,7 @@ $option-height: 1rem;
   width: 25%;
   background: utils.$c-bg-btn;
   border-radius: $border-radius--container;
-  border: 2px solid utils.$c-bg-btn--border;
+  border: 0.16em solid utils.$c-bg-btn--border;
   cursor: pointer;
   position: relative;
 
@@ -30,7 +30,7 @@ $option-height: 1rem;
     width: 100%;
     background: utils.$c-bg-btn;
     border-radius: $border-radius--container;
-    border: 2px solid utils.$c-bg-btn--border;
+    border: 0.16em solid utils.$c-bg-btn--border;
   }
 
   &__option {
