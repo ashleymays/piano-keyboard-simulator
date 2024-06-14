@@ -12,7 +12,7 @@ export const raiseOctaves = (keysMap: KeysMap) => {
   const HIGHEST_KEY = '.';
   const HIGHEST_OCTAVE = 7;
 
-  const highestPianoKey = keysMap[HIGHEST_KEY];
+  const highestPianoKey = keysMap.get(HIGHEST_KEY);
 
   if (highestPianoKey && highestPianoKey.octave !== HIGHEST_OCTAVE) {
     return getHigherKeys(keysMap);
@@ -37,7 +37,7 @@ export const lowerOctaves = (keysMap: KeysMap) => {
   const LOWEST_KEY = 'q';
   const LOWEST_OCTAVE = 1;
 
-  const lowestPianoKey = keysMap[LOWEST_KEY];
+  const lowestPianoKey = keysMap.get(LOWEST_KEY);
 
   if (lowestPianoKey && lowestPianoKey.octave !== LOWEST_OCTAVE) {
     return getLowerKeys(keysMap);
