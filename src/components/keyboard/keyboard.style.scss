@@ -14,7 +14,7 @@
   touch-action: manipulation;
 
   /*
-    We use the "scaleDimension" function so that the scale of the 
+    We use the width to get the height so that the scale of the 
     keyboard and its components is consistent across screen sizes.
   */
   width: 115rem;
