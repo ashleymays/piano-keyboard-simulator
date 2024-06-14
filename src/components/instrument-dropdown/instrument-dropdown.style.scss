@@ -1,8 +1,7 @@
 @use '~/styles/utils.scss';
 
-$border-radius--container: 0.9rem;
-$border-radius--item: utils.calculateBorderRadius($border-radius--container);
-
+$dropdown-border-radius: 0.9rem;
+$option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
 $option-height: 1rem;
 
 .instrument-dropdown {
@@ -10,7 +9,7 @@ $option-height: 1rem;
   font-size: 1.25em;
   width: 25%;
   background: utils.$c-bg-btn;
-  border-radius: $border-radius--container;
+  border-radius: $dropdown-border-radius;
   border: 0.16em solid utils.$c-bg-btn--border;
   cursor: pointer;
   position: relative;
@@ -29,7 +28,7 @@ $option-height: 1rem;
     z-index: 9999;
     width: 100%;
     background: utils.$c-bg-btn;
-    border-radius: $border-radius--container;
+    border-radius: $dropdown-border-radius;
     border: 0.16em solid utils.$c-bg-btn--border;
   }
 
@@ -37,13 +36,13 @@ $option-height: 1rem;
     padding: $option-height;
     
     &:first-child {
-      border-top-right-radius: $border-radius--item;
-      border-top-left-radius: $border-radius--item;
+      border-top-right-radius: $option-border-radius;
+      border-top-left-radius: $option-border-radius;
     }
 
     &:last-child {
-      border-bottom-right-radius: $border-radius--item;
-      border-bottom-left-radius: $border-radius--item;
+      border-bottom-right-radius: $option-border-radius;
+      border-bottom-left-radius: $option-border-radius;
     }
 
     &:hover {

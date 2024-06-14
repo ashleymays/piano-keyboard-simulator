@@ -2,13 +2,13 @@ import { UpArrowIcon, DownArrowIcon } from '../arrow-icon';
 
 export const OctaveButtons = () => {
   return (
-    <div className="octave-control-panel">
-      <div className="octave-btn-container">
+    <div className="octave-controls-wrapper">
+      <div className="octave-btns-wrapper">
         <OctaveButton direction="UP" />
         <div />
         <OctaveButton direction="DOWN" />
       </div>
-      <p className="octave-control-panel__label">Octaves</p>
+      <p className="octave-controls-wrapper__label">Octaves</p>
     </div>
   );
 };

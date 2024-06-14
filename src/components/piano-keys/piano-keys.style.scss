@@ -1,62 +1,62 @@
 @use '~/styles/utils.scss';
 
-$piano-keys-spacing: 0.3rem;
-$piano-key-spacing: utils.calculateButtonSpacing($piano-keys-spacing);
+$spacing-between-piano-keys: 0.3rem;
+$wrapper-radius: 1.2rem;
+$white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
 
-$piano-key-container_radius: 1.2rem;
-$piano-key--white_radius: utils.calculateBorderRadius($piano-key-container_radius);
-$piano-key--black_radius: $piano-key--white_radius * 0.5;
-
-$piano-key--black_width: 2%;
-
-.piano-key-container {
+.piano-keys-wrapper {
   width: 100%;
   display: flex;
-  padding: $piano-keys-spacing;
-  border-radius: $piano-key-container_radius;
-  background: rgb(26, 26, 26);
+  padding: $spacing-between-piano-keys;
+  border-radius: $wrapper-radius;
+  background: #1a1a1a;
   touch-action: none;
-  box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.4em 1em #00000040;
 }
 
 .piano-key--white {
-  color: rgb(21, 26, 30);
-  background: linear-gradient(rgb(219, 219, 219), rgb(247, 247, 247));
   flex: 1;
-  margin-right: calc($piano-key-spacing * 2);
-  border-radius: 0 0 $piano-key--white_radius $piano-key--white_radius;
+  color: #151a1e;
+  background: linear-gradient(#dbdbdb, #f7f7f7);
+  margin-right: $spacing-between-piano-keys;
+  border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
 
-  &_active {
-    background: linear-gradient(rgb(169, 169, 169), rgb(187, 187, 187));
+  &--active {
+    background: linear-gradient(#a9a9a9, #bbbbbb);
   }
 
   &:first-child {
     margin-left: 0;
-    border-top-left-radius: $piano-key--white_radius;
+    border-top-left-radius: $white-key-border-radius;
   }
 
   &:last-child {
     margin-right: 0;
-    border-top-right-radius: $piano-key--white_radius;
+    border-top-right-radius: $white-key-border-radius;
   }
 }
+
+$black-key-border-radius: $white-key-border-radius * 0.5;
+$black-key-width: 2%;
 
 .piano-key--black {
-  width: $piano-key--black_width;
-  background: rgb(23, 23, 23);
+  width: $black-key-width;
+  background: #171717;
   height: 55%;
   z-index: 0;
-  border-bottom: 0.3em solid rgb(59, 59, 59);
-  box-shadow: 0 0.5em 0.7em rgba(0, 0, 0, 0.35);
-  border-radius: 0 0 $piano-key--black_radius $piano-key--black_radius;
+  border-bottom: 0.3em solid #3b3b3b;
+  box-shadow: 0 0.5em 0.7em #00000059;
+  border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
 
-  &_active {
-    background: rgb(63, 63, 63);
+  &--active {
+    background: #3f3f3f;
   }
 }
 
-// Move the black keys in between its neighboring white keys.
+/*
+  Position the black keys between its neighboring white keys.
+*/
 .piano-key--black,
 .piano-key--black + .piano-key--white {
-  margin-left: calc($piano-key--black_width / -2);
+  margin-left: calc($black-key-width / -2);
 }

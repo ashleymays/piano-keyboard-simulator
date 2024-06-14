@@ -2,6 +2,7 @@ import Dropdown from 'react-dropdown';
 import { useInstrument } from './use-instrument';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 
+// Temporary
 const options = [
   {
     value: 'acoustic-grand',
@@ -16,10 +17,10 @@ const options = [
   { value: '8-bit', label: '8-Bit', className: 'instrument-dropdown__option' }
 ];
 
-const defaultInstrument = options[0].value;
-
 export const InstrumentDropdown = () => {
-  const [instrument, handleInstrument] = useInstrument({ defaultInstrument });
+  const [instrument, handleInstrument] = useInstrument({
+    defaultInstrument: options[0].value
+  });
 
   return (
     <Dropdown

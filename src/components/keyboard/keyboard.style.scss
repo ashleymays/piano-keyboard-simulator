@@ -7,29 +7,30 @@
   display: flex;
   flex-flow: column;
   gap: 4em;
-  background: rgb(250, 250, 250);
-  box-shadow: 0 0.75rem 0 rgba(0, 0, 0, 0.851);
+  background: #fafafa;
+  box-shadow: 0 0.75rem 0 #000000d9;
   border-radius: 2.5em;
   padding: 4em;
   touch-action: manipulation;
-  
+
   /*
-    The height needs to be calculated based on the width so that the 
-    keyboard and its components are always scaled properly
+    We use the "scaleDimension" function so that the scale of the 
+    keyboard and its components is consistent across screen sizes.
   */
   width: 115rem;
   height: 115rem * calc(9 / 28);
 
-  &__row--top {
+  &__row {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
+  }
+
+  &__row--top {
+    align-items: baseline;
   }
 
   &__row--bottom {
     height: 100%;
-    display: flex;
-    justify-content: space-between;
     gap: 4em;
   }
 
@@ -67,7 +68,7 @@
     }
 
     & span:first-child {
-      background: rgb(10, 255, 129)
+      background: #0aff81
     }
   }
 }
