@@ -10,5 +10,5 @@ $c-bg-btn: #f0f0f0;
   looks the same.
 */
 @function get-radius-for-wrapper-items($wrapper-border-radius) {
-    @return calc($wrapper-border-radius * 0.8);
+  @return calc($wrapper-border-radius * 0.8);
 }

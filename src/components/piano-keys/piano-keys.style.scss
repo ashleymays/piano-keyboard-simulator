@@ -57,6 +57,6 @@ $black-key-width: 2%;
   Position the black keys between its neighboring white keys.
 */
 .piano-key--black,
-.piano-key--black + .piano-key--white {
+.piano-key--black+.piano-key--white {
   margin-left: calc($black-key-width / -2);
 }
