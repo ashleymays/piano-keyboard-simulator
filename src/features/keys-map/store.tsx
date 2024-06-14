@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { raiseOctaves, lowerOctaves } from './helpers';
+import { raiseOctave, lowerOctave } from './helpers';
 import type { KeysMap, PianoKey } from './types';
 
 const initialState = {
@@ -45,6 +45,6 @@ const initialState = {
 
 export const useKeysMapStore = create((set) => ({
   keysMapWrapper: initialState,
-  raiseOctaves: () => set((state) => raiseOctaves(state.keysMapWrapper)),
-  lowerOctaves: () => set((state) => lowerOctaves(state.keysMapWrapper))
+  raiseOctave: () => set((state) => raiseOctave(state.keysMapWrapper)),
+  lowerOctave: () => set((state) => lowerOctave(state.keysMapWrapper))
 }));

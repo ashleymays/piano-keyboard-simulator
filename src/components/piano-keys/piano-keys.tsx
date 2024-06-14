@@ -2,7 +2,7 @@ import { useKeysMap } from '~/features/keys-map';
 import type { PianoKey as PianoKeyType } from '~/features/keys-map/types';
 
 export const PianoKeys = () => {
-  const [keysMap] = useKeysMap();
+  const { keysMap } = useKeysMap();
   const computerKeys = Array.from(keysMap.keys());
 
   return (

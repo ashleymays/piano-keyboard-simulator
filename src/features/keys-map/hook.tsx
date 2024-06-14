@@ -6,5 +6,12 @@ export const useKeysMap = () => {
     (state: KeysMapState) => state.keysMapWrapper.keysMap
   );
 
-  return [keysMap];
+  const raiseOctaves = useKeysMapStore(
+    (state: KeysMapState) => state.raiseOctave
+  );
+  const lowerOctaves = useKeysMapStore(
+    (state: KeysMapState) => state.lowerOctave
+  );
+
+  return { keysMap, raiseOctaves, lowerOctaves };
 };

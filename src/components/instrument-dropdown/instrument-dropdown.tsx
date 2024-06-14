@@ -18,7 +18,7 @@ const options = [
 ];
 
 export const InstrumentDropdown = () => {
-  const [instrument, handleInstrument] = useInstrument({
+  const { instrument, handleInstrument } = useInstrument({
     defaultInstrument: options[0].value
   });
 

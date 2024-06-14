@@ -11,5 +11,5 @@ export const useInstrument = ({ defaultInstrument }: UseInstrumentProps) => {
     setInstrument(newInstrument);
   };
 
-  return [instrument, handleInstrument];
+  return { instrument, handleInstrument };
 };
