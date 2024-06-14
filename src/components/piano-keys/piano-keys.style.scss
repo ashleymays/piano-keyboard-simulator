@@ -3,32 +3,20 @@
 $piano-keys-spacing: 0.3rem;
 $piano-key-spacing: utils.calculateButtonSpacing($piano-keys-spacing);
 
-$piano-keys-radius: 1.2rem;
-$piano-key-radius: utils.calculateBorderRadius($piano-keys-radius);
+$piano-key-container_radius: 1.2rem;
+$piano-key--white_radius: utils.calculateBorderRadius($piano-key-container_radius);
+$piano-key--black_radius: $piano-key--white_radius * 0.5;
 
-$black-key-width: 2%;
+$piano-key--black_width: 2%;
 
-.piano-keys {
+.piano-key-container {
   width: 100%;
   display: flex;
   padding: $piano-keys-spacing;
-  border-radius: $piano-keys-radius;
+  border-radius: $piano-key-container_radius;
   background: rgb(26, 26, 26);
   touch-action: none;
   box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.25);
-}
-
-.piano-key--white,
-.piano-key--black {
-  border-radius: 0 0 $piano-key-radius $piano-key-radius;
-
-  &:first-child {
-    border-top-left-radius: $piano-key-radius;
-  }
-
-  &:last-child {
-    border-top-right-radius: $piano-key-radius;
-  }
 }
 
 .piano-key--white {
@@ -36,6 +24,7 @@ $black-key-width: 2%;
   background: linear-gradient(rgb(219, 219, 219), rgb(247, 247, 247));
   flex: 1;
   margin-right: calc($piano-key-spacing * 2);
+  border-radius: 0 0 $piano-key--white_radius $piano-key--white_radius;
 
   &_active {
     background: linear-gradient(rgb(169, 169, 169), rgb(187, 187, 187));
@@ -43,20 +32,23 @@ $black-key-width: 2%;
 
   &:first-child {
     margin-left: 0;
+    border-top-left-radius: $piano-key--white_radius;
   }
 
   &:last-child {
     margin-right: 0;
+    border-top-right-radius: $piano-key--white_radius;
   }
 }
 
 .piano-key--black {
-  width: $black-key-width;
+  width: $piano-key--black_width;
   background: rgb(23, 23, 23);
   height: 55%;
   z-index: 0;
   border-bottom: 0.3em solid rgb(59, 59, 59);
   box-shadow: 0 0.5em 0.7em rgba(0, 0, 0, 0.35);
+  border-radius: 0 0 $piano-key--black_radius $piano-key--black_radius;
 
   &_active {
     background: rgb(63, 63, 63);
@@ -66,5 +58,5 @@ $black-key-width: 2%;
 // Move the black keys in between its neighboring white keys.
 .piano-key--black,
 .piano-key--black + .piano-key--white {
-  margin-left: calc($black-key-width / -2);
+  margin-left: calc($piano-key--black_width / -2);
 }

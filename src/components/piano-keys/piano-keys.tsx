@@ -6,7 +6,7 @@ export const PianoKeys = () => {
   const computerKeys = Array.from(keysMap.keys());
 
   return (
-    <div className="piano-keys">
+    <div className="piano-key-container">
       {computerKeys.map((computerKey) => (
         <PianoKey
           key={computerKey}

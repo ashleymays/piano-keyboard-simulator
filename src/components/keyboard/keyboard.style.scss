@@ -1,9 +1,5 @@
 @use '~/styles/utils.scss';
 
-@function scaleDimension($scalar) {
-  @return $scalar * calc(9 / 28);
-}
-
 .keyboard {
   position: absolute;
   margin: auto;
@@ -21,8 +17,8 @@
     We use the "scaleDimension" function so that the scale of the 
     keyboard and its components is consistent across screen sizes.
   */
-  width: clamp(110rem, 75vw + 2rem, 132rem);
-  height: clamp(scaleDimension(110rem), scaleDimension(75vw) + scaleDimension(2rem), scaleDimension(132rem));
+  width: 115rem;
+  height: 115rem * calc(9 / 28);
 
   &__row--top {
     display: flex;
