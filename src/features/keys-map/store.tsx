@@ -45,6 +45,6 @@ const initialState = {
 
 export const useKeysMapStore = create((set) => ({
   keysMapWrapper: initialState,
-  raiseOctave: () => set((state) => raiseOctave(state.keysMapWrapper)),
-  lowerOctave: () => set((state) => lowerOctave(state.keysMapWrapper))
+  raiseOctave: () => set((state) => raiseOctave(state.keysMapWrapper.keysMap)),
+  lowerOctave: () => set((state) => lowerOctave(state.keysMapWrapper.keysMap))
 }));
