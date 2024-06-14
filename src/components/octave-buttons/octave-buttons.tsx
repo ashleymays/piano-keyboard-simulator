@@ -1,12 +1,22 @@
+import { useKeysMap } from '~/features/keys-map';
 import { UpArrowIcon, DownArrowIcon } from '../arrow-icon';
+import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
+  const { raiseOctave, lowerOctave } = useKeysMap();
+
   return (
     <div className="octave-controls-wrapper">
       <div className="octave-btns-wrapper">
-        <OctaveButton direction="UP" />
+        <OctaveButton
+          direction="UP"
+          onClick={raiseOctave}
+        />
         <div />
-        <OctaveButton direction="DOWN" />
+        <OctaveButton
+          direction="DOWN"
+          onClick={lowerOctave}
+        />
       </div>
       <p className="octave-controls-wrapper__label">Octaves</p>
     </div>
@@ -15,16 +25,18 @@ export const OctaveButtons = () => {
 
 type OctaveButtonProps = {
   direction: 'UP' | 'DOWN';
+  onClick: MouseEventHandler;
 };
 
-const OctaveButton = ({ direction }: OctaveButtonProps) => {
+const OctaveButton = ({ direction, onClick }: OctaveButtonProps) => {
   const Icon = direction === 'UP' ? UpArrowIcon : DownArrowIcon;
 
   return (
     <button
       type="button"
-      aria-label={direction === 'UP' ? 'Octave Up' : 'Octave Down'}
+      aria-label={direction === 'UP' ? 'Raise Octave' : 'Lower Octave'}
       className="octave-btn"
+      onClick={onClick}
     >
       <Icon />
     </button>
