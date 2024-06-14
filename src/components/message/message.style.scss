@@ -1,0 +1,6 @@
+@use '~/styles/utils.scss';
+
+.message-body {
+  font-family: utils.$font;
+  font-size: 1.5rem;
+}

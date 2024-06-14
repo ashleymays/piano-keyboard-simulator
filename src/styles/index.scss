@@ -1,3 +1,5 @@
+@use '~/styles/utils.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -17,7 +19,7 @@ html {
 
 body {
   background: #1a1a1a;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: utils.$font;
   overflow-x: visible;
   overflow-y: hidden;
   user-select: none;
