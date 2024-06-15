@@ -9,10 +9,12 @@ import type { KeysMap } from './types';
  * @returns A new copy of the keys map with the octave for each note raised by one.
  */
 export const raiseOctave = (keysMap: KeysMap) => {
-  const HIGHEST_OCTAVE_ALLOWED = 7;
-  const highestPianoKey = Array.from(keysMap.values()).pop();
+  const HIGHEST_KEY = '.';
+  const HIGHEST_OCTAVE = 7;
 
-  if (highestPianoKey && highestPianoKey.octave !== HIGHEST_OCTAVE_ALLOWED) {
+  const highestPianoKey = keysMap.get(HIGHEST_KEY);
+
+  if (highestPianoKey && highestPianoKey.octave !== HIGHEST_OCTAVE) {
     return getHigherKeys(keysMap);
   }
 
@@ -32,10 +34,12 @@ const getHigherKeys = (keysMap: KeysMap) => {
  * @returns A new copy of the keys map with the octave for each note lowered by one.
  */
 export const lowerOctave = (keysMap: KeysMap) => {
-  const LOWEST_OCTAVE_ALLOWED = 1;
-  const lowestPianoKey = Array.from(keysMap.values())[0];
+  const LOWEST_KEY = 'q';
+  const LOWEST_OCTAVE = 1;
 
-  if (lowestPianoKey && lowestPianoKey.octave !== LOWEST_OCTAVE_ALLOWED) {
+  const lowestPianoKey = keysMap.get(LOWEST_KEY);
+
+  if (lowestPianoKey && lowestPianoKey.octave !== LOWEST_OCTAVE) {
     return getLowerKeys(keysMap);
   }
 
