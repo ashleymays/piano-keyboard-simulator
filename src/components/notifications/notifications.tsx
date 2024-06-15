@@ -1,10 +1,10 @@
 import { Toaster } from 'react-hot-toast';
 
-export const Message = () => {
+export const Notifications = () => {
   return (
     <Toaster
       position="bottom-center"
-      containerClassName="message-body"
+      containerClassName="notification-body"
     />
   );
 };
