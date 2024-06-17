@@ -1,18 +1,28 @@
+import { raiseOctave, lowerOctave } from './helpers';
 import { useKeysMapStore } from './store';
-import type { KeysMapState } from './types';
 
 export const useKeysMap = () => {
-  const keysMap = useKeysMapStore(
-    (state: KeysMapState) => state.keysMapWrapper.keysMap
-  );
+  const keysMap = useKeysMapStore((state) => state.keysMapWrapper.keysMap);
 
-  const raiseOctave = useKeysMapStore(
-    (state: KeysMapState) => state.raiseOctave
-  );
+  const raiseOctaveHandler = () => {
+    useKeysMapStore.setState((state) => {
+      const newKeysMap = raiseOctave(state.keysMapWrapper.keysMap);
 
-  const lowerOctave = useKeysMapStore(
-    (state: KeysMapState) => state.lowerOctave
-  );
+      return { keysMapWrapper: { keysMap: newKeysMap } };
+    });
+  };
 
-  return { keysMap, raiseOctave, lowerOctave };
+  const lowerOctaveHandler = () => {
+    useKeysMapStore.setState((state) => {
+      const newKeysMap = lowerOctave(state.keysMapWrapper.keysMap);
+
+      return { keysMapWrapper: { keysMap: newKeysMap } };
+    });
+  };
+
+  return {
+    keysMap,
+    raiseOctave: raiseOctaveHandler,
+    lowerOctave: lowerOctaveHandler
+  };
 };

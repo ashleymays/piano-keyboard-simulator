@@ -1,6 +1,5 @@
 import { toast } from 'react-hot-toast';
-import { useKeysMap } from '~/features/keys-map';
-import type { PianoKey } from '~/features/keys-map/types';
+import { useKeysMap, type PianoKey } from '~/features/keys-map';
 
 export const useOctaveButtons = () => {
   const { keysMap, raiseOctave, lowerOctave } = useKeysMap();
