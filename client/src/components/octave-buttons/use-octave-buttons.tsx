@@ -27,8 +27,5 @@ export const useOctaveButtons = () => {
     toast(getOctaveRange(keysMap));
   };
 
-  return [
-    handleRaiseOctave,
-    handleLowerOctave
-  ];
+  return [handleRaiseOctave, handleLowerOctave];
 };

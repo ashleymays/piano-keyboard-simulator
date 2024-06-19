@@ -13,20 +13,10 @@ const createDropdownOptions = (instruments: string[]) => {
 export const InstrumentDropdown = () => {
   const instruments = useInstruments();
 
-  if (instruments.length === 0) {
-    return null;
-  }
-
-  const options = createDropdownOptions(instruments);
-
-  if (options.length === 0) {
-    return null;
-  }
-
   return (
     <Dropdown
-      options={options}
-      value={options[0].value}
+      options={createDropdownOptions(instruments)}
+      value={instruments[0] || 'Loading...'}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"
