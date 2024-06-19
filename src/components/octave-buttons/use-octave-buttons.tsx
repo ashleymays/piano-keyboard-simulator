@@ -10,10 +10,8 @@ const getPitch = (pianoKey: PianoKey) => {
 };
 
 const getOctaveRange = (keysMap: KeysMap) => {
-  const pianoKeys = Array.from(keysMap.values());
-
-  const lowestPitch = getPitch(pianoKeys[0]);
-  const highestPitch = getPitch(pianoKeys[pianoKeys.length - 1]);
+  const lowestPitch = getPitch(keysMap[0]);
+  const highestPitch = getPitch(keysMap[keysMap.length - 1]);
 
   return `Note Range: ${lowestPitch} - ${highestPitch}`;
 };

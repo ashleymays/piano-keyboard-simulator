@@ -1,18 +1,15 @@
 import { useKeysMap } from '~/features/keys-map';
-import type { PianoKey as PianoKeyType } from '~/features/keys-map/types';
+import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
   const { keysMap } = useKeysMap();
-  console.log(keysMap);
-  const computerKeys = Array.from(keysMap.keys());
 
   return (
     <div className="piano-keys-wrapper">
-      {computerKeys.map((computerKey) => (
+      {keysMap.map((pianoKey) => (
         <PianoKey
-          key={computerKey}
-          computerKey={computerKey}
-          type={keysMap.get(computerKey)!.type}
+          key={pianoKey.computerKey}
+          {...pianoKey}
         />
       ))}
     </div>
@@ -20,7 +17,7 @@ export const PianoKeys = () => {
 };
 
 type PianoKeyProps = {
-  computerKey: string;
+  computerKey: PianoKeyType['computerKey'];
   type: PianoKeyType['type'];
 };
 
