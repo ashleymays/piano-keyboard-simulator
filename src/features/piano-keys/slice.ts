@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type PianoKey = {
-  computerKey: string;
+  id: string;
   note:
     | 'C'
     | 'Db'
@@ -22,42 +22,42 @@ export type PianoKey = {
 export type PianoKeys = PianoKey[];
 
 const initialState: PianoKeys = [
-  { computerKey: 'q', note: 'C', octave: 3, type: 'natural' },
-  { computerKey: '2', note: 'Db', octave: 3, type: 'flat' },
-  { computerKey: 'w', note: 'D', octave: 3, type: 'natural' },
-  { computerKey: '3', note: 'Eb', octave: 3, type: 'flat' },
-  { computerKey: 'e', note: 'E', octave: 3, type: 'natural' },
-  { computerKey: 'r', note: 'F', octave: 3, type: 'natural' },
-  { computerKey: '5', note: 'Gb', octave: 3, type: 'flat' },
-  { computerKey: 't', note: 'G', octave: 3, type: 'natural' },
-  { computerKey: '6', note: 'Ab', octave: 3, type: 'flat' },
-  { computerKey: 'y', note: 'A', octave: 3, type: 'natural' },
-  { computerKey: '7', note: 'Bb', octave: 3, type: 'flat' },
-  { computerKey: 'u', note: 'B', octave: 3, type: 'natural' },
-  { computerKey: 'i', note: 'C', octave: 4, type: 'natural' },
-  { computerKey: '9', note: 'Db', octave: 4, type: 'flat' },
-  { computerKey: 'o', note: 'D', octave: 4, type: 'natural' },
-  { computerKey: '0', note: 'Eb', octave: 4, type: 'flat' },
-  { computerKey: 'p', note: 'E', octave: 4, type: 'natural' },
-  { computerKey: '[', note: 'F', octave: 4, type: 'natural' },
-  { computerKey: '=', note: 'Gb', octave: 4, type: 'flat' },
-  { computerKey: ']', note: 'G', octave: 4, type: 'natural' },
-  { computerKey: 'a', note: 'Ab', octave: 4, type: 'flat' },
-  { computerKey: 'z', note: 'A', octave: 4, type: 'natural' },
-  { computerKey: 's', note: 'Bb', octave: 4, type: 'flat' },
-  { computerKey: 'x', note: 'B', octave: 4, type: 'natural' },
-  { computerKey: 'c', note: 'C', octave: 5, type: 'natural' },
-  { computerKey: 'f', note: 'Db', octave: 5, type: 'flat' },
-  { computerKey: 'v', note: 'D', octave: 5, type: 'natural' },
-  { computerKey: 'g', note: 'Eb', octave: 5, type: 'flat' },
-  { computerKey: 'b', note: 'E', octave: 5, type: 'natural' },
-  { computerKey: 'n', note: 'F', octave: 5, type: 'natural' },
-  { computerKey: 'j', note: 'Gb', octave: 5, type: 'flat' },
-  { computerKey: 'm', note: 'G', octave: 5, type: 'natural' },
-  { computerKey: 'k', note: 'Ab', octave: 5, type: 'flat' },
-  { computerKey: ',', note: 'A', octave: 5, type: 'natural' },
-  { computerKey: 'l', note: 'Bb', octave: 5, type: 'flat' },
-  { computerKey: '.', note: 'B', octave: 5, type: 'natural' }
+  { id: 'q', note: 'C', octave: 3, type: 'natural' },
+  { id: '2', note: 'Db', octave: 3, type: 'flat' },
+  { id: 'w', note: 'D', octave: 3, type: 'natural' },
+  { id: '3', note: 'Eb', octave: 3, type: 'flat' },
+  { id: 'e', note: 'E', octave: 3, type: 'natural' },
+  { id: 'r', note: 'F', octave: 3, type: 'natural' },
+  { id: '5', note: 'Gb', octave: 3, type: 'flat' },
+  { id: 't', note: 'G', octave: 3, type: 'natural' },
+  { id: '6', note: 'Ab', octave: 3, type: 'flat' },
+  { id: 'y', note: 'A', octave: 3, type: 'natural' },
+  { id: '7', note: 'Bb', octave: 3, type: 'flat' },
+  { id: 'u', note: 'B', octave: 3, type: 'natural' },
+  { id: 'i', note: 'C', octave: 4, type: 'natural' },
+  { id: '9', note: 'Db', octave: 4, type: 'flat' },
+  { id: 'o', note: 'D', octave: 4, type: 'natural' },
+  { id: '0', note: 'Eb', octave: 4, type: 'flat' },
+  { id: 'p', note: 'E', octave: 4, type: 'natural' },
+  { id: '[', note: 'F', octave: 4, type: 'natural' },
+  { id: '=', note: 'Gb', octave: 4, type: 'flat' },
+  { id: ']', note: 'G', octave: 4, type: 'natural' },
+  { id: 'a', note: 'Ab', octave: 4, type: 'flat' },
+  { id: 'z', note: 'A', octave: 4, type: 'natural' },
+  { id: 's', note: 'Bb', octave: 4, type: 'flat' },
+  { id: 'x', note: 'B', octave: 4, type: 'natural' },
+  { id: 'c', note: 'C', octave: 5, type: 'natural' },
+  { id: 'f', note: 'Db', octave: 5, type: 'flat' },
+  { id: 'v', note: 'D', octave: 5, type: 'natural' },
+  { id: 'g', note: 'Eb', octave: 5, type: 'flat' },
+  { id: 'b', note: 'E', octave: 5, type: 'natural' },
+  { id: 'n', note: 'F', octave: 5, type: 'natural' },
+  { id: 'j', note: 'Gb', octave: 5, type: 'flat' },
+  { id: 'm', note: 'G', octave: 5, type: 'natural' },
+  { id: 'k', note: 'Ab', octave: 5, type: 'flat' },
+  { id: ',', note: 'A', octave: 5, type: 'natural' },
+  { id: 'l', note: 'Bb', octave: 5, type: 'flat' },
+  { id: '.', note: 'B', octave: 5, type: 'natural' }
 ];
 
 const shiftOctave = (pianoKeys: PianoKeys, incrementValue: number) => {
@@ -67,11 +67,11 @@ const shiftOctave = (pianoKeys: PianoKeys, incrementValue: number) => {
 };
 
 const shiftOctaveUp = (pianoKeys: PianoKeys) => {
-  return shiftOctave(pianoKeys, 1);
+  shiftOctave(pianoKeys, 1);
 };
 
 const shiftOctaveDown = (pianoKeys: PianoKeys) => {
-  return shiftOctave(pianoKeys, -1);
+  shiftOctave(pianoKeys, -1);
 };
 
 const slice = createSlice({

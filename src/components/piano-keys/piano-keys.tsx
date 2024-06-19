@@ -10,7 +10,7 @@ export const PianoKeys = () => {
     <div className="piano-keys-wrapper">
       {pianoKeys.map((pianoKey) => (
         <PianoKey
-          key={pianoKey.computerKey}
+          key={pianoKey.id}
           {...pianoKey}
         />
       ))}
@@ -19,17 +19,17 @@ export const PianoKeys = () => {
 };
 
 type PianoKeyProps = {
-  computerKey: PianoKeyType['computerKey'];
+  id: PianoKeyType['id'];
   type: PianoKeyType['type'];
 };
 
-const PianoKey = ({ computerKey, type }: PianoKeyProps) => {
+const PianoKey = ({ id, type }: PianoKeyProps) => {
   return (
     <button
       type="button"
       name="piano-key"
       className={`piano-key--${type === 'natural' ? 'white' : 'black'}`}
-      value={computerKey}
+      value={id}
     />
   );
 };
