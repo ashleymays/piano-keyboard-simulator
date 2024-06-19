@@ -11,7 +11,7 @@ const createDropdownOptions = (instruments: string[]) => {
 };
 
 export const InstrumentDropdown = () => {
-  const { instruments } = useInstruments();
+  const instruments = useInstruments();
 
   if (instruments.length === 0) {
     return null;

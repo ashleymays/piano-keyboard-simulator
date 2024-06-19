@@ -13,5 +13,5 @@ export const useInstruments = () => {
     dispatch(loadInstruments());
   }, []);
 
-  return { instruments };
+  return instruments;
 };
