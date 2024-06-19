@@ -1,2 +1,2 @@
-export * from './use-audio';
+export * from './use-audio-samples';
 export * from './slice';
