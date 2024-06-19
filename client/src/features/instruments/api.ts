@@ -9,6 +9,6 @@ export const getInstruments = async () => {
 };
 
 const fetchInstruments = async () => {
-  const response = await fetch(`${import.meta.env.API_URL}/instruments`);
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/instruments`);
   return response.json();
 };

@@ -7,7 +7,7 @@ export const loadInstruments = createAsyncThunk(
 );
 
 const initialState = {
-  instruments: [],
+  names: [],
   isLoading: false,
   error: null
 };
@@ -22,7 +22,7 @@ const slice = createSlice({
     });
     builder.addCase(loadInstruments.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.instruments = action.payload;
+      state.names = action.payload;
     });
     builder.addCase(loadInstruments.rejected, (state, action) => {
       state.isLoading = false;

@@ -4,7 +4,9 @@ import { loadInstruments } from '~/features/instruments';
 import type { RootState, AppDispatch } from '~/features/store';
 
 export const useInstruments = () => {
-  const instruments = useSelector((state: RootState) => state.instruments);
+  const instruments = useSelector(
+    (state: RootState) => state.instruments.names
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
