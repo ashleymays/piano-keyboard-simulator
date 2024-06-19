@@ -1,4 +1,5 @@
 export type PianoKey = {
+  computerKey: string;
   note:
     | 'C'
     | 'Db'
@@ -16,10 +17,4 @@ export type PianoKey = {
   type: 'natural' | 'flat';
 };
 
-export type KeysMap = Map<string, PianoKey>;
-
-export type State = {
-  keysMapWrapper: {
-    keysMap: KeysMap;
-  };
-};
+export type KeysMap = PianoKey[];
