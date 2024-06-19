@@ -1,7 +1,5 @@
 import { toast } from 'react-hot-toast';
-import { useKeysMap } from '~/features/keys-map';
-
-import type { PianoKey, KeysMap } from '~/features/keys-map';
+import { useKeysMap, type PianoKey, type KeysMap } from '~/features/keys-map';
 
 const getPitch = (pianoKey: PianoKey) => {
   const { note, octave } = pianoKey;
