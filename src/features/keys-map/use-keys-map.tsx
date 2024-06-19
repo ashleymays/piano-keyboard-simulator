@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { raiseOctave, lowerOctave } from './slice';
 import type { RootState } from '../store';
 
-export const usePianoKeys = () => {
-  const pianoKeys = useSelector((state: RootState) => state.pianoKeys);
+export const useKeysMap = () => {
+  const keysMap = useSelector((state: RootState) => state.keysMap);
   const dispatch = useDispatch();
 
   const handleRaiseOctave = () => {
@@ -15,7 +15,7 @@ export const usePianoKeys = () => {
   };
 
   return {
-    pianoKeys,
+    keysMap,
     raiseOctave: handleRaiseOctave,
     lowerOctave: handleLowerOctave
   };
