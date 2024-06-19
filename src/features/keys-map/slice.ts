@@ -1,7 +1,27 @@
-import { create } from 'zustand';
-import type { KeysMap, State } from './types';
+import { createSlice } from '@reduxjs/toolkit';
+import { serify, defaultOptions } from '@karmaniverous/serify-deserify';
 
-const keysMap: KeysMap = new Map([
+export type PianoKey = {
+  note:
+    | 'C'
+    | 'Db'
+    | 'D'
+    | 'Eb'
+    | 'E'
+    | 'F'
+    | 'Gb'
+    | 'G'
+    | 'Ab'
+    | 'A'
+    | 'Bb'
+    | 'B';
+  octave: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  type: 'natural' | 'flat';
+};
+
+export type KeysMap = Map<string, PianoKey>;
+
+const initialKeysMap: KeysMap = new Map([
   ['q', { note: 'C', octave: 3, type: 'natural' }],
   ['2', { note: 'Db', octave: 3, type: 'flat' }],
   ['w', { note: 'D', octave: 3, type: 'natural' }],
@@ -40,6 +60,52 @@ const keysMap: KeysMap = new Map([
   ['.', { note: 'B', octave: 5, type: 'natural' }]
 ]);
 
-export const useKeysMapStore = create<State>(() => ({
-  keysMapWrapper: { keysMap }
-}));
+const shiftOctaveUp = (keysMap: KeysMap) => {
+  return shiftOctave(keysMap, 1);
+};
+
+const shiftOctaveDown = (keysMap: KeysMap) => {
+  return shiftOctave(keysMap, -1);
+};
+
+const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
+  const newKeysMap: KeysMap = new Map(keysMap);
+
+  newKeysMap.forEach((pianoKey) => {
+    pianoKey.octave += incrementValue;
+  });
+
+  return newKeysMap;
+};
+
+const slice = createSlice({
+  name: 'keysMap',
+  initialState: serify(initialKeysMap, defaultOptions),
+  reducers: {
+    raiseOctave(keysMap: KeysMap) {
+      const HIGHEST_POSSIBLE_OCTAVE = 7;
+      const highestPianoKey = Array.from(keysMap.values()).pop();
+
+      if (highestPianoKey.octave === HIGHEST_POSSIBLE_OCTAVE) {
+        return keysMap;
+      }
+
+      return shiftOctaveUp(keysMap);
+    },
+
+    lowerOctave(keysMap: KeysMap) {
+      const LOWEST_POSSIBLE_OCTAVE = 1;
+      const lowestPianoKey = Array.from(keysMap.values())[0];
+
+      if (lowestPianoKey.octave === LOWEST_POSSIBLE_OCTAVE) {
+        return keysMap;
+      }
+
+      return shiftOctaveDown(keysMap);
+    }
+  }
+});
+
+export const { raiseOctave, lowerOctave } = slice.actions;
+
+export const reducer = slice.reducer;
