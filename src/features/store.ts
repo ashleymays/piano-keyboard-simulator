@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { reducer as pianoKeysReducer } from './piano-keys/slice';
+import { reducer as pianoKeysReducer } from './piano-keys';
 
 export const combinedReducer = combineReducers({
   pianoKeys: pianoKeysReducer
