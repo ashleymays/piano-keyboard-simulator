@@ -26,7 +26,7 @@ const slice = createSlice({
     });
     builder.addCase(loadAudioSamples.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.error.message;
     });
   }
 });
