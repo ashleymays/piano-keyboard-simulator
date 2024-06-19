@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { reducer as keysMapReducer } from './keys-map/slice';
+import { reducer as pianoKeysReducer } from './piano-keys/slice';
 
 export const combinedReducer = combineReducers({
-  keysMap: keysMapReducer
+  pianoKeys: pianoKeysReducer
 });
 
 export type RootState = ReturnType<typeof combinedReducer>;

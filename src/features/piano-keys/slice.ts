@@ -19,9 +19,9 @@ export type PianoKey = {
   type: 'natural' | 'flat';
 };
 
-export type KeysMap = PianoKey[];
+export type PianoKeys = PianoKey[];
 
-const initialState: KeysMap = [
+const initialState: PianoKeys = [
   { computerKey: 'q', note: 'C', octave: 3, type: 'natural' },
   { computerKey: '2', note: 'Db', octave: 3, type: 'flat' },
   { computerKey: 'w', note: 'D', octave: 3, type: 'natural' },
@@ -60,39 +60,39 @@ const initialState: KeysMap = [
   { computerKey: '.', note: 'B', octave: 5, type: 'natural' }
 ];
 
-const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
-  keysMap.forEach((pianoKey) => {
+const shiftOctave = (pianoKeys: PianoKeys, incrementValue: number) => {
+  pianoKeys.forEach((pianoKey) => {
     pianoKey.octave += incrementValue;
   });
 };
 
-const shiftOctaveUp = (keysMap: KeysMap) => {
-  return shiftOctave(keysMap, 1);
+const shiftOctaveUp = (pianoKeys: PianoKeys) => {
+  return shiftOctave(pianoKeys, 1);
 };
 
-const shiftOctaveDown = (keysMap: KeysMap) => {
-  return shiftOctave(keysMap, -1);
+const shiftOctaveDown = (pianoKeys: PianoKeys) => {
+  return shiftOctave(pianoKeys, -1);
 };
 
 const slice = createSlice({
-  name: 'keysMap',
+  name: 'pianoKeys',
   initialState,
   reducers: {
-    raiseOctave(keysMap: KeysMap) {
+    raiseOctave(pianoKeys: PianoKeys) {
       const HIGHEST_POSSIBLE_OCTAVE = 7;
-      const highestPianoKey = keysMap[keysMap.length - 1];
+      const highestPianoKey = pianoKeys[pianoKeys.length - 1];
 
       if (highestPianoKey.octave < HIGHEST_POSSIBLE_OCTAVE) {
-        shiftOctaveUp(keysMap);
+        shiftOctaveUp(pianoKeys);
       }
     },
 
-    lowerOctave(keysMap: KeysMap) {
+    lowerOctave(pianoKeys: PianoKeys) {
       const LOWEST_POSSIBLE_OCTAVE = 1;
-      const lowestPianoKey = keysMap[0];
+      const lowestPianoKey = pianoKeys[0];
 
       if (lowestPianoKey.octave > LOWEST_POSSIBLE_OCTAVE) {
-        shiftOctaveDown(keysMap);
+        shiftOctaveDown(pianoKeys);
       }
     }
   }
