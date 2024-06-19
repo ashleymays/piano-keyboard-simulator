@@ -12,7 +12,7 @@ export const initApplication = () => {
 
   app.use(globalErrorHandler);
 
-  const PORT = process.env.PORT || 8080;
+  const PORT = 8080;
 
   app.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`);

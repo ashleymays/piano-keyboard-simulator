@@ -1,6 +1,6 @@
 import Dropdown from 'react-dropdown';
-import { useInstrument } from './use-instrument';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
+import { useInstruments } from './use-instruments';
 
 // Temporary
 const options = [
@@ -18,20 +18,18 @@ const options = [
 ];
 
 export const InstrumentDropdown = () => {
-  const { instrument, handleInstrument } = useInstrument({
-    defaultInstrument: options[0].value
-  });
+  const { instruments } = useInstruments();
+  console.log(instruments);
 
   return (
     <Dropdown
       options={options}
-      value={instrument}
+      value={options[0].value}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"
       arrowClosed={<DownArrowIcon />}
       arrowOpen={<UpArrowIcon />}
-      onChange={({ value }) => handleInstrument(value)}
     />
   );
 };
