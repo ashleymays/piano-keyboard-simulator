@@ -1,0 +1,13 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - airbnb-base
+  - plugin:import/recommended
+  - plugin:prettier/recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+parser: '@typescript-eslint/parser'
+rules:
+  import/prefer-default-export: 'off'
+  import/no-unresolved: 'off'
