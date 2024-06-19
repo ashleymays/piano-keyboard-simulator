@@ -1,2 +1,2 @@
 export * from './use-keys-map';
-export * from './types';
+export type * from './slice';

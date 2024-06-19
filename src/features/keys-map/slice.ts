@@ -1,5 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { KeysMap } from './types';
+
+export type PianoKey = {
+  computerKey: string;
+  note:
+    | 'C'
+    | 'Db'
+    | 'D'
+    | 'Eb'
+    | 'E'
+    | 'F'
+    | 'Gb'
+    | 'G'
+    | 'Ab'
+    | 'A'
+    | 'Bb'
+    | 'B';
+  octave: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  type: 'natural' | 'flat';
+};
+
+export type KeysMap = PianoKey[];
 
 const initialState: KeysMap = [
   { computerKey: 'q', note: 'C', octave: 3, type: 'natural' },
@@ -40,18 +60,18 @@ const initialState: KeysMap = [
   { computerKey: '.', note: 'B', octave: 5, type: 'natural' }
 ];
 
+const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
+  keysMap.forEach((pianoKey) => {
+    pianoKey.octave += incrementValue;
+  });
+};
+
 const shiftOctaveUp = (keysMap: KeysMap) => {
   return shiftOctave(keysMap, 1);
 };
 
 const shiftOctaveDown = (keysMap: KeysMap) => {
   return shiftOctave(keysMap, -1);
-};
-
-const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
-  keysMap.forEach((pianoKey) => {
-    pianoKey.octave += incrementValue;
-  });
 };
 
 const slice = createSlice({
@@ -62,7 +82,7 @@ const slice = createSlice({
       const HIGHEST_POSSIBLE_OCTAVE = 7;
       const highestPianoKey = keysMap[keysMap.length - 1];
 
-      if (highestPianoKey.octave !== HIGHEST_POSSIBLE_OCTAVE) {
+      if (highestPianoKey.octave < HIGHEST_POSSIBLE_OCTAVE) {
         shiftOctaveUp(keysMap);
       }
     },
@@ -71,7 +91,7 @@ const slice = createSlice({
       const LOWEST_POSSIBLE_OCTAVE = 1;
       const lowestPianoKey = keysMap[0];
 
-      if (lowestPianoKey.octave !== LOWEST_POSSIBLE_OCTAVE) {
+      if (lowestPianoKey.octave > LOWEST_POSSIBLE_OCTAVE) {
         shiftOctaveDown(keysMap);
       }
     }
