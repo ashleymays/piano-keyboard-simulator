@@ -10,7 +10,8 @@ export const getAudioSamples = async (instrument: string) => {
 
 const fetchAudioSamples = async (instrument: string) => {
   const response = await fetch(
-    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instrument/${instrument}/audio`
+    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
   );
+
   return response.json();
 };
