@@ -5,12 +5,12 @@ export const useNotificationLimit = () => {
   const { toasts } = useToasterStore();
 
   const limitNotifications = () => {
-    const TOAST_LIMIT = 1;
+    const LIMIT = 1;
 
     toasts
-      .filter((t) => t.visible)
-      .filter((_, i) => i >= TOAST_LIMIT)
-      .forEach((t) => toast.dismiss(t.id));
+      .filter((notification) => notification.visible)
+      .filter((_, index) => index >= LIMIT)
+      .forEach((notification) => toast.dismiss(notification.id));
   };
 
   useEffect(() => {
