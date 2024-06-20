@@ -1,5 +1,6 @@
 import Dropdown from 'react-dropdown';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
+import { Spinner } from '~/components/spinner';
 import { useInstruments } from './use-instruments';
 
 const createDropdownOptions = (instruments: string[]) => {
@@ -13,7 +14,9 @@ const createDropdownOptions = (instruments: string[]) => {
 export const InstrumentDropdown = () => {
   const instruments = useInstruments();
 
-  return (
+  return instruments.length === 0 ? (
+    <Spinner />
+  ) : (
     <Dropdown
       options={createDropdownOptions(instruments)}
       value={instruments[0] || 'Loading...'}

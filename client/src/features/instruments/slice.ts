@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getInstruments } from './api';
 
-export const loadInstruments = createAsyncThunk(
-  'instruments/load',
-  () => getInstruments()
+export const loadInstruments = createAsyncThunk('instruments/load', () =>
+  getInstruments()
 );
 
 const initialState = {
