@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import toast, { useToasterStore } from 'react-hot-toast';
 
-export const useNotifications = () => {
+export const useNotificationLimit = () => {
   const { toasts } = useToasterStore();
 
   const limitNotifications = () => {
