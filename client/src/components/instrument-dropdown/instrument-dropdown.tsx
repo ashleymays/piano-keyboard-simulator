@@ -1,8 +1,8 @@
 import Dropdown from 'react-dropdown';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 import { Spinner } from '~/components/spinner';
-import { useInstruments } from './use-instruments';
-import { useInstrument } from './use-instrument';
+import { useInstrumentNames } from './use-instrument-names';
+import { useInstrumentAudio } from './use-instrument-audio';
 
 const createDropdownOptions = (instruments: string[]) => {
   return instruments.map((instrument) => ({
@@ -13,8 +13,8 @@ const createDropdownOptions = (instruments: string[]) => {
 };
 
 export const InstrumentDropdown = () => {
-  const instruments = useInstruments();
-  const loadAudio = useInstrument();
+  const instruments = useInstrumentNames();
+  const loadAudio = useInstrumentAudio();
 
   return instruments.length === 0 ? (
     <Spinner />

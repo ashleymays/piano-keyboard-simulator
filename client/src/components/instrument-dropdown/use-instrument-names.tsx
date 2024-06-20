@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadInstruments } from '~/features/instruments';
 import type { RootState, AppDispatch } from '~/features/store';
 
-export const useInstruments = () => {
+export const useInstrumentNames = () => {
   const instruments = useSelector(
     (state: RootState) => state.instruments.names
   );
