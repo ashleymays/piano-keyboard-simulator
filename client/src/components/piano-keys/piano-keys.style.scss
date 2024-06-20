@@ -5,7 +5,7 @@ $wrapper-radius: 1.2rem;
 $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
 
 .piano-keys-wrapper {
-  width: 100%;
+  flex: 20;
   display: flex;
   padding: $spacing-between-piano-keys;
   border-radius: $wrapper-radius;
@@ -16,7 +16,13 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
 
 .piano-key--white {
   flex: 1;
-  color: #151a1e;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #7e7f81;
   background: linear-gradient(#dbdbdb, #f7f7f7);
   margin-right: $spacing-between-piano-keys;
   border-radius: 0 0 $white-key-border-radius $white-key-border-radius;

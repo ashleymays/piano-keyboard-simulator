@@ -16,18 +16,17 @@ export const PianoKeys = () => {
   );
 };
 
-type PianoKeyProps = {
-  id: PianoKeyType['id'];
-  type: PianoKeyType['type'];
-};
+const PianoKey = ({ id, type, note, octave }: PianoKeyType) => {
+  const pitch = `${note}${octave}`;
 
-const PianoKey = ({ id, type }: PianoKeyProps) => {
   return (
     <button
       type="button"
       name="piano-key"
       className={`piano-key--${type === 'natural' ? 'white' : 'black'}`}
       value={id}
-    />
+    >
+      {type === 'natural' && pitch}
+    </button>
   );
 };

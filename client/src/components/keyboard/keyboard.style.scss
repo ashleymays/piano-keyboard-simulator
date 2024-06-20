@@ -6,7 +6,6 @@
   inset: 0;
   display: flex;
   flex-flow: column;
-  gap: 4em;
   background: #fafafa;
   box-shadow: 0 0.75rem 0 #000000d9;
   border-radius: 2.5em;
@@ -17,8 +16,8 @@
     We use the width to get the height so that the scale of the 
     keyboard and its components is consistent across screen sizes.
   */
-  width: 115rem;
-  height: 115rem * calc(9 / 28);
+  width: 120rem;
+  height: 120rem * calc(30 / 100);
 
   &__row {
     display: flex;
@@ -26,11 +25,12 @@
   }
 
   &__row--top {
+    flex: 1;
     align-items: baseline;
   }
 
   &__row--bottom {
-    height: 100%;
+    flex: 1.5;
     gap: 4em;
   }
 
