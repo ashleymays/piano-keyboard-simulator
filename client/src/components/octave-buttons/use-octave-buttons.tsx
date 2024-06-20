@@ -1,29 +1,37 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { useKeysMap, type PianoKey, type KeysMap } from '~/features/keys-map';
-
-const getPitch = (pianoKey: PianoKey) => {
-  const { note, octave } = pianoKey;
-
-  return `${note}${octave}`;
-};
-
-const getOctaveRange = (keysMap: KeysMap) => {
-  const lowestPitch = getPitch(keysMap[0]);
-  const highestPitch = getPitch(keysMap[keysMap.length - 1]);
-
-  return `Note Range: ${lowestPitch} - ${highestPitch}`;
-};
+import {
+  raiseOctave,
+  lowerOctave,
+  type PianoKey,
+  type KeysMap
+} from '~/features/keys-map';
+import type { RootState, AppDispatch } from '~/features/store';
 
 export const useOctaveButtons = () => {
-  const { keysMap, raiseOctave, lowerOctave } = useKeysMap();
+  const keysMap = useSelector((state: RootState) => state.keysMap);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const getPitch = (pianoKey: PianoKey) => {
+    const { note, octave } = pianoKey;
+
+    return `${note}${octave}`;
+  };
+
+  const getOctaveRange = (keysMap: KeysMap) => {
+    const lowestPitch = getPitch(keysMap[0]);
+    const highestPitch = getPitch(keysMap[keysMap.length - 1]);
+
+    return `Note Range: ${lowestPitch} - ${highestPitch}`;
+  };
 
   const handleRaiseOctave = () => {
-    raiseOctave();
+    dispatch(raiseOctave());
     toast(getOctaveRange(keysMap));
   };
 
   const handleLowerOctave = () => {
-    lowerOctave();
+    dispatch(lowerOctave());
     toast(getOctaveRange(keysMap));
   };
 

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getInstruments } from './api';
 
 export const loadInstruments = createAsyncThunk(
-  'instruments/loadInstruments',
+  'instruments/load',
   () => getInstruments()
 );
 

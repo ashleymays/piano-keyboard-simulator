@@ -1,7 +1,8 @@
-import { useKeysMap, type PianoKey as PianoKeyType } from '~/features/keys-map';
+import { usePianoKeys } from './use-piano-keys';
+import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
-  const { keysMap } = useKeysMap();
+  const keysMap = usePianoKeys();
 
   return (
     <div className="piano-keys-wrapper">

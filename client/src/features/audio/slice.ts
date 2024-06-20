@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAudioSamples } from './api';
 
 export const loadAudioSamples = createAsyncThunk(
-  'audio/loadAudioSamples',
+  'audio/load',
   (instrument: string) => getAudioSamples(instrument)
 );
 
