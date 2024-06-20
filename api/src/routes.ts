@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import * as controllers from './controllers.ts';
+import { getInstrumentAudio } from './instrument-audio/controller.ts';
+import { getInstrumentNames } from './instrument-names/controller.ts';
 
 export const appRouter = Router();
 
-appRouter.get('/instruments', controllers.getInstrumentNames);
-appRouter.get('/instruments/:name/audio', controllers.getInstrumentAudio);
+appRouter.get('/instruments', getInstrumentNames);
+appRouter.get('/instruments/:name/audio', getInstrumentAudio);

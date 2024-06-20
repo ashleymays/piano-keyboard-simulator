@@ -1,5 +1,5 @@
-import { storage, repositoryConfig } from '../octokit.ts';
-import { components } from '@octokit/openapi-types';
+import { storage, repositoryConfig } from '~/octokit/config.ts';
+import type { components } from '@octokit/openapi-types';
 
 type AudioMap = {
   [pitch: string]: string;
@@ -17,7 +17,7 @@ type DirectoryFile = components['schemas']['content-directory'][number];
  *
  * @returns an object mapping a note to a link to download the sound for that note.
  */
-export const getInstrumentAudio = async (params: { name: string }) => {
+export const findInstrumentAudio = async (params: { name: string }) => {
   const files = await fetchInstrumentAudio(params.name);
 
   if (!Array.isArray(files)) {

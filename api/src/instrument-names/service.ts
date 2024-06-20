@@ -1,6 +1,6 @@
-import { storage, repositoryConfig } from '../octokit.ts';
+import { storage, repositoryConfig } from '~/octokit/config.ts';
 
-export const getInstrumentNames = async () => {
+export const findInstrumentNames = async () => {
   const folders = await fetchInstrumentFolders();
 
   if (Array.isArray(folders)) {
