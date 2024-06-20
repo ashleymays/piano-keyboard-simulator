@@ -42,7 +42,7 @@ $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radiu
 
   &:first-child {
     border-top-color: #ffffff;
-    border-top-width: 2px;
+    border-top-width: 0.1em;
     border-bottom-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
     margin-bottom: $spacing-between-btns;
