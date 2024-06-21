@@ -9,9 +9,15 @@ export const getInstruments = async () => {
 };
 
 const fetchInstruments = async () => {
-  const response = await fetch(
-    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
-  );
+  const controller = new AbortController();
+  const url = `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`;
+
+  const timeoutDuration = 5 * 1000;
+  const id = setTimeout(() => controller.abort(), timeoutDuration);
+
+  const response = await fetch(url, { signal: controller.signal });
+
+  clearTimeout(id);
 
   return response.json();
 };

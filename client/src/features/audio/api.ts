@@ -13,15 +13,19 @@ export const getAudioSamples = async (instrument: string) => {
     throw new Error(response.error);
   }
 
-  // const buffers = await getToneAudioBuffers(response.data);
-
-  return response.data;
+  return getToneAudioBuffers(response.data);
 };
 
 const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
-  const response = await fetch(
-    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
-  );
+  const controller = new AbortController();
+  const url = `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`;
+
+  const timeoutDuration = 5 * 1000;
+  const id = setTimeout(() => controller.abort(), timeoutDuration);
+
+  const response = await fetch(url, { signal: controller.signal });
+
+  clearTimeout(id);
 
   return response.json();
 };

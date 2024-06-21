@@ -12,7 +12,14 @@ export const combinedReducer = combineReducers({
 export type RootState = ReturnType<typeof combinedReducer>;
 
 export const store = configureStore({
-  reducer: combinedReducer
+  reducer: combinedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredPaths: ['audio.samples'],
+        ignoredActions: ['audio/load/fulfilled']
+      }
+    })
 });
 
 export type AppDispatch = typeof store.dispatch;
