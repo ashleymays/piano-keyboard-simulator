@@ -1,40 +1,35 @@
-import { useState, useEffect, type MouseEvent as ReactMouseEvent } from 'react';
-import { useSelector } from 'react-redux';
-import { Player } from 'tone';
+import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { togglePress } from '~/features/keys-map';
+import { useAudioSamples } from './use-audio-samples';
 import type { RootState } from '~/features/store';
 
 export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLButtonElement>;
 
 export const usePianoKeys = () => {
-  const [pressedKeys, setPressedKeys] = useState({});
+  const [audioSamples, playAudio] = useAudioSamples();
   const keysMap = useSelector((state: RootState) => state.keysMap);
-  const audioSamples = useSelector((state: RootState) => state.audio.samples);
-
-  const getPitch = (keyId: string) => {
-    const pianoKey = keysMap.find((pianoKey) => pianoKey.id === keyId);
-
-    return pianoKey ? `${pianoKey.note}${pianoKey.octave}` : null;
-  };
-
-  const playNoteAtPitch = (pitch: string) => {
-    const player = new Player().toDestination();
-    player.buffer = audioSamples.get(pitch);
-    player.start();
-  };
+  const dispatch = useDispatch();
 
   const playPianoKey = (event: PianoKeyEvent) => {
     const keyId = getKeyIdByEvent(event);
-    const pitch = getPitch(keyId);
+    const pianoKey = keysMap.find((key) => key.id === keyId);
 
-    if (pitch && !pressedKeys[keyId]) {
-      playNoteAtPitch(pitch);
-      setPressedKeys({ ...pressedKeys, [keyId]: true });
+    if (!pianoKey) {
+      return;
+    }
+
+    const pitch = `${pianoKey.note}${pianoKey.octave}`;
+
+    if (pitch && !pianoKey.isPressed) {
+      playAudio(pitch);
+      dispatch(togglePress(keyId));
     }
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
     const keyId = getKeyIdByEvent(event);
-    setPressedKeys({ ...pressedKeys, [keyId]: false });
+    dispatch(togglePress(keyId));
   };
 
   useEffect(() => {
@@ -45,9 +40,9 @@ export const usePianoKeys = () => {
       document.removeEventListener('keydown', playPianoKey);
       document.removeEventListener('keyup', releasePianoKey);
     };
-  }, [keysMap, audioSamples, pressedKeys]);
+  }, [keysMap, audioSamples]);
 
-  return { keysMap, pressedKeys, playPianoKey, releasePianoKey };
+  return [keysMap, playPianoKey, releasePianoKey] as const;
 };
 
 const getKeyIdByEvent = (event: PianoKeyEvent) => {
