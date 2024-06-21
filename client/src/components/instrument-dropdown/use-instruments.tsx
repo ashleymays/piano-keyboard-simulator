@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { loadAudioSamples } from '~/features/audio';
 import { loadInstruments } from '~/features/instruments';
 import type { RootState, AppDispatch } from '~/features/store';
@@ -14,29 +13,21 @@ export const useInstruments = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const loadInstrumentNames = async () => {
-    const result = await dispatch(loadInstruments());
-    unwrapResult(result);
-    return result.payload;
+  const loadInstrumentNames = (): Promise<string[]> => {
+    return dispatch(loadInstruments()).unwrap();
   };
 
   const loadAudio = async (newInstrument: string) => {
     setCurrentInstrument(newInstrument);
-    const result = await dispatch(loadAudioSamples(newInstrument));
-    unwrapResult(result);
-  };
-
-  const loadInstrumentsAndAudio = async () => {
-    const instrumentNames = await loadInstrumentNames();
-    await loadAudio(instrumentNames[0]);
+    await dispatch(loadAudioSamples(newInstrument)).unwrap();
   };
 
   const createAsyncHandler =
-    (handler: (any) => Promise<void>) =>
-    async (params = null) => {
+    (asyncFn: (any) => Promise<void>) =>
+    async (params = undefined) => {
       try {
         toast.loading('Loading...');
-        await handler(params);
+        await asyncFn(params);
         toast.success('Loaded successfully');
       } catch (error) {
         console.log(error);
@@ -46,12 +37,13 @@ export const useInstruments = () => {
       }
     };
 
-  const initInstruments = createAsyncHandler(async () => {
-    await loadInstrumentsAndAudio();
-  });
-
   const handleAudio = createAsyncHandler(async (newInstrument: string) => {
     await loadAudio(newInstrument);
+  });
+
+  const initInstruments = createAsyncHandler(async () => {
+    const instrumentNames = await loadInstrumentNames();
+    await loadAudio(instrumentNames[0]);
   });
 
   useEffect(() => {

@@ -11,8 +11,7 @@ const createDropdownOptions = (instruments: string[]) => {
 };
 
 export const InstrumentDropdown = () => {
-  const [instruments, currentInstrument, loadAudioForInstrument] =
-    useInstruments();
+  const [instruments, currentInstrument, loadAudio] = useInstruments();
 
   return (
     <Dropdown
@@ -23,7 +22,7 @@ export const InstrumentDropdown = () => {
       menuClassName="instrument-dropdown__options"
       arrowClosed={<DownArrowIcon />}
       arrowOpen={<UpArrowIcon />}
-      onChange={({ value }) => loadAudioForInstrument(value)}
+      onChange={({ value }) => loadAudio(value)}
     />
   );
 };
