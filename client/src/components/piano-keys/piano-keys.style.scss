@@ -37,7 +37,8 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
     border-top-right-radius: $white-key-border-radius;
   }
 
-  &.pressed-piano-key {
+  &.pressed-piano-key,
+  &:active {
     background: linear-gradient(#a9a9a9, #bbbbbb);
   }
 }
@@ -54,7 +55,8 @@ $black-key-width: 2%;
   box-shadow: 0 0.5em 0.7em #00000059;
   border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
 
-  &.pressed-piano-key {
+  &.pressed-piano-key,
+  &:active {
     background: #4f4f4f;
   }
 }

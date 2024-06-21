@@ -20,7 +20,7 @@ const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
   const controller = new AbortController();
   const url = `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`;
 
-  const timeoutDuration = 5 * 1000;
+  const timeoutDuration = 10 * 1000;
   const apiCallTimerId = setTimeout(() => controller.abort(), timeoutDuration);
 
   const response = await fetch(url, { signal: controller.signal });

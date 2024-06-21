@@ -1,7 +1,6 @@
 import Dropdown from 'react-dropdown';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
-import { useInstrumentNames } from './use-instrument-names';
-import { useInstrumentAudio } from './use-instrument-audio';
+import { useInstruments } from './use-instruments';
 
 const createDropdownOptions = (instruments: string[]) => {
   return instruments.map((instrument) => ({
@@ -12,18 +11,19 @@ const createDropdownOptions = (instruments: string[]) => {
 };
 
 export const InstrumentDropdown = () => {
-  const instruments = useInstrumentNames();
-  const loadAudio = useInstrumentAudio();
+  const [instruments, currentInstrument, loadAudioForInstrument] =
+    useInstruments();
 
   return (
     <Dropdown
       options={createDropdownOptions(instruments)}
+      value={currentInstrument}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"
       arrowClosed={<DownArrowIcon />}
       arrowOpen={<UpArrowIcon />}
-      onChange={({ value }) => loadAudio(value)}
+      onChange={({ value }) => loadAudioForInstrument(value)}
     />
   );
 };
