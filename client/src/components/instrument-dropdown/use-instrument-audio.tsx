@@ -17,29 +17,27 @@ export const useInstrumentAudio = () => {
 
   const handleAudio = async (instrument: string) => {
     try {
-      toast.loading('Loading...');
+      toast.loading('Loading audio...');
       await loadAudio(instrument);
-      toast.success('Loaded successfully');
+      toast.success('Audio loaded successfully');
     } catch (error) {
       console.log(error);
-      toast.error(
-        'There was an issue getting the requested resource. Please reload the page and try again.'
-      );
+      toast.error('There was an issue fetching the audio. Please try again.');
     }
   };
 
   const initAudio = async () => {
     try {
-      toast.loading('Loading...');
+      toast.loading('Loading instruments...');
 
       const instrumentNames = await loadInstrumentNames();
       loadAudio(instrumentNames[0]);
 
-      toast.success('Loaded successfully');
+      toast.success('Instruments loaded successfully');
     } catch (error) {
       console.log(error);
       toast.error(
-        'There was an issue getting the requested resource. Please reload the page and try again.'
+        'There was an issue loading the instruments. Please reload the page and try again.'
       );
     }
   };
