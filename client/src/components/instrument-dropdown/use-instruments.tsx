@@ -7,6 +7,7 @@ import type { RootState, AppDispatch } from '~/features/store';
 
 export const useInstruments = () => {
   const [currentInstrument, setCurrentInstrument] = useState(null);
+
   const instruments = useSelector(
     (state: RootState) => state.instruments.names
   );
@@ -22,21 +23,6 @@ export const useInstruments = () => {
     await dispatch(loadAudioSamples(newInstrument)).unwrap();
   };
 
-  const createAsyncHandler =
-    (asyncFn: (any) => Promise<void>) =>
-    async (params = undefined) => {
-      try {
-        toast.loading('Loading...');
-        await asyncFn(params);
-        toast.success('Loaded successfully');
-      } catch (error) {
-        console.log(error);
-        toast.error(
-          'There was an issue getting the requested resource. Please reload the page and try again.'
-        );
-      }
-    };
-
   const handleAudio = createAsyncHandler(async (newInstrument: string) => {
     await loadAudio(newInstrument);
   });
@@ -51,4 +37,21 @@ export const useInstruments = () => {
   }, []);
 
   return [instruments, currentInstrument, handleAudio] as const;
+};
+
+type AsyncFunction = (params: any) => Promise<void>;
+
+const createAsyncHandler = (asyncFn: AsyncFunction) => {
+  return async (params = undefined) => {
+    try {
+      toast.loading('Loading...');
+      await asyncFn(params);
+      toast.success('Loaded successfully');
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        'There was an issue getting the requested resource. Please reload the page and try again.'
+      );
+    }
+  };
 };
