@@ -13,11 +13,11 @@ const fetchInstruments = async () => {
   const url = `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`;
 
   const timeoutDuration = 5 * 1000;
-  const id = setTimeout(() => controller.abort(), timeoutDuration);
+  const apiCallTimerId = setTimeout(() => controller.abort(), timeoutDuration);
 
   const response = await fetch(url, { signal: controller.signal });
 
-  clearTimeout(id);
+  clearTimeout(apiCallTimerId);
 
   return response.json();
 };

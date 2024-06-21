@@ -21,11 +21,11 @@ const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
   const url = `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`;
 
   const timeoutDuration = 5 * 1000;
-  const id = setTimeout(() => controller.abort(), timeoutDuration);
+  const apiCallTimerId = setTimeout(() => controller.abort(), timeoutDuration);
 
   const response = await fetch(url, { signal: controller.signal });
 
-  clearTimeout(id);
+  clearTimeout(apiCallTimerId);
 
   return response.json();
 };
