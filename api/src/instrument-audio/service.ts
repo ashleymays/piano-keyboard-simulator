@@ -47,7 +47,6 @@ const createAudioMap = async (files: DirectoryFile[]) => {
   validateNumberOfAudioFiles(audioFileUrls, pitches);
 
   const audioFilesAsBase64 = await convertAudioFilesToBase64(audioFileUrls);
-  console.log(audioFileUrls[0]);
 
   return mapPitchesToAudioFiles(pitches, audioFilesAsBase64);
 };
@@ -97,9 +96,11 @@ const convertAudioFilesToBase64 = async (audioFileUrls: string[]) => {
   const arrayBuffers = loadedAudioFiles.map((file) => file.arrayBuffer());
   const loadedArrayBuffers = await Promise.all(arrayBuffers);
 
-  return loadedArrayBuffers.map((arrayBuffer) =>
+  const base64Files = loadedArrayBuffers.map((arrayBuffer) =>
     Buffer.from(arrayBuffer).toString('base64')
   );
+
+  return base64Files.map((file) => `data:application/octet;base64,${file}`);
 };
 
 const mapPitchesToAudioFiles = (pitches: string[], audioFiles: string[]) => {

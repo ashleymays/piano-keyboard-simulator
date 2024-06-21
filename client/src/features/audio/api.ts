@@ -2,7 +2,7 @@ import { ToneAudioBuffers } from 'tone';
 
 type AudioMap = {
   [pitch: string]: string;
-}
+};
 
 type ApiResponse = { data: AudioMap } & { error: string };
 
@@ -13,9 +13,7 @@ export const getAudioSamples = async (instrument: string) => {
     throw new Error(response.error);
   }
 
-  console.log(response.data);
-  const loaded = await getToneAudioBuffers(response.data);
-  console.log(loaded);
+  // const buffers = await getToneAudioBuffers(response.data);
 
   return response.data;
 };
@@ -33,7 +31,7 @@ const getToneAudioBuffers = (urls: AudioMap): Promise<ToneAudioBuffers> => {
     const buffers = new ToneAudioBuffers({
       urls,
       onload: () => resolve(buffers),
-      onerror: (error) => reject(error) 
-    })
-  })
-}
+      onerror: (error) => reject(error)
+    });
+  });
+};

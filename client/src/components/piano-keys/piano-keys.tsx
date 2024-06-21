@@ -5,7 +5,10 @@ export const PianoKeys = () => {
   const [keysMap, playPianoKey] = usePianoKeys();
 
   return (
-    <div className="piano-keys-wrapper" onClick={playPianoKey}>
+    <div
+      className="piano-keys-wrapper"
+      onClick={playPianoKey}
+    >
       {keysMap.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}
