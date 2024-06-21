@@ -1,6 +1,8 @@
 import Dropdown from 'react-dropdown';
+import { useSelector } from 'react-redux';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
-import { useInstruments } from './use-instruments';
+import { useInstrumentAudio } from './use-instrument-audio';
+import { useInstrumentNames } from './use-instrument-names';
 
 const createDropdownOptions = (instruments: string[]) => {
   return instruments.map((instrument) => ({
@@ -11,12 +13,13 @@ const createDropdownOptions = (instruments: string[]) => {
 };
 
 export const InstrumentDropdown = () => {
-  const [instruments, currentInstrument, loadAudio] = useInstruments();
+  const [instruments] = useInstrumentNames();
+  const [instrument, loadAudio] = useInstrumentAudio();
 
   return (
     <Dropdown
       options={createDropdownOptions(instruments)}
-      value={currentInstrument}
+      value={instrument}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"
