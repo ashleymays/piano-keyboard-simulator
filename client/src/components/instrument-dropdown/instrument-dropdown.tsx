@@ -21,7 +21,6 @@ export const InstrumentDropdown = () => {
   ) : (
     <Dropdown
       options={createDropdownOptions(instruments)}
-      value={instruments[0]}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"

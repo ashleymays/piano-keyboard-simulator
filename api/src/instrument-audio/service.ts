@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+import { Buffer } from 'node:buffer';
 import { storage, repositoryConfig } from '~/octokit/config.ts';
 import type { components } from '@octokit/openapi-types';
 
@@ -38,14 +40,16 @@ const fetchInstrumentAudio = async (name: string) => {
   return response.data;
 };
 
-const createAudioMap = (files: DirectoryFile[]) => {
+const createAudioMap = async (files: DirectoryFile[]) => {
   const audioFileUrls = getAudioFileUrls(files);
-
-  validateAudioFileUrls(audioFileUrls);
-
   const pitches = getPitchesFromFileNames(files);
 
-  return mapPitchesToAudioFiles(pitches, audioFileUrls);
+  validateNumberOfAudioFiles(audioFileUrls, pitches);
+
+  const audioFilesAsBase64 = await convertAudioFilesToBase64(audioFileUrls);
+  console.log(audioFileUrls[0]);
+
+  return mapPitchesToAudioFiles(pitches, audioFilesAsBase64);
 };
 
 const getAudioFileUrls = (files: DirectoryFile[]) => {
@@ -60,7 +64,7 @@ const getPitchFromFileName = (fileName: string) => {
   const dotIndex = fileName.indexOf('.');
 
   if (dotIndex === -1) {
-    throw new Error('Audio file name is invalid.');
+    throw new Error('Audio file name is missing an extension.');
   }
 
   return fileName.slice(0, dotIndex);
@@ -72,12 +76,30 @@ const getPitchFromFileName = (fileName: string) => {
  * We check for 84 files because we don't use the notes `A0`, `Bb0`, `B0`, and `C7`.
  * These aren't used in the app, so at the moment, there's no reason to keep them.
  */
-const validateAudioFileUrls = (audioFileUrls: string[]) => {
+const validateNumberOfAudioFiles = (
+  audioFileUrls: string[],
+  pitches: string[]
+) => {
   const EXPECTED_NUMBER_OF_AUDIO_FILES = 84;
 
-  if (audioFileUrls.length !== EXPECTED_NUMBER_OF_AUDIO_FILES) {
-    throw new Error('Cannot get all audio files.');
+  if (
+    audioFileUrls.length !== EXPECTED_NUMBER_OF_AUDIO_FILES ||
+    pitches.length !== EXPECTED_NUMBER_OF_AUDIO_FILES
+  ) {
+    throw new Error('Could not get all audio files.');
   }
+};
+
+const convertAudioFilesToBase64 = async (audioFileUrls: string[]) => {
+  const audioFiles = audioFileUrls.map((url) => fetch(url));
+  const loadedAudioFiles = await Promise.all(audioFiles);
+
+  const arrayBuffers = loadedAudioFiles.map((file) => file.arrayBuffer());
+  const loadedArrayBuffers = await Promise.all(arrayBuffers);
+
+  return loadedArrayBuffers.map((arrayBuffer) =>
+    Buffer.from(arrayBuffer).toString('base64')
+  );
 };
 
 const mapPitchesToAudioFiles = (pitches: string[], audioFiles: string[]) => {

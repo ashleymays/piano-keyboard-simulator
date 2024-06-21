@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { RequestError } from 'octokit';
+import { NotFoundError, GeneralError } from '@ashleymays/nodejs-utils';
 import type { Request, Response, NextFunction } from 'express';
 import type { CustomError } from '@ashleymays/nodejs-utils';
 
@@ -13,7 +14,7 @@ export const globalErrorHandler = (
 
   res
     .status(err.status || err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
-    .json(error);
+    .json({ error });
 };
 
 const isOctokitError = (err: CustomError & RequestError) => {
@@ -22,7 +23,7 @@ const isOctokitError = (err: CustomError & RequestError) => {
 
 const parseOctokitError = (err: RequestError) => {
   if (err.status === StatusCodes.NOT_FOUND) {
-    return { message: 'The requested resource was not found. ' };
+    return new NotFoundError('The requested resource was not found. ');
   }
-  return { message: err.message };
+  return new GeneralError(err.message);
 };
