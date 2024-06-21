@@ -15,16 +15,14 @@ export const usePianoKeys = () => {
     const keyId = getKeyIdByEvent(event);
     const pianoKey = keysMap.find((key) => key.id === keyId);
 
-    if (!pianoKey) {
+    if (!pianoKey || pianoKey.isPressed) {
       return;
     }
 
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
 
-    if (pitch && !pianoKey.isPressed) {
-      playAudio(pitch);
-      dispatch(togglePress(keyId));
-    }
+    playAudio(pitch);
+    dispatch(togglePress(keyId));
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
