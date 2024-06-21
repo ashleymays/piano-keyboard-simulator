@@ -2,13 +2,10 @@ import { usePianoKeys } from './use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
-  const [keysMap, playPianoKey] = usePianoKeys();
+  const keysMap = usePianoKeys();
 
   return (
-    <div
-      className="piano-keys-wrapper"
-      onClick={playPianoKey}
-    >
+    <div className="piano-keys-wrapper">
       {keysMap.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}

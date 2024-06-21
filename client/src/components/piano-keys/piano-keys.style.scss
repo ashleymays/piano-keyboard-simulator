@@ -27,10 +27,6 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   margin-right: $spacing-between-piano-keys;
   border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
 
-  &--active {
-    background: linear-gradient(#a9a9a9, #bbbbbb);
-  }
-
   &:first-child {
     margin-left: 0;
     border-top-left-radius: $white-key-border-radius;
@@ -39,6 +35,10 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   &:last-child {
     margin-right: 0;
     border-top-right-radius: $white-key-border-radius;
+  }
+
+  &.pressed-piano-key {
+    background: linear-gradient(#a9a9a9, #bbbbbb);
   }
 }
 
@@ -54,8 +54,8 @@ $black-key-width: 2%;
   box-shadow: 0 0.5em 0.7em #00000059;
   border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
 
-  &--active {
-    background: #3f3f3f;
+  &.pressed-piano-key {
+    background: #4f4f4f;
   }
 }
 

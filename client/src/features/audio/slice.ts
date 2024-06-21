@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAudioSamples } from './api';
+import type { ToneAudioBuffers } from 'tone';
 
 export const loadAudioSamples = createAsyncThunk(
   'audio/load',
   (instrument: string) => getAudioSamples(instrument)
 );
 
-const initialState = {
-  samples: {},
+type Audio = {
+  samples: ToneAudioBuffers | null;
+  isLoading: boolean;
+  error: string | null;
+};
+
+const initialState: Audio = {
+  samples: null,
   isLoading: false,
   error: null
 };
