@@ -31,7 +31,7 @@ export const useInstrumentAudio = () => {
       toast.loading('Loading instruments...');
 
       const instrumentNames = await loadInstrumentNames();
-      loadAudio(instrumentNames[0]);
+      await loadAudio(instrumentNames[0]);
 
       toast.success('Instruments loaded successfully');
     } catch (error) {
