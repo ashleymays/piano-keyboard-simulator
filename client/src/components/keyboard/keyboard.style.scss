@@ -9,6 +9,7 @@
   background: #fafafa;
   box-shadow: 0 0.75rem 0 #000000d9;
   border-radius: 2.5em;
+  gap: 0.5em;
   padding: 4em;
   touch-action: manipulation;
 
@@ -27,6 +28,7 @@
   &__row--top {
     flex: 1;
     align-items: baseline;
+    justify-content: space-between;
   }
 
   &__row--bottom {
@@ -35,7 +37,7 @@
   }
 
   &__header {
-    width: max-content;
+    flex: 0.25 1 0;
   }
 
   &__heading,
@@ -58,7 +60,7 @@
   &__dots {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 22.5%;
     margin-top: 2em;
 
     & span {

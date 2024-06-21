@@ -7,7 +7,7 @@ $option-height: 1rem;
 .instrument-dropdown {
   color: utils.$c-text-primary;
   font-size: 1.25em;
-  width: 25%;
+  flex: 0.25 1 0;
   background: utils.$c-bg-btn;
   border-radius: $dropdown-border-radius;
   border: 0.16em solid utils.$c-bg-btn--border;
@@ -25,7 +25,7 @@ $option-height: 1rem;
   &__options {
     position: absolute;
     top: 100%;
-    z-index: 9999;
+    z-index: 2;
     width: 100%;
     background: utils.$c-bg-btn;
     border-radius: $dropdown-border-radius;
@@ -46,7 +46,7 @@ $option-height: 1rem;
     }
 
     &:hover {
-      background: darken(utils.$c-bg-btn, 10%);
+      background: darken(utils.$c-bg-btn, 7.5%);
     }
   }
 }
