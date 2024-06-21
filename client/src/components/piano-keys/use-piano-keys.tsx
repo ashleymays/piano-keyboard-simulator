@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Player } from 'tone';
 import type { RootState } from '~/features/store';
+
+export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLButtonElement>;
 
 export const usePianoKeys = () => {
   const [pressedKeys, setPressedKeys] = useState({});
@@ -20,8 +22,8 @@ export const usePianoKeys = () => {
     player.start();
   };
 
-  const playPianoKey = (event: KeyboardEvent) => {
-    const keyId = event.key;
+  const playPianoKey = (event: PianoKeyEvent) => {
+    const keyId = getKeyIdByEvent(event);
     const pitch = getPitch(keyId);
 
     if (pitch && !pressedKeys[keyId]) {
@@ -30,8 +32,8 @@ export const usePianoKeys = () => {
     }
   };
 
-  const releasePianoKey = (event: KeyboardEvent) => {
-    const keyId = event.key;
+  const releasePianoKey = (event: PianoKeyEvent) => {
+    const keyId = getKeyIdByEvent(event);
     setPressedKeys({ ...pressedKeys, [keyId]: false });
   };
 
@@ -45,5 +47,25 @@ export const usePianoKeys = () => {
     };
   }, [keysMap, audioSamples, pressedKeys]);
 
-  return [keysMap, pressedKeys] as const;
+  return { keysMap, pressedKeys, playPianoKey, releasePianoKey };
+};
+
+const getKeyIdByEvent = (event: PianoKeyEvent) => {
+  if (isKeyboardEvent(event)) {
+    return event.key;
+  }
+  if (isMouseEvent(event)) {
+    return event.currentTarget.value;
+  }
+  return null;
+};
+
+const isKeyboardEvent = (e: PianoKeyEvent): e is KeyboardEvent => {
+  return (e as KeyboardEvent).key !== undefined;
+};
+
+const isMouseEvent = (
+  e: PianoKeyEvent
+): e is ReactMouseEvent<HTMLButtonElement> => {
+  return (e as ReactMouseEvent).currentTarget !== undefined;
 };

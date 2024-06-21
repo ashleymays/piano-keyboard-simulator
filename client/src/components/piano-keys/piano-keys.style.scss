@@ -11,6 +11,7 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   border-radius: $wrapper-radius;
   background: #1a1a1a;
   touch-action: none;
+  -ms-touch-action: none;
   box-shadow: 0 0.4em 1em #00000040;
 }
 
