@@ -8,11 +8,11 @@ export const useInstrumentAudio = () => {
 
   const loadAudio = async (newInstrument: string) => {
     try {
-      toast('Loading audio...');
+      toast.loading('Loading audio...');
       await dispatch(loadAudioSamples(newInstrument));
-      toast('Audio loaded successfully');
+      toast.success('Audio loaded successfully');
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
     }
   };
 

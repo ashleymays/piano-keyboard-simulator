@@ -13,11 +13,11 @@ export const useInstrumentNames = () => {
 
   const loadInstrumentNames = async () => {
     try {
-      toast('Loading instruments...');
+      toast.loading('Loading instruments...');
       await dispatch(loadInstruments());
-      toast('Instruments loaded successfully');
+      toast.success('Instruments loaded successfully');
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
     }
   };
 
