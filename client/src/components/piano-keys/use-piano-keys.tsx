@@ -1,33 +1,39 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { togglePress } from '~/features/keys-map';
 import { useAudioSamples } from './use-audio-samples';
+import { togglePress, type PianoKey } from '~/features/keys-map';
 import type { RootState } from '~/features/store';
 
-export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLButtonElement>;
+type MouseInputEvent = ReactMouseEvent<HTMLButtonElement>;
+
+export type PianoKeyEvent = KeyboardEvent | MouseInputEvent;
 
 export const usePianoKeys = () => {
-  const [audioSamples, playAudio] = useAudioSamples();
+  const { audioSamples, playAudio } = useAudioSamples();
   const keysMap = useSelector((state: RootState) => state.keysMap);
   const dispatch = useDispatch();
 
+  const toggleKeyPress = (keyId: PianoKey['id']) => {
+    dispatch(togglePress(keyId));
+  };
+
   const playPianoKey = (event: PianoKeyEvent) => {
-    const keyId = getKeyIdByEvent(event);
+    const keyId = getPianoKeyId(event);
     const pianoKey = keysMap.find((key) => key.id === keyId);
 
-    if (!pianoKey || pianoKey.isPressed) {
+    if (!keyId || !pianoKey || pianoKey.isPressed) {
       return;
     }
 
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
 
     playAudio(pitch);
-    dispatch(togglePress(keyId));
+    toggleKeyPress(keyId);
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
-    const keyId = getKeyIdByEvent(event);
-    dispatch(togglePress(keyId));
+    const keyId = getPianoKeyId(event);
+    toggleKeyPress(keyId);
   };
 
   useEffect(() => {
@@ -40,10 +46,10 @@ export const usePianoKeys = () => {
     };
   }, [keysMap, audioSamples]);
 
-  return [keysMap, playPianoKey, releasePianoKey] as const;
+  return { keysMap, playPianoKey, releasePianoKey };
 };
 
-const getKeyIdByEvent = (event: PianoKeyEvent) => {
+const getPianoKeyId = (event: PianoKeyEvent) => {
   if (isKeyboardEvent(event)) {
     return event.key;
   }
@@ -53,12 +59,10 @@ const getKeyIdByEvent = (event: PianoKeyEvent) => {
   return null;
 };
 
-const isKeyboardEvent = (e: PianoKeyEvent): e is KeyboardEvent => {
-  return (e as KeyboardEvent).key !== undefined;
+const isKeyboardEvent = (event: PianoKeyEvent): event is KeyboardEvent => {
+  return (event as KeyboardEvent).key !== undefined;
 };
 
-const isMouseEvent = (
-  e: PianoKeyEvent
-): e is ReactMouseEvent<HTMLButtonElement> => {
-  return (e as ReactMouseEvent).currentTarget !== undefined;
+const isMouseEvent = (event: PianoKeyEvent): event is MouseInputEvent => {
+  return (event as MouseInputEvent).currentTarget !== undefined;
 };
