@@ -25,7 +25,7 @@ $option-height: 1rem;
   &__options {
     position: absolute;
     top: 100%;
-    z-index: 2;
+    z-index: 10;
     width: 100%;
     background: utils.$c-bg-btn;
     border-radius: $dropdown-border-radius;

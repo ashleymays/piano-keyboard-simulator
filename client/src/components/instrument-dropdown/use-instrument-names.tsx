@@ -12,5 +12,5 @@ export const useInstrumentNames = () => {
     return dispatch(loadInstruments()).unwrap();
   };
 
-  return [instruments, loadInstrumentNames] as const;
+  return { instruments, loadInstrumentNames };
 };
