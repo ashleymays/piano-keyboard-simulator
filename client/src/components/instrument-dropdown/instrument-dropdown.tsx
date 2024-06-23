@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import Dropdown from 'react-dropdown';
 import { toast } from 'react-hot-toast';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
-import { useInstrumentNames } from '~/hooks/use-instrument-names';
+import { useInstruments } from '~/hooks/use-instruments';
 import { useAudioSamples } from '~/hooks/use-audio-samples';
 
 export const InstrumentDropdown = () => {
-  const { instruments, loadInstrumentNames } = useInstrumentNames();
+  const { instruments, fetchInstruments } = useInstruments();
   const { loadAudio } = useAudioSamples();
 
   useEffect(() => {
     const init = async () => {
-      const initializedInstruments = await loadInstrumentNames();
+      const initializedInstruments = await fetchInstruments();
       await loadAudio(initializedInstruments[0]);
     };
 

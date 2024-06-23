@@ -13,7 +13,7 @@ export const useAudioSamples = () => {
   };
 
   const loadAudio = (instrument: string) => {
-    return dispatch(loadAudioSamples(instrument)).unwrap();
+    return dispatch(loadAudioSamples(instrument));
   };
 
   return { audioSamples, playAudio, loadAudio };
