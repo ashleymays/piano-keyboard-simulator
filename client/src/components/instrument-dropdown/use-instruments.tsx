@@ -6,24 +6,15 @@ import { loadAudioSamples } from '~/features/audio';
 import type { RootState, AppDispatch } from '~/features/store';
 
 export const useInstruments = () => {
-  const instruments = useSelector(
-    (state: RootState) => state.instruments.names
-  );
-
+  const instruments = useSelector((state: RootState) => state.instruments.names);
   const dispatch = useDispatch<AppDispatch>();
-
-  const loadAudio = (instrument: string) => {
-    return dispatch(loadAudioSamples(instrument)).unwrap();
-  };
-
-  const loadInstrumentNames = () => {
-    return dispatch(loadInstruments()).unwrap();
-  };
 
   const loadAudioForInstrument = async (instrument: string) => {
     try {
       toast.loading('Loading audio...');
-      await loadAudio(instrument);
+
+      await dispatch(loadAudioSamples(instrument));
+
       toast.success('Audio loaded successfully');
     } catch (error) {
       console.error(error);
@@ -35,8 +26,8 @@ export const useInstruments = () => {
     try {
       toast.loading('Initializing...');
 
-      const instrumentNames = await loadInstrumentNames();
-      await loadAudio(instrumentNames[0]);
+      const instrumentNames = await dispatch(loadInstruments()).unwrap();
+      await dispatch(loadAudioSamples(instrumentNames[0]));
 
       toast.success('Initialized successfully');
     } catch (error) {
