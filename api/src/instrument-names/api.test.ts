@@ -24,8 +24,7 @@ describe('GET /api/v2/instruments', () => {
   it('returns an array of strings', () => {
     request(app)
       .get('/api/v2/instruments')
-      .expect((res) => typeof res.body.data === 'object')
-      .expect((res) => typeof res.body.data.length !== 'undefined')
+      .expect((res) => Array.isArray(res.body.data))
       .expect((res) => typeof res.body.data[0] === 'string')
       .end((error) => {
         if (error) throw error;
