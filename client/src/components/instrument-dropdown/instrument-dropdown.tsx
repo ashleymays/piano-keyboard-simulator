@@ -1,11 +1,9 @@
 import Dropdown from 'react-dropdown';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 import { useInstruments } from './use-instruments';
-import { useInstrumentNames } from './use-instrument-names';
 
 export const InstrumentDropdown = () => {
-  const { loadAudioForInstrument } = useInstruments();
-  const { instruments } = useInstrumentNames();
+  const { instruments, loadAudioForInstrument } = useInstruments();
 
   return (
     <Dropdown

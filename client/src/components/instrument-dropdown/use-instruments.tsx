@@ -1,11 +1,24 @@
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { useInstrumentNames } from './use-instrument-names';
-import { useInstrumentAudio } from './use-instrument-audio';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadInstruments } from '~/features/instruments';
+import { loadAudioSamples } from '~/features/audio';
+import type { RootState, AppDispatch } from '~/features/store';
 
 export const useInstruments = () => {
-  const { loadInstrumentNames } = useInstrumentNames();
-  const { loadAudio } = useInstrumentAudio();
+  const instruments = useSelector(
+    (state: RootState) => state.instruments.names
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const loadAudio = (instrument: string) => {
+    return dispatch(loadAudioSamples(instrument)).unwrap();
+  };
+
+  const loadInstrumentNames = (): Promise<string[]> => {
+    return dispatch(loadInstruments()).unwrap();
+  };
 
   const loadAudioForInstrument = async (instrument: string) => {
     try {
@@ -38,5 +51,5 @@ export const useInstruments = () => {
     initAudioForInstrument();
   }, []);
 
-  return { loadAudioForInstrument };
+  return { instruments, loadAudioForInstrument };
 };
