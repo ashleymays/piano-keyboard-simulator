@@ -13,5 +13,8 @@ export const useOctaveButtons = () => {
     dispatch(lowerOctave());
   };
 
-  return [handleRaiseOctave, handleLowerOctave];
+  return {
+    raiseOctave: handleRaiseOctave,
+    lowerOctave: handleLowerOctave
+  };
 };

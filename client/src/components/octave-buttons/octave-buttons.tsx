@@ -3,7 +3,7 @@ import { UpArrowIcon, DownArrowIcon } from '../arrow-icon';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
-  const [raiseOctave, lowerOctave] = useOctaveButtons();
+  const { raiseOctave, lowerOctave } = useOctaveButtons();
 
   return (
     <div className="octave-controls-wrapper">
