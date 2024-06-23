@@ -1,5 +1,5 @@
-import { useOctaveButtons } from './use-octave-buttons';
-import { UpArrowIcon, DownArrowIcon } from '../arrow-icon';
+import { useOctaveButtons } from '~/hooks/use-octave-buttons';
+import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {

@@ -18,7 +18,7 @@ export const getAudioSamples = async (instrument: string) => {
 
 const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
   const response = await fetch(
-    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
+    `http://localhost:8080/api/v2/instruments/${instrument}/audio`
   );
 
   return response.json();

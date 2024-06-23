@@ -1,9 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '~/features/store';
 import { raiseOctave, lowerOctave } from '~/features/keys-map';
-import type { AppDispatch } from '~/features/store';
 
 export const useOctaveButtons = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleRaiseOctave = () => {
     dispatch(raiseOctave());

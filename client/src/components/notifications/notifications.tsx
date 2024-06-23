@@ -1,5 +1,5 @@
 import { Toaster } from 'react-hot-toast';
-import { useNotificationLimit } from './use-notification-limit';
+import { useNotificationLimit } from '~/hooks/use-notification-limit';
 
 export const Notifications = () => {
   useNotificationLimit();

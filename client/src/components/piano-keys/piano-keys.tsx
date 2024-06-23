@@ -1,4 +1,4 @@
-import { usePianoKeys, type PianoKeyEvent } from './use-piano-keys';
+import { usePianoKeys, type PianoKeyEvent } from '~/hooks/use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
