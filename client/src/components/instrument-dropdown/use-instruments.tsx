@@ -16,7 +16,7 @@ export const useInstruments = () => {
     return dispatch(loadAudioSamples(instrument)).unwrap();
   };
 
-  const loadInstrumentNames = (): Promise<string[]> => {
+  const loadInstrumentNames = () => {
     return dispatch(loadInstruments()).unwrap();
   };
 
