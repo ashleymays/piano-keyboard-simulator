@@ -24,7 +24,7 @@ export const usePianoKeys = () => {
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
 
     playAudio(pitch);
-    toggleKeyPress(keyId);
+    dispatch(togglePress(keyId));
   };
 
   const playAudio = (pitch: string) => {
@@ -35,10 +35,6 @@ export const usePianoKeys = () => {
 
   const releasePianoKey = (event: PianoKeyEvent) => {
     const keyId = getPianoKeyId(event);
-    toggleKeyPress(keyId);
-  };
-
-  const toggleKeyPress = (keyId: PianoKey['id']) => {
     dispatch(togglePress(keyId));
   };
 
