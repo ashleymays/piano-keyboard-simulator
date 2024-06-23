@@ -1,6 +1,6 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAudioSamples } from './use-audio-samples';
+import { Player } from 'tone';
 import { togglePress, type PianoKey } from '~/features/keys-map';
 import type { RootState } from '~/features/store';
 
@@ -9,19 +9,15 @@ type MouseInputEvent = ReactMouseEvent<HTMLButtonElement>;
 export type PianoKeyEvent = KeyboardEvent | MouseInputEvent;
 
 export const usePianoKeys = () => {
-  const { audioSamples, playAudio } = useAudioSamples();
+  const audioSamples = useSelector((state: RootState) => state.audio.samples);
   const keysMap = useSelector((state: RootState) => state.keysMap);
   const dispatch = useDispatch();
 
-  const toggleKeyPress = (keyId: PianoKey['id']) => {
-    dispatch(togglePress(keyId));
-  };
-
   const playPianoKey = (event: PianoKeyEvent) => {
     const keyId = getPianoKeyId(event);
-    const pianoKey = keysMap.find((key) => key.id === keyId);
+    const pianoKey = keysMap.find((pianoKey) => pianoKey.id === keyId);
 
-    if (!keyId || !pianoKey || pianoKey.isPressed) {
+    if (!pianoKey || pianoKey.isPressed) {
       return;
     }
 
@@ -31,9 +27,19 @@ export const usePianoKeys = () => {
     toggleKeyPress(keyId);
   };
 
+  const playAudio = (pitch: string) => {
+    const player = new Player().toDestination();
+    player.buffer = audioSamples.get(pitch);
+    player.start();
+  };
+
   const releasePianoKey = (event: PianoKeyEvent) => {
     const keyId = getPianoKeyId(event);
     toggleKeyPress(keyId);
+  };
+
+  const toggleKeyPress = (keyId: PianoKey['id']) => {
+    dispatch(togglePress(keyId));
   };
 
   useEffect(() => {
