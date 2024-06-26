@@ -1,18 +1,18 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
-import { useAppSelector, useAppDispatch } from '~/features/store';
+import { Player } from 'tone';
 import { togglePress } from '~/features/keys-map';
-import { useAudioSamples } from './use-audio-samples';
+import { useAppSelector, useAppDispatch } from '~/features/store';
 
 type MouseInputEvent = ReactMouseEvent<HTMLButtonElement>;
 
 export type PianoKeyEvent = KeyboardEvent | MouseInputEvent;
 
 export const usePianoKeys = () => {
-  const { audioSamples, playAudio } = useAudioSamples();
+  const audioSamples = useAppSelector((state) => state.audio.samples);
   const keysMap = useAppSelector((state) => state.keysMap);
   const dispatch = useAppDispatch();
 
-  const playPianoKey = (event: PianoKeyEvent) => {
+  const pressPianoKey = (event: PianoKeyEvent) => {
     const keyId = getPianoKeyId(event);
     const pianoKey = keysMap.find((pianoKey) => pianoKey.id === keyId);
 
@@ -21,9 +21,14 @@ export const usePianoKeys = () => {
     }
 
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
-
     playAudio(pitch);
     dispatch(togglePress(keyId));
+  };
+
+  const playAudio = (pitch: string) => {
+    const player = new Player().toDestination();
+    player.buffer = audioSamples.get(pitch);
+    player.start();
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
@@ -32,24 +37,24 @@ export const usePianoKeys = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', playPianoKey);
+    document.addEventListener('keydown', pressPianoKey);
     document.addEventListener('keyup', releasePianoKey);
 
     return () => {
-      document.removeEventListener('keydown', playPianoKey);
+      document.removeEventListener('keydown', pressPianoKey);
       document.removeEventListener('keyup', releasePianoKey);
     };
   }, [keysMap, audioSamples]);
 
-  return { keysMap, playPianoKey, releasePianoKey };
+  return { keysMap, pressPianoKey, releasePianoKey };
 };
 
 const getPianoKeyId = (event: PianoKeyEvent) => {
   if (isKeyboardEvent(event)) {
-    return event.key;
+    return event.key.toLowerCase();
   }
   if (isMouseEvent(event)) {
-    return event.currentTarget.value;
+    return event.currentTarget.value.toLowerCase();
   }
   return null;
 };

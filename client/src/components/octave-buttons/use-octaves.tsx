@@ -1,7 +1,7 @@
 import { useAppDispatch } from '~/features/store';
 import { raiseOctave, lowerOctave } from '~/features/keys-map';
 
-export const useOctaveButtons = () => {
+export const useOctaves = () => {
   const dispatch = useAppDispatch();
 
   const handleRaiseOctave = () => {

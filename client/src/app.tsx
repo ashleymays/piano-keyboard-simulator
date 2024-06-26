@@ -1,11 +1,11 @@
 import { Keyboard } from './components/keyboard';
-import { Notifications } from './components/notifications';
+import { Toasts } from './components/toasts';
 
 export const App = () => {
   return (
     <main>
       <Keyboard />
-      <Notifications />
+      <Toasts />
     </main>
   );
 };

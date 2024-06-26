@@ -1,15 +1,15 @@
-import { usePianoKeys, type PianoKeyEvent } from '~/hooks/use-piano-keys';
+import { usePianoKeys, type PianoKeyEvent } from './use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
-  const { keysMap, playPianoKey, releasePianoKey } = usePianoKeys();
+  const { keysMap, pressPianoKey, releasePianoKey } = usePianoKeys();
 
   return (
     <div className="piano-keys-wrapper">
       {keysMap.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}
-          onMouseDown={playPianoKey}
+          onMouseDown={pressPianoKey}
           onMouseUp={releasePianoKey}
           {...pianoKey}
         />

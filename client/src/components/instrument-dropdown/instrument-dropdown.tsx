@@ -1,26 +1,9 @@
-import { useEffect } from 'react';
 import Dropdown from 'react-dropdown';
-import { toast } from 'react-hot-toast';
 import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
-import { useInstruments } from '~/hooks/use-instruments';
-import { useAudioSamples } from '~/hooks/use-audio-samples';
+import { useInstruments } from './use-instruments';
 
 export const InstrumentDropdown = () => {
-  const { instruments, fetchInstruments } = useInstruments();
-  const { loadAudio } = useAudioSamples();
-
-  useEffect(() => {
-    const init = async () => {
-      const initializedInstruments = await fetchInstruments();
-      await loadAudio(initializedInstruments[0]);
-    };
-
-    toast.promise(init(), {
-      loading: 'Initializing app...',
-      success: 'Initialized successfully',
-      error: 'Something went wrong. Please reload the page and try again.'
-    });
-  }, []);
+  const { instruments, loadAudioForInstrument } = useInstruments();
 
   return (
     <Dropdown
@@ -31,13 +14,7 @@ export const InstrumentDropdown = () => {
       menuClassName="instrument-dropdown__options"
       arrowClosed={<DownArrowIcon />}
       arrowOpen={<UpArrowIcon />}
-      onChange={({ value }) =>
-        toast.promise(loadAudio(value), {
-          loading: 'Loading audio...',
-          success: 'Audio loaded successfully',
-          error: 'Something went wrong loading the audio.'
-        })
-      }
+      onChange={({ value }) => loadAudioForInstrument(value)}
     />
   );
 };

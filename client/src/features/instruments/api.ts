@@ -9,7 +9,9 @@ export const getInstruments = async () => {
 };
 
 const fetchInstruments = async () => {
-  const response = await fetch(`http://localhost:8080/api/v2/instruments`);
+  const response = await fetch(
+    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
+  );
 
   return response.json();
 };
