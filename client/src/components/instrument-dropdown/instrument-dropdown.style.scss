@@ -3,6 +3,7 @@
 $dropdown-border-radius: 0.9rem;
 $option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
 $option-height: 1rem;
+$border-width: 0.16em;
 
 .instrument-dropdown {
   color: utils.$c-text-primary;
@@ -10,7 +11,7 @@ $option-height: 1rem;
   flex: 0.25 1 0;
   background: utils.$c-bg-btn;
   border-radius: $dropdown-border-radius;
-  border: 0.16em solid utils.$c-bg-btn--border;
+  border: $border-width solid utils.$c-bg-btn--border;
   cursor: pointer;
   position: relative;
 
@@ -24,12 +25,13 @@ $option-height: 1rem;
 
   &__options {
     position: absolute;
-    top: 100%;
-    z-index: 10;
+    left: 0;
+    bottom: 100%;
+    z-index: 2;
     width: 100%;
     background: utils.$c-bg-btn;
     border-radius: $dropdown-border-radius;
-    border: 0.16em solid utils.$c-bg-btn--border;
+    border: $border-width solid utils.$c-bg-btn--border;
   }
 
   &__option {
