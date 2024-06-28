@@ -19,11 +19,15 @@ export const usePianoKeys = () => {
       return;
     }
 
+    playPianoKey(pianoKey);
+  };
+
+  const playPianoKey = (pianoKey: PianoKey) => {
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
 
     audioPlayers.player(pitch).toDestination().start();
 
-    pressKey(keyId);
+    pressKey(pianoKey.id);
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
