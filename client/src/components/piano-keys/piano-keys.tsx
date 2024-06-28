@@ -2,7 +2,7 @@ import { usePianoKeys } from './use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/keys-map';
 
 export const PianoKeys = () => {
-  const { keysMap, pressPianoKey, releasePianoKey } = usePianoKeys();
+  const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
 
   return (
     <div
@@ -10,7 +10,7 @@ export const PianoKeys = () => {
       onMouseDown={pressPianoKey}
       onMouseUp={releasePianoKey}
     >
-      {keysMap.map((pianoKey) => (
+      {pianoKeys.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}
           {...pianoKey}

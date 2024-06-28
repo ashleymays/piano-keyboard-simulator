@@ -6,7 +6,7 @@ type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLDivElement>;
 
 export const usePianoKeys = () => {
   const audioPlayers = useAppSelector((state) => state.audio.players);
-  const keysMap = useAppSelector((state) => state.keysMap);
+  const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
   const pressPianoKey = (event: PianoKeyEvent) => {
@@ -20,7 +20,7 @@ export const usePianoKeys = () => {
       return;
     }
 
-    const pianoKey = keysMap.find((pianoKey) => pianoKey.id === keyId);
+    const pianoKey = pianoKeys.find((pianoKey) => pianoKey.id === keyId);
 
     if (!pianoKey || pianoKey.isPressed) {
       return;
@@ -65,9 +65,9 @@ export const usePianoKeys = () => {
       document.removeEventListener('keydown', pressPianoKey);
       document.removeEventListener('keyup', releasePianoKey);
     };
-  }, [keysMap, audioPlayers]);
+  }, [pianoKeys, audioPlayers]);
 
-  return { keysMap, pressPianoKey, releasePianoKey };
+  return { pianoKeys, pressPianoKey, releasePianoKey };
 };
 
 const getPianoKeyId = (event: PianoKeyEvent) => {

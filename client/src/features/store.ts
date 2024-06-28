@@ -5,7 +5,7 @@ import { reducer as audioReducer } from './audio';
 import { reducer as instrumentsReducer } from './instruments';
 
 const combinedReducer = combineReducers({
-  keysMap: keysMapReducer,
+  pianoKeys: keysMapReducer,
   audio: audioReducer,
   instruments: instrumentsReducer
 });

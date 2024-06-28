@@ -21,9 +21,9 @@ export type PianoKey = {
   isPressed: boolean;
 };
 
-export type KeysMap = PianoKey[];
+export type PianoKeys = PianoKey[];
 
-const initialState: KeysMap = [
+const initialState: PianoKeys = [
   { id: 'q', note: 'C', octave: 3, type: 'natural', isPressed: false },
   { id: '2', note: 'Db', octave: 3, type: 'flat', isPressed: false },
   { id: 'w', note: 'D', octave: 3, type: 'natural', isPressed: false },
@@ -62,44 +62,44 @@ const initialState: KeysMap = [
   { id: '.', note: 'B', octave: 5, type: 'natural', isPressed: false }
 ];
 
-const shiftOctave = (keysMap: KeysMap, incrementValue: number) => {
-  keysMap.forEach((pianoKey) => {
+const shiftOctave = (pianoKeys: PianoKeys, incrementValue: number) => {
+  pianoKeys.forEach((pianoKey) => {
     pianoKey.octave += incrementValue;
   });
 };
 
-const shiftOctaveUp = (keysMap: KeysMap) => {
-  shiftOctave(keysMap, 1);
+const shiftOctaveUp = (pianoKeys: PianoKeys) => {
+  shiftOctave(pianoKeys, 1);
 };
 
-const shiftOctaveDown = (keysMap: KeysMap) => {
-  shiftOctave(keysMap, -1);
+const shiftOctaveDown = (pianoKeys: PianoKeys) => {
+  shiftOctave(pianoKeys, -1);
 };
 
 const slice = createSlice({
-  name: 'keysMap',
+  name: 'pianoKeys',
   initialState,
   reducers: {
-    incrementOctave(keysMap: KeysMap) {
+    incrementOctave(pianoKeys: PianoKeys) {
       const HIGHEST_POSSIBLE_OCTAVE = 7;
-      const highestPianoKey = keysMap[keysMap.length - 1];
+      const highestPianoKey = pianoKeys[pianoKeys.length - 1];
 
       if (highestPianoKey.octave < HIGHEST_POSSIBLE_OCTAVE) {
-        shiftOctaveUp(keysMap);
+        shiftOctaveUp(pianoKeys);
       }
     },
 
-    decrementOctave(keysMap: KeysMap) {
+    decrementOctave(pianoKeys: PianoKeys) {
       const LOWEST_POSSIBLE_OCTAVE = 1;
-      const lowestPianoKey = keysMap[0];
+      const lowestPianoKey = pianoKeys[0];
 
       if (lowestPianoKey.octave > LOWEST_POSSIBLE_OCTAVE) {
-        shiftOctaveDown(keysMap);
+        shiftOctaveDown(pianoKeys);
       }
     },
 
-    togglePress(keysMap: KeysMap, action: PayloadAction<PianoKey['id']>) {
-      const pianoKey = keysMap.find((key) => key.id === action.payload);
+    togglePress(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
+      const pianoKey = pianoKeys.find((key) => key.id === action.payload);
 
       if (!pianoKey) {
         return;
