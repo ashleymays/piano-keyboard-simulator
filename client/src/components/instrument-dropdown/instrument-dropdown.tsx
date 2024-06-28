@@ -8,8 +8,8 @@ export const InstrumentDropdown = () => {
   return (
     <Dropdown
       options={createDropdownOptions(instruments)}
+      placeholder="Choose an instrument..."
       disabled={typeof instruments === 'undefined'}
-      value={instruments[0]}
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"

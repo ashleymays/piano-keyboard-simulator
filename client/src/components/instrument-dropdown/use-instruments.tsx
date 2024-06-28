@@ -20,13 +20,12 @@ export const useInstruments = () => {
     });
   };
 
-  useEffect(() => {
-    const init = async () => {
-      const initializedInstruments = await dispatch(loadInstruments()).unwrap();
-      await loadAudio(initializedInstruments[0]);
-    };
+  const loadInstrumentNames = async () => {
+    await dispatch(loadInstruments());
+  };
 
-    toast.promise(init(), {
+  useEffect(() => {
+    toast.promise(loadInstrumentNames(), {
       loading: 'Initializing app...',
       success: 'Initialized successfully',
       error: 'Something went wrong. Please reload the page and try again.'
