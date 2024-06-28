@@ -1,5 +1,5 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
-import { togglePress, type PianoKey } from '~/features/keys-map';
+import { togglePress, type PianoKey } from '~/features/piano-keys';
 import { useAppSelector, useAppDispatch } from '~/features/store';
 
 type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLDivElement>;

@@ -1,5 +1,5 @@
 import { useAppDispatch } from '~/features/store';
-import { incrementOctave, decrementOctave } from '~/features/keys-map';
+import { incrementOctave, decrementOctave } from '~/features/piano-keys';
 
 export const useOctaves = () => {
   const dispatch = useAppDispatch();

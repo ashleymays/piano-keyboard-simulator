@@ -1,5 +1,5 @@
 import { usePianoKeys } from './use-piano-keys';
-import type { PianoKey as PianoKeyType } from '~/features/keys-map';
+import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
 
 export const PianoKeys = () => {
   const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
