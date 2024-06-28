@@ -80,7 +80,7 @@ const slice = createSlice({
   name: 'keysMap',
   initialState,
   reducers: {
-    raiseOctave(keysMap: KeysMap) {
+    incrementOctave(keysMap: KeysMap) {
       const HIGHEST_POSSIBLE_OCTAVE = 7;
       const highestPianoKey = keysMap[keysMap.length - 1];
 
@@ -89,7 +89,7 @@ const slice = createSlice({
       }
     },
 
-    lowerOctave(keysMap: KeysMap) {
+    decrementOctave(keysMap: KeysMap) {
       const LOWEST_POSSIBLE_OCTAVE = 1;
       const lowestPianoKey = keysMap[0];
 
@@ -110,6 +110,6 @@ const slice = createSlice({
   }
 });
 
-export const { raiseOctave, lowerOctave, togglePress } = slice.actions;
+export const { incrementOctave, decrementOctave, togglePress } = slice.actions;
 
 export const reducer = slice.reducer;

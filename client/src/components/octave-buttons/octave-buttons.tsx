@@ -3,19 +3,19 @@ import { useOctaves } from './use-octaves';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
-  const { raiseOctave, lowerOctave } = useOctaves();
+  const { increment, decrement } = useOctaves();
 
   return (
     <div className="octave-controls-wrapper">
       <div className="octave-btns-wrapper">
         <OctaveButton
           direction="UP"
-          onClick={raiseOctave}
+          onClick={increment}
         />
         <div />
         <OctaveButton
           direction="DOWN"
-          onClick={lowerOctave}
+          onClick={decrement}
         />
       </div>
       <p className="octave-controls-wrapper__label">Octaves</p>

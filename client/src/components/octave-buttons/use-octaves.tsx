@@ -1,19 +1,16 @@
 import { useAppDispatch } from '~/features/store';
-import { raiseOctave, lowerOctave } from '~/features/keys-map';
+import { incrementOctave, decrementOctave } from '~/features/keys-map';
 
 export const useOctaves = () => {
   const dispatch = useAppDispatch();
 
-  const handleRaiseOctave = () => {
-    dispatch(raiseOctave());
+  const increment = () => {
+    dispatch(incrementOctave());
   };
 
-  const handleLowerOctave = () => {
-    dispatch(lowerOctave());
+  const decrement = () => {
+    dispatch(decrementOctave());
   };
 
-  return {
-    raiseOctave: handleRaiseOctave,
-    lowerOctave: handleLowerOctave
-  };
+  return { increment, decrement };
 };
