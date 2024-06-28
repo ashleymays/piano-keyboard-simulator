@@ -2,9 +2,7 @@ import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { togglePress, type PianoKey } from '~/features/keys-map';
 import { useAppSelector, useAppDispatch } from '~/features/store';
 
-type MouseInputEvent = ReactMouseEvent<HTMLButtonElement>;
-
-export type PianoKeyEvent = KeyboardEvent | MouseInputEvent;
+type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLDivElement>;
 
 export const usePianoKeys = () => {
   const audioPlayers = useAppSelector((state) => state.audio.players);
@@ -12,32 +10,47 @@ export const usePianoKeys = () => {
   const dispatch = useAppDispatch();
 
   const pressPianoKey = (event: PianoKeyEvent) => {
+    if (!audioPlayers) {
+      return;
+    }
+
     const keyId = getPianoKeyId(event);
+
+    if (!keyId) {
+      return;
+    }
+
     const pianoKey = keysMap.find((pianoKey) => pianoKey.id === keyId);
 
     if (!pianoKey || pianoKey.isPressed) {
       return;
     }
 
-    playPianoKey(pianoKey);
+    playNote(pianoKey);
+    pressKey(keyId);
   };
 
-  const playPianoKey = (pianoKey: PianoKey) => {
+  const playNote = (pianoKey: PianoKey) => {
+    const pitch = `${pianoKey.note}${pianoKey.octave}`;
+    const audioPlayer = audioPlayers.player(pitch);
+
+    if (audioPlayer) {
+      audioPlayer.toDestination().start();
+    }
+  };
+
+  const releasePianoKey = (event: PianoKeyEvent) => {
     if (!audioPlayers) {
       return;
     }
 
-    const pitch = `${pianoKey.note}${pianoKey.octave}`;
+    const keyId = getPianoKeyId(event);
 
-    audioPlayers.player(pitch).toDestination().start();
-
-    pressKey(pianoKey.id);
-  };
-
-  const releasePianoKey = (event: PianoKeyEvent) => {
-    if (audioPlayers) {
-      pressKey(getPianoKeyId(event));
+    if (!keyId) {
+      return;
     }
+
+    pressKey(keyId);
   };
 
   const pressKey = (keyId: PianoKey['id']) => {
@@ -61,16 +74,12 @@ const getPianoKeyId = (event: PianoKeyEvent) => {
   if (isKeyboardEvent(event)) {
     return event.key.toLowerCase();
   }
-  if (isMouseEvent(event)) {
-    return event.currentTarget.value.toLowerCase();
-  }
-  return null;
+
+  const keyId = (event.target as HTMLInputElement).value;
+
+  return keyId ? keyId.toLowerCase() : null;
 };
 
 const isKeyboardEvent = (event: PianoKeyEvent): event is KeyboardEvent => {
   return (event as KeyboardEvent).key !== undefined;
-};
-
-const isMouseEvent = (event: PianoKeyEvent): event is MouseInputEvent => {
-  return (event as MouseInputEvent).currentTarget !== undefined;
 };
