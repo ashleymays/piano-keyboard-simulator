@@ -28,7 +28,8 @@ export const useInstruments = () => {
     toast.promise(loadInstrumentNames(), {
       loading: 'Initializing app...',
       success: 'Initialized successfully',
-      error: 'Something went wrong. Please reload the page and try again.'
+      error:
+        'Something went wrong initializing the app. Please reload the page and try again.'
     });
   }, []);
 
