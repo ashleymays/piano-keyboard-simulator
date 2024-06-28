@@ -15,7 +15,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredPaths: ['audio.samples'],
+        ignoredPaths: ['audio.players'],
         ignoredActions: ['audio/load/fulfilled']
       }
     })

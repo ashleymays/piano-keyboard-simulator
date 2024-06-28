@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAudioSamples } from './api';
-import type { ToneAudioBuffers } from 'tone';
+import { getAudio } from './api';
+import type { Players } from 'tone';
 
 export const loadAudioSamples = createAsyncThunk(
   'audio/load',
-  (instrument: string) => getAudioSamples(instrument)
+  (instrument: string) => getAudio(instrument)
 );
 
 type Audio = {
-  samples: ToneAudioBuffers | null;
+  players: Players | null;
   isLoading: boolean;
   error: string | null;
 };
 
 const initialState: Audio = {
-  samples: null,
+  players: null,
   isLoading: false,
   error: null
 };
@@ -29,7 +29,7 @@ const slice = createSlice({
     });
     builder.addCase(loadAudioSamples.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.samples = action.payload;
+      state.players = action.payload;
     });
     builder.addCase(loadAudioSamples.rejected, (state, action) => {
       state.isLoading = false;

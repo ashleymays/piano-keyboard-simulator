@@ -1,4 +1,4 @@
-import { ToneAudioBuffers } from 'tone';
+import { Players } from 'tone';
 
 type AudioMap = {
   [pitch: string]: string;
@@ -6,14 +6,14 @@ type AudioMap = {
 
 type ApiResponse = { data: AudioMap } & { error: string };
 
-export const getAudioSamples = async (instrument: string) => {
+export const getAudio = async (instrument: string) => {
   const response = await fetchAudioSamples(instrument);
 
   if (response.error) {
     throw new Error(response.error);
   }
 
-  return getToneAudioBuffers(response.data);
+  return getAudioPlayers(response.data);
 };
 
 const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
@@ -24,11 +24,11 @@ const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
   return response.json();
 };
 
-const getToneAudioBuffers = (urls: AudioMap): Promise<ToneAudioBuffers> => {
+const getAudioPlayers = (urls: AudioMap): Promise<Players> => {
   return new Promise((resolve, reject) => {
-    const buffers = new ToneAudioBuffers({
+    const players = new Players({
       urls,
-      onload: () => resolve(buffers),
+      onload: () => resolve(players),
       onerror: (error) => reject(error)
     });
   });
