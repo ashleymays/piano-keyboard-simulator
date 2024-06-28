@@ -1,5 +1,5 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
-import { togglePress } from '~/features/keys-map';
+import { togglePress, type PianoKey } from '~/features/keys-map';
 import { useAppSelector, useAppDispatch } from '~/features/store';
 
 type MouseInputEvent = ReactMouseEvent<HTMLButtonElement>;
@@ -20,16 +20,17 @@ export const usePianoKeys = () => {
     }
 
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
-    playAudio(pitch);
-    dispatch(togglePress(keyId));
-  };
 
-  const playAudio = (pitch: string) => {
     audioPlayers.player(pitch).toDestination().start();
+
+    pressKey(keyId);
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
-    const keyId = getPianoKeyId(event);
+    pressKey(getPianoKeyId(event));
+  };
+
+  const pressKey = (keyId: PianoKey['id']) => {
     dispatch(togglePress(keyId));
   };
 
