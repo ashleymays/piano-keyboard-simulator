@@ -23,6 +23,10 @@ export const usePianoKeys = () => {
   };
 
   const playPianoKey = (pianoKey: PianoKey) => {
+    if (!audioPlayers) {
+      return;
+    }
+
     const pitch = `${pianoKey.note}${pianoKey.octave}`;
 
     audioPlayers.player(pitch).toDestination().start();
@@ -31,7 +35,9 @@ export const usePianoKeys = () => {
   };
 
   const releasePianoKey = (event: PianoKeyEvent) => {
-    pressKey(getPianoKeyId(event));
+    if (audioPlayers) {
+      pressKey(getPianoKeyId(event));
+    }
   };
 
   const pressKey = (keyId: PianoKey['id']) => {
