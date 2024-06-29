@@ -1,4 +1,5 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
+import { toast } from 'react-hot-toast';
 import { togglePress, type PianoKey } from '~/features/piano-keys';
 import { useAppSelector, useAppDispatch } from '~/features/store';
 
@@ -11,6 +12,7 @@ export const usePianoKeys = () => {
 
   const pressPianoKey = (event: PianoKeyEvent) => {
     if (!audioPlayers) {
+      toast.error('Audio is not available. Is there an instrument selected?');
       return;
     }
 

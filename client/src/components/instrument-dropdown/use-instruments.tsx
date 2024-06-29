@@ -21,7 +21,7 @@ export const useInstruments = () => {
   };
 
   const loadInstrumentNames = async () => {
-    await dispatch(loadInstruments());
+    await dispatch(loadInstruments()).unwrap();
   };
 
   useEffect(() => {
