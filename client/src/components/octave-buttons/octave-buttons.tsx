@@ -1,4 +1,3 @@
-import { UpArrowIcon, DownArrowIcon } from '~/components/arrow-icon';
 import { useOctaves } from './use-octaves';
 import type { MouseEventHandler } from 'react';
 
@@ -41,4 +40,12 @@ const OctaveButton = ({ direction, onClick }: OctaveButtonProps) => {
       <Icon />
     </button>
   );
+};
+
+const DownArrowIcon = () => {
+  return <span className="arrow-icon">&#128899;</span>;
+};
+
+const UpArrowIcon = () => {
+  return <span className="arrow-icon">&#128897;</span>;
 };
