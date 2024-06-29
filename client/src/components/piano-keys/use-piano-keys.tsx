@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { togglePress, type PianoKey } from '~/features/piano-keys';
 import { useAppSelector, useAppDispatch } from '~/features/store';
 
-type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLDivElement>;
+export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLElement>;
 
 export const usePianoKeys = () => {
   const audioPlayers = useAppSelector((state) => state.audio.players);
