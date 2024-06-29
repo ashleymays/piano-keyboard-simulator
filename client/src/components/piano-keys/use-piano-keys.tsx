@@ -27,7 +27,7 @@ export const usePianoKeys = () => {
     }
 
     playNote(pianoKey);
-    pressKey(keyId);
+    dispatch(togglePress(keyId));
   };
 
   const playNote = (pianoKey: PianoKey) => {
@@ -46,15 +46,9 @@ export const usePianoKeys = () => {
 
     const keyId = getPianoKeyId(event);
 
-    if (!keyId) {
-      return;
+    if (keyId) {
+      dispatch(togglePress(keyId));
     }
-
-    pressKey(keyId);
-  };
-
-  const pressKey = (keyId: PianoKey['id']) => {
-    dispatch(togglePress(keyId));
   };
 
   useEffect(() => {
