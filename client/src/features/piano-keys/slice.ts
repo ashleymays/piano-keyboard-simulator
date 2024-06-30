@@ -101,11 +101,9 @@ const slice = createSlice({
     togglePress(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
       const pianoKey = pianoKeys.find((key) => key.id === action.payload);
 
-      if (!pianoKey) {
-        return;
+      if (pianoKey) {
+        pianoKey.isPressed = !pianoKey.isPressed;
       }
-
-      pianoKey.isPressed = !pianoKey.isPressed;
     }
   }
 });
