@@ -16,10 +16,10 @@ export const useInstruments = () => {
 
   const loadAudioForInstrument = (instrument: string) => {
     toast.promise(loadAudio(instrument), {
-      loading: 'Loading audio...',
-      success: 'Audio loaded successfully',
+      loading: 'Loading instrument...',
+      success: 'Instrument loaded successfully',
       error:
-        'Something went wrong loading the audio. Please try again or choose another instrument.'
+        'Something went wrong loading the instrument. Please try again or choose another instrument.'
     });
   };
 
