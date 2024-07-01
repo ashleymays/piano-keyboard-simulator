@@ -18,7 +18,8 @@ export const useInstruments = () => {
     toast.promise(loadAudio(instrument), {
       loading: 'Loading audio...',
       success: 'Audio loaded successfully',
-      error: 'Something went wrong loading the audio.'
+      error:
+        'Something went wrong loading the audio. Please try again or choose another instrument.'
     });
   };
 
@@ -31,7 +32,7 @@ export const useInstruments = () => {
 
       toast.promise(loadInstrumentNames(), {
         loading: 'Initializing app...',
-        success: 'Initialized successfully',
+        success: 'App initialized',
         error:
           'Something went wrong initializing the app. Please reload the page and try again.'
       });
