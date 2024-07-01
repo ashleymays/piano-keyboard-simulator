@@ -23,19 +23,21 @@ export const useInstruments = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      const init = async () => {
+    const init = () => {
+      const loadInstrumentNames = async () => {
         const instrumentNames = await dispatch(loadInstruments()).unwrap();
         await loadAudio(instrumentNames[0]);
       };
 
-      toast.promise(init(), {
+      toast.promise(loadInstrumentNames(), {
         loading: 'Initializing app...',
         success: 'Initialized successfully',
         error:
           'Something went wrong initializing the app. Please reload the page and try again.'
       });
-    }, 1000);
+    };
+
+    setTimeout(init, 1000);
   }, []);
 
   return { currentInstrument, instruments, loadAudioForInstrument };
