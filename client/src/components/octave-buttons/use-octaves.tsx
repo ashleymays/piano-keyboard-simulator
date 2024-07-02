@@ -1,4 +1,4 @@
-import { useAppDispatch } from '~/features/store';
+import { useAppDispatch } from '~/features/hooks';
 import { incrementOctave, decrementOctave } from '~/features/piano-keys';
 
 export const useOctaves = () => {

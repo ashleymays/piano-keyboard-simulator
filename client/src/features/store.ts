@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { reducer as keysMapReducer } from './piano-keys';
 import { reducer as audioReducer } from './audio';
@@ -10,19 +9,21 @@ const combinedReducer = combineReducers({
   instruments: instrumentsReducer
 });
 
-export const store = configureStore({
-  reducer: combinedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredPaths: ['audio.players'],
-        ignoredActions: ['audio/load/fulfilled']
-      }
-    })
-});
+export const setupStore = (preloadedState?: Partial<RootState>) => {
+  return configureStore({
+    preloadedState,
+    reducer: combinedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredPaths: ['audio.players'],
+          ignoredActions: ['audio/load/fulfilled']
+        }
+      })
+  });
+};
 
-type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const store = setupStore();
 
-type RootState = ReturnType<typeof combinedReducer>;
-export const useAppSelector = useSelector.withTypes<RootState>();
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof combinedReducer>;

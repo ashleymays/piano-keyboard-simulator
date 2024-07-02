@@ -1,7 +1,7 @@
 import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { toast } from 'react-hot-toast';
 import { togglePress, type PianoKey } from '~/features/piano-keys';
-import { useAppSelector, useAppDispatch } from '~/features/store';
+import { useAppSelector, useAppDispatch } from '~/features/hooks';
 
 export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLElement>;
 

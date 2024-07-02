@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { loadAudioSamples } from '~/features/audio';
 import { loadInstruments } from '~/features/instruments';
-import { useAppSelector, useAppDispatch } from '~/features/store';
+import { useAppSelector, useAppDispatch } from '~/features/hooks';
 
 export const useInstruments = () => {
   const [currentInstrument, setCurrentInstrument] = useState(null);
