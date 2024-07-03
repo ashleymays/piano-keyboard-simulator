@@ -4,7 +4,7 @@ import type { MouseEvent as ReactMouseEvent } from 'react';
 
 type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLElement>;
 
-export const usePianoKeyInputs = () => {
+export const usePianoKeyEvents = () => {
   const { pressPianoKey, releasePianoKey } = usePianoKeyActions();
 
   const onPianoKeyPress = (event: PianoKeyEvent) => {

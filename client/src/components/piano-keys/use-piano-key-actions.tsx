@@ -1,10 +1,9 @@
 import { useAppDispatch, useAppSelector } from '~/features/hooks';
-import { useAudio } from '~/features/audio';
 import { toggleKeyPress, type PianoKey } from '~/features/piano-keys';
 import type { Player } from 'tone';
 
 export const usePianoKeyActions = () => {
-  const { audioPlayers } = useAudio();
+  const audioPlayers = useAppSelector((state) => state.audio.players);
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 

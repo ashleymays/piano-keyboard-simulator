@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { useInstrumentNames } from '~/features/instruments';
-import { useAudio } from '~/features/audio';
+import { useInstrumentNames } from './use-instrument-names';
+import { useInstrumentAudio } from './use-instrument-audio';
 
 export const useInstrumentDropdown = () => {
   const [selected, setSelected] = useState<string | null>(null);
   const { instrumentNames, loadInstrumentNames } = useInstrumentNames();
-  const { loadAudio } = useAudio();
+  const { loadAudio } = useInstrumentAudio();
 
   const selectInstrument = async (instrument: string) => {
     await loadAudio(instrument);
