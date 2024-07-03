@@ -31,7 +31,7 @@ export const usePianoKeyInputs = () => {
       document.removeEventListener('keydown', onPianoKeyPress);
       document.removeEventListener('keyup', onPianoKeyRelease);
     };
-  }, [pressPianoKey, releasePianoKey]);
+  }, [onPianoKeyPress, onPianoKeyRelease]);
 
   return { onPianoKeyPress, onPianoKeyRelease };
 };
