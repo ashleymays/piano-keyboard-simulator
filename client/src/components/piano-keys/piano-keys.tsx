@@ -1,37 +1,26 @@
-import { usePianoKeys, type PianoKeyEvent } from './use-piano-keys';
+import { usePianoKeys } from './use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
 
 export const PianoKeys = () => {
-  const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
+  const { pianoKeys, onPianoKeyPress, onPianoKeyRelease } = usePianoKeys();
 
   return (
-    <div className="piano-keys-wrapper">
+    <div
+      className="piano-keys-wrapper"
+      onMouseDown={onPianoKeyPress}
+      onMouseUp={onPianoKeyRelease}
+    >
       {pianoKeys.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}
           {...pianoKey}
-          onMouseDown={pressPianoKey}
-          onMouseUp={releasePianoKey}
         />
       ))}
     </div>
   );
 };
 
-type PianoKeyProps = PianoKeyType & {
-  onMouseDown: (event: PianoKeyEvent) => void;
-  onMouseUp: (event: PianoKeyEvent) => void;
-};
-
-const PianoKey = ({
-  id,
-  isPressed,
-  note,
-  octave,
-  type,
-  onMouseDown,
-  onMouseUp
-}: PianoKeyProps) => {
+const PianoKey = ({ id, isPressed, note, octave, type }: PianoKeyType) => {
   const pitch = `${note}${octave}`;
 
   return (
@@ -43,8 +32,6 @@ const PianoKey = ({
         isPressed && 'pressed-piano-key'
       )}
       value={id}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
     >
       {type === 'natural' && pitch}
     </button>

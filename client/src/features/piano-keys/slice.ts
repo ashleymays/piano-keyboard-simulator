@@ -98,7 +98,10 @@ const slice = createSlice({
       }
     },
 
-    togglePress(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
+    toggleKeyPress(
+      pianoKeys: PianoKeys,
+      action: PayloadAction<PianoKey['id']>
+    ) {
       const pianoKey = pianoKeys.find((key) => key.id === action.payload);
 
       if (pianoKey) {
@@ -108,6 +111,7 @@ const slice = createSlice({
   }
 });
 
-export const { incrementOctave, decrementOctave, togglePress } = slice.actions;
+export const { incrementOctave, decrementOctave, toggleKeyPress } =
+  slice.actions;
 
 export const reducer = slice.reducer;

@@ -1,77 +1,9 @@
-import { useEffect, type MouseEvent as ReactMouseEvent } from 'react';
-import { togglePress } from '~/features/piano-keys';
-import { useAppSelector, useAppDispatch } from '~/features/hooks';
-
-export type PianoKeyEvent = KeyboardEvent | ReactMouseEvent<HTMLElement>;
+import { useAppSelector } from '~/features/hooks';
+import { usePianoKeyInputs } from './use-piano-key-inputs';
 
 export const usePianoKeys = () => {
-  const audioPlayers = useAppSelector((state) => state.audio.players);
+  const { onPianoKeyPress, onPianoKeyRelease } = usePianoKeyInputs();
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
-  const dispatch = useAppDispatch();
 
-  const pressPianoKey = (event: PianoKeyEvent) => {
-    if (!audioPlayers) {
-      return;
-    }
-
-    const keyId = getPianoKeyId(event);
-
-    if (!keyId) {
-      return;
-    }
-
-    const pianoKey = pianoKeys.find((pianoKey) => pianoKey.id === keyId);
-
-    if (!pianoKey || pianoKey.isPressed) {
-      return;
-    }
-
-    const pitch = `${pianoKey.note}${pianoKey.octave}`;
-    const audioPlayer = audioPlayers.player(pitch);
-
-    if (!audioPlayer) {
-      return;
-    }
-
-    audioPlayer.toDestination().start();
-    dispatch(togglePress(keyId));
-  };
-
-  const releasePianoKey = (event: PianoKeyEvent) => {
-    if (!audioPlayers) {
-      return;
-    }
-
-    const keyId = getPianoKeyId(event);
-
-    if (keyId) {
-      dispatch(togglePress(keyId));
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', pressPianoKey);
-    document.addEventListener('keyup', releasePianoKey);
-
-    return () => {
-      document.removeEventListener('keydown', pressPianoKey);
-      document.removeEventListener('keyup', releasePianoKey);
-    };
-  }, [pianoKeys, audioPlayers]);
-
-  return { pianoKeys, pressPianoKey, releasePianoKey };
-};
-
-const getPianoKeyId = (event: PianoKeyEvent) => {
-  if (isKeyboardEvent(event)) {
-    return event.key.toLowerCase();
-  }
-
-  const keyId = (event.target as HTMLInputElement).value;
-
-  return keyId ? keyId.toLowerCase() : null;
-};
-
-const isKeyboardEvent = (event: PianoKeyEvent): event is KeyboardEvent => {
-  return (event as KeyboardEvent).key !== undefined;
+  return { pianoKeys, onPianoKeyPress, onPianoKeyRelease };
 };
