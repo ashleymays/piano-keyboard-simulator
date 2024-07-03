@@ -1,9 +1,10 @@
 import { useAppDispatch, useAppSelector } from '~/features/hooks';
 import { useAudio } from '~/features/audio';
 import { toggleKeyPress, type PianoKey } from '~/features/piano-keys';
+import type { Player } from 'tone';
 
 export const usePianoKeyActions = () => {
-  const { audioPlayers, playNote } = useAudio();
+  const { audioPlayers } = useAudio();
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
@@ -18,16 +19,26 @@ export const usePianoKeyActions = () => {
       return;
     }
 
-    playNote(getPitch(pianoKey));
+    const audioPlayer = audioPlayers.player(getPitch(pianoKey));
+
+    if (!audioPlayer) {
+      return;
+    }
+
+    playPitch(audioPlayer);
     toggleKey(keyId);
+  };
+
+  const findPianoKeyById = (keyId: PianoKey['id']) => {
+    return pianoKeys.find((pianoKey) => pianoKey.id === keyId);
   };
 
   const getPitch = (pianoKey: PianoKey) => {
     return `${pianoKey.note}${pianoKey.octave}`;
   };
 
-  const findPianoKeyById = (keyId: PianoKey['id']) => {
-    return pianoKeys.find((pianoKey) => pianoKey.id === keyId);
+  const playPitch = (audioPlayer: Player) => {
+    audioPlayer.toDestination().start();
   };
 
   const releasePianoKey = (keyId: PianoKey['id']) => {
