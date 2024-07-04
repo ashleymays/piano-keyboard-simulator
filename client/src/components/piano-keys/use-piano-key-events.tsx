@@ -20,16 +20,6 @@ export const usePianoKeyEvents = () => {
     }
   };
 
-  /**
-   * The `onMouseDown` and `onMouseUp` events are used when the user is playing with
-   * their mouse.
-   *
-   * Since we also need to release the piano key when the user drags their mouse
-   * over the keyboard, or when the mouse is not over the piano keys, we release
-   * the piano key during `onMouseOver`, `onMouseOut`, and `onMouseLeave` events.
-   *
-   * @param event
-   */
   const onMouseDown = (event: ReactMouseEvent) => {
     onPianoKeyPress(event);
   };
@@ -46,10 +36,6 @@ export const usePianoKeyEvents = () => {
     onPianoKeyRelease(event);
   };
 
-  const onMouseLeave = (event: ReactMouseEvent) => {
-    onPianoKeyRelease(event);
-  };
-
   useEffect(() => {
     document.addEventListener('keydown', onPianoKeyPress);
     document.addEventListener('keyup', onPianoKeyRelease);
@@ -60,7 +46,7 @@ export const usePianoKeyEvents = () => {
     };
   }, [onPianoKeyPress, onPianoKeyRelease]);
 
-  return { onMouseDown, onMouseUp, onMouseOver, onMouseOut, onMouseLeave };
+  return { onMouseDown, onMouseUp, onMouseOver, onMouseOut };
 };
 
 const getPianoKeyId = (event: KeyboardEvent | ReactMouseEvent) => {
