@@ -14,7 +14,7 @@ export const initApplication = () => {
   app.use(globalErrorHandler);
   app.use(invalidRouteHandler);
 
-  const PORT = 8080;
+  const PORT = process.env.PORT || 8080;
 
   app.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`);
