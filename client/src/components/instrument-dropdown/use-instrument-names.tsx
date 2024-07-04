@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from '~/features/hooks';
-import { loadInstruments } from './slice';
+import { loadInstruments } from '~/features/instruments';
 
 export const useInstrumentNames = () => {
   const instrumentNames = useAppSelector((state) => state.instruments.names);

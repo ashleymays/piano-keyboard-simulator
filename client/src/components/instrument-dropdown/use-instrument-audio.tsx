@@ -1,5 +1,5 @@
 import { useAppDispatch } from '~/features/hooks';
-import { loadAudioSamples } from './slice';
+import { loadAudioSamples } from '~/features/audio';
 
 export const useInstrumentAudio = () => {
   const dispatch = useAppDispatch();
