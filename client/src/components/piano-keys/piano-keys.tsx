@@ -35,6 +35,7 @@ const PianoKey = ({ id, isPressed, note, octave, type }: PianoKeyType) => {
         isPressed && 'pressed-piano-key'
       )}
       value={id}
+      aria-label={id}
     >
       {type === 'natural' && pitch}
     </button>
