@@ -21,20 +21,6 @@ export const usePianoKeyEvents = () => {
   };
 
   /**
-   * The `onKeyDown` and `onKeyUp` events are used when the user is playing with
-   * their computer keyboard.
-   *
-   * @param event
-   */
-  const onKeyDown = (event: KeyboardEvent) => {
-    onPianoKeyPress(event);
-  };
-
-  const onKeyUp = (event: KeyboardEvent) => {
-    onPianoKeyRelease(event);
-  };
-
-  /**
    * The `onMouseDown` and `onMouseUp` events are used when the user is playing with
    * their mouse.
    *
@@ -65,14 +51,14 @@ export const usePianoKeyEvents = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('keyup', onKeyUp);
+    document.addEventListener('keydown', onPianoKeyPress);
+    document.addEventListener('keyup', onPianoKeyRelease);
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('keyup', onKeyUp);
+      document.removeEventListener('keydown', onPianoKeyPress);
+      document.removeEventListener('keyup', onPianoKeyRelease);
     };
-  }, [onKeyDown, onKeyUp]);
+  }, [onPianoKeyPress, onPianoKeyRelease]);
 
   return { onMouseDown, onMouseUp, onMouseOver, onMouseOut, onMouseLeave };
 };
