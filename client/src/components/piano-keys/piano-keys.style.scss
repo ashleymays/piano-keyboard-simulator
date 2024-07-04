@@ -23,8 +23,8 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   justify-content: flex-end;
   padding-bottom: 1rem;
   font-size: 1.4rem;
-  color: #7e7f81;
-  background: linear-gradient(#dbdbdb, #f7f7f7);
+  color: #97979c;
+  background: linear-gradient(#dcdcdc, #f7f7f7);
   margin-right: $spacing-between-piano-keys;
   border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
 
@@ -39,7 +39,8 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   }
 
   &.pressed-piano-key {
-    background: linear-gradient(#a9a9a9, #bbbbbb);
+    background: linear-gradient(#a9a9a9, #c4c4c4);
+    color: #555558;
   }
 }
 
@@ -51,8 +52,8 @@ $black-key-width: 2%;
   background: #171717;
   height: 55%;
   z-index: 0;
-  border-bottom: 0.3em solid #3b3b3b;
-  box-shadow: 0 0.5em 0.7em #00000059;
+  border-bottom: 0.25em solid #3b3b3b;
+  box-shadow: 0 0.4em 0.4em #0000003b;
   border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
 
   &.pressed-piano-key {
