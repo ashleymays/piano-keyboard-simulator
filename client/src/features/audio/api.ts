@@ -16,12 +16,10 @@ export const getAudio = async (instrument: string) => {
   return getAudioPlayers(response.data);
 };
 
-const fetchAudioSamples = async (instrument: string): Promise<ApiResponse> => {
-  const response = await fetch(
+const fetchAudioSamples = (instrument: string): Promise<ApiResponse> => {
+  return fetchWithTimeLimit(
     `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
   );
-
-  return response.json();
 };
 
 const getAudioPlayers = (urls: AudioMap): Promise<Players> => {

@@ -8,10 +8,8 @@ export const getInstruments = async () => {
   return response.data;
 };
 
-const fetchInstruments = async () => {
-  const response = await fetch(
+const fetchInstruments = () => {
+  return fetchWithTimeLimit(
     `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
   );
-
-  return response.json();
 };
