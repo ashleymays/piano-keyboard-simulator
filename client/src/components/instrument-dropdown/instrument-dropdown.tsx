@@ -9,6 +9,7 @@ export const InstrumentDropdown = () => {
     <Dropdown
       options={createDropdownOptions(instruments)}
       value={selected}
+      disabled={selected === null}
       placeholder="Choose an instrument..."
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
