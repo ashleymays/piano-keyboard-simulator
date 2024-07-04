@@ -10,15 +10,10 @@
   box-shadow: 0 2.5rem 2.5em rgba(0, 0, 0, 0.20);
   border-radius: 2.5em;
   gap: 0.5em;
-  padding: 4em;
+  padding: 5em 4.5em;
   touch-action: manipulation;
-
-  /*
-    We use the width to get the height so that the scale of the 
-    keyboard and its components is consistent across screen sizes.
-  */
-  width: 120rem;
-  height: 120rem * calc(30 / 100);
+  width: clamp(120rem, 82.5vw + 2rem, 140rem);
+  aspect-ratio: 30 / 9;
 
   &__row {
     display: flex;
