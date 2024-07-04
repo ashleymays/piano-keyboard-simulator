@@ -26,7 +26,9 @@ export const useInstrumentDropdown = () => {
     const initApp = () => {
       const initDropdown = async () => {
         const instrumentNames = await loadInstrumentNames();
-        await selectInstrument(instrumentNames[0]);
+
+        // We use the last instrument listed because the first one is always 8-bit and I don't like that one
+        await selectInstrument(instrumentNames[instrumentNames.length - 1]);
       };
 
       toast.promise(initDropdown(), {
