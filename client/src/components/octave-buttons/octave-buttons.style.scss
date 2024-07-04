@@ -56,12 +56,10 @@ $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radiu
 
   &:active {
     filter: brightness(0.9);
-    transition-timing-function: ease-out;
-    transition-duration: 100ms;
   }
 }
 
 .arrow-icon {
   color: #818181;
-  font-size: 0.75em;
+  font-size: 0.875em;
 }

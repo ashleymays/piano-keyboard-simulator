@@ -9,8 +9,8 @@
   background: #fff;
   box-shadow: 0 2.5rem 2.5em rgba(0, 0, 0, 0.20);
   border-radius: 2.5em;
-  gap: 0.5em;
-  padding: 5em 4.5em;
+  gap: 1em;
+  padding: 4.25em;
   touch-action: manipulation;
   width: clamp(120rem, 82.5vw + 2rem, 140rem);
   aspect-ratio: 30 / 9;
@@ -49,7 +49,7 @@
   &__subheading {
     font-size: 1.4em;
     font-weight: 400;
-    margin-top: 0.4em;
+    margin-top: 0.3em;
   }
 
   &__dots {
