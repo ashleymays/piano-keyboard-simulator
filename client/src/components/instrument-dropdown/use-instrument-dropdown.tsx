@@ -23,19 +23,21 @@ export const useInstrumentDropdown = () => {
   };
 
   useEffect(() => {
-    const init = async () => {
-      const instrumentNames = await loadInstrumentNames();
-      await selectInstrument(instrumentNames[0]);
+    const initApp = () => {
+      const initDropdown = async () => {
+        const instrumentNames = await loadInstrumentNames();
+        await selectInstrument(instrumentNames[0]);
+      };
+
+      toast.promise(initDropdown(), {
+        loading: 'Initializing app...',
+        success: 'App initialized',
+        error:
+          'Something went wrong initializing the app. Please reload the page and try again.'
+      });
     };
 
-    toast.promise(init(), {
-      loading: 'Initializing app...',
-      success: 'App initialized',
-      error:
-        'Something went wrong initializing the app. Please reload the page and try again.'
-    });
-
-    setTimeout(init, 1000);
+    setTimeout(initApp, 1000);
   }, []);
 
   return {
