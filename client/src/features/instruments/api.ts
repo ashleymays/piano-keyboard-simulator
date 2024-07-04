@@ -1,3 +1,5 @@
+import { fetchWithTimeLimit } from '~/features/utils';
+
 export const getInstruments = async () => {
   const response = await fetchInstruments();
 
