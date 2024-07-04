@@ -98,20 +98,29 @@ const slice = createSlice({
       }
     },
 
-    toggleKeyPress(
-      pianoKeys: PianoKeys,
-      action: PayloadAction<PianoKey['id']>
-    ) {
-      const pianoKey = pianoKeys.find((key) => key.id === action.payload);
+    pressKey(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
+      const pianoKey = pianoKeys.find(
+        (pianoKey) => pianoKey.id === action.payload
+      );
 
       if (pianoKey) {
-        pianoKey.isPressed = !pianoKey.isPressed;
+        pianoKey.isPressed = true;
+      }
+    },
+
+    releaseKey(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
+      const pianoKey = pianoKeys.find(
+        (pianoKey) => pianoKey.id === action.payload
+      );
+
+      if (pianoKey) {
+        pianoKey.isPressed = false;
       }
     }
   }
 });
 
-export const { incrementOctave, decrementOctave, toggleKeyPress } =
+export const { incrementOctave, decrementOctave, pressKey, releaseKey } =
   slice.actions;
 
 export const reducer = slice.reducer;

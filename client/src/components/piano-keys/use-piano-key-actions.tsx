@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '~/features/hooks';
-import { toggleKeyPress, type PianoKey } from '~/features/piano-keys';
+import { pressKey, releaseKey, type PianoKey } from '~/features/piano-keys';
 import type { Player } from 'tone';
 
 export const usePianoKeyActions = () => {
@@ -25,7 +25,7 @@ export const usePianoKeyActions = () => {
     }
 
     playPitch(audioPlayer);
-    toggleKey(keyId);
+    dispatch(pressKey(keyId));
   };
 
   const findPianoKeyById = (keyId: PianoKey['id']) => {
@@ -42,12 +42,8 @@ export const usePianoKeyActions = () => {
 
   const releasePianoKey = (keyId: PianoKey['id']) => {
     if (audioPlayers) {
-      toggleKey(keyId);
+      dispatch(releaseKey(keyId));
     }
-  };
-
-  const toggleKey = (keyId: PianoKey['id']) => {
-    dispatch(toggleKeyPress(keyId));
   };
 
   return { pressPianoKey, releasePianoKey };

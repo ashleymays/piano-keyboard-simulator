@@ -39,7 +39,7 @@ export const useInstrumentDropdown = () => {
       });
     };
 
-    setTimeout(initApp, 1000);
+    setTimeout(initApp, 500);
   }, []);
 
   return {
