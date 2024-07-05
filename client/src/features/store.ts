@@ -16,7 +16,7 @@ export const setupStore = (preloadedState?: Partial<RootState>) => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
-          ignoredPaths: ['audio.players'],
+          ignoredPaths: ['audio.current', 'audio.cached'],
           ignoredActions: ['audio/load/fulfilled']
         }
       })
