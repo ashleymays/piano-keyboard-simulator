@@ -21,12 +21,14 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   flex-flow: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 1rem;
-  font-size: 1.4em;
-  color: #97979c;
-  background: linear-gradient(#dcdcdc, #f7f7f7);
+  padding-bottom: 1em;
+  font-size: 1.45em;
+  text-transform: uppercase;
+  color: #9c9c9c;
+  background: linear-gradient(#ffffffd9, #fff);
   margin-right: $spacing-between-piano-keys;
   border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
+  box-shadow: 0 0.25em 0.8em rgb(0,0,0,0.3);
 
   &:first-child {
     margin-left: 0;
@@ -44,17 +46,36 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   }
 }
 
-$black-key-border-radius: $white-key-border-radius * 0.5;
+$black-key-border-radius: $white-key-border-radius * 1.25;
 $black-key-width: 2%;
 
 .piano-key--black {
   width: $black-key-width;
-  background: #171717;
-  height: 55%;
+  background: #3b3b3b;
+  height: 54%;
   z-index: 0;
-  border-bottom: 0.25em solid #3b3b3b;
-  box-shadow: 0 0.4em 0.4em #0000003b;
+  border: 0.15em solid #171717;
+  box-shadow: 0 0.75em 0.75em rgba(0, 0, 0, 0.3);
   border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
+  position: relative;
+  overflow: hidden;
+
+  /*
+    Used for the different colors inside the black piano keys.
+
+    The gradient has to be a separate element in order for the bottom curve
+    to be accurate to the original design.
+  */
+  &:after {
+    content: "";
+    background: linear-gradient(#121212, #232323);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 96.5%;
+    border-radius: 0 0 0 0.625em;
+  }
 
   &.pressed-piano-key {
     background: #4f4f4f;

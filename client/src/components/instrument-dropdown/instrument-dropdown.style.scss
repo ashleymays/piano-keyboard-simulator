@@ -2,8 +2,8 @@
 
 $dropdown-border-radius: 0.9rem;
 $option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
-$option-height: 1rem;
-$border-width: 0.16em;
+$option-height: 0.9rem;
+$border-width: 0.2rem;
 
 .instrument-dropdown {
   color: utils.$c-text-primary;

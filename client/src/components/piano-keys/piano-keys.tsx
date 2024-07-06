@@ -23,9 +23,13 @@ export const PianoKeys = () => {
   );
 };
 
-const PianoKey = ({ id, isPressed, note, octave, type }: PianoKeyType) => {
-  const pitch = `${note}${octave}`;
+type PianoKeyProps = {
+  id: PianoKeyType['id'];
+  isPressed: PianoKeyType['isPressed'];
+  type: PianoKeyType['type'];
+};
 
+const PianoKey = ({ id, isPressed, type }: PianoKeyProps) => {
   return (
     <button
       type="button"
@@ -37,7 +41,7 @@ const PianoKey = ({ id, isPressed, note, octave, type }: PianoKeyType) => {
       value={id}
       aria-label={id}
     >
-      {type === 'natural' && pitch}
+      {type === 'natural' && id}
     </button>
   );
 };

@@ -13,7 +13,7 @@
   padding: 4.25em;
   touch-action: manipulation;
   width: clamp(120rem, 82.5vw + 2rem, 140rem);
-  aspect-ratio: 30 / 9;
+  aspect-ratio: 27 / 9;
 
   &__row {
     display: flex;
@@ -43,11 +43,10 @@
 
   &__heading {
     font-size: 2.75em;
-    font-weight: 600;
   }
 
   &__subheading {
-    font-size: 1.4em;
+    font-size: 1.325em;
     font-weight: 400;
     margin-top: 0.3em;
   }
@@ -56,12 +55,12 @@
     display: flex;
     justify-content: space-between;
     width: 22.5%;
-    margin-top: 2em;
+    margin-top: 2.25em;
 
     & span {
       padding: 0.3em;
       border-radius: 50%;
-      background: utils.$c-text-primary;
+      background: #818181;
     }
 
     & span:first-child {
