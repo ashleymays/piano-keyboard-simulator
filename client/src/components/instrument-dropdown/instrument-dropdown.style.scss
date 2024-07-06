@@ -1,8 +1,7 @@
 @use '~/styles/utils.scss';
 
-$dropdown-border-radius: 0.9rem;
+$dropdown-border-radius: 0.75rem;
 $option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
-$option-height: 0.9rem;
 $border-width: 0.2rem;
 
 .instrument-dropdown {
@@ -20,32 +19,24 @@ $border-width: 0.2rem;
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
-    padding: $option-height;
+    padding: 1rem;
   }
 
   &__options {
     position: absolute;
     left: 0;
-    bottom: 100%;
+    bottom: 107.5%;
     z-index: 2;
     width: 100%;
     background: utils.$c-bg-btn;
     border-radius: $dropdown-border-radius;
     border: $border-width solid utils.$c-bg-btn--border;
+    padding: 0.25em;
   }
 
   &__option {
-    padding: $option-height;
-
-    &:first-child {
-      border-top-right-radius: $option-border-radius;
-      border-top-left-radius: $option-border-radius;
-    }
-
-    &:last-child {
-      border-bottom-right-radius: $option-border-radius;
-      border-bottom-left-radius: $option-border-radius;
-    }
+    padding: 0.875em;
+    border-radius: $option-border-radius;
 
     &:hover {
       background: darken(utils.$c-bg-btn, 7.5%);

@@ -10,7 +10,7 @@
   box-shadow: 0 2.5rem 2.5em rgba(0, 0, 0, 0.20);
   border-radius: 2.5em;
   gap: 1em;
-  padding: 4.25em;
+  padding: 4.75em 4.25em;
   touch-action: manipulation;
   width: clamp(120rem, 82.5vw + 2rem, 140rem);
   aspect-ratio: 27 / 9;
@@ -27,8 +27,8 @@
   }
 
   &__row--bottom {
-    flex: 1.5;
-    gap: 4em;
+    flex: 1.625;
+    gap: 4.25em;
   }
 
   &__header {
@@ -42,7 +42,7 @@
   }
 
   &__heading {
-    font-size: 2.75em;
+    font-size: 2.875em;
   }
 
   &__subheading {
@@ -54,7 +54,7 @@
   &__dots {
     display: flex;
     justify-content: space-between;
-    width: 22.5%;
+    width: 25%;
     margin-top: 2.25em;
 
     & span {
