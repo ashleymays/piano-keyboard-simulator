@@ -2,22 +2,18 @@ import { usePianoKeys } from './use-piano-keys';
 import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
 
 export const PianoKeys = () => {
-  const { pianoKeys, onMouseDown, onMouseUp, onMouseOver, onMouseOut } =
-    usePianoKeys();
+  const { pianoKeys, onPianoKeyPress, onPianoKeyRelease } = usePianoKeys();
 
   return (
     <div
       className="piano-keys-wrapper"
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
+      onMouseDown={onPianoKeyPress}
+      onMouseUp={onPianoKeyRelease}
+      onMouseOver={onPianoKeyRelease}
+      onMouseOut={onPianoKeyRelease}
     >
       {pianoKeys.map((pianoKey) => (
-        <PianoKey
-          key={pianoKey.id}
-          {...pianoKey}
-        />
+        <PianoKey key={pianoKey.id} {...pianoKey} />
       ))}
     </div>
   );

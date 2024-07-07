@@ -30,12 +30,7 @@ export const usePianoKeyEvents = () => {
     };
   }, [onPianoKeyPress, onPianoKeyRelease]);
 
-  return {
-    onMouseDown: onPianoKeyPress,
-    onMouseUp: onPianoKeyRelease,
-    onMouseOver: onPianoKeyRelease,
-    onMouseOut: onPianoKeyRelease
-  };
+  return { onPianoKeyPress, onPianoKeyRelease };
 };
 
 const getPianoKeyId = (event: KeyboardEvent | ReactMouseEvent) => {
