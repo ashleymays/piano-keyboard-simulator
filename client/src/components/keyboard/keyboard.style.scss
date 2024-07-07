@@ -7,11 +7,11 @@
   display: flex;
   flex-flow: column;
   background: #fff;
-  border-radius: 3.25rem;
+  border-radius: 2.75rem;
   gap: 1rem;
-  padding: 5.25rem 4.5rem;
+  padding: 4.5rem 4.25rem;
   touch-action: manipulation;
-  width: clamp(120rem, 82vw + 1rem, 135rem);
+  width: 115em;
   aspect-ratio: 27 / 9;
   box-shadow: 0 2.5rem 2.5rem #00000033,
     0 0.375rem 0 #F7F7F7;
@@ -43,11 +43,11 @@
   }
 
   &__heading {
-    font-size: clamp(1.75rem, 2.75em + 0.1em, 3.5rem);
+    font-size: clamp(1.75rem, 2.625em + 0.1em, 3rem);
   }
 
   &__subheading {
-    font-size: 1.325rem;
+    font-size: 1.25rem;
     font-weight: 400;
     margin-top: 0.3rem;
   }
@@ -59,7 +59,7 @@
     margin-top: 2.25rem;
 
     & span {
-      padding: 0.35rem;
+      padding: 0.3rem;
       border-radius: 50%;
       background: #818181;
     }

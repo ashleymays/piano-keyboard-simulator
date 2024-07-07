@@ -5,13 +5,10 @@ export const InstrumentDropdown = () => {
   const { selected, instruments, loadAudioForInstrument } =
     useInstrumentDropdown();
 
-  const newInstruments = ['Acoustic Grand', 'Electric Piano'];
-
   return (
     <Dropdown
-      options={createDropdownOptions(newInstruments)}
+      options={createDropdownOptions(instruments)}
       value={selected}
-      // disabled={selected === null}
       placeholder="Choose an instrument..."
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"

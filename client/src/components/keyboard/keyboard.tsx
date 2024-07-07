@@ -1,13 +1,13 @@
 import { PianoKeys } from '~/components/piano-keys';
 import { OctaveButtons } from '~/components/octave-buttons';
-// import { InstrumentDropdown } from '~/components/instrument-dropdown';
+import { InstrumentDropdown } from '~/components/instrument-dropdown';
 
 export const Keyboard = () => {
   return (
     <section className="keyboard">
       <div className="keyboard__row keyboard__row--top">
         <Header />
-        {/* <InstrumentDropdown /> */}
+        <InstrumentDropdown />
       </div>
       <div className="keyboard__row keyboard__row--bottom">
         <OctaveButtons />
