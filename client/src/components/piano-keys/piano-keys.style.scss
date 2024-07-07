@@ -1,6 +1,6 @@
 @use '~/styles/utils.scss';
 
-$spacing-between-piano-keys: 0.4rem;
+$spacing-between-piano-keys: 0.3rem;
 $wrapper-radius: 1.2rem;
 $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
 

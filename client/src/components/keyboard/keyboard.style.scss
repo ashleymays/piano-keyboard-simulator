@@ -9,7 +9,7 @@
   background: #fff;
   border-radius: 3.25rem;
   gap: 1rem;
-  padding: 5.25rem 5rem;
+  padding: 5.25rem 4.5rem;
   touch-action: manipulation;
   width: clamp(120rem, 82vw + 1rem, 135rem);
   aspect-ratio: 27 / 9;
@@ -43,7 +43,7 @@
   }
 
   &__heading {
-    font-size: clamp(2rem, 2.75em + 0.1em, 4rem);
+    font-size: clamp(1.75rem, 2.75em + 0.1em, 3.5rem);
   }
 
   &__subheading {
