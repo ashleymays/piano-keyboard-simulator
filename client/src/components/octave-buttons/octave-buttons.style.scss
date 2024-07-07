@@ -7,7 +7,6 @@ $btn-wrapper-border-radius: 0.9rem;
 $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radius);
 
 .octave-controls-wrapper {
-  flex: 1;
   display: flex;
   flex-flow: column;
   align-items: center;

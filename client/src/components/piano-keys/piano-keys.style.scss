@@ -1,11 +1,11 @@
 @use '~/styles/utils.scss';
 
-$spacing-between-piano-keys: 0.3rem;
+$spacing-between-piano-keys: 0.4rem;
 $wrapper-radius: 1.2rem;
 $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
 
 .piano-keys-wrapper {
-  flex: 20;
+  flex: 1;
   display: flex;
   padding: $spacing-between-piano-keys;
   border-radius: $wrapper-radius;
@@ -22,13 +22,13 @@ $white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
   align-items: center;
   justify-content: flex-end;
   padding-bottom: 1em;
-  font-size: 1.45em;
+  font-size: 1.5em;
   text-transform: uppercase;
   color: #9c9c9c;
-  background: linear-gradient(#ffffffd9, #fff);
+  background: linear-gradient(#DCDCDC, #F7F7F7);
   margin-right: $spacing-between-piano-keys;
   border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
-  box-shadow: 0 0.25em 0.8em rgb(0,0,0,0.3);
+  box-shadow: 0 0.25em 0.8em #0000004d;
 
   &:first-child {
     margin-left: 0;
@@ -55,7 +55,7 @@ $black-key-width: 2%;
   height: 55%;
   z-index: 0;
   border: 0.15em solid #171717;
-  box-shadow: 0 0.75em 0.75em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.75em 0.75em #00000033;
   border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
   position: relative;
   overflow: hidden;

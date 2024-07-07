@@ -2,15 +2,15 @@
 
 $dropdown-border-radius: 0.75rem;
 $option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
-$border-width: 0.2rem;
+$border-width: 0.1rem;
 
 .instrument-dropdown {
   color: utils.$c-text-primary;
   font-size: 1.25em;
   flex: 0.25 1 0;
-  background: utils.$c-bg-btn;
+  background: #fff;
   border-radius: $dropdown-border-radius;
-  border: $border-width solid utils.$c-bg-btn--border;
+  border: $border-width solid #d6d6d6;
   cursor: pointer;
   position: relative;
 
@@ -28,18 +28,18 @@ $border-width: 0.2rem;
     bottom: 107.5%;
     z-index: 2;
     width: 100%;
-    background: utils.$c-bg-btn;
+    background: #fff;
     border-radius: $dropdown-border-radius;
-    border: $border-width solid utils.$c-bg-btn--border;
-    padding: 0.25em;
+    border: $border-width solid #d6d6d6;
+    padding: 0.5em;
   }
 
   &__option {
-    padding: 0.875em;
+    padding: 1em;
     border-radius: $option-border-radius;
 
     &:hover {
-      background: darken(utils.$c-bg-btn, 7.5%);
+      background: darken(utils.$c-bg-btn, 2.5%);
     }
   }
 }
