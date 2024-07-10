@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 
-type UseKeyboardProps = {
+type UseComputerKeyboardProps = {
   onKeyDown: (event: KeyboardEvent) => void;
   onKeyUp: (event: KeyboardEvent) => void;
 };
 
-export const useKeyboard = ({ onKeyDown, onKeyUp }: UseKeyboardProps) => {
+export const useComputerKeyboard = ({
+  onKeyDown,
+  onKeyUp
+}: UseComputerKeyboardProps) => {
   useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('keyup', onKeyUp);
