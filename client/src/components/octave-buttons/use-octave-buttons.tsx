@@ -33,7 +33,7 @@ export const useOctaveButtons = () => {
       showOctaveRange();
     }
     hasEnteredPageBefore.current = true;
-  }, [pianoKeys]);
+  }, [...pianoKeys.map((pianoKey) => pianoKey.octave)]);
 
   return { increment, decrement };
 };

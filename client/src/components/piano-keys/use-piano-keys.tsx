@@ -1,13 +1,13 @@
-import { useState, type MouseEvent as ReactMouseEvent } from 'react';
-import { useAppSelector } from '~/store/hooks';
+import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { getPitch } from '~/utils/get-pitch';
-import type { PianoKey } from '~/store/piano-keys';
+import { pressKey, releaseKey, type PianoKey } from '~/store/piano-keys';
+import type { MouseEvent as ReactMouseEvent } from 'react';
 import type { Player } from 'tone';
 
 export const usePianoKeys = () => {
-  const [pressedKeys, setPressedKeys] = useState({});
   const audioPlayers = useAppSelector((state) => state.audio.players);
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
+  const dispatch = useAppDispatch();
 
   const onPianoKeyPress = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
@@ -22,7 +22,7 @@ export const usePianoKeys = () => {
 
     const pianoKey = findPianoKeyById(keyId);
 
-    if (!pianoKey || pressedKeys[keyId]) {
+    if (!pianoKey || pianoKey.isPressed) {
       return;
     }
 
@@ -33,7 +33,7 @@ export const usePianoKeys = () => {
     }
 
     playPitch(audioPlayer);
-    setPressedKeys({ ...pressedKeys, [keyId]: true });
+    dispatch(pressKey(keyId));
   };
 
   const findPianoKeyById = (keyId: PianoKey['id']) => {
@@ -52,11 +52,11 @@ export const usePianoKeys = () => {
     const keyId = getPianoKeyId(event);
 
     if (keyId) {
-      setPressedKeys({ ...pressedKeys, [keyId]: false });
+      dispatch(releaseKey(keyId));
     }
   };
 
-  return { pianoKeys, pressedKeys, onPianoKeyPress, onPianoKeyRelease };
+  return { pianoKeys, onPianoKeyPress, onPianoKeyRelease };
 };
 
 const getPianoKeyId = (event: KeyboardEvent | ReactMouseEvent) => {
