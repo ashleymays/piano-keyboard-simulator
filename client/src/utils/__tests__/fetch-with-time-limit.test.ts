@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fetchWithTimeLimit } from './fetch-with-time-limit';
+import { fetchWithTimeLimit } from '../fetch-with-time-limit';
 
 describe('fetch-with-time-limit', () => {
   it('should throw an error for an invalid route', async () => {

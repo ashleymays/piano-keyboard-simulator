@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { incrementOctave, decrementOctave } from '~/store/piano-keys';
-import { setupStore } from '~/store/store';
+import { setupStore } from '~/store';
 
 describe('piano keys - octaves', () => {
   it('should increment octaves', () => {
