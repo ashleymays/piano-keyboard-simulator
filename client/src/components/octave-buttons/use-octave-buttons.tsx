@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { useAppSelector, useAppDispatch } from '~/features/hooks';
 import { incrementOctave, decrementOctave } from '~/features/piano-keys';
 import { getPitch } from '~/lib/get-pitch';
 
 export const useOctaveButtons = () => {
+  const hasEnteredPageBefore = useRef(false);
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
@@ -28,7 +29,10 @@ export const useOctaveButtons = () => {
   };
 
   useEffect(() => {
-    showOctaveRange();
+    if (hasEnteredPageBefore.current) {
+      showOctaveRange();
+    }
+    hasEnteredPageBefore.current = true;
   }, [pianoKeys]);
 
   return { increment, decrement };
