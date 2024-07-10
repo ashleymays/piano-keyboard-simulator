@@ -1,10 +1,7 @@
 import { Players } from 'tone';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
-type AudioMap = {
-  [pitch: string]: string;
-};
-
+type AudioMap = Record<string, string>;
 type ApiResponse = { data?: AudioMap; error?: string };
 
 export const getAudio = async (instrument: string) => {
