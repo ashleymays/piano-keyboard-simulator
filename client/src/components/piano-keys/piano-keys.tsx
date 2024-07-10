@@ -13,7 +13,10 @@ export const PianoKeys = () => {
       onMouseOut={onPianoKeyRelease}
     >
       {pianoKeys.map((pianoKey) => (
-        <PianoKey key={pianoKey.id} {...pianoKey} />
+        <PianoKey
+          key={pianoKey.id}
+          {...pianoKey}
+        />
       ))}
     </div>
   );

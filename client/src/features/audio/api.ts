@@ -1,5 +1,5 @@
 import { Players } from 'tone';
-import { fetchWithTimeLimit } from '~/features/utils';
+import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
 type AudioMap = {
   [pitch: string]: string;

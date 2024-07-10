@@ -2,18 +2,18 @@ import Dropdown from 'react-dropdown';
 import { useInstrumentDropdown } from './use-instrument-dropdown';
 
 export const InstrumentDropdown = () => {
-  const { selected, instruments, loadAudioForInstrument } =
+  const { instrument, instrumentNames, loadInstrument } =
     useInstrumentDropdown();
 
   return (
     <Dropdown
-      options={createDropdownOptions(instruments)}
-      value={selected}
+      options={createDropdownOptions(instrumentNames)}
+      value={instrument}
       placeholder="Choose an instrument..."
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"
       menuClassName="instrument-dropdown__options"
-      onChange={({ value }) => loadAudioForInstrument(value)}
+      onChange={({ value }) => loadInstrument(value)}
     />
   );
 };

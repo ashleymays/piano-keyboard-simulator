@@ -1,50 +1,53 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { useInstrumentNames } from './use-instrument-names';
-import { useInstrumentAudio } from './use-instrument-audio';
+import { loadAudioSamples } from '~/features/audio';
+import { useAppDispatch } from '~/features/hooks';
+import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
 export const useInstrumentDropdown = () => {
-  const [selected, setSelected] = useState<string | null>(null);
-  const { instrumentNames, loadInstrumentNames } = useInstrumentNames();
-  const { loadAudio } = useInstrumentAudio();
+  const [instrument, setInstrument] = useState(null);
+  const [instrumentNames, setInstrumentNames] = useState([]);
+  const dispatch = useAppDispatch();
 
-  const selectInstrument = async (instrument: string) => {
-    await loadAudio(instrument);
-    setSelected(instrument);
-  };
-
-  const loadAudioForInstrument = (instrument: string) => {
-    toast.promise(selectInstrument(instrument), {
-      loading: 'Loading instrument...',
-      success: 'Instrument loaded successfully',
-      error:
-        'Something went wrong loading the instrument. Please try again or choose another instrument.'
+  const showToast = (asyncFn: () => Promise<void>) => {
+    toast.promise(asyncFn(), {
+      loading: 'Loading...',
+      success: 'Ready to play!',
+      error: 'Something went wrong.'
     });
   };
 
+  const selectInstrument = async (newInstrument: string) => {
+    await dispatch(loadAudioSamples(newInstrument));
+    setInstrument(newInstrument);
+  };
+
+  const loadInstrument = (instrument: string) => {
+    showToast(() => selectInstrument(instrument));
+  };
+
   useEffect(() => {
-    const initApp = () => {
-      const initDropdown = async () => {
-        const instrumentNames = await loadInstrumentNames();
+    const fetchInstrumentNames = async () => {
+      const response = await fetchWithTimeLimit(
+        `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
+      );
 
-        // We use the last instrument listed because the first one is always 8-bit and I don't like that one
-        await selectInstrument(instrumentNames[instrumentNames.length - 1]);
-      };
+      if (response.error) {
+        throw new Error(response.error);
+      }
 
-      toast.promise(initDropdown(), {
-        loading: 'Initializing app...',
-        success: 'App initialized',
-        error:
-          'Something went wrong initializing the app. Please reload the page and try again.'
-      });
+      return response.data;
     };
 
-    setTimeout(initApp, 500);
+    const initDropdown = async () => {
+      const instruments = await fetchInstrumentNames();
+
+      await selectInstrument(instruments[0]);
+      setInstrumentNames([...instruments]);
+    };
+
+    setTimeout(() => showToast(initDropdown), 500);
   }, []);
 
-  return {
-    selected,
-    loadAudioForInstrument,
-    instruments: instrumentNames
-  };
+  return { instrument, instrumentNames, loadInstrument };
 };
