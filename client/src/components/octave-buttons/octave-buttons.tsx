@@ -1,8 +1,8 @@
-import { useOctaves } from './use-octaves';
+import { useOctaveButtons } from './use-octave-buttons';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
-  const { increment, decrement } = useOctaves();
+  const { increment, decrement } = useOctaveButtons();
 
   return (
     <div className="octave-controls-wrapper">
