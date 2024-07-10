@@ -3,7 +3,8 @@ import { useComputerKeyboard } from './use-computer-keyboard';
 import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
 
 export const PianoKeys = () => {
-  const { pianoKeys, onPianoKeyPress, onPianoKeyRelease } = usePianoKeys();
+  const { pianoKeys, pressedKeys, onPianoKeyPress, onPianoKeyRelease } =
+    usePianoKeys();
 
   useComputerKeyboard({
     onKeyDown: onPianoKeyPress,
@@ -22,6 +23,7 @@ export const PianoKeys = () => {
         <PianoKey
           key={pianoKey.id}
           {...pianoKey}
+          isPressed={pressedKeys[pianoKey.id] === true}
         />
       ))}
     </div>
@@ -30,7 +32,7 @@ export const PianoKeys = () => {
 
 type PianoKeyProps = {
   id: PianoKeyType['id'];
-  isPressed: PianoKeyType['isPressed'];
+  isPressed: boolean;
   type: PianoKeyType['type'];
 };
 
