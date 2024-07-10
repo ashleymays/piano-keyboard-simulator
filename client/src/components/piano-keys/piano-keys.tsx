@@ -1,8 +1,14 @@
 import { usePianoKeys } from './use-piano-keys';
+import { useKeyboard } from './use-keyboard';
 import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
 
 export const PianoKeys = () => {
   const { pianoKeys, onPianoKeyPress, onPianoKeyRelease } = usePianoKeys();
+
+  useKeyboard({
+    onKeyDown: onPianoKeyPress,
+    onKeyUp: onPianoKeyRelease
+  });
 
   return (
     <div
