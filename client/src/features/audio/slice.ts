@@ -1,34 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAudio } from './api';
 import type { Players } from 'tone';
-import type { RootState } from '~/features/store';
 
-export const loadAudioSamples = createAsyncThunk<
-  Players,
-  string,
-  { state: RootState }
->('audio/load', async (instrument, { getState }) => {
-  const state = getState();
+export const loadAudioSamples = createAsyncThunk<Players, string>(
+  'audio/load',
+  (instrument) => getAudio(instrument)
+);
 
-  if (state.audio.cached[instrument]) {
-    return state.audio.cached[instrument];
-  }
-
-  return getAudio(instrument);
-});
-
-type Audio = {
-  cached: {
-    [instrument: string]: Players;
-  };
-  current: Players | null;
+type AudioState = {
+  players: Players | null;
   isLoading: boolean;
   error: string | null;
 };
 
-const initialState: Audio = {
-  cached: {},
-  current: null,
+const initialState: AudioState = {
+  players: null,
   isLoading: false,
   error: null
 };
@@ -43,10 +29,7 @@ const slice = createSlice({
     });
     builder.addCase(loadAudioSamples.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.current = action.payload;
-
-      const instrument = action.meta.arg;
-      state.cached[instrument] = action.payload;
+      state.players = action.payload;
     });
     builder.addCase(loadAudioSamples.rejected, (state, action) => {
       state.isLoading = false;
