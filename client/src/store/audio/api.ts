@@ -5,7 +5,7 @@ type AudioMap = {
   [pitch: string]: string;
 };
 
-type ApiResponse = { data: AudioMap } & { error: string };
+type ApiResponse = { data?: AudioMap; error?: string };
 
 export const getAudio = async (instrument: string) => {
   const response = await fetchAudioSamples(instrument);
