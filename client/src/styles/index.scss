@@ -1,4 +1,4 @@
-@use '~/styles/utils.scss';
+@use '~/styles/variables.scss';
 
 * {
   box-sizing: border-box;
@@ -19,7 +19,7 @@ html {
 
 body {
   background: #202020;
-  font-family: utils.$font;
+  font-family: variables.$font;
   overflow-x: visible;
   overflow-y: hidden;
   user-select: none;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { loadAudioSamples } from '~/features/audio';
-import { useAppDispatch } from '~/features/hooks';
+import { loadAudioSamples } from '~/store/audio';
+import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
 export const useInstrumentDropdown = () => {

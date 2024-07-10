@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { toast } from 'react-hot-toast';
-import { useAppSelector, useAppDispatch } from '~/features/hooks';
-import { incrementOctave, decrementOctave } from '~/features/piano-keys';
-import { getPitch } from '~/lib/get-pitch';
+import { useAppSelector, useAppDispatch } from '~/store/hooks';
+import { incrementOctave, decrementOctave } from '~/store/piano-keys';
+import { getPitch } from '~/utils/get-pitch';
 
 export const useOctaveButtons = () => {
   const hasEnteredPageBefore = useRef(false);

@@ -1,6 +1,6 @@
-@use '~/styles/utils.scss';
+@use '~/styles/variables.scss';
 
 .toast-body {
-  font-family: utils.$font;
+  font-family: variables.$font;
   font-size: 1.5rem;
 }

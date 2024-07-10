@@ -1,8 +1,8 @@
-@use '~/styles/utils.scss';
+@use '~/styles/functions.scss';
 
 $spacing-between-piano-keys: 0.3rem;
 $wrapper-radius: 1.2rem;
-$white-key-border-radius: utils.get-radius-for-wrapper-items($wrapper-radius);
+$white-key-border-radius: functions.get-radius-for-wrapper-items($wrapper-radius);
 
 .piano-keys-wrapper {
   flex: 1;

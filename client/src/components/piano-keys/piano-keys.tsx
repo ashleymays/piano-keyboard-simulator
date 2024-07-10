@@ -1,6 +1,6 @@
 import { usePianoKeys } from './use-piano-keys';
 import { useComputerKeyboard } from './use-computer-keyboard';
-import type { PianoKey as PianoKeyType } from '~/features/piano-keys';
+import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
 
 export const PianoKeys = () => {
   const { pianoKeys, pressedKeys, onPianoKeyPress, onPianoKeyRelease } =

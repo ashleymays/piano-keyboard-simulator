@@ -1,17 +1,18 @@
-@use '~/styles/utils.scss';
+@use '~/styles/variables.scss';
+@use '~/styles/functions.scss';
 
 $dropdown-border-radius: 0.75rem;
-$option-border-radius: utils.get-radius-for-wrapper-items($dropdown-border-radius);
+$option-border-radius: functions.get-radius-for-wrapper-items($dropdown-border-radius);
 $option-height: 0.9rem;
 $border-width: 0.15em;
 
 .instrument-dropdown {
-  color: utils.$c-text-primary;
+  color: variables.$c-text-primary;
   font-size: 1.25em;
   flex: 0.25 1 0;
-  background: utils.$c-bg-btn;
+  background: variables.$c-bg-btn;
   border-radius: $dropdown-border-radius;
-  border: $border-width solid utils.$c-bg-btn--border;
+  border: $border-width solid variables.$c-bg-btn--border;
   cursor: pointer;
   position: relative;
 
@@ -29,9 +30,9 @@ $border-width: 0.15em;
     bottom: 100%;
     z-index: 2;
     width: 100%;
-    background: utils.$c-bg-btn;
+    background: variables.$c-bg-btn;
     border-radius: $dropdown-border-radius;
-    border: $border-width solid utils.$c-bg-btn--border;
+    border: $border-width solid variables.$c-bg-btn--border;
     margin-bottom: 0.25em;
   }
 
@@ -49,7 +50,7 @@ $border-width: 0.15em;
     }
 
     &:hover {
-      background: darken(utils.$c-bg-btn, 5%);
+      background: darken(variables.$c-bg-btn, 5%);
     }
   }
 }

@@ -1,10 +1,11 @@
-@use '~/styles/utils.scss';
+@use '~/styles/variables.scss';
+@use '~/styles/functions.scss';
 
 $btn-wrapper-padding: 0.2rem;
 $spacing-between-btns: calc($btn-wrapper-padding / 2);
 
 $btn-wrapper-border-radius: 0.9rem;
-$btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radius);
+$btn-border-radius: functions.get-radius-for-wrapper-items($btn-wrapper-border-radius);
 
 .octave-controls-wrapper {
   display: flex;
@@ -14,7 +15,7 @@ $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radiu
 
   &__label {
     font-size: 1.25em;
-    color: utils.$c-text-primary;
+    color: variables.$c-text-primary;
     margin-bottom: 0;
   }
 }
@@ -23,7 +24,7 @@ $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radiu
   flex: 1;
   display: flex;
   flex-flow: column;
-  background: utils.$c-bg-btn--border;
+  background: variables.$c-bg-btn--border;
   padding: $btn-wrapper-padding;
   border-radius: $btn-wrapper-border-radius;
 }
@@ -33,7 +34,7 @@ $btn-border-radius: utils.get-radius-for-wrapper-items($btn-wrapper-border-radiu
   display: flex;
   align-items: center;
   justify-content: center;
-  background: utils.$c-bg-btn;
+  background: variables.$c-bg-btn;
   width: 3.25em;
   border-radius: $btn-border-radius;
   border-width: 0.15em;

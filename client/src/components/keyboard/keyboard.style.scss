@@ -1,4 +1,4 @@
-@use '~/styles/utils.scss';
+@use '~/styles/variables.scss';
 
 .keyboard {
   position: absolute;
@@ -38,7 +38,7 @@
 
   &__heading,
   &__subheading {
-    color: utils.$c-text-primary;
+    color: variables.$c-text-primary;
     margin: 0;
   }
 

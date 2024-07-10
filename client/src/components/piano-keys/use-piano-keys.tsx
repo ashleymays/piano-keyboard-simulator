@@ -1,7 +1,7 @@
 import { useState, type MouseEvent as ReactMouseEvent } from 'react';
-import { useAppSelector } from '~/features/hooks';
-import { getPitch } from '~/lib/get-pitch';
-import type { PianoKey } from '~/features/piano-keys';
+import { useAppSelector } from '~/store/hooks';
+import { getPitch } from '~/utils/get-pitch';
+import type { PianoKey } from '~/store/piano-keys';
 import type { Player } from 'tone';
 
 export const usePianoKeys = () => {
