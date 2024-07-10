@@ -1,4 +1,5 @@
 import Dropdown from 'react-dropdown';
+import { ArrowIcon } from '~/components/arrow-icon';
 import { useInstrumentDropdown } from './use-instrument-dropdown';
 
 export const InstrumentDropdown = () => {
@@ -9,6 +10,8 @@ export const InstrumentDropdown = () => {
     <Dropdown
       options={createDropdownOptions(instrumentNames)}
       value={instrument}
+      arrowOpen={<ArrowIcon direction="up" />}
+      arrowClosed={<ArrowIcon direction="down" />}
       placeholder="Choose an instrument..."
       className="instrument-dropdown"
       controlClassName="instrument-dropdown__selected"

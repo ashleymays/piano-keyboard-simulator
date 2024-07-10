@@ -1,4 +1,5 @@
 import { useOctaveButtons } from './use-octave-buttons';
+import { ArrowIcon } from '~/components/arrow-icon';
 import type { MouseEventHandler } from 'react';
 
 export const OctaveButtons = () => {
@@ -8,12 +9,12 @@ export const OctaveButtons = () => {
     <div className="octave-controls-wrapper">
       <div className="octave-btns-wrapper">
         <OctaveButton
-          direction="UP"
+          direction="up"
           onClick={increment}
         />
         <div />
         <OctaveButton
-          direction="DOWN"
+          direction="down"
           onClick={decrement}
         />
       </div>
@@ -23,29 +24,19 @@ export const OctaveButtons = () => {
 };
 
 type OctaveButtonProps = {
-  direction: 'UP' | 'DOWN';
+  direction: 'up' | 'down';
   onClick: MouseEventHandler;
 };
 
 const OctaveButton = ({ direction, onClick }: OctaveButtonProps) => {
-  const Icon = direction === 'UP' ? UpArrowIcon : DownArrowIcon;
-
   return (
     <button
       type="button"
-      aria-label={direction === 'UP' ? 'Raise Octave' : 'Lower Octave'}
+      aria-label={direction === 'up' ? 'Raise Octave' : 'Lower Octave'}
       className="octave-btn"
       onClick={onClick}
     >
-      <Icon />
+      <ArrowIcon direction={direction} />
     </button>
   );
-};
-
-const DownArrowIcon = () => {
-  return <span className="arrow-icon">&#128899;</span>;
-};
-
-const UpArrowIcon = () => {
-  return <span className="arrow-icon">&#128897;</span>;
 };
