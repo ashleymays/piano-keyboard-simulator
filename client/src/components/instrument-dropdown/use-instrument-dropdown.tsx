@@ -9,21 +9,18 @@ export const useInstrumentDropdown = () => {
   const [instrumentNames, setInstrumentNames] = useState([]);
   const dispatch = useAppDispatch();
 
-  const showToast = (asyncFn: () => Promise<void>) => {
-    toast.promise(asyncFn(), {
-      loading: 'Loading...',
-      success: 'Ready to play!',
-      error: 'Something went wrong.'
-    });
-  };
-
   const selectInstrument = async (newInstrument: string) => {
     await dispatch(loadAudioSamples(newInstrument));
     setInstrument(newInstrument);
   };
 
   const loadInstrument = (instrument: string) => {
-    showToast(() => selectInstrument(instrument));
+    toast.promise(selectInstrument(instrument), {
+      loading: 'Loading...',
+      success: 'Ready to play!',
+      error:
+        'Something went wrong. Please choose another instrument or try again.'
+    });
   };
 
   useEffect(() => {
@@ -41,12 +38,17 @@ export const useInstrumentDropdown = () => {
 
     const initDropdown = async () => {
       const instruments = await fetchInstrumentNames();
-
       await selectInstrument(instruments[0]);
       setInstrumentNames([...instruments]);
     };
 
-    setTimeout(() => showToast(initDropdown), 500);
+    setTimeout(() => {
+      toast.promise(initDropdown(), {
+        loading: 'Preparing keyboard...',
+        success: 'Ready to play!',
+        error: 'Something went wrong. Please reload the page and try again.'
+      });
+    }, 500);
   }, []);
 
   return { instrument, instrumentNames, loadInstrument };
