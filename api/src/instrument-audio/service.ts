@@ -3,10 +3,7 @@ import { Buffer } from 'node:buffer';
 import { storage, repositoryConfig } from '~/octokit/config.ts';
 import type { components } from '@octokit/openapi-types';
 
-type AudioMap = {
-  [pitch: string]: string;
-};
-
+type AudioMap = Record<string, string>;
 type DirectoryFile = components['schemas']['content-directory'][number];
 
 /**

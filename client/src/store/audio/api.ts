@@ -1,26 +1,21 @@
 import { Players } from 'tone';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
-type AudioMap = Record<string, string>;
-type ApiResponse = { data?: AudioMap; error?: string };
+type AudioSamples = Record<string, string>;
 
 export const getAudio = async (instrument: string) => {
-  const response = await fetchAudioSamples(instrument);
+  const audioSamples = await fetchAudioSamples(instrument);
 
-  if (response.error) {
-    throw new Error(response.error);
-  }
-
-  return getAudioPlayers(response.data);
+  return getAudioPlayers(audioSamples);
 };
 
-const fetchAudioSamples = (instrument: string): Promise<ApiResponse> => {
+const fetchAudioSamples = (instrument: string): Promise<AudioSamples> => {
   return fetchWithTimeLimit(
     `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
   );
 };
 
-const getAudioPlayers = (urls: AudioMap): Promise<Players> => {
+const getAudioPlayers = (urls: AudioSamples): Promise<Players> => {
   return new Promise((resolve, reject) => {
     const players = new Players({
       urls,

@@ -5,7 +5,7 @@ import type { Request, Response, NextFunction } from 'express';
 import type { CustomError } from '@ashleymays/nodejs-utils';
 
 export const globalErrorHandler = (
-  err: CustomError & RequestError,
+  err: CustomError | RequestError,
   req: Request,
   res: Response,
   next: NextFunction
@@ -13,11 +13,13 @@ export const globalErrorHandler = (
   const error = isOctokitError(err) ? parseOctokitError(err) : err;
 
   res
-    .status(err.status || err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
-    .json({ error });
+    .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+    .json({ error: error.message });
 };
 
-const isOctokitError = (err: CustomError & RequestError) => {
+const isOctokitError = (
+  err: CustomError | RequestError
+): err is RequestError => {
   return err instanceof RequestError;
 };
 

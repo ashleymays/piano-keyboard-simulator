@@ -14,18 +14,21 @@ export const fetchWithTimeLimit = async (url: string) => {
 
   endApiTimer(timer);
 
-  return response.json();
+  const result = await response.json();
+
+  if (result.error) {
+    throw new Error(result.error);
+  }
+
+  return result.data;
 };
 
 const createApiTimer = (controller: AbortController) => {
   const ONE_SECOND_IN_MILLISECONDS = 1000;
-  const timeLimit = 5 * ONE_SECOND_IN_MILLISECONDS;
+  const timeLimit = 8 * ONE_SECOND_IN_MILLISECONDS;
 
   return setTimeout(
-    () =>
-      controller.abort(
-        'The request took too long to complete. Please check your internet connection and try again.'
-      ),
+    () => controller.abort('The request took too long to complete.'),
     timeLimit
   );
 };

@@ -10,7 +10,7 @@ export const useInstrumentDropdown = () => {
   const dispatch = useAppDispatch();
 
   const selectInstrument = async (newInstrument: string) => {
-    await dispatch(loadAudioSamples(newInstrument));
+    await dispatch(loadAudioSamples(newInstrument)).unwrap();
     setInstrument(newInstrument);
   };
 
@@ -24,16 +24,10 @@ export const useInstrumentDropdown = () => {
   };
 
   useEffect(() => {
-    const fetchInstrumentNames = async () => {
-      const response = await fetchWithTimeLimit(
+    const fetchInstrumentNames = (): Promise<string[]> => {
+      return fetchWithTimeLimit(
         `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
       );
-
-      if (response.error) {
-        throw new Error(response.error);
-      }
-
-      return response.data;
     };
 
     const initDropdown = async () => {
