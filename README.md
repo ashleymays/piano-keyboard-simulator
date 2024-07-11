@@ -1,26 +1,34 @@
 <div align="center">
-    <img width=700 src="./simulator.webp" alt="Main Webpage" />
+  <h3 align="center">Piano Keyboard Simulator</h3>
+  <p align="center">
+    Use your computer keyboard or click the keys with your mouse to play.
+  </p>
+  <a href="https://github.com/ashleymays/piano-keyboard-simulator">
+    <img src="./piano-keyboard-simulator.png" alt="Logo" width="768">
+  </a>
 </div>
 
-<blockquote>
-    <strong>Update: </strong>I'm working on a new version for this app, including a complete redesign and hosting it online. It'll also feature an updated tech stack and storing the audio files in cloud storage rather than in the file system. Right now it's about 60% done, and I hope to be done by the end of August 2024.
-</blockquote>
+## Built With
 
-# Piano Keyboard Simulator
+- Client
+  - React
+  - Redux Toolkit
+  - SCSS
+  - Tone
+  - Vite
+  - Vitest
+- API
+  - Node
+  - Express
+  - Octokit
+  - Supertest
 
-An online web app to play a virtual keyboard with key, mouse, and touch input.
-
-## Install it locally
-
-Clone the repository:
-
-`git clone https://github.com/ashleymays/piano-keyboard-simulator.git`
-
-Run the build:
-
-`yarn start`
+The audio files are hosted in another GitHub repo: <a href="https://github.com/ashleymays/piano-keyboard-audio">ashleymays/piano-keyboard-audio</a>
 
 ## License
 
-This project uses the [MIT License](LICENSE.md).
-Feel free to take the source code and do whatever you want (attribution would be cool, too).
+This software is covered under the <a href="./LICENSE.md">MIT license</a>.
+
+## Contact
+
+Ashley Mays - ashleymays091@gmail.com
