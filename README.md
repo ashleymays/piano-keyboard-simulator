@@ -1,11 +1,9 @@
 <div align="center">
+  <img src="./piano-icon.png" alt="Logo" width="70">
   <h3 align="center">Piano Keyboard Simulator</h3>
   <p align="center">
     Use your computer keyboard or click the keys with your mouse to play.
   </p>
-  <a href="https://github.com/ashleymays/piano-keyboard-simulator">
-    <img src="./piano-keyboard-simulator.png" alt="Logo" width="768">
-  </a>
 </div>
 
 ## Built With
