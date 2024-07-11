@@ -1,46 +1,96 @@
-@use '~/styles/_variables.scss';
+@use '~/styles/functions.scss';
 
-.piano-keys {
+$spacing-between-piano-keys: 0.3rem;
+$wrapper-radius: 1.2rem;
+$white-key-border-radius: functions.get-radius-for-wrapper-items($wrapper-radius);
+
+.piano-keys-wrapper {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  border-right: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-left: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-top: 0.075rem solid rgba(variables.$dark-purple_gray, variables.$op-high);
-  border-radius: 0 0 0.25rem 0.25rem;
-  column-gap: 0.025%;
+  padding: $spacing-between-piano-keys;
+  border-radius: $wrapper-radius;
+  background: #1a1a1a;
   touch-action: none;
+  -ms-touch-action: none;
+  box-shadow: 0 0.4em 1em #00000030;
 }
 
-.piano-key {
+.piano-key--white {
+  flex: 1;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: flex-end;
-  cursor: pointer;
   padding-bottom: 1em;
+  font-size: 1.5em;
   text-transform: uppercase;
-  border: 0.125rem solid rgba(variables.$dark-blue, variables.$op-high);
-  font-size: variables.$font-size-md;
+  color: #7a7a7a;
+  background: linear-gradient(#DCDCDC, #F7F7F7);
+  margin-right: $spacing-between-piano-keys;
+  border-radius: 0 0 $white-key-border-radius $white-key-border-radius;
+  box-shadow: 0 0.25em 0.8em #0000003d;
+
+  &:first-child {
+    margin-left: 0;
+    border-top-left-radius: $white-key-border-radius;
+  }
+
+  &:last-child {
+    margin-right: 0;
+    border-top-right-radius: $white-key-border-radius;
+  }
+
+  &.pressed-piano-key {
+    background: linear-gradient(#a9a9a9, #c4c4c4);
+    color: #555558;
+  }
 }
 
-.white-key {
-  width: 100%;
-  color: rgba(variables.$dark-blue, variables.$op-medium);
-  background: variables.$off-white;
+$black-key-border-radius: $white-key-border-radius * 0.9;
+$black-key-width: 2%;
+
+.piano-key--black {
+  width: $black-key-width;
+  background: #3b3b3b;
+  height: 55%;
+  z-index: 0;
+  border: 0.15em solid #171717;
+  box-shadow: 0 0.75em 0.75em #00000033;
+  border-radius: 0 0 $black-key-border-radius $black-key-border-radius;
+  position: relative;
+  overflow: hidden;
+
+  /*
+    Used for the different colors inside the black piano keys.
+
+    The gradient has to be a separate element in order for the bottom curve
+    to be accurate to the original design.
+  */
+  &:after {
+    content: "";
+    background: linear-gradient(#121212, #232323);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 96.5%;
+    border-radius: 0 0 0 0.625em;
+  }
+
+  &.pressed-piano-key {
+    border-color: #404040;
+    background: #505050;
+  }
+
+  &.pressed-piano-key:after {
+    background: linear-gradient(#4d4d4d, #5a5a5a);
+  }
 }
 
-.black-key {
-  width: 40%;
-  height: 60%;
-  z-index: 1;
-  background: variables.$dark-blue;
-  margin: 0 -1.25% 0;
-  color: variables.$off-white;
-}
-
-.pressed-piano-key {
-  background: variables.$gray !important;
-  color: variables.$dark-blue !important;
+/*
+  Position the black keys between its neighboring white keys.
+*/
+.piano-key--black,
+.piano-key--black+.piano-key--white {
+  margin-left: calc($black-key-width / -2);
 }

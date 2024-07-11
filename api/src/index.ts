@@ -1,16 +1,15 @@
-import express from 'express';
-import cors from 'cors';
-import { errorHandler } from './error-handler';
-import { getAudioForInstrument } from './controller';
+import 'dotenv/config';
+import process from 'node:process';
+import { initApplication } from './app.ts';
 
-const app = express();
+initApplication();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+process.on('uncaughtRejection', (error, promise) => {
+  console.log(`Uncaught Rejection: ${error}`);
+  process.exit(1);
+});
 
-app.get('/audio', getAudioForInstrument);
-
-app.use(errorHandler);
-
-app.listen(8080);
+process.on('uncaughtException', (error, promise) => {
+  console.log(`Uncaught Exception: ${error}`);
+  process.exit(1);
+});

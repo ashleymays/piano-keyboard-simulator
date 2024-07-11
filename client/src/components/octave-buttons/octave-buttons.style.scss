@@ -1,0 +1,60 @@
+@use '~/styles/variables.scss';
+@use '~/styles/functions.scss';
+
+$btn-wrapper-padding: 0.2rem;
+$spacing-between-btns: calc($btn-wrapper-padding / 2);
+
+$btn-wrapper-border-radius: 0.9rem;
+$btn-border-radius: functions.get-radius-for-wrapper-items($btn-wrapper-border-radius);
+
+.octave-controls-wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &__label {
+    font-size: 1.25em;
+    color: variables.$c-text-primary;
+    margin-bottom: 0;
+  }
+}
+
+.octave-btns-wrapper {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  background: variables.$c-bg-btn--border;
+  padding: $btn-wrapper-padding;
+  border-radius: $btn-wrapper-border-radius;
+}
+
+.octave-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: variables.$c-bg-btn;
+  width: 3.25em;
+  border-radius: $btn-border-radius;
+  border-width: 0.15em;
+  border-style: solid;
+
+  &:first-child {
+    border-top-color: #ffffff;
+    border-top-width: 0.1em;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    margin-bottom: $spacing-between-btns;
+  }
+
+  &:last-child {
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    margin-top: $spacing-between-btns;
+  }
+
+  &:active {
+    filter: brightness(0.925);
+  }
+}

@@ -1,0 +1,10 @@
+/*
+  Calculates the border radius for wrapper items 
+  based on the border radius of the wrapper.
+
+  Ensures that the border radii for the wrapper and its items
+  looks the same.
+*/
+@function get-radius-for-wrapper-items($wrapper-border-radius) {
+  @return calc($wrapper-border-radius * 0.8);
+}

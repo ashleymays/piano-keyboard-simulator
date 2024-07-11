@@ -3,20 +3,11 @@ env:
   es2021: true
 extends:
   - airbnb-base
+  - plugin:import/recommended
   - plugin:prettier/recommended
-parserOptions:
-  ecmaVersion: latest
-  sourceType: module
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+parser: '@typescript-eslint/parser'
 rules:
   import/prefer-default-export: 'off'
   import/no-unresolved: 'off'
-  import/extensions: 'off'
-  comma-dangle: 'off'
-  object-curly-spacing: 'off'
-  prefer-const: 'error'
-  prefer-destructuring: 'off'
-  indent: 'off'
-  require-jsdoc: 'off'
-  no-console: 'warn'
-  no-use-before-define: 'off'
-  no-underscore-dangle: 'off'

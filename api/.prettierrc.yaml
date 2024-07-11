@@ -1,8 +1,8 @@
-arrowParens: always
-bracketSpacing: true
-embeddedLanguageFormatting: auto
-htmlWhitespaceSensitivity: css
-singleQuote: true
+printWidth: 80
 tabWidth: 2
-trailingComma: none
 useTabs: false
+semi: true
+singleQuote: true
+trailingComma: none
+bracketSpacing: true
+arrowParens: always

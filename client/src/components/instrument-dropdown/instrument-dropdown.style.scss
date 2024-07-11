@@ -1,0 +1,56 @@
+@use '~/styles/variables.scss';
+@use '~/styles/functions.scss';
+
+$dropdown-border-radius: 0.75rem;
+$option-border-radius: functions.get-radius-for-wrapper-items($dropdown-border-radius);
+$option-height: 0.9rem;
+$border-width: 0.15em;
+
+.instrument-dropdown {
+  color: variables.$c-text-primary;
+  font-size: 1.25em;
+  flex: 0.25 1 0;
+  background: variables.$c-bg-btn;
+  border-radius: $dropdown-border-radius;
+  border: $border-width solid variables.$c-bg-btn--border;
+  cursor: pointer;
+  position: relative;
+
+  &__selected {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $option-height;
+  }
+
+  &__options {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    z-index: 2;
+    width: 100%;
+    background: variables.$c-bg-btn;
+    border-radius: $dropdown-border-radius;
+    border: $border-width solid variables.$c-bg-btn--border;
+    margin-bottom: 0.25em;
+  }
+
+  &__option {
+    padding: $option-height;
+
+    &:first-child {
+      border-top-right-radius: $option-border-radius;
+      border-top-left-radius: $option-border-radius;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: $option-border-radius;
+      border-bottom-left-radius: $option-border-radius;
+    }
+
+    &:hover {
+      background: darken(variables.$c-bg-btn, 5%);
+    }
+  }
+}

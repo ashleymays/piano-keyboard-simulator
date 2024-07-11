@@ -1,0 +1,6 @@
+@use '~/styles/variables.scss';
+
+.toast-body {
+  font-family: variables.$font;
+  font-size: 1.5rem;
+}

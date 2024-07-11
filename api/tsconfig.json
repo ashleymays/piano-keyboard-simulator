@@ -1,34 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "ESNext",
-    "sourceMap": true,
-    "outDir": "./build",
-    "strict": true,
+    "target": "ES6",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "~/": [
+      "~/*": [
         "./src/*"
       ]
-    },
-    "types": [
-      "node"
-    ],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true
+    }
   },
-  "exclude": [
-    "node_modules",
-    "audio"
-  ],
-  "include": [
-    "./src/**/*.ts",
-    "./test/*.ts"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
