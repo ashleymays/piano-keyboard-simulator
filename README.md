@@ -7,11 +7,12 @@
 </div>
 
 <!-- BUILT WITH --> 
-## Built With
+### Built With
 
 - Client
   - React
   - Redux Toolkit
+  - React Hot Toast
   - SCSS
   - Tone
   - Vite
@@ -25,11 +26,11 @@
 The audio files are hosted in another GitHub repo: <a href="https://github.com/ashleymays/piano-keyboard-audio">ashleymays/piano-keyboard-audio</a>
 
 <!-- LICENSE -->
-## License
+### License
 
 This software is covered under the <a href="./LICENSE.md">MIT license</a>.
 
 <!-- CONTACT -->
-## Contact
+### Contact
 
 Ashley Mays - ashleymays091@gmail.com
