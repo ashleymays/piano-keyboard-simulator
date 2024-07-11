@@ -1,11 +1,15 @@
+import arrowIcon from './arrow-icon.png';
+
 type ArrowIconProps = {
   direction: 'up' | 'down';
 };
 
 export const ArrowIcon = ({ direction }: ArrowIconProps) => {
   return (
-    <span className="arrow-icon">
-      {direction === 'up' ? <>&#128897;</> : <>&#128899;</>}
-    </span>
+    <img
+      className={`arrow-icon arrow-icon--${direction}`}
+      alt=""
+      src={arrowIcon}
+    />
   );
 };

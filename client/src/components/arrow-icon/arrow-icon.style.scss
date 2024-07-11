@@ -1,4 +1,15 @@
 .arrow-icon {
-  color: #818181;
+  opacity: 0.5;
   font-size: 0.875em;
+  width: 1rem;
+  margin: 0;
+  padding: 0;
+
+  &--up {
+    transform: rotate(-90deg);
+  }
+
+  &--down {
+    transform: rotate(90deg);
+  }
 }
