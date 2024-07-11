@@ -6,6 +6,11 @@ export const Toasts = () => {
 
   return (
     <Toaster
+      toastOptions={{
+        error: {
+          duration: Infinity
+        }
+      }}
       position="bottom-center"
       containerClassName="toast-body"
     />
