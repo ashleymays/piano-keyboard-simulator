@@ -51,6 +51,6 @@ const PianoKey = ({ id, isPressed, type }: PianoKeyProps) => {
   );
 };
 
-const clsx = (...classNames: string[]) => {
+const clsx = (...classNames: Array<string | boolean | null | undefined>) => {
   return classNames.filter(Boolean).join(' ');
 };
