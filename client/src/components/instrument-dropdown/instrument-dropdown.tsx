@@ -9,7 +9,7 @@ export const InstrumentDropdown = () => {
   return (
     <Dropdown
       options={createDropdownOptions(instrumentNames)}
-      value={instrument}
+      value={instrument || ''}
       arrowOpen={<ArrowIcon direction="up" />}
       arrowClosed={<ArrowIcon direction="down" />}
       placeholder="Choose an instrument..."

@@ -5,8 +5,8 @@ import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
 export const useInstrumentDropdown = () => {
-  const [instrument, setInstrument] = useState(null);
-  const [instrumentNames, setInstrumentNames] = useState([]);
+  const [instrument, setInstrument] = useState<string | null>(null);
+  const [instrumentNames, setInstrumentNames] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
   const selectInstrument = async (newInstrument: string) => {
