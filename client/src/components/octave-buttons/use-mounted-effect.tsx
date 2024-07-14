@@ -22,6 +22,4 @@ export const useMountedEffect = (
     }
     isMounted.current = true;
   }, dependencies);
-
-  return isMounted.current;
 };
