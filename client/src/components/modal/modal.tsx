@@ -43,11 +43,6 @@ const Description = () => {
       <br />
       <br />
       Also, press the octave buttons to raise or lower the pitch of the notes.
-      <br />
-      <br />
-      <strong>Note: </strong>There may be an initial delay while playing the
-      keyboard. This only happens when first using the keyboard and after a long
-      idle period. It shouldn’t last very long.
     </p>
   );
 };
