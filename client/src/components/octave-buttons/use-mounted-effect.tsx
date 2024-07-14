@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react';
+import {
+  useEffect,
+  useRef,
+  type EffectCallback,
+  type DependencyList
+} from 'react';
 
 /**
  * Similar to `useEffect`, but only executes after the first render.
  *
  * If so, further actions can be taken.
  */
-export const useMountedEffect = (fn: () => void, dependencies: any[]) => {
+export const useMountedEffect = (
+  fn: EffectCallback,
+  dependencies: DependencyList
+) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
