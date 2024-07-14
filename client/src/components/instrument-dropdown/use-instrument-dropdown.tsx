@@ -18,8 +18,7 @@ export const useInstrumentDropdown = () => {
     toast.promise(selectInstrument(instrument), {
       loading: 'Loading...',
       success: 'Ready to play!',
-      error:
-        'Something went wrong. Please choose another instrument or try again.'
+      error: 'Something went wrong.'
     });
   };
 
@@ -40,7 +39,7 @@ export const useInstrumentDropdown = () => {
       toast.promise(initDropdown(), {
         loading: 'Preparing keyboard...',
         success: 'Ready to play!',
-        error: 'Something went wrong. Please reload the page and try again.'
+        error: 'There was an issue preparing the keyboard.'
       });
     }, 500);
   }, []);
