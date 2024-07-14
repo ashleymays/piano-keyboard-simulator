@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createReducer,
+  type Reducer
+} from '@reduxjs/toolkit';
 import { getAudio } from './api';
 import type { Players } from 'tone';
 
@@ -19,11 +23,23 @@ const initialState: AudioState = {
   error: null
 };
 
-const slice = createSlice({
-  name: 'audio',
+/**
+ * Taken from the Redux Toolkit source code.
+ *
+ * There is an issue with typing right now, so this is needed to get rid of
+ * TS errors.
+ *
+ * @link https://github.com/reduxjs/redux-toolkit/issues/4448
+ *
+ * @todo Remove when the issue is resolved
+ */
+type AudioReducer = Reducer<AudioState> & {
+  getInitialState: () => AudioState;
+};
+
+export const reducer: AudioReducer = createReducer<AudioState>(
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
+  (builder) => {
     builder.addCase(loadAudioSamples.pending, (state) => {
       state.isLoading = true;
     });
@@ -36,6 +52,4 @@ const slice = createSlice({
       state.error = action.error.message || null;
     });
   }
-});
-
-export const reducer = slice.reducer;
+);
