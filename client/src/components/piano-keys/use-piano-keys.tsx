@@ -9,7 +9,7 @@ export const usePianoKeys = () => {
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
-  const onPianoKeyPress = (event: KeyboardEvent | ReactMouseEvent) => {
+  const pressPianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;
     }
@@ -44,7 +44,7 @@ export const usePianoKeys = () => {
     audioPlayer.toDestination().start();
   };
 
-  const onPianoKeyRelease = (event: KeyboardEvent | ReactMouseEvent) => {
+  const releasePianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;
     }
@@ -56,7 +56,7 @@ export const usePianoKeys = () => {
     }
   };
 
-  return { pianoKeys, onPianoKeyPress, onPianoKeyRelease };
+  return { pianoKeys, pressPianoKey, releasePianoKey };
 };
 
 const getPianoKeyId = (event: KeyboardEvent | ReactMouseEvent) => {

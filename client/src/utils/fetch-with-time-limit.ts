@@ -4,7 +4,7 @@
  * If the request takes too long, an error is thrown.
  *
  * @param url The URL to fetch
- * @returns The response in JSON format
+ * @returns The payload in JSON format.
  */
 export const fetchWithTimeLimit = async (url: string) => {
   const controller = new AbortController();

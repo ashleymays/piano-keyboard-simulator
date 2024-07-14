@@ -3,20 +3,20 @@ import { useComputerKeyboard } from './use-computer-keyboard';
 import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
 
 export const PianoKeys = () => {
-  const { pianoKeys, onPianoKeyPress, onPianoKeyRelease } = usePianoKeys();
+  const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
 
   useComputerKeyboard({
-    onKeyDown: onPianoKeyPress,
-    onKeyUp: onPianoKeyRelease
+    onKeyDown: pressPianoKey,
+    onKeyUp: releasePianoKey
   });
 
   return (
     <div
       className="piano-keys-wrapper"
-      onMouseDown={onPianoKeyPress}
-      onMouseUp={onPianoKeyRelease}
-      onMouseOver={onPianoKeyRelease}
-      onMouseOut={onPianoKeyRelease}
+      onMouseDown={pressPianoKey}
+      onMouseUp={releasePianoKey}
+      onMouseOver={releasePianoKey}
+      onMouseOut={releasePianoKey}
     >
       {pianoKeys.map((pianoKey) => (
         <PianoKey
@@ -39,12 +39,12 @@ const PianoKey = ({ id, isPressed, type }: PianoKeyProps) => {
     <button
       type="button"
       name="piano-key"
+      value={id}
+      aria-label={id}
       className={clsx(
         type === 'natural' ? 'piano-key--white' : 'piano-key--black',
         isPressed && 'pressed-piano-key'
       )}
-      value={id}
-      aria-label={id}
     >
       {type === 'natural' && id}
     </button>
