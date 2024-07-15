@@ -1,9 +1,5 @@
-import {
-  useEffect,
-  useRef,
-  type EffectCallback,
-  type DependencyList
-} from 'react';
+import { useEffect, useRef } from 'react';
+import type { EffectCallback, DependencyList } from 'react';
 
 /**
  * Similar to `useEffect`, but only executes after the first render.

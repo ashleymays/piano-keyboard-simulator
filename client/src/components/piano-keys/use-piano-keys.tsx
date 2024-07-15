@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { getPitch } from '~/utils/get-pitch';
-import { pressKey, releaseKey, type PianoKey } from '~/store/piano-keys';
+import { pressKey, releaseKey } from '~/store/piano-keys';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 import type { Player } from 'tone';
+import type { PianoKey } from '~/store/piano-keys';
 
 /**
  * Behavior for playing and releasing the keys on the keyboard.

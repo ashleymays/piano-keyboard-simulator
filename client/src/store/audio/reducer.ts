@@ -1,9 +1,6 @@
-import {
-  createAsyncThunk,
-  createReducer,
-  type Reducer
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { getAudio } from './api';
+import type { Reducer } from '@reduxjs/toolkit';
 import type { Players } from 'tone';
 
 export const loadAudioSamples = createAsyncThunk<Players, string, any>(
