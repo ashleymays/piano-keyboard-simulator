@@ -1,14 +1,12 @@
 import { usePianoKeys } from './use-piano-keys';
-import { useComputerKeyboard } from './use-computer-keyboard';
+import { useDocumentEventListener } from './use-document-event-listener';
 import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
 
 export const PianoKeys = () => {
   const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
 
-  useComputerKeyboard({
-    onKeyDown: pressPianoKey,
-    onKeyUp: releasePianoKey
-  });
+  useDocumentEventListener('keydown', pressPianoKey);
+  useDocumentEventListener('keyup', releasePianoKey);
 
   return (
     <div
