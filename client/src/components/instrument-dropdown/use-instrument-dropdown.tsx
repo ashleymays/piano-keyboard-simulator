@@ -4,10 +4,16 @@ import { loadAudioSamples } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
+/**
+ * Behavior for initializing and managing the instrument dropdown.
+ * 
+ * @hook
+ */
 export const useInstrumentDropdown = () => {
   const [instrument, setInstrument] = useState<string | null>(null);
   const [instrumentNames, setInstrumentNames] = useState<string[]>([]);
   const dispatch = useAppDispatch();
+
 
   const selectInstrument = async (newInstrument: string) => {
     await dispatch(loadAudioSamples(newInstrument)).unwrap();

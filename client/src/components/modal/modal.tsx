@@ -2,6 +2,11 @@ import { useModal } from './use-modal';
 import musicNotesIcon from './music-notes-icon.svg';
 import type { MouseEventHandler } from 'react';
 
+/**
+ * The introductory popup shown when the app is first started.
+ * 
+ * @component
+ */
 export const Modal = () => {
   const { isOpen, close } = useModal();
 
