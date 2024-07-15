@@ -7,7 +7,7 @@ import type { PianoKey } from '~/store/piano-keys';
 
 /**
  * Behavior for playing and releasing the keys on the keyboard.
- * 
+ *
  * @hook
  */
 export const usePianoKeys = () => {
@@ -17,12 +17,12 @@ export const usePianoKeys = () => {
 
   /**
    * Plays a key on the keyboard.
-   * 
+   *
    * There must be an instrument selected (as in, available audio to play)
    * in order to play a piano key.
-   * 
+   *
    * Also, the computer key that's pressed must be a valid key on the piano.
-   * 
+   *
    * For example, the `Shift` key does not map to a piano key, so nothing happens.
    */
   const pressPianoKey = (event: KeyboardEvent | ReactMouseEvent) => {

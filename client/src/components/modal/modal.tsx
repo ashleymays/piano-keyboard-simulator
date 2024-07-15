@@ -4,7 +4,7 @@ import type { MouseEventHandler } from 'react';
 
 /**
  * The introductory popup shown when the app is first started.
- * 
+ *
  * @component
  */
 export const Modal = () => {
