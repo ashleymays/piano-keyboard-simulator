@@ -4,10 +4,16 @@ import { loadAudioSamples } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
 
+/**
+ * Behavior for initializing and managing the instrument dropdown.
+ * 
+ * @hook
+ */
 export const useInstrumentDropdown = () => {
   const [instrument, setInstrument] = useState<string | null>(null);
   const [instrumentNames, setInstrumentNames] = useState<string[]>([]);
   const dispatch = useAppDispatch();
+
 
   const selectInstrument = async (newInstrument: string) => {
     await dispatch(loadAudioSamples(newInstrument)).unwrap();
@@ -18,8 +24,7 @@ export const useInstrumentDropdown = () => {
     toast.promise(selectInstrument(instrument), {
       loading: 'Loading...',
       success: 'Ready to play!',
-      error:
-        'Something went wrong. Please choose another instrument or try again.'
+      error: 'Something went wrong.'
     });
   };
 
@@ -40,7 +45,7 @@ export const useInstrumentDropdown = () => {
       toast.promise(initDropdown(), {
         loading: 'Preparing keyboard...',
         success: 'Ready to play!',
-        error: 'Something went wrong. Please reload the page and try again.'
+        error: 'There was an issue preparing the keyboard.'
       });
     }, 500);
   }, []);

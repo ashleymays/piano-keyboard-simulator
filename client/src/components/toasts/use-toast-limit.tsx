@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import globalToast, { useToasterStore } from 'react-hot-toast';
 
+/**
+ * Allows only 1 toast to appear on the screen at a time.
+ * 
+ * @hook
+ */
 export const useToastLimit = () => {
   const { toasts } = useToasterStore();
 

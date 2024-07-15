@@ -99,9 +99,8 @@ const slice = createSlice({
     },
 
     pressKey(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
-      const pianoKey = pianoKeys.find(
-        (pianoKey) => pianoKey.id === action.payload
-      );
+      const keyId = action.payload;
+      const pianoKey = pianoKeys.find((pianoKey) => pianoKey.id === keyId);
 
       if (pianoKey) {
         pianoKey.isPressed = true;
@@ -109,9 +108,8 @@ const slice = createSlice({
     },
 
     releaseKey(pianoKeys: PianoKeys, action: PayloadAction<PianoKey['id']>) {
-      const pianoKey = pianoKeys.find(
-        (pianoKey) => pianoKey.id === action.payload
-      );
+      const keyId = action.payload;
+      const pianoKey = pianoKeys.find((pianoKey) => pianoKey.id === keyId);
 
       if (pianoKey) {
         pianoKey.isPressed = false;

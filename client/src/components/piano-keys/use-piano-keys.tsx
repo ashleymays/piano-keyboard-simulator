@@ -1,15 +1,31 @@
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { getPitch } from '~/utils/get-pitch';
-import { pressKey, releaseKey, type PianoKey } from '~/store/piano-keys';
+import { pressKey, releaseKey } from '~/store/piano-keys';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 import type { Player } from 'tone';
+import type { PianoKey } from '~/store/piano-keys';
 
+/**
+ * Behavior for playing and releasing the keys on the keyboard.
+ * 
+ * @hook
+ */
 export const usePianoKeys = () => {
   const audioPlayers = useAppSelector((state) => state.audio.players);
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
-  const onPianoKeyPress = (event: KeyboardEvent | ReactMouseEvent) => {
+  /**
+   * Plays a key on the keyboard.
+   * 
+   * There must be an instrument selected (as in, available audio to play)
+   * in order to play a piano key.
+   * 
+   * Also, the computer key that's pressed must be a valid key on the piano.
+   * 
+   * For example, the `Shift` key does not map to a piano key, so nothing happens.
+   */
+  const pressPianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;
     }
@@ -44,7 +60,10 @@ export const usePianoKeys = () => {
     audioPlayer.toDestination().start();
   };
 
-  const onPianoKeyRelease = (event: KeyboardEvent | ReactMouseEvent) => {
+  /**
+   * Releases a key on the keyboard.
+   */
+  const releasePianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;
     }
@@ -56,7 +75,7 @@ export const usePianoKeys = () => {
     }
   };
 
-  return { pianoKeys, onPianoKeyPress, onPianoKeyRelease };
+  return { pianoKeys, pressPianoKey, releasePianoKey };
 };
 
 const getPianoKeyId = (event: KeyboardEvent | ReactMouseEvent) => {
