@@ -4,7 +4,7 @@ type KeyboardEventHandler = (event: KeyboardEvent) => void;
 
 /**
  * Links an event listener to the document object.
- * 
+ *
  * @hook
  */
 export const useDocumentEventListener = (

@@ -7,7 +7,7 @@ import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
  *
  * The different methods of playing the keyboard (i.e. computer keyboard and by mouse input)
  * are implemented here in the form of event listeners.
- * 
+ *
  * @component
  */
 export const PianoKeys = () => {
@@ -30,7 +30,10 @@ export const PianoKeys = () => {
       onMouseOut={releasePianoKey}
     >
       {pianoKeys.map((pianoKey) => (
-        <PianoKey key={pianoKey.id} {...pianoKey} />
+        <PianoKey
+          key={pianoKey.id}
+          {...pianoKey}
+        />
       ))}
     </div>
   );
