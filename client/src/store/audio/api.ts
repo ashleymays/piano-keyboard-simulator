@@ -3,10 +3,10 @@ import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
 
 type AudioSamples = Record<string, string>;
 
-export const getAudio = async (instrument: string) => {
+export const getAudioPlayers = async (instrument: string) => {
   const audioSamples = await fetchAudioSamples(instrument);
 
-  return getAudioPlayers(audioSamples);
+  return createAudioPlayers(audioSamples);
 };
 
 const fetchAudioSamples = (instrument: string): Promise<AudioSamples> => {
@@ -15,7 +15,7 @@ const fetchAudioSamples = (instrument: string): Promise<AudioSamples> => {
   );
 };
 
-const getAudioPlayers = (urls: AudioSamples): Promise<Players> => {
+const createAudioPlayers = (urls: AudioSamples): Promise<Players> => {
   return new Promise((resolve, reject) => {
     const players = new Players({
       urls,
