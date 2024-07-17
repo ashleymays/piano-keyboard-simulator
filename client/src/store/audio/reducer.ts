@@ -26,7 +26,7 @@ const initialState: AudioState = {
  * There is an issue with typing right now, so this is needed to get rid of
  * TS errors.
  *
- * @link https://github.com/reduxjs/redux-toolkit/issues/4448
+ * @link https://github.com/reduxjs/redux-toolkit/pull/4467
  *
  * @todo Remove when the issue is resolved
  */
