@@ -1,5 +1,5 @@
 import { Players } from 'tone';
-import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
+import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
 
 type AudioSamples = Record<string, string>;
 

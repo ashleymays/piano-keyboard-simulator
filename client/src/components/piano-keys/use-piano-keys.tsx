@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
-import { getPitch } from '~/utils/get-pitch';
 import { pressKey, releaseKey } from '~/store/piano-keys';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 import type { Player } from 'tone';
@@ -54,6 +53,10 @@ export const usePianoKeys = () => {
 
   const findPianoKeyById = (keyId: PianoKey['id']) => {
     return pianoKeys.find((pianoKey) => pianoKey.id === keyId);
+  };
+
+  const getPitch = (pianoKey: PianoKey) => {
+    return `${pianoKey.note}${pianoKey.octave}`;
   };
 
   const playPitch = (audioPlayer: Player) => {
