@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast';
 import { useAppSelector, useAppDispatch } from '~/store/hooks';
 import { incrementOctave, decrementOctave } from '~/store/piano-keys';
-import { getPitch } from '~/utils/get-pitch';
 import { useMountedEffect } from './use-mounted-effect';
+import type { PianoKey } from '~/store/piano-keys';
 
 /**
  * The behavior of the octave buttons.
@@ -26,6 +26,10 @@ export const useOctaveButtons = () => {
     const octaveRange = `${getPitch(lowestKey)} - ${getPitch(highestKey)}`;
 
     toast(`Note Range: ${octaveRange}`);
+  };
+
+  const getPitch = (pianoKey: PianoKey) => {
+    return `${pianoKey.note}${pianoKey.octave}`;
   };
 
   const increment = () => {

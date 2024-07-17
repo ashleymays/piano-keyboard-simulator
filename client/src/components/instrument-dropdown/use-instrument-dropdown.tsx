@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { loadAudioSamples } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
-import { fetchWithTimeLimit } from '~/utils/fetch-with-time-limit';
+import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
 
 /**
  * Behavior for initializing and managing the instrument dropdown.
