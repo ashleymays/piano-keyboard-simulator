@@ -1,11 +1,11 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import { getAudio } from './api';
+import { getAudioPlayers } from './api';
 import type { Reducer } from '@reduxjs/toolkit';
 import type { Players } from 'tone';
 
-export const loadAudioSamples = createAsyncThunk<Players, string, any>(
+export const loadAudio = createAsyncThunk<Players, string, any>(
   'audio/load',
-  (instrument) => getAudio(instrument)
+  (instrument) => getAudioPlayers(instrument)
 );
 
 type AudioState = {
@@ -26,7 +26,7 @@ const initialState: AudioState = {
  * There is an issue with typing right now, so this is needed to get rid of
  * TS errors.
  *
- * @link https://github.com/reduxjs/redux-toolkit/issues/4448
+ * @link https://github.com/reduxjs/redux-toolkit/pull/4467
  *
  * @todo Remove when the issue is resolved
  */
@@ -37,14 +37,14 @@ type AudioReducer = Reducer<AudioState> & {
 export const reducer: AudioReducer = createReducer<AudioState>(
   initialState,
   (builder) => {
-    builder.addCase(loadAudioSamples.pending, (state) => {
+    builder.addCase(loadAudio.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(loadAudioSamples.fulfilled, (state, action) => {
+    builder.addCase(loadAudio.fulfilled, (state, action) => {
       state.isLoading = false;
       state.players = action.payload;
     });
-    builder.addCase(loadAudioSamples.rejected, (state, action) => {
+    builder.addCase(loadAudio.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message || null;
     });

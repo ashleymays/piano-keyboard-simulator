@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { loadAudioSamples } from '~/store/audio';
+import { loadAudio } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
 
@@ -15,7 +15,7 @@ export const useInstrumentDropdown = () => {
   const dispatch = useAppDispatch();
 
   const selectInstrument = async (newInstrument: string) => {
-    await dispatch(loadAudioSamples(newInstrument)).unwrap();
+    await dispatch(loadAudio(newInstrument)).unwrap();
     setInstrument(newInstrument);
   };
 
