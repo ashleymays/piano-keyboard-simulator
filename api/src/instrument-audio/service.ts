@@ -7,22 +7,20 @@ type AudioMap = Record<string, string>;
 type DirectoryFile = components['schemas']['content-directory'][number];
 
 /**
- * Gets the audio for each note for a given instrument.
+ * Gets the audio for a given instrument.
  *
  * The name provided should be the same as the directory name in the GitHub repository.
  *
  * @throws if the wrong number of files were found,
  * or if the structure of the data is wrong (i.e. invalid names).
  *
- * @returns an object mapping a note to a link to download the sound for that note.
+ * @returns an object that maps an audio pitch to the corresponding audio file.
  */
 export const findInstrumentAudio = async (params: { name: string }) => {
   const files = await fetchInstrumentAudio(params.name);
 
   if (!Array.isArray(files)) {
-    throw new Error(
-      `Could not find audio files for instrument: ${params.name}`
-    );
+    throw new Error(`Could not get all audio files`);
   }
 
   return createAudioMap(files);
@@ -38,17 +36,19 @@ const fetchInstrumentAudio = async (name: string) => {
 };
 
 const createAudioMap = async (files: DirectoryFile[]) => {
-  const audioFileUrls = getAudioFileUrls(files);
+  const audioFileLinks = getAudioFileLinks(files);
   const pitches = getPitchesFromFileNames(files);
 
-  validateNumberOfAudioFiles(audioFileUrls, pitches);
+  if (!hasCorrectFileCount(audioFileLinks) || !hasCorrectFileCount(pitches)) {
+    throw new Error('Could not get all audio files.');
+  }
 
-  const audioFilesAsBase64 = await convertAudioFilesToBase64(audioFileUrls);
+  const audioFilesInBase64 = await convertAudioToBase64(audioFileLinks);
 
-  return mapPitchesToAudioFiles(pitches, audioFilesAsBase64);
+  return mapPitchesToAudioFiles(pitches, audioFilesInBase64);
 };
 
-const getAudioFileUrls = (files: DirectoryFile[]) => {
+const getAudioFileLinks = (files: DirectoryFile[]) => {
   return files.map((file) => file.download_url).filter(Boolean);
 };
 
@@ -63,35 +63,53 @@ const getPitchFromFileName = (fileName: string) => {
     throw new Error('Audio file name is missing an extension.');
   }
 
-  return fileName.slice(0, dotIndex);
+  const pitch = fileName.slice(0, dotIndex);
+
+  if (!isValidPitch(pitch)) {
+    throw new Error(`${pitch} is not a valid pitch.`);
+  }
+
+  return pitch;
 };
 
-/**
- * Checks if the correct number of audio files and pitches were fetched from storage.
- *
- * We check for 84 files because we don't use the notes `A0`, `Bb0`, `B0`, and `C7`.
- * These aren't used in the app, so at the moment, there's no reason to keep them.
- */
-const validateNumberOfAudioFiles = (
-  audioFileUrls: string[],
-  pitches: string[]
-) => {
+const validNotes = [
+  'C',
+  'Db',
+  'D',
+  'Eb',
+  'E',
+  'F',
+  'Gb',
+  'G',
+  'Ab',
+  'A',
+  'Bb',
+  'B'
+];
+
+const validOctaves = [1, 2, 3, 4, 5, 6, 7];
+
+const isValidPitch = (pitch: string) => {
+  return validNotes.some((note) =>
+    validOctaves.some((octave) => pitch === `${note}${octave}`)
+  );
+};
+
+const hasCorrectFileCount = (files: string[]) => {
+  // We check for 84 files because we don't use the notes `A0`, `Bb0`, `B0`, and `C7`.
   const EXPECTED_NUMBER_OF_AUDIO_FILES = 84;
 
-  if (
-    audioFileUrls.length !== EXPECTED_NUMBER_OF_AUDIO_FILES ||
-    pitches.length !== EXPECTED_NUMBER_OF_AUDIO_FILES
-  ) {
-    throw new Error('Could not get all audio files.');
-  }
+  return files.length === EXPECTED_NUMBER_OF_AUDIO_FILES;
 };
 
-const convertAudioFilesToBase64 = async (audioFileUrls: string[]) => {
-  const audioFiles = audioFileUrls.map((url) => fetch(url));
-  const loadedAudioFiles = await Promise.all(audioFiles);
+const convertAudioToBase64 = async (audioFileLinks: string[]) => {
+  const pendingAudioFiles = audioFileLinks.map((link) => fetch(link));
+  const loadedAudioFiles = await Promise.all(pendingAudioFiles);
 
-  const arrayBuffers = loadedAudioFiles.map((file) => file.arrayBuffer());
-  const loadedArrayBuffers = await Promise.all(arrayBuffers);
+  const pendingArrayBuffers = loadedAudioFiles.map((file) =>
+    file.arrayBuffer()
+  );
+  const loadedArrayBuffers = await Promise.all(pendingArrayBuffers);
 
   const base64Files = loadedArrayBuffers.map((arrayBuffer) =>
     Buffer.from(arrayBuffer).toString('base64')
