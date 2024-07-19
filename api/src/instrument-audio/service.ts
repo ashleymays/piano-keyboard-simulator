@@ -116,7 +116,7 @@ const fetchAudioFiles = (links: string[]) => {
   return Promise.all(pendingAudioFiles);
 };
 
-const toArrayBuffers = (audioFiles: string[]) => {
+const toArrayBuffers = (audioFiles: Blob[]) => {
   const pendingArrayBuffers = audioFiles.map((file) => file.arrayBuffer());
 
   return Promise.all(pendingArrayBuffers);
