@@ -103,18 +103,29 @@ const hasCorrectFileCount = (files: string[]) => {
 };
 
 const convertAudioToBase64 = async (audioFileLinks: string[]) => {
+  const arrayBuffers = await convertAudioFilesToArrayBuffers(audioFileLinks);
+  const base64Files = convertArrayBuffersToBase64(arrayBuffers);
+
+  return convertBase64FilesToBase64Links(base64Files);
+};
+
+const convertAudioFilesToArrayBuffers = async (audioFileLinks: string[]) => {
   const pendingAudioFiles = audioFileLinks.map((link) => fetch(link));
   const loadedAudioFiles = await Promise.all(pendingAudioFiles);
 
   const pendingArrayBuffers = loadedAudioFiles.map((file) =>
     file.arrayBuffer()
   );
-  const loadedArrayBuffers = await Promise.all(pendingArrayBuffers);
+  return Promise.all(pendingArrayBuffers);
+};
 
-  const base64Files = loadedArrayBuffers.map((arrayBuffer) =>
+const convertArrayBuffersToBase64 = (arrayBuffers: ArrayBuffer[]) => {
+  return arrayBuffers.map((arrayBuffer) =>
     Buffer.from(arrayBuffer).toString('base64')
   );
+};
 
+const convertBase64FilesToBase64Links = (base64Files: string[]) => {
   return base64Files.map((file) => `data:application/octet;base64,${file}`);
 };
 
