@@ -103,29 +103,32 @@ const hasCorrectFileCount = (files: string[]) => {
 };
 
 const convertAudioToBase64 = async (audioFileLinks: string[]) => {
-  const arrayBuffers = await convertAudioFilesToArrayBuffers(audioFileLinks);
-  const base64Files = convertArrayBuffersToBase64(arrayBuffers);
+  const audioFiles = await fetchAudioFiles(audioFileLinks);
+  const arrayBuffers = await toArrayBuffers(audioFiles);
+  const base64Files = toBase64Files(arrayBuffers);
 
-  return convertBase64FilesToBase64Links(base64Files);
+  return toBase64Links(base64Files);
 };
 
-const convertAudioFilesToArrayBuffers = async (audioFileLinks: string[]) => {
-  const pendingAudioFiles = audioFileLinks.map((link) => fetch(link));
-  const loadedAudioFiles = await Promise.all(pendingAudioFiles);
+const fetchAudioFiles = (links: string[]) => {
+  const pendingAudioFiles = links.map((link) => fetch(link));
 
-  const pendingArrayBuffers = loadedAudioFiles.map((file) =>
-    file.arrayBuffer()
-  );
+  return Promise.all(pendingAudioFiles);
+};
+
+const toArrayBuffers = (audioFiles: string[]) => {
+  const pendingArrayBuffers = audioFiles.map((file) => file.arrayBuffer());
+
   return Promise.all(pendingArrayBuffers);
 };
 
-const convertArrayBuffersToBase64 = (arrayBuffers: ArrayBuffer[]) => {
+const toBase64Files = (arrayBuffers: ArrayBuffer[]) => {
   return arrayBuffers.map((arrayBuffer) =>
     Buffer.from(arrayBuffer).toString('base64')
   );
 };
 
-const convertBase64FilesToBase64Links = (base64Files: string[]) => {
+const toBase64Links = (base64Files: string[]) => {
   return base64Files.map((file) => `data:application/octet;base64,${file}`);
 };
 
