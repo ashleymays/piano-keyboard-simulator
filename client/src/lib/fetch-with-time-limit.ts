@@ -7,17 +7,6 @@
  * @returns - The payload in JSON format
  */
 export const fetchWithTimeLimit = async (url: string) => {
-  const response = await fetchWithTimer(url);
-  const result = await response.json();
-
-  if (result.error) {
-    throw new Error(result.error);
-  }
-
-  return result.data;
-};
-
-const fetchWithTimer = async (url: string) => {
   const controller = new AbortController();
   const timerId = createFetchTimer(controller);
 
@@ -25,7 +14,17 @@ const fetchWithTimer = async (url: string) => {
 
   endFetchTimer(timerId);
 
-  return response;
+  return getPayload(response);
+};
+
+const getPayload = async (response: Response) => {
+  const result = await response.json();
+
+  if (result.error) {
+    throw new Error(result.error);
+  }
+
+  return result.data;
 };
 
 const createFetchTimer = (controller: AbortController) => {
