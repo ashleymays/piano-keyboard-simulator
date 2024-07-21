@@ -1,5 +1,5 @@
 import { usePianoKeys } from './use-piano-keys';
-import { useDocumentEventListener } from './use-document-event-listener';
+import { useKeyboardEventListener } from './use-keyboard-event-listener';
 import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
 
 /**
@@ -13,8 +13,8 @@ import type { PianoKey as PianoKeyType } from '~/store/piano-keys';
 export const PianoKeys = () => {
   const { pianoKeys, pressPianoKey, releasePianoKey } = usePianoKeys();
 
-  useDocumentEventListener('keydown', pressPianoKey);
-  useDocumentEventListener('keyup', releasePianoKey);
+  useKeyboardEventListener('keydown', pressPianoKey);
+  useKeyboardEventListener('keyup', releasePianoKey);
 
   /*
     The mouse inputs need to be managed carefully so that there isn't

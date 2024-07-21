@@ -7,8 +7,8 @@ type KeyboardEventHandler = (event: KeyboardEvent) => void;
  *
  * @hook
  */
-export const useDocumentEventListener = (
-  type: string,
+export const useKeyboardEventListener = (
+  type: 'keydown' | 'keyup',
   handler: KeyboardEventHandler
 ) => {
   useEffect(() => {
