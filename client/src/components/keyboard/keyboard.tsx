@@ -6,7 +6,15 @@ export const Keyboard = () => {
   return (
     <section className="keyboard">
       <div className="keyboard__row keyboard__row--top">
-        <Header />
+        <header className="keyboard__header">
+          <h1 className="keyboard__heading">Piano GO</h1>
+          <h2 className="keyboard__subheading">synthesizer</h2>
+          <div className="keyboard__dots">
+            <span />
+            <span />
+            <span />
+          </div>
+        </header>
         <InstrumentDropdown />
       </div>
       <div className="keyboard__row keyboard__row--bottom">
@@ -14,19 +22,5 @@ export const Keyboard = () => {
         <PianoKeys />
       </div>
     </section>
-  );
-};
-
-const Header = () => {
-  return (
-    <header className="keyboard__header">
-      <h1 className="keyboard__heading">Piano GO</h1>
-      <h2 className="keyboard__subheading">synthesizer</h2>
-      <div className="keyboard__dots">
-        <span />
-        <span />
-        <span />
-      </div>
-    </header>
   );
 };
