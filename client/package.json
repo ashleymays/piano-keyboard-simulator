@@ -12,7 +12,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.6",
+    "@reduxjs/toolkit": "^2.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
