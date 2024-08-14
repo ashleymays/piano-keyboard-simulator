@@ -1,8 +1,12 @@
 import 'dotenv/config';
 import process from 'node:process';
-import { initApplication } from './app.ts';
+import { app } from './app.ts';
 
-initApplication();
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Started server on port ${PORT}`);
+});
 
 process.on('uncaughtRejection', (error, promise) => {
   console.log(`Uncaught Rejection: ${error}`);

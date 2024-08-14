@@ -1,4 +1,4 @@
-import { storage, repositoryConfig } from '~/octokit/config.ts';
+import { fetchInstrumentData } from '~/lib/octokit/fetch-instrument-data.ts';
 
 export const findInstrumentNames = async () => {
   const folders = await fetchInstrumentFolders();
@@ -11,10 +11,7 @@ export const findInstrumentNames = async () => {
 };
 
 const fetchInstrumentFolders = async () => {
-  const response = await storage.getContent({
-    path: '/audio',
-    ...repositoryConfig
-  });
+  const response = await fetchInstrumentData('/audio');
 
   return response.data;
 };

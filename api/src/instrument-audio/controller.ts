@@ -4,8 +4,8 @@ import { findInstrumentAudio } from './service.ts';
 
 export const getInstrumentAudio = catchErrors(async (req, res) => {
   const audio = await findInstrumentAudio({
-    name: req.params.name
+    instrumentName: req.params.name
   });
 
-  res.status(StatusCodes.OK).json({ data: audio });
+  res.dispatch(StatusCodes.OK, audio);
 });

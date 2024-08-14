@@ -24,7 +24,10 @@ export const useInstrumentDropdown = () => {
     toast.promise(loadInstrument(instrument), {
       loading: 'Loading...',
       success: 'Ready to play!',
-      error: 'Something went wrong.'
+      error: (err) => {
+        console.log(err);
+        return 'Something went wrong. Please try again in a few minutes.';
+      }
     });
   };
 
