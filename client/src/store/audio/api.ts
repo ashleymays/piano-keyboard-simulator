@@ -10,7 +10,9 @@ export const getAudioPlayers = async (instrument: string) => {
 };
 
 const fetchAudioSamples = (instrument: string): Promise<AudioSamples> => {
-  return fetchWithTimeLimit(`/api/v2/instruments/${instrument}/audio`);
+  return fetchWithTimeLimit(
+    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
+  );
 };
 
 const createAudioPlayers = (urls: AudioSamples): Promise<Players> => {

@@ -1,10 +1,15 @@
 import express from 'express';
+import cors from 'cors';
 import { routes } from './routes.ts';
 import { rateLimiter } from './middleware/rate-limiter.ts';
 import { globalErrorHandler } from './middleware/global-error-handler.ts';
 import { invalidRouteHandler } from './middleware/invalid-route-handler.ts';
 
 export const app = express();
+
+app.use(cors({
+    origin: 'https://piano-keyboard-simulator.vercel.app'
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
