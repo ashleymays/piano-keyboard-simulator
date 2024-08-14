@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import process from 'node:process';
 import { app } from './app.ts';
 
 const PORT = process.env.PORT || 8080;
