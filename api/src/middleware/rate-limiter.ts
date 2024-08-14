@@ -1,10 +1,16 @@
 import { rateLimit, type Options } from 'express-rate-limit';
+import { StatusCodes } from 'http-status-codes';
+
+const handler: Options['handler'] = (req, res, next, options) => {
+  res.status(StatusCodes.TOO_MANY_REQUESTS).json({ data: options.message });
+};
 
 const options: Partial<Options> = {
-  windowMs: 1 * 60 * 1000, // 15 minutes
-  limit: 3,
+  windowMs: 10 * 60 * 1000,
+  limit: 25,
   standardHeaders: 'draft-7',
-  legacyHeaders: false
+  legacyHeaders: false,
+  handler
 };
 
 if (process.env.NODE_ENV === 'development') {
