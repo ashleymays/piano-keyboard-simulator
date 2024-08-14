@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import type { UserConfig as VitestUserConfig } from 'vitest/config';
@@ -7,6 +9,11 @@ export default defineConfig({
     alias: {
       '~': '/src'
     },
+  },
+  server: {
+    proxy: {
+      "/api": import.meta.env.VITE_INSTRUMENT_API_URL,
+    }  
   },
   plugins: [react()],
   test: {
