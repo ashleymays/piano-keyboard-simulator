@@ -37,6 +37,6 @@ const createFetchTimer = (controller: AbortController) => {
   );
 };
 
-const endFetchTimer = (timerId: number) => {
+const endFetchTimer = (timerId: NodeJS.Timeout) => {
   clearTimeout(timerId);
 };
