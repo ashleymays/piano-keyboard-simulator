@@ -12,7 +12,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": import.meta.env.VITE_INSTRUMENT_API_URL,
+      "/api": import.meta.env.VITE_INSTRUMENT_API_URL || "http://localhost:8080/api/v2", // dev url
     }  
   },
   plugins: [react()],
