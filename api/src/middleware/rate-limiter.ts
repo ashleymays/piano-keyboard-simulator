@@ -6,8 +6,8 @@ const handler: Options['handler'] = (req, res, next, options) => {
 };
 
 const options: Partial<Options> = {
-  windowMs: 15 * 60 * 1000,
-  limit: 25,
+  windowMs: 10 * 60 * 1000,
+  limit: 30,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
   handler
