@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { Buffer } from 'node:buffer';
-import { storage, repositoryConfig } from '~/octokit/config.ts';
+import { fetchInstrumentData } from '~/lib/octokit/fetch-instrument-data.ts';
 import type { components } from '@octokit/openapi-types';
 
 type AudioMap = Record<string, string>;
@@ -16,8 +16,10 @@ type DirectoryFile = components['schemas']['content-directory'][number];
  *
  * @returns an object that maps an audio pitch to the corresponding audio file.
  */
-export const findInstrumentAudio = async (params: { name: string }) => {
-  const files = await fetchInstrumentAudio(params.name);
+export const findInstrumentAudio = async (params: {
+  instrumentName: string;
+}) => {
+  const files = await fetchInstrumentAudio(params.instrumentName);
 
   if (!Array.isArray(files)) {
     throw new Error(`Could not get all audio files`);
@@ -26,11 +28,8 @@ export const findInstrumentAudio = async (params: { name: string }) => {
   return createAudioMap(files);
 };
 
-const fetchInstrumentAudio = async (name: string) => {
-  const response = await storage.getContent({
-    path: `/audio/${name}`,
-    ...repositoryConfig
-  });
+const fetchInstrumentAudio = async (instrumentName: string) => {
+  const response = await fetchInstrumentData(`/audio/${instrumentName}`);
 
   return response.data;
 };

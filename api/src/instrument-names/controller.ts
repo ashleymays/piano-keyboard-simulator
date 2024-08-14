@@ -5,5 +5,5 @@ import { findInstrumentNames } from './service.ts';
 export const getInstrumentNames = catchErrors(async (req, res) => {
   const names = await findInstrumentNames();
 
-  res.status(StatusCodes.OK).json({ data: names });
+  res.dispatch(StatusCodes.OK, names);
 });

@@ -1,8 +1,11 @@
 import { Router } from 'express';
+import { addDispatch } from './middleware/add-dispatch.ts';
 import { getInstrumentAudio } from './instrument-audio/controller.ts';
 import { getInstrumentNames } from './instrument-names/controller.ts';
 
-export const appRouter = Router();
+const appRoutes = Router();
 
-appRouter.get('/instruments', getInstrumentNames);
-appRouter.get('/instruments/:name/audio', getInstrumentAudio);
+appRoutes.get('/instruments', addDispatch, getInstrumentNames);
+appRoutes.get('/instruments/:name/audio', addDispatch, getInstrumentAudio);
+
+export const routes = Router().use('/api/v2', appRoutes);
