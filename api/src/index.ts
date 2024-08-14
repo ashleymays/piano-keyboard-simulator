@@ -1,9 +1,10 @@
 import 'dotenv/config';
 import { app } from './app.ts';
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
+const HOST = process.env.HOST || '127.0.0.1';
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(`Started server on port ${PORT}`);
 });
 

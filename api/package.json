@@ -10,7 +10,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=production yarn build && node ./dist/index.mjs",
+    "start": "NODE_ENV=production HOST=0.0.0.0 yarn build && node ./dist/index.mjs",
     "build": "pkgroll",
     "dev": "NODE_ENV=development tsx ./src/index.ts",
     "test": "node --import=tsx ./src/**/*.test.ts",
