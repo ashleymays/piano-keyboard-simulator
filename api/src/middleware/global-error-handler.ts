@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { RequestError } from 'octokit';
+import { RequestError } from '@octokit/request-error';
 import { NotFoundError, GeneralError } from '@ashleymays/nodejs-utils';
 import type { Request, Response, NextFunction } from 'express';
 import type { CustomError } from '@ashleymays/nodejs-utils';
