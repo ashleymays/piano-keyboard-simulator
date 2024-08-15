@@ -29,7 +29,7 @@ const getPayload = async (response: Response) => {
 
 const createFetchTimer = (controller: AbortController) => {
   const oneSecondInMilliseconds = 1000;
-  const timeLimit = 8 * oneSecondInMilliseconds;
+  const timeLimit = 60 * oneSecondInMilliseconds;
 
   return setTimeout(
     () => controller.abort('The request took too long to complete.'),
