@@ -5,11 +5,11 @@ The server code is structured as follows:
 ```py
 src
 |
-+-- instrument-audio    # access audio samples for an instrument
++-- audio-samples       # access audio samples for an instrument
 |
 +-- instrument-names    # access the list of available instruments for the keyboard
 |
-+-- middlewares         # handles actions that happen during the request and response
++-- middleware          # handles actions that happen during the request and response
 |
 +-- octokit             # configuration for accessing the instruments
 |

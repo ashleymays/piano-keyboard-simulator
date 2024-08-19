@@ -1,5 +1,6 @@
 declare namespace Express {
   export interface Response {
-    dispatch(statusCode: number, data: unknown): void;
+    sendSuccess(statusCode: number, data: unknown): void;
+    sendError(statusCode: number, error: string): void;
   }
 }

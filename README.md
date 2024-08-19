@@ -1,10 +1,8 @@
 <div align="center">
-  <img src="./piano-icon.png" alt="Logo" width="60">
   <h1 align="center">Piano Keyboard Simulator</h1>
   <p align="center">
     Use your computer keyboard or click the keys with your mouse to play.
   </p>
-  <img src="./piano-keyboard-simulator.gif" alt="Piano Keyboard Simulator">
 </div>
 
 ## Features

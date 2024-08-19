@@ -3,7 +3,7 @@ import { catchErrors } from '@ashleymays/nodejs-utils';
 import { findInstrumentNames } from './service.ts';
 
 export const getInstrumentNames = catchErrors(async (req, res) => {
-  const names = await findInstrumentNames();
+  const instrumentNames = await findInstrumentNames();
 
-  res.dispatch(StatusCodes.OK, names);
+  res.sendSuccess(StatusCodes.OK, instrumentNames);
 });
