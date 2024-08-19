@@ -27,7 +27,7 @@ export const findAudioSamples = async (instrumentName: string) => {
 };
 
 const fetchInstrumentAudio = async (instrumentName: string) => {
-  const response = await fetchInstrumentData(`/audio/${instrumentName}`);
+  const response = await fetchInstrumentData(`/instruments/${instrumentName}`);
 
   return response.data;
 };

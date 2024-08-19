@@ -11,7 +11,7 @@ export const findInstrumentNames = async () => {
 };
 
 const fetchInstrumentFolders = async () => {
-  const response = await fetchInstrumentData('/audio');
+  const response = await fetchInstrumentData('/instruments');
 
   return response.data;
 };

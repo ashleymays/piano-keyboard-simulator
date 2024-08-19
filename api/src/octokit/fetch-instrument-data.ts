@@ -4,6 +4,6 @@ export const fetchInstrumentData = (path: string) => {
   return octokit.rest.repos.getContent({
     path,
     owner: 'ashleymays',
-    repo: 'piano-keyboard-audio'
+    repo: 'keyboard-instruments'
   });
 };
