@@ -1,4 +1,4 @@
-import { fetchInstrumentData } from '~/lib/octokit/fetch-instrument-data.ts';
+import { fetchInstrumentData } from '~/octokit/fetch-instrument-data.ts';
 
 export const findInstrumentNames = async () => {
   const folders = await fetchInstrumentFolders();
