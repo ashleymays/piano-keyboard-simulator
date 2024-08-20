@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { loadAudio } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
 import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
-import { useDelayedEffect } from './use-delayed-effect';
 
 /**
  * Behavior for initializing and managing the instrument dropdown.
@@ -13,6 +12,7 @@ import { useDelayedEffect } from './use-delayed-effect';
 export const useInstrumentDropdown = () => {
   const [instrument, setInstrument] = useState<string | null>(null);
   const [instrumentNames, setInstrumentNames] = useState<string[]>([]);
+
   const dispatch = useAppDispatch();
 
   const loadInstrument = async (newInstrument: string) => {
@@ -31,18 +31,33 @@ export const useInstrumentDropdown = () => {
     });
   };
 
-  useDelayedEffect(() => {
+  useEffect(() => {
     const initDropdown = async () => {
       const instruments = await fetchInstrumentNames();
       setInstrumentNames([...instruments]);
       await loadInstrument(instruments[0]);
     };
 
-    toast.promise(initDropdown(), {
-      loading: 'Preparing keyboard...',
-      success: 'Ready to play!',
-      error: 'There was an issue preparing the keyboard.'
-    });
+    const init = () => {
+      toast.promise(initDropdown(), {
+        loading: 'Loading...',
+        success: 'Ready to play!',
+        error: (err) => {
+          console.log(err);
+          return 'There was an issue starting the keyboard. Please reload the page and try again.';
+        }
+      });
+    };
+
+    /*
+      Workaround for showing a toast when the page loads.
+      Need to call `setTimeout` on the effect callback in order for toasts to appear on init.
+
+      https://github.com/timolins/react-hot-toast/pull/251
+     */
+    const timer = setTimeout(() => init());
+
+    return () => clearTimeout(timer);
   }, []);
 
   return { instrument, instrumentNames, selectInstrument };

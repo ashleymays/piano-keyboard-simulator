@@ -48,6 +48,9 @@ const Description = () => {
       <br />
       <br />
       Also, press the octave buttons to raise or lower the pitch of the notes.
+      <br />
+      <br />
+      <strong>Important Note: </strong>It may take a minute to start the keyboard. If it doesn't load at all, try reloading the page.
     </p>
   );
 };

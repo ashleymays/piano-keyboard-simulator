@@ -12,18 +12,9 @@ import type { PianoKey } from '~/store/piano-keys';
 export const usePianoKeys = () => {
   const audioPlayers = useAppSelector((state) => state.audio.players);
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
+
   const dispatch = useAppDispatch();
 
-  /**
-   * Plays a key on the keyboard.
-   *
-   * There must be an instrument selected (as in, available audio to play)
-   * in order to play a piano key.
-   *
-   * Also, the computer key that's pressed must be a valid key on the piano.
-   *
-   * For example, the `Shift` key does not map to a piano key, so nothing happens.
-   */
   const pressPianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;
@@ -35,13 +26,14 @@ export const usePianoKeys = () => {
       return;
     }
 
-    const pianoKey = findPianoKeyById(keyId);
+    const pianoKey = pianoKeys.find((pianoKey) => pianoKey.id === keyId);
 
     if (!pianoKey || pianoKey.isPressed) {
       return;
     }
 
-    const audioPlayer = audioPlayers.player(getPitch(pianoKey));
+    const pitch = `${pianoKey.note}${pianoKey.octave}`;
+    const audioPlayer = audioPlayers.player(pitch);
 
     if (!audioPlayer) {
       return;
@@ -51,21 +43,10 @@ export const usePianoKeys = () => {
     dispatch(pressKey(keyId));
   };
 
-  const findPianoKeyById = (keyId: PianoKey['id']) => {
-    return pianoKeys.find((pianoKey) => pianoKey.id === keyId);
-  };
-
-  const getPitch = (pianoKey: PianoKey) => {
-    return `${pianoKey.note}${pianoKey.octave}`;
-  };
-
   const playPitch = (audioPlayer: Player) => {
     audioPlayer.toDestination().start();
   };
 
-  /**
-   * Releases a key on the keyboard.
-   */
   const releasePianoKey = (event: KeyboardEvent | ReactMouseEvent) => {
     if (!audioPlayers) {
       return;

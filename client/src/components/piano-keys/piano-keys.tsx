@@ -32,7 +32,9 @@ export const PianoKeys = () => {
       {pianoKeys.map((pianoKey) => (
         <PianoKey
           key={pianoKey.id}
-          {...pianoKey}
+          id={pianoKey.id}
+          isPressed={pianoKey.isPressed}
+          type={pianoKey.type}
         />
       ))}
     </div>

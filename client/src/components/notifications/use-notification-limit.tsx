@@ -6,19 +6,15 @@ import globalToast, { useToasterStore } from 'react-hot-toast';
  *
  * @hook
  */
-export const useToastLimit = () => {
+export const useNotificationLimit = () => {
   const { toasts } = useToasterStore();
 
-  const limitToasts = () => {
-    const LIMIT = 1;
-
+  useEffect(() => {
+    const limit = 1;
+  
     toasts
       .filter((toast) => toast.visible)
-      .filter((_, index) => index >= LIMIT)
+      .filter((_, index) => index >= limit)
       .forEach((toast) => globalToast.dismiss(toast.id));
-  };
-
-  useEffect(() => {
-    limitToasts();
   }, [toasts]);
 };
