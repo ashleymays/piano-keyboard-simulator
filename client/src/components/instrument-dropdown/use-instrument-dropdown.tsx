@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { loadAudio } from '~/store/audio';
 import { useAppDispatch } from '~/store/hooks';
-import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
+import { fetchData } from '~/lib/fetch-data';
 
 /**
  * Behavior for initializing and managing the instrument dropdown.
@@ -64,7 +64,5 @@ export const useInstrumentDropdown = () => {
 };
 
 const fetchInstrumentNames = (): Promise<string[]> => {
-  return fetchWithTimeLimit(
-    `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`
-  );
+  return fetchData(`${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments`);
 };
