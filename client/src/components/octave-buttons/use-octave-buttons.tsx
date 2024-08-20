@@ -19,10 +19,6 @@ export const useOctaveButtons = () => {
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
-  const getPitch = (pianoKey: PianoKey) => {
-    return `${pianoKey.note}${pianoKey.octave}`;
-  };
-
   const increment = () => {
     dispatch(incrementOctave());
   };
@@ -48,4 +44,8 @@ export const useOctaveButtons = () => {
   );
 
   return { increment, decrement };
+};
+
+const getPitch = (pianoKey: PianoKey) => {
+  return `${pianoKey.note}${pianoKey.octave}`;
 };
