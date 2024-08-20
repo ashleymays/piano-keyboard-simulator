@@ -1,8 +1,6 @@
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { pressKey, releaseKey } from '~/store/piano-keys';
 import type { MouseEvent as ReactMouseEvent } from 'react';
-import type { Player } from 'tone';
-import type { PianoKey } from '~/store/piano-keys';
 
 /**
  * Behavior for playing and releasing the keys on the keyboard.
@@ -39,12 +37,9 @@ export const usePianoKeys = () => {
       return;
     }
 
-    playPitch(audioPlayer);
-    dispatch(pressKey(keyId));
-  };
-
-  const playPitch = (audioPlayer: Player) => {
     audioPlayer.toDestination().start();
+
+    dispatch(pressKey(keyId));
   };
 
   const releasePianoKey = (event: KeyboardEvent | ReactMouseEvent) => {

@@ -31,18 +31,21 @@ export const useOctaveButtons = () => {
     dispatch(decrementOctave());
   };
 
-  useMountedEffect(() => {
-    const showOctaveRange = () => {
-      const lowestKey = pianoKeys[0];
-      const highestKey = pianoKeys[pianoKeys.length - 1];
-  
-      const octaveRange = `${getPitch(lowestKey)} - ${getPitch(highestKey)}`;
-  
-      toast(`Note Range: ${octaveRange}`);
-    };
+  useMountedEffect(
+    () => {
+      const showOctaveRange = () => {
+        const lowestKey = pianoKeys[0];
+        const highestKey = pianoKeys[pianoKeys.length - 1];
 
-    showOctaveRange();
-  }, pianoKeys.map((pianoKey) => pianoKey.octave));
+        const octaveRange = `${getPitch(lowestKey)} - ${getPitch(highestKey)}`;
+
+        toast(`Note Range: ${octaveRange}`);
+      };
+
+      showOctaveRange();
+    },
+    pianoKeys.map((pianoKey) => pianoKey.octave)
+  );
 
   return { increment, decrement };
 };
