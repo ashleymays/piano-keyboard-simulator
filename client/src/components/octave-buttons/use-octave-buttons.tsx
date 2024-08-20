@@ -19,15 +19,6 @@ export const useOctaveButtons = () => {
   const pianoKeys = useAppSelector((state) => state.pianoKeys);
   const dispatch = useAppDispatch();
 
-  const showOctaveRange = () => {
-    const lowestKey = pianoKeys[0];
-    const highestKey = pianoKeys[pianoKeys.length - 1];
-
-    const octaveRange = `${getPitch(lowestKey)} - ${getPitch(highestKey)}`;
-
-    toast(`Note Range: ${octaveRange}`);
-  };
-
   const getPitch = (pianoKey: PianoKey) => {
     return `${pianoKey.note}${pianoKey.octave}`;
   };
@@ -40,9 +31,21 @@ export const useOctaveButtons = () => {
     dispatch(decrementOctave());
   };
 
-  useMountedEffect(() => {
-    showOctaveRange();
-  }, [...pianoKeys.map((pianoKey) => pianoKey.octave)]);
+  useMountedEffect(
+    () => {
+      const showOctaveRange = () => {
+        const lowestKey = pianoKeys[0];
+        const highestKey = pianoKeys[pianoKeys.length - 1];
+
+        const octaveRange = `${getPitch(lowestKey)} - ${getPitch(highestKey)}`;
+
+        toast(`Note Range: ${octaveRange}`);
+      };
+
+      showOctaveRange();
+    },
+    pianoKeys.map((pianoKey) => pianoKey.octave)
+  );
 
   return { increment, decrement };
 };

@@ -1,5 +1,5 @@
 import { Players } from 'tone';
-import { fetchWithTimeLimit } from '~/lib/fetch-with-time-limit';
+import { fetchData } from '~/lib/fetch-data';
 
 type AudioSamples = Record<string, string>;
 
@@ -10,7 +10,7 @@ export const getAudioPlayers = async (instrument: string) => {
 };
 
 const fetchAudioSamples = (instrument: string): Promise<AudioSamples> => {
-  return fetchWithTimeLimit(
+  return fetchData(
     `${import.meta.env.VITE_INSTRUMENT_API_URL}/instruments/${instrument}/audio`
   );
 };

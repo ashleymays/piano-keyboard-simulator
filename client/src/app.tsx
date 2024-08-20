@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { Keyboard } from './components/keyboard';
-import { Toasts } from './components/toasts';
+import { Notifications } from './components/notifications';
 import { Modal } from './components/modal';
 import { store } from './store';
 
@@ -9,9 +9,9 @@ export const App = () => {
     <Provider store={store}>
       <main>
         <Keyboard />
-        <Toasts />
         <Modal />
       </main>
+      <Notifications />
     </Provider>
   );
 };
